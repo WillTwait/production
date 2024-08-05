@@ -1,0 +1,86 @@
+name: CI
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  # allows workflows to be triggered manually, e.g. via the gh cli
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    if: "! github.event.pull_request.draft"
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+        node_version:
+          - 18
+      fail-fast: false
+
+    name: Build and Test (nodejs@${{ matrix.node_version }}, ${{ matrix.os }})
+    steps:
+      - uses: actions/checkout@v3
+      - uses: oven-sh/setup-bun@v1
+        with:
+          registry-url: https://registry.npmjs.org
+          scope: "@tendrel"
+      - name: Install Dependencies
+        env:
+          BUN_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: bun install --frozen-lockfile
+      - run: bun ci:compile
+
+  doctor:
+    if: "! github.event.pull_request.draft"
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+        node_version:
+          - 18
+      fail-fast: false
+
+    name: Expo Doctor (nodejs@${{ matrix.node_version }}, ${{ matrix.os }})
+    steps:
+      - uses: actions/checkout@v3
+      - uses: oven-sh/setup-bun@v1
+        with:
+          registry-url: https://registry.npmjs.org
+          scope: "@tendrel"
+      - name: Install Dependencies
+        env:
+          BUN_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: bun install --frozen-lockfile
+      - run: bun ci:doctor
+
+  style:
+    runs-on: ubuntu-latest
+    name: Stylecheck (nodejs@18, ubuntu-latest)
+    steps:
+      - uses: actions/checkout@v3
+      - uses: oven-sh/setup-bun@v1
+        with:
+          registry-url: https://registry.npmjs.org
+          scope: "@tendrel"
+      - name: Install Dependencies
+        env:
+          BUN_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: bun install --frozen-lockfile
+      - name: Check
+        run: bun ci:check
