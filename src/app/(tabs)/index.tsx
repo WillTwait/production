@@ -1,11 +1,40 @@
-import { Image, Platform, StyleSheet } from "react-native";
-
-import { HelloWave } from "@/components/HelloWave";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
+import { useTendrel } from "@/tendrel/provider";
+import { useDrizzleStudio } from "expo-drizzle-studio-plugin";
+import { Image, Platform, StyleSheet, View } from "react-native";
+import { useMigrationHelper } from "~/db/drizzle";
+import { useDatabase } from "~/db/provider";
 
 export default function HomeScreen() {
+  const { success, error } = useMigrationHelper();
+
+  if (error) {
+    return (
+      <View>
+        <ThemedText>Migration error: {error.message}</ThemedText>
+      </View>
+    );
+  }
+  if (!success) {
+    return (
+      <View>
+        <ThemedText>Migration is in progress...</ThemedText>
+      </View>
+    );
+  }
+
+  return <Content />;
+}
+
+function Content() {
+  const { db, expoDb } = useDatabase();
+  const { tendrel } = useTendrel();
+
+  if (__DEV__) {
+    useDrizzleStudio(expoDb);
+  }
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
@@ -13,7 +42,7 @@ export default function HomeScreen() {
     >
       <ThemedView style={styles.titleContainer}>
         <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
+        {/*<HelloWave />*/}
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Step 1: Try it</ThemedText>

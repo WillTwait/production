@@ -2,9 +2,8 @@ import { ConfigContext, ExpoConfig } from "expo/config";
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
-  // CHANGE-ME
-  slug: "my-app",
-  name: "My App",
+  slug: "checklist",
+  name: "Checklist",
   version: "1.0.0",
   orientation: "portrait",
   icon: "./src/assets/images/icon.png",
@@ -17,16 +16,14 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   ios: {
     supportsTablet: true,
-    // CHANGE-ME
-    bundleIdentifier: "com.tendrel.expotemplate",
+    bundleIdentifier: "com.tendrel.checklist",
   },
   android: {
     adaptiveIcon: {
       foregroundImage: "./src/assets/images/adaptive-icon.png",
       backgroundColor: "#ffffff",
     },
-    // CHANGE-ME
-    package: "com.tendrel.expotemplate",
+    package: "com.tendrel.checklist",
   },
   web: {
     bundler: "metro",
