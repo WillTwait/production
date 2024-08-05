@@ -2,8 +2,9 @@ import { ConfigContext, ExpoConfig } from "expo/config";
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
+  owner: "tendrel",
   slug: "checklist",
-  name: "Checklist",
+  name: getAppName(),
   version: "1.0.0",
   orientation: "portrait",
   icon: "./src/assets/images/icon.png",
@@ -16,14 +17,14 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   ios: {
     supportsTablet: true,
-    bundleIdentifier: "com.tendrel.checklist",
+    bundleIdentifier: getUniqueIdentifier(),
   },
   android: {
     adaptiveIcon: {
       foregroundImage: "./src/assets/images/adaptive-icon.png",
       backgroundColor: "#ffffff",
     },
-    package: "com.tendrel.checklist",
+    package: getUniqueIdentifier(),
   },
   web: {
     bundler: "metro",
@@ -31,7 +32,36 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     favicon: "./src/assets/images/favicon.png",
   },
   plugins: ["expo-router"],
+  extra: {
+    eas: {
+      projectId: "7dd59d91-ed34-4992-8994-3edbbbd40c45",
+    },
+  },
+  updates: {
+    url: "https://u.expo.dev/7dd59d91-ed34-4992-8994-3edbbbd40c45",
+  },
+  runtimeVersion: {
+    policy: "appVersion",
+  },
   experiments: {
     typedRoutes: true,
   },
 });
+
+const IS_DEV = process.env.APP_VARIANT === "development";
+
+const getUniqueIdentifier = () => {
+  if (IS_DEV) {
+    return "com.tendrel.checklist.dev";
+  }
+
+  return "com.tendrel.checklist";
+};
+
+const getAppName = () => {
+  if (IS_DEV) {
+    return "Checklist (Dev)";
+  }
+
+  return "Checklist";
+};
