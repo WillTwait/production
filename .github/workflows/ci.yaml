@@ -44,6 +44,7 @@ jobs:
           BUN_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: bun install --frozen-lockfile
       - run: bun ci:compile
+      - run: bun ci:test
 
   doctor:
     if: "! github.event.pull_request.draft"

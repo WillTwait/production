@@ -16,7 +16,7 @@
     "lineWidth": 120
   },
   "files": {
-    "ignore": ["cdk.out", "src/babel.config.js"]
+    "ignore": ["cdk.out", "babel.config.js", "db/migrations/**"]
   },
   "linter": {
     "enabled": true,

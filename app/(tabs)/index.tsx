@@ -1,11 +1,11 @@
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
+import { useMigrationHelper } from "@/db/drizzle";
+import { useDatabase } from "@/db/provider";
 import { useTendrel } from "@/tendrel/provider";
 import { useDrizzleStudio } from "expo-drizzle-studio-plugin";
 import { Image, Platform, StyleSheet, View } from "react-native";
-import { useMigrationHelper } from "~/db/drizzle";
-import { useDatabase } from "~/db/provider";
 
 export default function HomeScreen() {
   const { success, error } = useMigrationHelper();

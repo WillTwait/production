@@ -7,11 +7,11 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   name: getAppName(),
   version: "1.0.0",
   orientation: "portrait",
-  icon: "./src/assets/images/icon.png",
+  icon: "./assets/images/icon.png",
   scheme: "myapp",
   userInterfaceStyle: "automatic",
   splash: {
-    image: "./src/assets/images/splash.png",
+    image: "./assets/images/splash.png",
     resizeMode: "contain",
     backgroundColor: "#ffffff",
   },
@@ -21,7 +21,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   android: {
     adaptiveIcon: {
-      foregroundImage: "./src/assets/images/adaptive-icon.png",
+      foregroundImage: "./assets/images/adaptive-icon.png",
       backgroundColor: "#ffffff",
     },
     package: getUniqueIdentifier(),
@@ -29,7 +29,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   web: {
     bundler: "metro",
     output: "static",
-    favicon: "./src/assets/images/favicon.png",
+    favicon: "./assets/images/favicon.png",
   },
   plugins: ["expo-router"],
   extra: {
