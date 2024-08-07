@@ -10,7 +10,13 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    bun i
    ```
 
-2. Start the app
+2. Setup environment
+   ```bash
+   cp .env.template .env.local
+   ```
+   _You will need a clerk key, which can be retrieved from the Clerk dashboard. 
+   **Make sure you DO NOT use live keys, the keys should be prefixed with test**
+3. Start the app
 
    ```bash
     bun ios
@@ -27,6 +33,19 @@ bun generate
 ```
 
 Migrations will be applied the next time the app is reloaded.
+
+## Developing locally with the @tendrel/sdk package
+From the `@tendrel/sdk` package, run
+```bash
+bun link
+```
+
+From this package, run
+```bash
+bun link @tendrel/sdk --save
+```
+
+Make sure `localSdkPath` in `metro.config.js` is correctly set to your sdk package dir.
 
 ## Testing
 [Install Maestro](https://maestro.mobile.dev/getting-started/installing-maestro)

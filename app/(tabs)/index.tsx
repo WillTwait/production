@@ -2,10 +2,12 @@ import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { useMigrationHelper } from "@/db/drizzle";
-import { useDatabase } from "@/db/provider";
 import { useTendrel } from "@/tendrel/provider";
-import { useDrizzleStudio } from "expo-drizzle-studio-plugin";
-import { Image, Platform, StyleSheet, View } from "react-native";
+import { useAuth } from "@clerk/clerk-expo";
+import { run } from "@tendrel/lib";
+import { GetUserResponse } from "@tendrel/sdk";
+import { useEffect, useState } from "react";
+import { Button, Image, StyleSheet, View } from "react-native";
 
 export default function HomeScreen() {
   const { success, error } = useMigrationHelper();
@@ -29,11 +31,34 @@ export default function HomeScreen() {
 }
 
 function Content() {
-  const { db, expoDb } = useDatabase();
+  const { signOut, isLoaded, isSignedIn, getToken } = useAuth();
   const { tendrel } = useTendrel();
+  const [user, setUser] = useState<GetUserResponse["user"]>();
+  const [loading, setLoading] = useState(true);
 
-  if (__DEV__) {
-    useDrizzleStudio(expoDb);
+  useEffect(() => {
+    if (isSignedIn && tendrel) {
+      run(async () => {
+        const clerkToken = await getToken();
+        if (clerkToken) {
+          const { token } = await tendrel.getAuthToken({
+            strategy: "sessionToken",
+            sessionToken: clerkToken,
+          });
+
+          const { user } = await tendrel.getUser({
+            token: token,
+          });
+
+          setUser(user);
+          setLoading(false);
+        }
+      });
+    }
+  }, [isSignedIn, isLoaded]);
+
+  if (loading) {
+    return <ThemedText>Loading!</ThemedText>;
   }
   return (
     <ParallaxScrollView
@@ -41,30 +66,14 @@ function Content() {
       headerImage={<Image source={require("@/assets/images/adaptive-icon.png")} style={styles.reactLogo} />}
     >
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        {/*<HelloWave />*/}
+        <ThemedText type="title">Welcome {user?.name}</ThemedText>
       </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes. Press{" "}
-          <ThemedText type="defaultSemiBold">{Platform.select({ ios: "cmd + d", android: "cmd + m" })}</ThemedText> to
-          open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>Tap the Explore tab to learn more about what's included in this starter app.</ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{" "}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{" "}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{" "}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
+
+      {user?.workerInstances?.map(wi => {
+        return <ThemedText>{wi.customer.name}</ThemedText>;
+      })}
+
+      <Button title={"Sign out"} onPress={() => signOut()} />
     </ParallaxScrollView>
   );
 }
@@ -85,5 +94,11 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     position: "absolute",
+  },
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
   },
 });
