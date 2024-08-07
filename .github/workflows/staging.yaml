@@ -28,4 +28,4 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: 🚀 Create update
-        run: eas update --channel staging --message ${{ github.event.push.ref }}
+        run: eas update --channel staging --message ${{ github.event.push.head_commit.message }}
