@@ -1,0 +1,18 @@
+{
+  "username": {
+    "t": "사용자 이름",
+    "override": false
+  },
+  "password": {
+    "t": "암호",
+    "override": false
+  },
+  "or": {
+    "t": "또는",
+    "override": false
+  },
+  "email": {
+    "t": "이메일",
+    "override": false
+  }
+}

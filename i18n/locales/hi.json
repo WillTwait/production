@@ -1,0 +1,18 @@
+{
+  "username": {
+    "t": "उपयोगकर्ता नाम",
+    "override": false
+  },
+  "password": {
+    "t": "पासवर्ड",
+    "override": false
+  },
+  "or": {
+    "t": "या",
+    "override": false
+  },
+  "email": {
+    "t": "ईमेल",
+    "override": false
+  }
+}

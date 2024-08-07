@@ -1,0 +1,18 @@
+{
+  "username": {
+    "t": "nazwa użytkownika",
+    "override": false
+  },
+  "password": {
+    "t": "hasło",
+    "override": false
+  },
+  "or": {
+    "t": "albo",
+    "override": false
+  },
+  "email": {
+    "t": "e-mail",
+    "override": false
+  }
+}

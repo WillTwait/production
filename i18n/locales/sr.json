@@ -1,0 +1,18 @@
+{
+  "username": {
+    "t": "korisničko ime",
+    "override": false
+  },
+  "password": {
+    "t": "lozinka",
+    "override": false
+  },
+  "or": {
+    "t": "ili",
+    "override": false
+  },
+  "email": {
+    "t": "elektronska pošta",
+    "override": false
+  }
+}

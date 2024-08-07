@@ -1,0 +1,18 @@
+{
+  "username": {
+    "t": "nume de utilizator",
+    "override": false
+  },
+  "password": {
+    "t": "parolă",
+    "override": false
+  },
+  "or": {
+    "t": "sau",
+    "override": false
+  },
+  "email": {
+    "t": "emailul",
+    "override": false
+  }
+}

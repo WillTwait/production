@@ -1,0 +1,18 @@
+{
+  "username": {
+    "t": "имя пользователя",
+    "override": false
+  },
+  "password": {
+    "t": "пароль",
+    "override": false
+  },
+  "or": {
+    "t": "или же",
+    "override": false
+  },
+  "email": {
+    "t": "письмо",
+    "override": false
+  }
+}

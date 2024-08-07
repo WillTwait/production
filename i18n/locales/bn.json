@@ -1,0 +1,18 @@
+{
+  "username": {
+    "t": "ব্যবহারকারীর নাম",
+    "override": false
+  },
+  "password": {
+    "t": "পাসওয়ার্ড",
+    "override": false
+  },
+  "or": {
+    "t": "অথবা",
+    "override": false
+  },
+  "email": {
+    "t": "ই-মেইল",
+    "override": false
+  }
+}

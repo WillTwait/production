@@ -1,0 +1,18 @@
+{
+  "username": {
+    "t": "用户名",
+    "override": false
+  },
+  "password": {
+    "t": "密码",
+    "override": false
+  },
+  "or": {
+    "t": "要么",
+    "override": false
+  },
+  "email": {
+    "t": "电子邮件",
+    "override": false
+  }
+}

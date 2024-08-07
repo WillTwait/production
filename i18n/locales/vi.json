@@ -1,0 +1,18 @@
+{
+  "username": {
+    "t": "tên người dùng",
+    "override": false
+  },
+  "password": {
+    "t": "mật khẩu",
+    "override": false
+  },
+  "or": {
+    "t": "hoặc là",
+    "override": false
+  },
+  "email": {
+    "t": "e-mail",
+    "override": false
+  }
+}

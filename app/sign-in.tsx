@@ -1,14 +1,17 @@
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
+import "@/extensions/string";
 import { useSignIn } from "@clerk/clerk-expo";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Button, Image, SafeAreaView, StyleSheet, TextInput } from "react-native";
 
 export default function SignIn() {
   const { signIn, setActive, isLoaded } = useSignIn();
   const router = useRouter();
+  const { t } = useTranslation();
 
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
@@ -48,14 +51,14 @@ export default function SignIn() {
       <SafeAreaView>
         <TextInput
           style={styles.input}
-          placeholder={"Username or email"}
+          placeholder={`${t("username.t").capitalize()} ${t("or.t")} ${t("email.t")}`}
           value={identifier}
           onChangeText={setIdentifier}
           autoCapitalize="none"
         />
         <TextInput
           style={styles.input}
-          placeholder={"Password"}
+          placeholder={t("password.t").capitalize()}
           value={password}
           secureTextEntry={true}
           autoCapitalize="none"

@@ -1,0 +1,18 @@
+{
+  "username": {
+    "t": "užívateľské meno",
+    "override": false
+  },
+  "password": {
+    "t": "heslo",
+    "override": false
+  },
+  "or": {
+    "t": "alebo",
+    "override": false
+  },
+  "email": {
+    "t": "e-mail",
+    "override": false
+  }
+}

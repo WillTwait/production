@@ -1,0 +1,18 @@
+{
+  "username": {
+    "t": "اسم المستخدم",
+    "override": false
+  },
+  "password": {
+    "t": "كلمة المرور",
+    "override": false
+  },
+  "or": {
+    "t": "أو",
+    "override": false
+  },
+  "email": {
+    "t": "البريد الإلكتروني",
+    "override": false
+  }
+}

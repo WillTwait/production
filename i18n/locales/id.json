@@ -1,0 +1,18 @@
+{
+  "username": {
+    "t": "nama pengguna",
+    "override": false
+  },
+  "password": {
+    "t": "kata sandi",
+    "override": false
+  },
+  "or": {
+    "t": "atau",
+    "override": false
+  },
+  "email": {
+    "t": "surel",
+    "override": false
+  }
+}

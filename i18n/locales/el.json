@@ -1,0 +1,18 @@
+{
+  "username": {
+    "t": "όνομα χρήστη",
+    "override": false
+  },
+  "password": {
+    "t": "κωδικός πρόσβασης",
+    "override": false
+  },
+  "or": {
+    "t": "ή",
+    "override": false
+  },
+  "email": {
+    "t": "Ηλεκτρονικό ταχυδρομείο",
+    "override": false
+  }
+}

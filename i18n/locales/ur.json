@@ -1,0 +1,18 @@
+{
+  "username": {
+    "t": "صارف نام",
+    "override": false
+  },
+  "password": {
+    "t": "پاس ورڈ",
+    "override": false
+  },
+  "or": {
+    "t": "یا",
+    "override": false
+  },
+  "email": {
+    "t": "ای میل کریں",
+    "override": false
+  }
+}

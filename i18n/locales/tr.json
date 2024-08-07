@@ -1,0 +1,18 @@
+{
+  "username": {
+    "t": "Kullanıcı adı",
+    "override": false
+  },
+  "password": {
+    "t": "şifre",
+    "override": false
+  },
+  "or": {
+    "t": "veya",
+    "override": false
+  },
+  "email": {
+    "t": "E-posta",
+    "override": false
+  }
+}

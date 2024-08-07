@@ -1,0 +1,18 @@
+{
+  "username": {
+    "t": "ユーザー名",
+    "override": false
+  },
+  "password": {
+    "t": "パスワード",
+    "override": false
+  },
+  "or": {
+    "t": "または",
+    "override": false
+  },
+  "email": {
+    "t": "Eメール",
+    "override": false
+  }
+}

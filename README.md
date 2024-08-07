@@ -23,6 +23,11 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    # or bun android
    ```
 
+## Adding translated text
+1. Add the word/phrase to `i18n/corpus.json`
+2. Run `aws sso login <your-profile-name>`
+3. Run `bun translate`
+
 ## Inspecting the SQLite database
 After starting the app with `bun:ios|android`, enter `shift + m` in the terminal and select `Open expo-drizzle-studio-plugin`
 
