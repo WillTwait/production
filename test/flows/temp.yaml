@@ -1,0 +1,14 @@
+appId: com.tendrel.checklist
+name: Placeholder Test
+onFlowStart:
+  - runFlow:
+      file: "./util/open-app.yaml"
+  - runFlow:
+      file: "./util/sign-in.yaml"
+
+onFlowComplete:
+  - runFlow: "./util/sign-out.yaml"
+
+---
+- assertVisible:
+    id: "customerSelectPage"

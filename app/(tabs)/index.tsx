@@ -3,6 +3,7 @@ import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { useMigrationHelper } from "@/db/drizzle";
 import { useTendrel } from "@/tendrel/provider";
+import { addTestIdentifiers } from "@/util/add-test-id";
 import { useAuth } from "@clerk/clerk-expo";
 import { run } from "@tendrel/lib";
 import { GetUserResponse } from "@tendrel/sdk";
@@ -63,6 +64,7 @@ function Content() {
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
+      testId={"customerSelectPage"}
       headerImage={<Image source={require("@/assets/images/adaptive-icon.png")} style={styles.reactLogo} />}
     >
       <ThemedView style={styles.titleContainer}>
@@ -70,10 +72,10 @@ function Content() {
       </ThemedView>
 
       {user?.workerInstances?.map(wi => {
-        return <ThemedText>{wi.customer.name}</ThemedText>;
+        return <ThemedText key={wi.id}>{wi.customer.name}</ThemedText>;
       })}
 
-      <Button title={"Sign out"} onPress={() => signOut()} />
+      <Button title={"Sign out"} {...addTestIdentifiers("signOutButton")} onPress={() => signOut()} />
     </ParallaxScrollView>
   );
 }

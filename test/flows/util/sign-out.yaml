@@ -1,0 +1,8 @@
+appId: com.tendrel.checklist
+---
+- scrollUntilVisible:
+    element:
+      id: "signOutButton"
+- tapOn:
+    id: "signOutButton"
+

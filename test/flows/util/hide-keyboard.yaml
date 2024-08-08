@@ -1,0 +1,34 @@
+appId: com.tendrel.checklist
+---
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - hideKeyboard
+
+- runFlow:
+    when:
+      platform: iOS
+      visible:
+        id: "Done"
+    commands:
+      - tapOn:
+          id: "Done"
+
+- runFlow:
+    when:
+      platform: iOS
+      visible:
+        id: "Return"
+    commands:
+      - tapOn:
+          id: "Return"
+
+- runFlow:
+    when:
+      platform: iOS
+      visible:
+        id: "Search"
+    commands:
+      - tapOn:
+          id: "Search"

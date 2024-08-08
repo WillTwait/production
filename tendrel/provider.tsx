@@ -15,13 +15,17 @@ export function TendrelProvider({ children }: PropsWithChildren) {
   useEffect(() => {
     if (tendrel) return;
     initialize().then(async t => {
-      const res = await t?.ping();
+      try {
+        const res = await t?.ping();
 
-      // Temporary, just here as proof we can talk to Tendrel!
-      if (res?.pong === 200) {
-        console.log("Established connection to Tendrel");
-      } else {
-        console.log("Failed to establish connection to Tendrel");
+        // Temporary, just here as proof we can talk to Tendrel!
+        if (res?.pong === 200) {
+          console.log("Established connection to Tendrel");
+        } else {
+          console.log("Failed to establish connection to Tendrel");
+        }
+      } catch (e) {
+        console.log(e);
       }
       setTendrel(t);
     });

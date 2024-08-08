@@ -1,0 +1,36 @@
+appId: com.tendrel.checklist
+env:
+  ELEMENT: ${ELEMENT}
+  TEXT: ${TEXT}
+  ATTEMPTS_LIMIT: ${ATTEMPTS_LIMIT || 5}
+---
+- evalScript: ${output.status = 'unknown'}
+- evalScript: ${output.attempt = 1}
+- repeat:
+    while:
+      true: ${output.status === 'unknown'}
+    commands:
+      - tapOn:
+          id: "${ELEMENT}"
+          retryTapIfNoChange: false
+      - eraseText # First attempt to clear the text field
+      - inputText: "${TEXT}" # Fill text field
+      - runFlow:
+          when:
+            visible: "${TEXT}" # check if entered text is correct
+          commands:
+            - evalScript: ${output.status = 'success'}
+      - runFlow:
+          when:
+            true: ${output.status != 'success'}
+          commands:
+            - tapOn:
+                id: "${ELEMENT}"
+                retryTapIfNoChange: false
+            - eraseText # Clear text field
+      - evalScript: ${output.attempt = output.attempt + 1}
+      - runFlow:
+          when:
+            true: ${output.attempt >= ATTEMPTS_LIMIT}
+          commands:
+            - evalScript: ${output.status = 'timeout'}

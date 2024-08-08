@@ -2,11 +2,12 @@ import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import "@/extensions/string";
+import { addTestIdentifiers } from "@/util/add-test-id";
 import { useSignIn } from "@clerk/clerk-expo";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Button, Image, SafeAreaView, StyleSheet, TextInput } from "react-native";
+import { Button, Image, Keyboard, StyleSheet, TextInput, TouchableWithoutFeedback } from "react-native";
 
 export default function SignIn() {
   const { signIn, setActive, isLoaded } = useSignIn();
@@ -41,20 +42,24 @@ export default function SignIn() {
   }, [isLoaded, identifier, password]);
 
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
-      headerImage={<Image source={require("@/assets/images/adaptive-icon.png")} style={styles.reactLogo} />}
-    >
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Sign in</ThemedText>
-      </ThemedView>
-      <SafeAreaView>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <ParallaxScrollView
+        headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
+        headerImage={<Image source={require("@/assets/images/adaptive-icon.png")} style={styles.reactLogo} />}
+        testId={"signInPage"}
+      >
+        <ThemedView style={styles.titleContainer}>
+          <ThemedText type="title">Sign in</ThemedText>
+        </ThemedView>
+
         <TextInput
           style={styles.input}
           placeholder={`${t("username.t").capitalize()} ${t("or.t")} ${t("email.t")}`}
           value={identifier}
           onChangeText={setIdentifier}
           autoCapitalize="none"
+          {...addTestIdentifiers("username")}
+          returnKeyType="done"
         />
         <TextInput
           style={styles.input}
@@ -63,10 +68,12 @@ export default function SignIn() {
           secureTextEntry={true}
           autoCapitalize="none"
           onChangeText={setPassword}
+          {...addTestIdentifiers("password")}
+          returnKeyType="done"
         />
-        <Button title="Sign In" onPress={onSignInPress} />
-      </SafeAreaView>
-    </ParallaxScrollView>
+        <Button title="Sign In" onPress={onSignInPress} {...addTestIdentifiers("signInButton")} />
+      </ParallaxScrollView>
+    </TouchableWithoutFeedback>
   );
 }
 

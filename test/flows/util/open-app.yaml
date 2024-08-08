@@ -1,0 +1,7 @@
+appId: com.tendrel.checklist
+---
+- runFlow:
+    when:
+      true: ${CI}
+    commands:
+      - launchApp

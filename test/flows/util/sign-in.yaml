@@ -1,0 +1,34 @@
+appId: com.tendrel.checklist
+---
+- assertVisible:
+    id: "signInPage"
+- runFlow:
+    file: ./set-text.yaml
+    env:
+      ELEMENT: "username"
+      TEXT: ${MAESTRO_USERNAME}
+      ATTEMPTS_LIMIT: 10
+- waitForAnimationToEnd
+- runFlow:
+    file: ./hide-keyboard.yaml
+    env:
+      ELEMENT: "username"
+      TEXT: ${MAESTRO_USERNAME}
+      ATTEMPTS_LIMIT: 10
+- tapOn:
+    id: "password"
+- inputText: ${MAESTRO_PASSWORD}
+- runFlow:
+    when:
+      platform: Android
+    commands:
+      - hideKeyboard
+- runFlow:
+    when:
+      platform: iOS
+    commands:
+      - tapOn:
+          id: "Done"
+- tapOn:
+    id: "signInButton"
+
