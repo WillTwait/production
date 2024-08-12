@@ -30,6 +30,9 @@
       },
       "android": {
         "buildType": "apk"
+      },
+      "env": {
+        "STAGE": "test"
       }
     },
     "production": {

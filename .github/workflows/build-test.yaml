@@ -32,11 +32,5 @@ jobs:
       - name: Prepare bunfig for EAS
         run: bun scripts/prepare-bunfig.ts
 
-      - name: Create test build
-        uses: expo/expo-github-action/continuous-deploy-fingerprint@main
-        with:
-          profile: test
-          branch: test
-
       - name: 🚀 Build app
         run: eas build --platform ios --profile test --non-interactive
