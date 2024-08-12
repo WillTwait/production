@@ -1,15 +1,17 @@
-name: Staging
+name: EAS Build (Test)
 
 on:
   push:
     branches:
       - main
+
 jobs:
   update:
-    name: Stage EAS update
+    name: Create or update test EAS build
+    env:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
+    permissions: write-all
     steps:
       - uses: actions/checkout@v3
       - uses: oven-sh/setup-bun@v1
@@ -27,5 +29,14 @@ jobs:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
 
-      - name: 🚀 Create update
-        run: eas update --channel staging --message '${{ github.event.commits[0].message }}'
+      - name: Prepare bunfig for EAS
+        run: bun scripts/prepare-bunfig.ts
+
+      - name: Create test build
+        uses: expo/expo-github-action/continuous-deploy-fingerprint@main
+        with:
+          profile: test
+          branch: test
+
+      - name: 🚀 Build app
+        run: eas build --platform ios --profile test --non-interactive
