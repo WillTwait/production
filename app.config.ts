@@ -4,6 +4,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
   owner: "tendrel",
   slug: "checklist",
+  scheme: "checklist",
   name: getAppName(),
   version: "1.0.0",
   orientation: "portrait",

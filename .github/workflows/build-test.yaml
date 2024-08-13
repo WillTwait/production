@@ -6,8 +6,8 @@ on:
       - main
 
 jobs:
-  update:
-    name: Create or update test EAS build
+  build:
+    name: Create test EAS build
     env:
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     runs-on: ubuntu-latest
@@ -34,3 +34,19 @@ jobs:
 
       - name: 🚀 Build app
         run: eas build --platform ios --profile test --non-interactive
+  on-failure:
+    runs-on: ubuntu-latest
+    if: ${{ always() && (needs.build.result == 'failure' || needs.build.result == 'timed_out') }}
+    needs:
+      - build
+    steps:
+      - uses: actions/checkout@v2
+      - name: Post to a Slack channel
+        id: slack
+        uses: slackapi/slack-github-action@v1.26.0
+        with:
+          # tendrel-tweets channel
+          channel-id: 'C041PBUKSJF'
+          slack-message: "🚨 Checklist EAS Build failure 🚨 \n Commit: ${{ github.sha }} \n https://expo.dev/accounts/tendrel/projects/checklist/builds"
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
