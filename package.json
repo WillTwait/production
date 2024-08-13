@@ -11,7 +11,6 @@
     "ci:doctor": "bunx expo-doctor",
     "ci:test": "jest",
     "clean": "rm -rf {node_modules,android,ios,.expo}",
-    "eas-build-pre-install": "cat bunfig.toml",
     "generate": "drizzle-kit generate",
     "ios": "expo run:ios",
     "ios:clean": "expo prebuild --clean && bun ios",

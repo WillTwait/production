@@ -30,11 +30,19 @@
       },
       "android": {
         "buildType": "apk"
+      },
+      "env": {
+        "EXPO_PUBLIC_TENDREL_STAGE": "test",
+        "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_live_Y2xlcmsudGVuZHJlbC5pbyQ"
       }
     },
     "production": {
       "extends": "base",
-      "channel": "production"
+      "channel": "production",
+      "env": {
+        "EXPO_PUBLIC_TENDREL_STAGE": "beta",
+        "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_live_Y2xlcmsudGVuZHJlbC5pbyQ"
+      }
     }
   },
   "submit": {
