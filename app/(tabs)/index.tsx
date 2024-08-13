@@ -52,15 +52,15 @@ function Content() {
           });
 
           setUser(user);
-          setLoading(false);
         }
+        setLoading(false);
       });
     }
   }, [isSignedIn, isLoaded]);
 
-  if (loading) {
-    return <ThemedText>Loading!</ThemedText>;
-  }
+  // if (loading) {
+  //   return <ThemedText>Loading!</ThemedText>;
+  // }
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}

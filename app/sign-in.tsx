@@ -51,6 +51,9 @@ export default function SignIn() {
         <ThemedView style={styles.titleContainer}>
           <ThemedText type="title">Sign in</ThemedText>
         </ThemedView>
+        <ThemedView>
+          <ThemedText type="subtitle">Stage: {process.env.EXPO_PUBLIC_TENDREL_STAGE}</ThemedText>
+        </ThemedView>
 
         <TextInput
           style={styles.input}
