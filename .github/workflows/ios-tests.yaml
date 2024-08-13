@@ -1,4 +1,4 @@
-name: Run Maestro tests
+name: Maestro tests (iOS)
 
 on:
   workflow_run:
@@ -45,6 +45,6 @@ jobs:
         with:
           # tendrel-tweets channel
           channel-id: 'C041PBUKSJF'
-          slack-message: "🚨 Checklist Maestro test failures 🚨 \n Commit: ${{ github.sha }} \n https://console.devicecloud.dev/results"
+          slack-message: "🚨 Checklist Maestro test failures (iOS) 🚨 \n Commit: ${{ github.sha }} \n https://console.devicecloud.dev/results"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
