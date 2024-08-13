@@ -32,7 +32,7 @@
         "buildType": "apk"
       },
       "env": {
-        "STAGE": "test"
+        "NODE_ENV": "test"
       }
     },
     "production": {

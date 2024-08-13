@@ -1,9 +1,9 @@
 import { TendrelClient, TendrelStage } from "@tendrel/sdk";
 import { z } from "zod";
 
-const { STAGE } = z
+const { EXPO_PUBLIC_TENDREL_STAGE } = z
   .object({
-    STAGE: TendrelStage.default("dev"),
+    EXPO_PUBLIC_TENDREL_STAGE: TendrelStage.default("dev"),
   })
   .parse(process.env);
 
@@ -14,7 +14,7 @@ const tendrel = new TendrelClient({
     udid: "tendrel-console",
     sessionToken: "",
   },
-  stage: STAGE,
+  stage: EXPO_PUBLIC_TENDREL_STAGE,
 });
 
 export const initialize = () => {
