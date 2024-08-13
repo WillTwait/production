@@ -35,7 +35,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     eas: {
       projectId: "7dd59d91-ed34-4992-8994-3edbbbd40c45",
     },
-    CLERK_PUBLISHABLE_KEY: "pk_live_Y2xlcmsudGVuZHJlbC5pbyQ",
   },
   updates: {
     url: "https://u.expo.dev/7dd59d91-ed34-4992-8994-3edbbbd40c45",
