@@ -14,8 +14,10 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    ```bash
    cp .env.template .env.local
    ```
-   _You will need a clerk key, which can be retrieved from the Clerk dashboard. 
+   _You will need a clerk key, which can be retrieved from the Clerk dashboard._
    **Make sure you DO NOT use live keys, the keys should be prefixed with test**
+
+3. 
    
    ### direnv
    I also recommend using [direnv](https://direnv.net/) which looks at a file called `.envrc`.

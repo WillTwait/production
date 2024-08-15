@@ -5,6 +5,7 @@ import { useMigrationHelper } from "@/db/drizzle";
 import { useTendrel } from "@/tendrel/provider";
 import { addTestIdentifiers } from "@/util/add-test-id";
 import { useAuth } from "@clerk/clerk-expo";
+import * as Sentry from "@sentry/react";
 import { run } from "@tendrel/lib";
 import { GetUserResponse } from "@tendrel/sdk";
 import { useEffect, useState } from "react";
@@ -40,20 +41,22 @@ function Content() {
   useEffect(() => {
     if (isSignedIn && tendrel) {
       run(async () => {
-        const clerkToken = await getToken();
-        if (clerkToken) {
-          const { token } = await tendrel.getAuthToken({
-            strategy: "sessionToken",
-            sessionToken: clerkToken,
-          });
+        await Sentry.startSpan({ name: "tendrel/sign-in" }, async () => {
+          const clerkToken = await getToken();
+          if (clerkToken) {
+            const { token } = await tendrel.getAuthToken({
+              strategy: "sessionToken",
+              sessionToken: clerkToken,
+            });
 
-          const { user } = await tendrel.getUser({
-            token: token,
-          });
+            const { user } = await tendrel.getUser({
+              token: token,
+            });
 
-          setUser(user);
-        }
-        setLoading(false);
+            setUser(user);
+          }
+          setLoading(false);
+        });
       });
     }
   }, [isSignedIn, isLoaded]);

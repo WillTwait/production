@@ -4,6 +4,7 @@ import { ThemedView } from "@/components/ThemedView";
 import "@/extensions/string";
 import { addTestIdentifiers } from "@/util/add-test-id";
 import { useSignIn } from "@clerk/clerk-expo";
+import * as Sentry from "@sentry/react";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -22,23 +23,25 @@ export default function SignIn() {
       return;
     }
 
-    try {
-      const signInAttempt = await signIn.create({
-        identifier,
-        password,
-      });
+    await Sentry.startSpan({ name: "clerk/sign-in" }, async () => {
+      try {
+        const signInAttempt = await signIn.create({
+          identifier,
+          password,
+        });
 
-      if (signInAttempt.status === "complete") {
-        await setActive({ session: signInAttempt.createdSessionId });
-        router.replace("/");
-      } else {
-        // See https://clerk.com/docs/custom-flows/error-handling
-        // for more info on error handling
-        console.error(JSON.stringify(signInAttempt, null, 2));
+        if (signInAttempt.status === "complete") {
+          await setActive({ session: signInAttempt.createdSessionId });
+          router.replace("/");
+        } else {
+          // See https://clerk.com/docs/custom-flows/error-handling
+          // for more info on error handling
+          console.error(JSON.stringify(signInAttempt, null, 2));
+        }
+      } catch (err) {
+        console.error(JSON.stringify(err, null, 2));
       }
-    } catch (err) {
-      console.error(JSON.stringify(err, null, 2));
-    }
+    });
   }, [isLoaded, identifier, password]);
 
   return (

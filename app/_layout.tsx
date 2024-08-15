@@ -1,9 +1,12 @@
 import "@/i18n/i18n";
 import { DarkTheme, DefaultTheme, ThemeProvider } from "@react-navigation/native";
+import * as Sentry from "@sentry/react-native";
+import * as Application from "expo-application";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SecureStore from "expo-secure-store";
 import * as SplashScreen from "expo-splash-screen";
+
 import { useEffect } from "react";
 import "react-native-reanimated";
 
@@ -38,10 +41,35 @@ if (!publishableKey) {
   throw new Error("Missing Publishable Key. Please set EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY in your .env");
 }
 
+// Construct a new instrumentation instance. This is needed to communicate between the integration and React
+const routingInstrumentation = new Sentry.ReactNavigationInstrumentation();
+
+Sentry.init({
+  dsn: "https://1aa0e73dcd98befcaf620fb520dd5854@o4507782612582400.ingest.us.sentry.io/4507782617694208",
+  // Set tracesSampleRate to 1.0 to capture 100% of transactions for tracing.
+  // We recommend adjusting this value in production.
+  tracesSampleRate: 1.0,
+  release: `${Application.nativeApplicationVersion}:${Application.nativeBuildVersion}`,
+  _experiments: {
+    // profilesSampleRate is relative to tracesSampleRate.
+    // Here, we'll capture profiles for 100% of transactions.
+    profilesSampleRate: 1.0,
+  },
+  environment: process.env.EXPO_PUBLIC_TENDREL_STAGE,
+  debug: false,
+  integrations: [
+    new Sentry.ReactNativeTracing({
+      // Pass instrumentation to be used as `routingInstrumentation`
+      routingInstrumentation,
+      // ...
+    }),
+  ],
+});
+
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
-export default function RootLayout() {
+export function RootLayout() {
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
@@ -76,3 +104,5 @@ export default function RootLayout() {
     </>
   );
 }
+
+export default Sentry.wrap(RootLayout);

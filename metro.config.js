@@ -1,8 +1,10 @@
-const { getDefaultConfig } = require("expo/metro-config");
 const path = require("node:path");
 /** @type {import('expo/metro-config').MetroConfig} */
 
-const config = getDefaultConfig(__dirname);
+const { getSentryExpoConfig } = require("@sentry/react-native/metro");
+
+// This replaces `const config = getDefaultConfig(__dirname);`
+const config = getSentryExpoConfig(__dirname);
 
 // Uncomment the following block to develop locally with the sdk
 // const localSdkPath = path.resolve(__dirname, "../sdk");
