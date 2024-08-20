@@ -14,6 +14,12 @@ import { DatabaseProvider } from "@/db/provider";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { TendrelProvider } from "@/tendrel/provider";
 import { ClerkLoaded, ClerkProvider } from "@clerk/clerk-expo";
+import { Platform } from "react-native";
+
+export {
+  // Catch any errors thrown by the Layout component.
+  ErrorBoundary,
+} from "expo-router";
 
 const tokenCache = {
   async getToken(key: string) {
@@ -87,7 +93,7 @@ export function RootLayout() {
 
   return (
     <>
-      <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
+      <ClerkProvider publishableKey={publishableKey} tokenCache={Platform.OS !== "web" ? tokenCache : undefined}>
         <ClerkLoaded>
           <DatabaseProvider>
             <TendrelProvider>

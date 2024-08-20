@@ -1,5 +1,6 @@
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
+import { ThemedTextInput } from "@/components/ThemedTextInput";
 import { ThemedView } from "@/components/ThemedView";
 import "@/extensions/string";
 import { addTestIdentifiers } from "@/util/add-test-id";
@@ -57,8 +58,7 @@ export default function SignIn() {
         <ThemedView>
           <ThemedText type="subtitle">Stage: {process.env.EXPO_PUBLIC_TENDREL_STAGE}</ThemedText>
         </ThemedView>
-
-        <TextInput
+        <ThemedTextInput
           style={styles.input}
           placeholder={`${t("username.t").capitalize()} ${t("or.t")} ${t("email.t")}`}
           value={identifier}
@@ -67,7 +67,7 @@ export default function SignIn() {
           {...addTestIdentifiers("username")}
           returnKeyType="done"
         />
-        <TextInput
+        <ThemedTextInput
           style={styles.input}
           placeholder={t("password.t").capitalize()}
           value={password}
@@ -105,5 +105,6 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
+    borderRadius: 5,
   },
 });

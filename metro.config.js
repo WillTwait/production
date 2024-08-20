@@ -6,6 +6,8 @@ const { getSentryExpoConfig } = require("@sentry/react-native/metro");
 // This replaces `const config = getDefaultConfig(__dirname);`
 const config = getSentryExpoConfig(__dirname);
 
+config.resolver.sourceExts.push("sql");
+
 // Uncomment the following block to develop locally with the sdk
 // const localSdkPath = path.resolve(__dirname, "../sdk");
 // const extraNodeModules = {
