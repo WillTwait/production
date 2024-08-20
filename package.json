@@ -3,7 +3,7 @@
   "main": "expo-router/entry",
   "scripts": {
     "android": "expo run:android",
-    "android:clean": "expo prebuild --clean && bun android",
+    "android:clean": "bun recompile && bun android",
     "compile": "tsc -b",
     "check": "biome check . --apply-unsafe --error-on-warnings",
     "ci:check": "biome ci .  --error-on-warnings",
@@ -13,7 +13,7 @@
     "clean": "rm -rf {node_modules,android,ios,.expo}",
     "generate": "drizzle-kit generate",
     "ios": "expo run:ios",
-    "ios:clean": "expo prebuild --clean && bun ios",
+    "ios:clean": "bun recompile && bun ios",
     "recompile": "bun run clean && bun i && bun compile",
     "start": "expo start",
     "test": "jest --watchAll",
