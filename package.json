@@ -14,6 +14,7 @@
     "ci:doctor": "bunx expo-doctor",
     "ci:test": "jest",
     "clean": "rimraf .expo android ios node_modules",
+    "eas-build-post-install": "relay-compiler",
     "generate": "drizzle-kit generate && relay-compiler",
     "ios": "expo run:ios",
     "ios:clean": "bun recompile && bun ios",
