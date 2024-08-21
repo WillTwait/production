@@ -1,17 +1,21 @@
 import "@/i18n/i18n";
-import { DarkTheme, DefaultTheme, ThemeProvider } from "@react-navigation/native";
+
+import {
+  DarkTheme,
+  DefaultTheme,
+  ThemeProvider,
+} from "@react-navigation/native";
 import * as Sentry from "@sentry/react-native";
 import * as Application from "expo-application";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SecureStore from "expo-secure-store";
 import * as SplashScreen from "expo-splash-screen";
-
 import { useEffect } from "react";
 import "react-native-reanimated";
-
 import { DatabaseProvider } from "@/db/provider";
 import { useColorScheme } from "@/hooks/useColorScheme";
+import { RelayProvider } from "@/relay/provider";
 import { TendrelProvider } from "@/tendrel/provider";
 import { ClerkLoaded, ClerkProvider } from "@clerk/clerk-expo";
 import { Platform } from "react-native";
@@ -44,7 +48,9 @@ const tokenCache = {
 const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY!;
 
 if (!publishableKey) {
-  throw new Error("Missing Publishable Key. Please set EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY in your .env");
+  throw new Error(
+    "Missing Publishable Key. Please set EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY in your .env",
+  );
 }
 
 // Construct a new instrumentation instance. This is needed to communicate between the integration and React
@@ -93,15 +99,25 @@ export function RootLayout() {
 
   return (
     <>
-      <ClerkProvider publishableKey={publishableKey} tokenCache={Platform.OS !== "web" ? tokenCache : undefined}>
+      <ClerkProvider
+        publishableKey={publishableKey}
+        tokenCache={Platform.OS !== "web" ? tokenCache : undefined}
+      >
         <ClerkLoaded>
           <DatabaseProvider>
             <TendrelProvider>
-              <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-                <Stack>
-                  <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-                  <Stack.Screen name="+not-found" />
-                </Stack>
+              <ThemeProvider
+                value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+              >
+                <RelayProvider>
+                  <Stack>
+                    <Stack.Screen
+                      name="(tabs)"
+                      options={{ headerShown: false }}
+                    />
+                    <Stack.Screen name="+not-found" />
+                  </Stack>
+                </RelayProvider>
               </ThemeProvider>
             </TendrelProvider>
           </DatabaseProvider>

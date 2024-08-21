@@ -1,6 +1,11 @@
 import type { PropsWithChildren, ReactElement } from "react";
 import { StyleSheet, useColorScheme } from "react-native";
-import Animated, { interpolate, useAnimatedRef, useAnimatedStyle, useScrollViewOffset } from "react-native-reanimated";
+import Animated, {
+  interpolate,
+  useAnimatedRef,
+  useAnimatedStyle,
+  useScrollViewOffset,
+} from "react-native-reanimated";
 
 import { ThemedView } from "@/components/ThemedView";
 import { addTestIdentifiers } from "@/util/add-test-id";
@@ -13,7 +18,12 @@ type Props = PropsWithChildren<{
   testId?: string;
 }>;
 
-export default function ParallaxScrollView({ children, headerImage, headerBackgroundColor, testId }: Props) {
+export default function ParallaxScrollView({
+  children,
+  headerImage,
+  headerBackgroundColor,
+  testId,
+}: Props) {
   const colorScheme = useColorScheme() ?? "light";
   const scrollRef = useAnimatedRef<Animated.ScrollView>();
   const scrollOffset = useScrollViewOffset(scrollRef);
@@ -29,7 +39,11 @@ export default function ParallaxScrollView({ children, headerImage, headerBackgr
           ),
         },
         {
-          scale: interpolate(scrollOffset.value, [-HEADER_HEIGHT, 0, HEADER_HEIGHT], [2, 1, 1]),
+          scale: interpolate(
+            scrollOffset.value,
+            [-HEADER_HEIGHT, 0, HEADER_HEIGHT],
+            [2, 1, 1],
+          ),
         },
       ],
     };
@@ -39,7 +53,11 @@ export default function ParallaxScrollView({ children, headerImage, headerBackgr
     <ThemedView style={styles.container} {...addTestIdentifiers(testId)}>
       <Animated.ScrollView ref={scrollRef} scrollEventThrottle={16}>
         <Animated.View
-          style={[styles.header, { backgroundColor: headerBackgroundColor[colorScheme] }, headerAnimatedStyle]}
+          style={[
+            styles.header,
+            { backgroundColor: headerBackgroundColor[colorScheme] },
+            headerAnimatedStyle,
+          ]}
         >
           {headerImage}
         </Animated.View>

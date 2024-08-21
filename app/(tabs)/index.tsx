@@ -2,14 +2,11 @@ import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { useMigrationHelper } from "@/db/drizzle";
-import { useTendrel } from "@/tendrel/provider";
+import type { TabsIndexQuery } from "@/g/TabsIndexQuery.graphql";
 import { addTestIdentifiers } from "@/util/add-test-id";
-import { useAuth } from "@clerk/clerk-expo";
-import * as Sentry from "@sentry/react";
-import { run } from "@tendrel/lib";
-import { GetUserResponse } from "@tendrel/sdk";
-import { useEffect, useState } from "react";
+import { useAuth, useUser } from "@clerk/clerk-expo";
 import { Button, Image, StyleSheet, View } from "react-native";
+import { graphql, useLazyLoadQuery } from "react-relay";
 
 export default function HomeScreen() {
   const { success, error } = useMigrationHelper();
@@ -33,52 +30,57 @@ export default function HomeScreen() {
 }
 
 function Content() {
-  const { signOut, isLoaded, isSignedIn, getToken } = useAuth();
-  const { tendrel } = useTendrel();
-  const [user, setUser] = useState<GetUserResponse["user"]>();
-  const [loading, setLoading] = useState(true);
+  const { signOut } = useAuth();
+  const { isLoaded, isSignedIn, user } = useUser();
 
-  useEffect(() => {
-    if (isSignedIn && tendrel) {
-      run(async () => {
-        await Sentry.startSpan({ name: "tendrel/sign-in" }, async () => {
-          const clerkToken = await getToken();
-          if (clerkToken) {
-            const { token } = await tendrel.getAuthToken({
-              strategy: "sessionToken",
-              sessionToken: clerkToken,
-            });
-
-            const { user } = await tendrel.getUser({
-              token: token,
-            });
-
-            setUser(user);
+  const data = useLazyLoadQuery<TabsIndexQuery>(
+    graphql`
+      query TabsIndexQuery {
+        user {
+          organizations {
+            edges {
+              node {
+                id
+                name {
+                  value
+                }
+              }
+            }
           }
-          setLoading(false);
-        });
-      });
-    }
-  }, [isSignedIn, isLoaded]);
+        }
+      }
+    `,
+    {},
+  );
 
-  // if (loading) {
-  //   return <ThemedText>Loading!</ThemedText>;
-  // }
+  if (!isLoaded || !isSignedIn) {
+    return null;
+  }
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
       testId={"customerSelectPage"}
-      headerImage={<Image source={require("@/assets/images/adaptive-icon.png")} style={styles.reactLogo} />}
+      headerImage={
+        <Image
+          source={require("@/assets/images/adaptive-icon.png")}
+          style={styles.reactLogo}
+        />
+      }
     >
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome {user?.name}</ThemedText>
+        <ThemedText type="title">Welcome {user.fullName}</ThemedText>
       </ThemedView>
 
-      {user?.workerInstances?.map(wi => {
-        return <ThemedText key={wi.id}>{wi.customer.name}</ThemedText>;
-      })}
+      {data.user.organizations.edges.map(({ node }) => (
+        <ThemedText key={node.id}>{node.name.value}</ThemedText>
+      ))}
 
-      <Button title={"Sign out"} {...addTestIdentifiers("signOutButton")} onPress={() => signOut()} />
+      <Button
+        title={"Sign out"}
+        {...addTestIdentifiers("signOutButton")}
+        onPress={() => signOut()}
+      />
     </ParallaxScrollView>
   );
 }

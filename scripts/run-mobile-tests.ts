@@ -1,7 +1,7 @@
 import { $ } from "bun";
 
-import { parseArgs } from "util";
-import * as process from "process";
+import * as process from "node:process";
+import { parseArgs } from "node:util";
 import { z } from "zod";
 
 const { values } = parseArgs({

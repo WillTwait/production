@@ -3,4 +3,4 @@ declare global {
     capitalize(): string;
   }
 }
-export {};
+export type {};

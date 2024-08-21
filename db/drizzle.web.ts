@@ -1,7 +1,7 @@
 import { drizzle } from "drizzle-orm/sql-js";
 import { useEffect, useReducer } from "react";
 import initSqlJs from "sql.js";
-import { DBContextType, useDatabase } from "./provider";
+import { type DBContextType, useDatabase } from "./provider";
 
 export const initialize = async (): Promise<DBContextType> => {
   const sqlPromise = initSqlJs({
@@ -20,7 +20,10 @@ interface State {
   error?: Error;
 }
 
-type Action = { type: "migrating" } | { type: "migrated"; payload: true } | { type: "error"; payload: Error };
+type Action =
+  | { type: "migrating" }
+  | { type: "migrated"; payload: true }
+  | { type: "error"; payload: Error };
 
 export const useMigrationHelper = (): State => {
   const { db } = useDatabase();

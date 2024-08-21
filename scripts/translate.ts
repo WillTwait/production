@@ -1,11 +1,11 @@
-import * as fs from "fs";
+import * as fs from "node:fs";
 
 import { Translate } from "@aws-sdk/client-translate";
 import { getAwsCredentials } from "@tendrel/lib";
 
 import path from "node:path";
 import { corpus } from "@/i18n/corpus.json";
-import { SupportedLanguage } from "@tendrel/sdk";
+import type { SupportedLanguage } from "@tendrel/sdk";
 
 // reference list here: https://www.notion.so/tendrel/fe11a39036a347638dd99ae54d037ffa?v=5e3dc845512945ae904478a272f3219d
 const SelfServiceLanguages: SupportedLanguage[] = [
@@ -41,7 +41,9 @@ export type Translations = {
   [key: string]: { t: string; override: boolean };
 };
 
-const translationClient: Translate = new Translate({ credentials: getAwsCredentials() });
+const translationClient: Translate = new Translate({
+  credentials: getAwsCredentials(),
+});
 
 /**
  * @param sourceLanguage The language to translate from
@@ -53,7 +55,10 @@ async function generateTranslationFile(
   targetLanguage: SupportedLanguage,
   force: boolean,
 ): Promise<void> {
-  const filePath = path.resolve(__dirname, `../i18n/locales/${targetLanguage}.json`);
+  const filePath = path.resolve(
+    __dirname,
+    `../i18n/locales/${targetLanguage}.json`,
+  );
 
   let existing: Translations = {};
   if (fs.existsSync(filePath)) {
@@ -62,15 +67,17 @@ async function generateTranslationFile(
 
   const translations: Translations = {};
   if (sourceLanguage === targetLanguage) {
-    Object.keys(corpus).forEach(key => {
+    for (const key of Object.keys(corpus)) {
       const existingTranslation = existing[key];
       const override = existingTranslation?.override ?? false;
 
       translations[key] = {
-        t: override ? existingTranslation?.t ?? "" : corpus[key as keyof typeof corpus],
+        t: override
+          ? existingTranslation?.t ?? ""
+          : corpus[key as keyof typeof corpus],
         override: override,
       };
-    });
+    }
   } else {
     for (const [key, value] of Object.entries(corpus)) {
       const existingValue = existing[key];

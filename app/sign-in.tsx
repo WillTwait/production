@@ -7,9 +7,15 @@ import { addTestIdentifiers } from "@/util/add-test-id";
 import { useSignIn } from "@clerk/clerk-expo";
 import * as Sentry from "@sentry/react";
 import { useRouter } from "expo-router";
-import React, { useState } from "react";
+import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Button, Image, Keyboard, StyleSheet, TextInput, TouchableWithoutFeedback } from "react-native";
+import {
+  Button,
+  Image,
+  Keyboard,
+  StyleSheet,
+  TouchableWithoutFeedback,
+} from "react-native";
 
 export default function SignIn() {
   const { signIn, setActive, isLoaded } = useSignIn();
@@ -19,7 +25,7 @@ export default function SignIn() {
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
 
-  const onSignInPress = React.useCallback(async () => {
+  const onSignInPress = useCallback(async () => {
     if (!isLoaded) {
       return;
     }
@@ -43,20 +49,27 @@ export default function SignIn() {
         console.error(JSON.stringify(err, null, 2));
       }
     });
-  }, [isLoaded, identifier, password]);
+  }, [isLoaded, identifier, password, router, signIn, setActive]);
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <ParallaxScrollView
         headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
-        headerImage={<Image source={require("@/assets/images/adaptive-icon.png")} style={styles.reactLogo} />}
+        headerImage={
+          <Image
+            source={require("@/assets/images/adaptive-icon.png")}
+            style={styles.reactLogo}
+          />
+        }
         testId={"signInPage"}
       >
         <ThemedView style={styles.titleContainer}>
           <ThemedText type="title">Sign in</ThemedText>
         </ThemedView>
         <ThemedView>
-          <ThemedText type="subtitle">Stage: {process.env.EXPO_PUBLIC_TENDREL_STAGE}</ThemedText>
+          <ThemedText type="subtitle">
+            Stage: {process.env.EXPO_PUBLIC_TENDREL_STAGE}
+          </ThemedText>
         </ThemedView>
         <ThemedTextInput
           style={styles.input}
@@ -77,7 +90,11 @@ export default function SignIn() {
           {...addTestIdentifiers("password")}
           returnKeyType="done"
         />
-        <Button title="Sign In" onPress={onSignInPress} {...addTestIdentifiers("signInButton")} />
+        <Button
+          title="Sign In"
+          onPress={onSignInPress}
+          {...addTestIdentifiers("signInButton")}
+        />
       </ParallaxScrollView>
     </TouchableWithoutFeedback>
   );

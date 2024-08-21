@@ -45,3 +45,12 @@ expo-env.d.ts
 
 # Jetbrains
 .idea
+
+# dev
+/.android/
+/.devenv/
+/.direnv/
+/.pre-commit-config.yaml
+
+# for biome
+**/__generated__/*.ts

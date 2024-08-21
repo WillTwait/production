@@ -13,8 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
-      - uses: actions/checkout@v3
-      - uses: oven-sh/setup-bun@v1
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
         with:
           registry-url: https://registry.npmjs.org
           scope: "@tendrel"
@@ -38,13 +38,13 @@ jobs:
     needs:
       - run-tests
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Post to a Slack channel
         id: slack
         uses: slackapi/slack-github-action@v1.26.0
         with:
           # tendrel-tweets channel
-          channel-id: 'C041PBUKSJF'
+          channel-id: "C041PBUKSJF"
           slack-message: "🚨 Checklist Maestro test failures (iOS) 🚨 \n Commit: ${{ github.sha }} \n https://console.devicecloud.dev/results"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}

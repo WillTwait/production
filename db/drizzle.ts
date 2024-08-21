@@ -1,8 +1,8 @@
-import { ExpoSQLiteDatabase, drizzle } from "drizzle-orm/expo-sqlite";
+import { type ExpoSQLiteDatabase, drizzle } from "drizzle-orm/expo-sqlite";
 import { useMigrations } from "drizzle-orm/expo-sqlite/migrator";
 import { openDatabaseSync } from "expo-sqlite/next";
 import migrations from "./migrations/migrations";
-import { DBContextType } from "./provider";
+import type { DBContextType } from "./provider";
 
 const expoDb = openDatabaseSync("tendrel.main", {
   enableChangeListener: true,
