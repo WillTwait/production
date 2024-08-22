@@ -10,10 +10,10 @@ import type RelayModernEnvironment from "relay-runtime/lib/store/RelayModernEnvi
 
 let environment: RelayModernEnvironment;
 
-export function createClientSideEnvironment(url: string | URL) {
-  console.log("create client side environment", url);
+export function createClientSideEnvironment(opts: FetchFunctionOptions) {
+  console.log("create client side environment", opts.url);
   environment ||= new Environment({
-    network: Network.create(fetchFn(url)),
+    network: Network.create(fetchFn(opts)),
     store: new Store(new RecordSource()),
     log: event => console.log(event),
   });
@@ -21,20 +21,27 @@ export function createClientSideEnvironment(url: string | URL) {
   return environment;
 }
 
-function fetchFn(url: string | URL): FetchFunction {
+interface FetchFunctionOptions {
+  getToken: () => Promise<string | null>;
+  url: string | URL;
+}
+
+function fetchFn({ getToken, url }: FetchFunctionOptions): FetchFunction {
   return (operation, variables) => {
-    const response = fetch(url, {
-      method: "POST",
-      cache: "no-store",
-      headers: {
-        "content-type": "application/json",
-        "x-tendrel-user": process.env.EXPO_PUBLIC_X_TENDREL_USER ?? "",
-      },
-      body: JSON.stringify({
-        query: operation.text,
-        variables: variables ?? {},
+    const response = getToken().then(token =>
+      fetch(url, {
+        method: "POST",
+        cache: "no-store",
+        headers: {
+          authorization: token ?? "",
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          query: operation.text,
+          variables: variables ?? {},
+        }),
       }),
-    });
+    );
     return Observable.from(response.then(data => data.json()));
   };
 }

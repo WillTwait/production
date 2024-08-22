@@ -8,16 +8,20 @@ import {
 import * as Sentry from "@sentry/react-native";
 import * as Application from "expo-application";
 import { useFonts } from "expo-font";
-import { Stack } from "expo-router";
+import { Redirect, Stack } from "expo-router";
 import * as SecureStore from "expo-secure-store";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import "react-native-reanimated";
 import { DatabaseProvider } from "@/db/provider";
 import { useColorScheme } from "@/hooks/useColorScheme";
-import { RelayProvider } from "@/relay/provider";
 import { TendrelProvider } from "@/tendrel/provider";
-import { ClerkLoaded, ClerkProvider } from "@clerk/clerk-expo";
+import {
+  ClerkLoaded,
+  ClerkProvider,
+  SignedIn,
+  SignedOut,
+} from "@clerk/clerk-expo";
 import { Platform } from "react-native";
 
 export {
@@ -109,15 +113,13 @@ export function RootLayout() {
               <ThemeProvider
                 value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
               >
-                <RelayProvider>
-                  <Stack>
-                    <Stack.Screen
-                      name="(tabs)"
-                      options={{ headerShown: false }}
-                    />
-                    <Stack.Screen name="+not-found" />
-                  </Stack>
-                </RelayProvider>
+                <Stack>
+                  <Stack.Screen
+                    name="(tabs)"
+                    options={{ headerShown: false }}
+                  />
+                  <Stack.Screen name="+not-found" />
+                </Stack>
               </ThemeProvider>
             </TendrelProvider>
           </DatabaseProvider>
