@@ -1,6 +1,5 @@
+import useThemeContext from "@/hooks/useTendyTheme";
 import { View, type ViewProps } from "react-native";
-
-import { useThemeColor } from "@/hooks/useThemeColor";
 
 export type ThemedViewProps = ViewProps & {
   lightColor?: string;
@@ -13,10 +12,12 @@ export function ThemedView({
   darkColor,
   ...otherProps
 }: ThemedViewProps) {
-  const backgroundColor = useThemeColor(
-    { light: lightColor, dark: darkColor },
-    "background",
-  );
+  const { colors } = useThemeContext();
 
-  return <View style={[{ backgroundColor }, style]} {...otherProps} />;
+  return (
+    <View
+      style={[{ backgroundColor: colors.tendrel.background2.color }, style]}
+      {...otherProps}
+    />
+  );
 }

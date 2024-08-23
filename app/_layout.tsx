@@ -1,5 +1,6 @@
 import "@/i18n/i18n";
 
+import { DatabaseProvider } from "@/db/provider";
 import {
   DarkTheme,
   DefaultTheme,
@@ -13,16 +14,15 @@ import * as SecureStore from "expo-secure-store";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import "react-native-reanimated";
-import { DatabaseProvider } from "@/db/provider";
-import { useColorScheme } from "@/hooks/useColorScheme";
+
 import { TendrelProvider } from "@/tendrel/provider";
-import {
-  ClerkLoaded,
-  ClerkProvider,
-  SignedIn,
-  SignedOut,
-} from "@clerk/clerk-expo";
+import { ClerkLoaded, ClerkProvider, useAuth } from "@clerk/clerk-expo";
 import { Platform } from "react-native";
+
+import TendyThemeProvider from "@/components/TendyThemeProvider";
+import useThemeContext from "@/hooks/useTendyTheme";
+import { RelayProvider } from "@/relay/provider";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -86,7 +86,6 @@ Sentry.init({
 SplashScreen.preventAutoHideAsync();
 
 export function RootLayout() {
-  const colorScheme = useColorScheme();
   const [loaded] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
   });
@@ -102,30 +101,51 @@ export function RootLayout() {
   }
 
   return (
-    <>
-      <ClerkProvider
-        publishableKey={publishableKey}
-        tokenCache={Platform.OS !== "web" ? tokenCache : undefined}
-      >
-        <ClerkLoaded>
-          <DatabaseProvider>
-            <TendrelProvider>
-              <ThemeProvider
-                value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
-              >
-                <Stack>
-                  <Stack.Screen
-                    name="(tabs)"
-                    options={{ headerShown: false }}
-                  />
-                  <Stack.Screen name="+not-found" />
-                </Stack>
-              </ThemeProvider>
-            </TendrelProvider>
-          </DatabaseProvider>
-        </ClerkLoaded>
-      </ClerkProvider>
-    </>
+    <ClerkProvider
+      publishableKey={publishableKey}
+      tokenCache={Platform.OS !== "web" ? tokenCache : undefined}
+    >
+      <ClerkLoaded>
+        <DatabaseProvider>
+          <TendrelProvider>
+            <TendyThemeProvider>
+              <NavLayout />
+            </TendyThemeProvider>
+          </TendrelProvider>
+        </DatabaseProvider>
+      </ClerkLoaded>
+    </ClerkProvider>
+  );
+}
+
+//This is kinda dumb but whatever
+function NavLayout() {
+  const { colorTheme } = useThemeContext();
+  const { getToken } = useAuth();
+  return (
+    <RelayProvider
+      getToken={getToken}
+      url={
+        Platform.OS === "android"
+          ? process.env.EXPO_PUBLIC_TENDREL_GRAPHQL_URL
+          : process.env.EXPO_PUBLIC_TENDREL_GRAPHQL_URL_IOS //TODO: May need one for web?
+      }
+    >
+      <ThemeProvider value={colorTheme === "dark" ? DarkTheme : DefaultTheme}>
+        <SafeAreaProvider>
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="+not-found" />
+            <Stack.Screen
+              name="sign-in"
+              options={{
+                headerShown: false,
+              }}
+            />
+          </Stack>
+        </SafeAreaProvider>
+      </ThemeProvider>
+    </RelayProvider>
   );
 }
 

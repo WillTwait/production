@@ -1,13 +1,20 @@
+import TendrelIcon from "@/assets/images/Tendrel-Icon.svg";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
+import { TendyTextInput } from "@/components/TendyTextInput";
 import { ThemedText } from "@/components/ThemedText";
-import { ThemedTextInput } from "@/components/ThemedTextInput";
 import { ThemedView } from "@/components/ThemedView";
+
+import TendyButton from "@/components/TendyButton";
+import theme from "@/constants/theme";
 import "@/extensions/string";
+import useThemeContext from "@/hooks/useTendyTheme";
 import { addTestIdentifiers } from "@/util/add-test-id";
 import { useSignIn } from "@clerk/clerk-expo";
 import * as Sentry from "@sentry/react";
 import { useRouter } from "expo-router";
-import { useCallback, useState } from "react";
+import Head from "expo-router/head";
+import { Eye, EyeOff, Lock, User } from "lucide-react-native";
+import React, { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   Button,
@@ -15,15 +22,18 @@ import {
   Keyboard,
   StyleSheet,
   TouchableWithoutFeedback,
+  View,
 } from "react-native";
 
 export default function SignIn() {
   const { signIn, setActive, isLoaded } = useSignIn();
   const router = useRouter();
   const { t } = useTranslation();
+  const { colors } = useThemeContext();
 
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
+  const [secureEntry, setSecureEntry] = useState(true);
 
   const onSignInPress = useCallback(async () => {
     if (!isLoaded) {
@@ -52,76 +62,81 @@ export default function SignIn() {
   }, [isLoaded, identifier, password, router, signIn, setActive]);
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <ParallaxScrollView
-        headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
-        headerImage={
-          <Image
-            source={require("@/assets/images/adaptive-icon.png")}
-            style={styles.reactLogo}
+    <>
+      <Head>
+        <meta
+          name="theme-color"
+          content={colors.tendrel.interactive1.color}
+          media="(prefers-color-scheme: light)"
+        />
+        <meta
+          name="theme-color"
+          content={colors.tendrel.interactive1.color}
+          media="(prefers-color-scheme: dark)"
+        />
+      </Head>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <ParallaxScrollView
+          headerBackgroundColor={colors.tendrel.interactive1.color}
+          headerImage={<TendrelIcon fill={colors.tendrel.text2.color} />}
+          testId={"signInPage"}
+        >
+          <View>
+            <ThemedText type="title">Sign in</ThemedText>
+          </View>
+          <TendyTextInput
+            keyboardType="email-address"
+            placeholder={`${t("username.t").capitalize()} ${t("or.t")} ${t(
+              "email.t",
+            )}`}
+            value={identifier}
+            onChangeText={setIdentifier}
+            autoCapitalize="none"
+            {...addTestIdentifiers("username")}
+            returnKeyType="done"
+            icon={
+              <User size={theme.icon.size} color={colors.tendrel.text1.color} />
+            }
           />
-        }
-        testId={"signInPage"}
-      >
-        <ThemedView style={styles.titleContainer}>
-          <ThemedText type="title">Sign in</ThemedText>
-        </ThemedView>
-        <ThemedView>
-          <ThemedText type="subtitle">
-            Stage: {process.env.EXPO_PUBLIC_TENDREL_STAGE}
-          </ThemedText>
-        </ThemedView>
-        <ThemedTextInput
-          style={styles.input}
-          placeholder={`${t("username.t").capitalize()} ${t("or.t")} ${t("email.t")}`}
-          value={identifier}
-          onChangeText={setIdentifier}
-          autoCapitalize="none"
-          {...addTestIdentifiers("username")}
-          returnKeyType="done"
-        />
-        <ThemedTextInput
-          style={styles.input}
-          placeholder={t("password.t").capitalize()}
-          value={password}
-          secureTextEntry={true}
-          autoCapitalize="none"
-          onChangeText={setPassword}
-          {...addTestIdentifiers("password")}
-          returnKeyType="done"
-        />
-        <Button
-          title="Sign In"
-          onPress={onSignInPress}
-          {...addTestIdentifiers("signInButton")}
-        />
-      </ParallaxScrollView>
-    </TouchableWithoutFeedback>
+          <TendyTextInput
+            placeholder={t("password.t").capitalize()}
+            value={password}
+            secureTextEntry={secureEntry}
+            autoCapitalize="none"
+            onChangeText={setPassword}
+            {...addTestIdentifiers("password")}
+            returnKeyType="done"
+            icon={
+              <Lock size={theme.icon.size} color={colors.tendrel.text1.color} />
+            }
+            iconAfter={
+              secureEntry ? (
+                <Eye
+                  size={theme.icon.size}
+                  onPress={() => setSecureEntry(false)}
+                  color={colors.tendrel.text1.color}
+                />
+              ) : (
+                <EyeOff
+                  size={theme.icon.size}
+                  onPress={() => setSecureEntry(true)}
+                  color={colors.tendrel.text1.color}
+                />
+              )
+            }
+          />
+          <TendyButton
+            title="Sign in"
+            onPress={onSignInPress}
+            {...addTestIdentifiers("signInButton")}
+          />
+          {process.env.EXPO_PUBLIC_TENDREL_STAGE !== "beta" ? (
+            <ThemedText type="subtitle">
+              Stage: {process.env.EXPO_PUBLIC_TENDREL_STAGE}
+            </ThemedText>
+          ) : undefined}
+        </ParallaxScrollView>
+      </TouchableWithoutFeedback>
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 490,
-    bottom: 0,
-    left: 0,
-    position: "absolute",
-  },
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-    borderRadius: 5,
-  },
-});
