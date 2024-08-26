@@ -1,10 +1,10 @@
 import TendrelIcon from "@/assets/images/Tendrel-Icon.svg";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
-import { TendyTextInput } from "@/components/TendyTextInput";
-import { ThemedText } from "@/components/ThemedText";
-import { ThemedView } from "@/components/ThemedView";
+import { Text } from "@/components/Text";
+import { TextInput } from "@/components/TextInput";
+import { View } from "@/components/View";
 
-import TendyButton from "@/components/TendyButton";
+import Button from "@/components/Button";
 import theme from "@/constants/theme";
 import "@/extensions/string";
 import useThemeContext from "@/hooks/useTendyTheme";
@@ -16,14 +16,7 @@ import Head from "expo-router/head";
 import { Eye, EyeOff, Lock, User } from "lucide-react-native";
 import React, { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  Button,
-  Image,
-  Keyboard,
-  StyleSheet,
-  TouchableWithoutFeedback,
-  View,
-} from "react-native";
+import { Keyboard, TouchableWithoutFeedback } from "react-native";
 
 export default function SignIn() {
   const { signIn, setActive, isLoaded } = useSignIn();
@@ -82,9 +75,9 @@ export default function SignIn() {
           testId={"signInPage"}
         >
           <View>
-            <ThemedText type="title">Sign in</ThemedText>
+            <Text type="title">Sign in</Text>
           </View>
-          <TendyTextInput
+          <TextInput
             keyboardType="email-address"
             placeholder={`${t("username.t").capitalize()} ${t("or.t")} ${t(
               "email.t",
@@ -98,7 +91,7 @@ export default function SignIn() {
               <User size={theme.icon.size} color={colors.tendrel.text1.color} />
             }
           />
-          <TendyTextInput
+          <TextInput
             placeholder={t("password.t").capitalize()}
             value={password}
             secureTextEntry={secureEntry}
@@ -125,15 +118,15 @@ export default function SignIn() {
               )
             }
           />
-          <TendyButton
+          <Button
             title="Sign in"
             onPress={onSignInPress}
             {...addTestIdentifiers("signInButton")}
           />
           {process.env.EXPO_PUBLIC_TENDREL_STAGE !== "beta" ? (
-            <ThemedText type="subtitle">
+            <Text type="subtitle">
               Stage: {process.env.EXPO_PUBLIC_TENDREL_STAGE}
-            </ThemedText>
+            </Text>
           ) : undefined}
         </ParallaxScrollView>
       </TouchableWithoutFeedback>

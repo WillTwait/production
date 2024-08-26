@@ -24,6 +24,9 @@ export default function useThemeContext() {
     colors: useMemo(() => {
       return colors[colorTheme || "light"];
     }, [colorTheme]),
+    inverseColors: useMemo(() => {
+      return colors[(colorTheme || "light") === "light" ? "dark" : "light"];
+    }, [colorTheme]),
     colorTheme,
     isSystemTheme: !theme,
     isDark: theme === "dark",

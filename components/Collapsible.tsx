@@ -2,8 +2,8 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { type PropsWithChildren, useState } from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 
-import { ThemedText } from "@/components/ThemedText";
-import { ThemedView } from "@/components/ThemedView";
+import { Text } from "@/components/Text";
+import { View } from "@/components/View";
 import useThemeContext from "@/hooks/useTendyTheme";
 
 export function Collapsible({
@@ -14,7 +14,7 @@ export function Collapsible({
   const { colors } = useThemeContext();
 
   return (
-    <ThemedView>
+    <View>
       <TouchableOpacity
         style={styles.heading}
         onPress={() => setIsOpen(value => !value)}
@@ -23,12 +23,12 @@ export function Collapsible({
         <Ionicons
           name={isOpen ? "chevron-down" : "chevron-forward-outline"}
           size={18}
-          color={colors.icon}
+          color={colors.tendrel.interactive2.color}
         />
-        <ThemedText type="defaultSemiBold">{title}</ThemedText>
+        <Text type="defaultSemiBold">{title}</Text>
       </TouchableOpacity>
-      {isOpen && <ThemedView style={styles.content}>{children}</ThemedView>}
-    </ThemedView>
+      {isOpen && <View style={styles.content}>{children}</View>}
+    </View>
   );
 }
 

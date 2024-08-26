@@ -13,16 +13,17 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   splash: {
     image: "./assets/images/splash.png",
     resizeMode: "contain",
-    backgroundColor: "#ffffff",
+    backgroundColor: "#2a283e",
   },
   ios: {
     supportsTablet: true,
     bundleIdentifier: getUniqueIdentifier(),
+    backgroundColor: "#2a283e",
   },
   android: {
     adaptiveIcon: {
       foregroundImage: "./assets/images/adaptive-icon.png",
-      backgroundColor: "#ffffff",
+      backgroundColor: "#2a283e",
     },
     package: getUniqueIdentifier(),
   },

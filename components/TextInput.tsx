@@ -1,6 +1,10 @@
 import useThemeContext from "@/hooks/useTendyTheme";
 
-import { TextInput, type TextInputProps, View } from "react-native";
+import {
+  TextInput as ReactNativeTextInput,
+  type TextInputProps,
+  View,
+} from "react-native";
 
 export type TendyTextInputProps = TextInputProps & {
   type?: "default";
@@ -8,7 +12,7 @@ export type TendyTextInputProps = TextInputProps & {
   iconAfter?: React.ReactNode;
 };
 
-export function TendyTextInput({
+export function TextInput({
   type = "default",
   icon,
   iconAfter,
@@ -29,7 +33,7 @@ export function TendyTextInput({
       }}
     >
       {icon}
-      <TextInput
+      <ReactNativeTextInput
         placeholderTextColor={colors.tendrel.text1.gray}
         style={{
           color: colors.tendrel.text2.color,

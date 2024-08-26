@@ -23,33 +23,15 @@ export default function TabLayout() {
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          position: "absolute",
           borderTopLeftRadius: 10,
           borderTopRightRadius: 10,
         },
-
-        tabBarBackground: () => (
-          <BlurView
-            intensity={100}
-            experimentalBlurMethod="dimezisBlurView"
-            tint={Platform.OS === "ios" ? "prominent" : "systemChromeMaterial"}
-            style={[
-              StyleSheet.absoluteFill,
-              {
-                borderTopLeftRadius: 10,
-                borderTopRightRadius: 10,
-                overflow: "hidden",
-                backgroundColor: "transparent",
-              },
-            ]}
-          />
-        ),
       }}
     >
       <Tabs.Screen
         name="(home)"
         options={{
-          title: "Home",
+          title: "Checklists",
           tabBarLabelStyle: {
             color: colors.tendrel.text2.color,
             fontSize: 12,

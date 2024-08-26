@@ -1,13 +1,111 @@
+import useThemeContext from "@/hooks/useTendyTheme";
 import { useAuth } from "@clerk/clerk-expo";
-import { Button } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { ChevronRight, LogOut, Moon, Sun } from "lucide-react-native";
+import {
+  Button,
+  SafeAreaView,
+  ScrollView,
+  Switch,
+  Text,
+  View,
+} from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function Settings() {
   const { signOut } = useAuth();
+  const { colors, setColorTheme, colorTheme } = useThemeContext();
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <Button onPress={() => signOut()} title="Sign Out" />
+      <ScrollView
+        style={{
+          flex: 1,
+          backgroundColor: colors.tendrel.background1.color,
+          gap: 10,
+        }}
+      >
+        <View
+          style={{
+            borderRadius: 10,
+            borderWidth: 0.5,
+            borderColor: colors.tendrel.border2.gray,
+            backgroundColor: colors.tendrel.background2.color,
+            margin: 5,
+            padding: 5,
+          }}
+        >
+          <TouchableOpacity
+            style={{
+              flex: 1,
+              width: "100%",
+              flexDirection: "row",
+              gap: 10,
+            }}
+          >
+            <View style={{ padding: 5 }}>
+              {colorTheme === "dark" ? (
+                <Moon color={colors.tendrel.text1.color} />
+              ) : (
+                <Sun color={colors.tendrel.text1.color} />
+              )}
+            </View>
+            <View
+              style={{
+                flexDirection: "row",
+                flex: 1,
+                borderBottomColor: colors.tendrel.border2.color,
+                borderBottomWidth: 0.5,
+                padding: 5,
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 20,
+                  color: colors.tendrel.text2.color,
+                  flex: 1,
+                }}
+              >
+                Dark Mode
+              </Text>
+              <Switch
+                value={colorTheme === "dark"}
+                onValueChange={value => setColorTheme(value ? "dark" : "light")}
+              />
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => signOut()}
+            style={{
+              flex: 1,
+              width: "100%",
+              flexDirection: "row",
+              gap: 10,
+            }}
+          >
+            <View style={{ padding: 5 }}>
+              <LogOut color={colors.tendrel.text1.color} />
+            </View>
+            <View
+              style={{
+                flexDirection: "row",
+                flex: 1,
+                padding: 5,
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 20,
+                  color: colors.tendrel.text2.color,
+                  flex: 1,
+                }}
+              >
+                Sign Out
+              </Text>
+              <ChevronRight color={colors.tendrel.text1.color} />
+            </View>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }

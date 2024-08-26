@@ -1,19 +1,14 @@
 const colors: Record<ColorThemeName, ThemeColors> = {
   light: {
-    text: {
-      default: "#11181C",
-    },
-    tint: "#0a7ea4",
-    icon: "#687076",
-    backgrounds: {
-      default: "#fff",
-    },
     tendrel_constants: {
       cream: "#f3eae0",
       yellow: "#fdb455",
       green: "#87a19a",
       red: "#c13752",
       purple: "#2a283e",
+    },
+    feedback: {
+      error: { border: "#B12645", background: "#B12645" },
     },
     tendrel: {
       background1: { color: "#FDFDFE", gray: "#FCFCFD" },
@@ -31,14 +26,6 @@ const colors: Record<ColorThemeName, ThemeColors> = {
     },
   },
   dark: {
-    text: {
-      default: "#fff",
-    },
-    tint: "#fff",
-    icon: "#9BA1A6",
-    backgrounds: {
-      default: "#151718",
-    },
     //same as light until i figure out light and dark variants
     tendrel_constants: {
       cream: "#f3eae0",
@@ -47,6 +34,7 @@ const colors: Record<ColorThemeName, ThemeColors> = {
       red: "#c13752",
       purple: "#2a283e",
     },
+    feedback: { error: { border: "#B12645", background: "#B12645" } },
     tendrel: {
       background1: { color: "#111016", gray: "#111113" },
       background2: { color: "#18181F", gray: "#19191B" },
@@ -67,41 +55,35 @@ const colors: Record<ColorThemeName, ThemeColors> = {
 export default colors;
 
 export type ThemeColors = {
-  text: {
-    default: string;
-  };
-  tint: string;
-  icon: string;
-  backgrounds: {
-    /** white in light mode, dark in dark mode */
-    default: string;
-    // soft: string;
-    // /** dark in light mode, light in dark mode */
-    // strong: string;
-    // primary: string;
-    // inverted: string;
-  };
   tendrel: {
+    //the darkest or lightest element, this would be for navigation components, root views, etc. Pair with text1 for the most contrast
     background1: {
       color: string;
       gray: string;
     };
+    //Can be used for things that are the background, but not the root. ie something like card--its a background but you stil want to separate from the container background
     background2: {
       color: string;
       gray: string;
     };
+    //Can be used for things like dialogs, or something that is interactive but not necessarily a button
     interactive1: {
       color: string;
       gray: string;
     };
+    //light mode - darker than the last
+    //dark mode - lighter than the last
     interactive2: {
       color: string;
       gray: string;
     };
+    //light mode - darker than the last
+    //dark mode - lighter than the last
     interactive3: {
       color: string;
       gray: string;
     };
+    //you got this one I think
     border1: {
       color: string;
       gray: string;
@@ -114,6 +96,7 @@ export type ThemeColors = {
       color: string;
       gray: string;
     };
+    //button background
     button1: {
       color: string;
       gray: string;
@@ -122,21 +105,28 @@ export type ThemeColors = {
       color: string;
       gray: string;
     };
+    //text with a little bit of color
     text1: {
       color: string;
       gray: string;
     };
+    //high contrast text
     text2: {
       color: string;
       gray: string;
     };
   };
+  //OG tendy color scheme
   tendrel_constants: {
     yellow: string;
     purple: string;
     green: string;
     red: string;
     cream: string; //getthemoneydolladollabillsyall
+  };
+  //For things like overdue, success, error, etc. WIP
+  feedback: {
+    error: { background: string; border: string };
   };
 };
 

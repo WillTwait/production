@@ -19,12 +19,12 @@ export default function Layout() {
       <Head>
         <meta
           name="theme-color"
-          content={colors.backgrounds.default}
+          content={colors.tendrel.background1.color}
           media="(prefers-color-scheme: light)"
         />
         <meta
           name="theme-color"
-          content={colors.backgrounds.default}
+          content={colors.tendrel.background1.color}
           media="(prefers-color-scheme: dark)"
         />
       </Head>

@@ -17,11 +17,12 @@ import "react-native-reanimated";
 
 import { TendrelProvider } from "@/tendrel/provider";
 import { ClerkLoaded, ClerkProvider, useAuth } from "@clerk/clerk-expo";
-import { Platform } from "react-native";
+import { Platform, StatusBar } from "react-native";
 
 import TendyThemeProvider from "@/components/TendyThemeProvider";
 import useThemeContext from "@/hooks/useTendyTheme";
 import { RelayProvider } from "@/relay/provider";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export {
@@ -132,18 +133,25 @@ function NavLayout() {
       }
     >
       <ThemeProvider value={colorTheme === "dark" ? DarkTheme : DefaultTheme}>
-        <SafeAreaProvider>
-          <Stack>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="+not-found" />
-            <Stack.Screen
-              name="sign-in"
-              options={{
-                headerShown: false,
-              }}
+        <GestureHandlerRootView>
+          <SafeAreaProvider>
+            <StatusBar
+              barStyle={
+                colorTheme === "light" ? "dark-content" : "light-content"
+              }
             />
-          </Stack>
-        </SafeAreaProvider>
+            <Stack>
+              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+              <Stack.Screen name="+not-found" />
+              <Stack.Screen
+                name="sign-in"
+                options={{
+                  headerShown: false,
+                }}
+              />
+            </Stack>
+          </SafeAreaProvider>
+        </GestureHandlerRootView>
       </ThemeProvider>
     </RelayProvider>
   );
