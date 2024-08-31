@@ -1,18 +1,88 @@
 {
-  "username": {
-    "t": "όνομα χρήστη",
-    "override": false
+  "signIn": {
+    "username": {
+      "t": "όνομα χρήστη",
+      "override": false
+    },
+    "password": {
+      "t": "κωδικός πρόσβασης",
+      "override": false
+    },
+    "or": {
+      "t": "ή",
+      "override": false
+    },
+    "email": {
+      "t": "Ηλεκτρονικό ταχυδρομείο",
+      "override": false
+    }
   },
-  "password": {
-    "t": "κωδικός πρόσβασης",
-    "override": false
+  "checklist": {
+    "open": {
+      "t": "ανοιχτός",
+      "override": false
+    },
+    "completed": {
+      "t": "ολοκληρώθηκε",
+      "override": false
+    },
+    "all": {
+      "t": "όλα",
+      "override": false
+    },
+    "assignedToMe": {
+      "t": "ανατέθηκε σε μένα",
+      "override": false
+    },
+    "onDemand": {
+      "t": "κατόπιν ζήτησης",
+      "override": false
+    },
+    "dueToday": {
+      "t": "οφειλόμενο σήμερα",
+      "override": false
+    }
   },
-  "or": {
-    "t": "ή",
-    "override": false
+  "currentUser": {
+    "switchCustomer": {
+      "t": "αλλαγή πελάτη",
+      "override": false
+    },
+    "switchSite": {
+      "t": "αλλαγή τοποθεσίας",
+      "override": false
+    },
+    "logout": {
+      "t": "αποσύνδεση",
+      "override": false
+    },
+    "selectCustomer": {
+      "t": "επιλέξτε έναν πελάτη",
+      "override": false
+    },
+    "selectSite": {
+      "t": "επιλέξτε έναν ιστότοπο",
+      "override": false
+    }
   },
-  "email": {
-    "t": "Ηλεκτρονικό ταχυδρομείο",
-    "override": false
+  "settingsPage": {
+    "darkMode": {
+      "t": "σκοτεινή λειτουργία",
+      "override": false
+    },
+    "signOut": {
+      "t": "αποσυνδεθείτε",
+      "override": false
+    }
+  },
+  "tabBar": {
+    "checklists": {
+      "t": "λίστες ελέγχου",
+      "override": false
+    },
+    "Settings": {
+      "t": "ρυθμίσεων",
+      "override": false
+    }
   }
 }

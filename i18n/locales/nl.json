@@ -1,18 +1,88 @@
 {
-  "username": {
-    "t": "gebruikersnaam",
-    "override": false
+  "signIn": {
+    "username": {
+      "t": "gebruikersnaam",
+      "override": false
+    },
+    "password": {
+      "t": "wachtwoord",
+      "override": false
+    },
+    "or": {
+      "t": "of",
+      "override": false
+    },
+    "email": {
+      "t": "e-mail",
+      "override": false
+    }
   },
-  "password": {
-    "t": "wachtwoord",
-    "override": false
+  "checklist": {
+    "open": {
+      "t": "open",
+      "override": false
+    },
+    "completed": {
+      "t": "voltooid",
+      "override": false
+    },
+    "all": {
+      "t": "allemaal",
+      "override": false
+    },
+    "assignedToMe": {
+      "t": "aan mij toegewezen",
+      "override": false
+    },
+    "onDemand": {
+      "t": "op aanvraag",
+      "override": false
+    },
+    "dueToday": {
+      "t": "vandaag verwacht",
+      "override": false
+    }
   },
-  "or": {
-    "t": "of",
-    "override": false
+  "currentUser": {
+    "switchCustomer": {
+      "t": "van klant wisselen",
+      "override": false
+    },
+    "switchSite": {
+      "t": "van site wisselen",
+      "override": false
+    },
+    "logout": {
+      "t": "uitloggen",
+      "override": false
+    },
+    "selectCustomer": {
+      "t": "selecteer een klant",
+      "override": false
+    },
+    "selectSite": {
+      "t": "selecteer een site",
+      "override": false
+    }
   },
-  "email": {
-    "t": "e-mail",
-    "override": false
+  "settingsPage": {
+    "darkMode": {
+      "t": "donkere modus",
+      "override": false
+    },
+    "signOut": {
+      "t": "uitloggen",
+      "override": false
+    }
+  },
+  "tabBar": {
+    "checklists": {
+      "t": "controlelijsten",
+      "override": false
+    },
+    "Settings": {
+      "t": "instellingen",
+      "override": false
+    }
   }
 }

@@ -1,18 +1,88 @@
 {
-  "username": {
-    "t": "Kullanıcı adı",
-    "override": false
+  "signIn": {
+    "username": {
+      "t": "Kullanıcı adı",
+      "override": false
+    },
+    "password": {
+      "t": "şifre",
+      "override": false
+    },
+    "or": {
+      "t": "veya",
+      "override": false
+    },
+    "email": {
+      "t": "E-posta",
+      "override": false
+    }
   },
-  "password": {
-    "t": "şifre",
-    "override": false
+  "checklist": {
+    "open": {
+      "t": "açık",
+      "override": false
+    },
+    "completed": {
+      "t": "tamamlandı",
+      "override": false
+    },
+    "all": {
+      "t": "bütün",
+      "override": false
+    },
+    "assignedToMe": {
+      "t": "bana atandı",
+      "override": false
+    },
+    "onDemand": {
+      "t": "talep üzerine",
+      "override": false
+    },
+    "dueToday": {
+      "t": "bugün vadesi",
+      "override": false
+    }
   },
-  "or": {
-    "t": "veya",
-    "override": false
+  "currentUser": {
+    "switchCustomer": {
+      "t": "müşteri değiştir",
+      "override": false
+    },
+    "switchSite": {
+      "t": "site değiştir",
+      "override": false
+    },
+    "logout": {
+      "t": "oturumu kapat",
+      "override": false
+    },
+    "selectCustomer": {
+      "t": "bir müşteri seçin",
+      "override": false
+    },
+    "selectSite": {
+      "t": "bir site seçin",
+      "override": false
+    }
   },
-  "email": {
-    "t": "E-posta",
-    "override": false
+  "settingsPage": {
+    "darkMode": {
+      "t": "karanlık mod",
+      "override": false
+    },
+    "signOut": {
+      "t": "Oturumu kapat",
+      "override": false
+    }
+  },
+  "tabBar": {
+    "checklists": {
+      "t": "kontrol listeleri",
+      "override": false
+    },
+    "Settings": {
+      "t": "ayarları",
+      "override": false
+    }
   }
 }

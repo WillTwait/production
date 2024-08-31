@@ -1,6 +1,8 @@
 import useThemeContext from "@/hooks/useTendyTheme";
+import { addTestIdentifiers } from "@/util/add-test-id";
 import { useAuth } from "@clerk/clerk-expo";
 import { ChevronRight, LogOut, Moon, Sun } from "lucide-react-native";
+import { useTranslation } from "react-i18next";
 import {
   Button,
   SafeAreaView,
@@ -14,6 +16,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 export default function Settings() {
   const { signOut } = useAuth();
   const { colors, setColorTheme, colorTheme } = useThemeContext();
+  const { t } = useTranslation();
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -65,7 +68,7 @@ export default function Settings() {
                   flex: 1,
                 }}
               >
-                Dark Mode
+                {t("settingsPage.darkMode.t").capitalize()}
               </Text>
               <Switch
                 value={colorTheme === "dark"}
@@ -74,6 +77,7 @@ export default function Settings() {
             </View>
           </TouchableOpacity>
           <TouchableOpacity
+            {...addTestIdentifiers("settingsSignOutButton")}
             onPress={() => signOut()}
             style={{
               flex: 1,
@@ -99,7 +103,7 @@ export default function Settings() {
                   flex: 1,
                 }}
               >
-                Sign Out
+                {t("settingsPage.signOut.t").capitalize()}
               </Text>
               <ChevronRight color={colors.tendrel.text1.color} />
             </View>

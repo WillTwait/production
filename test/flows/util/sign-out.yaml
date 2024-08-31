@@ -1,8 +1,9 @@
 appId: com.tendrel.checklist
 ---
+- tapOn:
+    id: "settingsTab"
 - scrollUntilVisible:
     element:
-      id: "signOutButton"
+      id: "settingsSignOutButton"
 - tapOn:
-    id: "signOutButton"
-
+    id: "settingsSignOutButton"

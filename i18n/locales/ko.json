@@ -1,18 +1,88 @@
 {
-  "username": {
-    "t": "사용자 이름",
-    "override": false
+  "signIn": {
+    "username": {
+      "t": "사용자 이름",
+      "override": false
+    },
+    "password": {
+      "t": "암호",
+      "override": false
+    },
+    "or": {
+      "t": "또는",
+      "override": false
+    },
+    "email": {
+      "t": "이메일",
+      "override": false
+    }
   },
-  "password": {
-    "t": "암호",
-    "override": false
+  "checklist": {
+    "open": {
+      "t": "열다",
+      "override": false
+    },
+    "completed": {
+      "t": "완료",
+      "override": false
+    },
+    "all": {
+      "t": "모든",
+      "override": false
+    },
+    "assignedToMe": {
+      "t": "나에게 배정됨",
+      "override": false
+    },
+    "onDemand": {
+      "t": "온디맨드",
+      "override": false
+    },
+    "dueToday": {
+      "t": "오늘 마감",
+      "override": false
+    }
   },
-  "or": {
-    "t": "또는",
-    "override": false
+  "currentUser": {
+    "switchCustomer": {
+      "t": "스위치 고객",
+      "override": false
+    },
+    "switchSite": {
+      "t": "스위치 사이트",
+      "override": false
+    },
+    "logout": {
+      "t": "로그아웃",
+      "override": false
+    },
+    "selectCustomer": {
+      "t": "고객 선택",
+      "override": false
+    },
+    "selectSite": {
+      "t": "사이트 선택",
+      "override": false
+    }
   },
-  "email": {
-    "t": "이메일",
-    "override": false
+  "settingsPage": {
+    "darkMode": {
+      "t": "다크 모드",
+      "override": false
+    },
+    "signOut": {
+      "t": "로그아웃",
+      "override": false
+    }
+  },
+  "tabBar": {
+    "checklists": {
+      "t": "체크리스트",
+      "override": false
+    },
+    "Settings": {
+      "t": "설정",
+      "override": false
+    }
   }
 }

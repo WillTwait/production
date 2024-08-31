@@ -1,18 +1,88 @@
 {
-  "username": {
-    "t": "صارف نام",
-    "override": false
+  "signIn": {
+    "username": {
+      "t": "صارف نام",
+      "override": false
+    },
+    "password": {
+      "t": "پاس ورڈ",
+      "override": false
+    },
+    "or": {
+      "t": "یا",
+      "override": false
+    },
+    "email": {
+      "t": "ای میل کریں",
+      "override": false
+    }
   },
-  "password": {
-    "t": "پاس ورڈ",
-    "override": false
+  "checklist": {
+    "open": {
+      "t": "کھولیں",
+      "override": false
+    },
+    "completed": {
+      "t": "مکمل کردہ",
+      "override": false
+    },
+    "all": {
+      "t": "سبھی",
+      "override": false
+    },
+    "assignedToMe": {
+      "t": "مجھے تفویض",
+      "override": false
+    },
+    "onDemand": {
+      "t": "مانگ پر",
+      "override": false
+    },
+    "dueToday": {
+      "t": "آج ہونے والا",
+      "override": false
+    }
   },
-  "or": {
-    "t": "یا",
-    "override": false
+  "currentUser": {
+    "switchCustomer": {
+      "t": "کسٹمر سوئچ",
+      "override": false
+    },
+    "switchSite": {
+      "t": "سائٹ سوئچ کریں",
+      "override": false
+    },
+    "logout": {
+      "t": "لاگ آؤٹ",
+      "override": false
+    },
+    "selectCustomer": {
+      "t": "ایک کسٹمر منتخب کریں",
+      "override": false
+    },
+    "selectSite": {
+      "t": "ایک سائٹ منتخب کریں",
+      "override": false
+    }
   },
-  "email": {
-    "t": "ای میل کریں",
-    "override": false
+  "settingsPage": {
+    "darkMode": {
+      "t": "ڈارک موڈ",
+      "override": false
+    },
+    "signOut": {
+      "t": "سائن آؤٹ",
+      "override": false
+    }
+  },
+  "tabBar": {
+    "checklists": {
+      "t": "چیک لسٹ",
+      "override": false
+    },
+    "Settings": {
+      "t": "سیٹنگز",
+      "override": false
+    }
   }
 }

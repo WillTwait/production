@@ -16,7 +16,6 @@ export default function Avatar({ firstName, lastName, size = 30 }: Props) {
   const lastInitial =
     lastName && lastName.length >= 1 ? lastName.charAt(0).toUpperCase() : "";
 
-  // Combine the initials
   const initials = `${firstInitial}${lastInitial}`;
   return (
     <View
@@ -34,7 +33,7 @@ export default function Avatar({ firstName, lastName, size = 30 }: Props) {
           color: inverseColors.tendrel.text2.color,
           justifyContent: "center",
           alignItems: "center",
-          fontSize: size / 2,
+          fontSize: size / 2, //FIXME: make this less brittle
         }}
       >
         {initials}

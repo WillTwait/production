@@ -11,4 +11,4 @@ onFlowComplete:
 
 ---
 - assertVisible:
-    id: "customerSelectPage"
+    id: "checklistsPage"

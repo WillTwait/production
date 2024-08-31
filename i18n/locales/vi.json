@@ -1,18 +1,88 @@
 {
-  "username": {
-    "t": "tên người dùng",
-    "override": false
+  "signIn": {
+    "username": {
+      "t": "tên người dùng",
+      "override": false
+    },
+    "password": {
+      "t": "mật khẩu",
+      "override": false
+    },
+    "or": {
+      "t": "hoặc là",
+      "override": false
+    },
+    "email": {
+      "t": "e-mail",
+      "override": false
+    }
   },
-  "password": {
-    "t": "mật khẩu",
-    "override": false
+  "checklist": {
+    "open": {
+      "t": "mở",
+      "override": false
+    },
+    "completed": {
+      "t": "hoàn thành",
+      "override": false
+    },
+    "all": {
+      "t": "tất cả",
+      "override": false
+    },
+    "assignedToMe": {
+      "t": "được giao cho tôi",
+      "override": false
+    },
+    "onDemand": {
+      "t": "theo yêu cầu",
+      "override": false
+    },
+    "dueToday": {
+      "t": "đến hạn hôm nay",
+      "override": false
+    }
   },
-  "or": {
-    "t": "hoặc là",
-    "override": false
+  "currentUser": {
+    "switchCustomer": {
+      "t": "chuyển đổi khách hàng",
+      "override": false
+    },
+    "switchSite": {
+      "t": "chuyển đổi trang web",
+      "override": false
+    },
+    "logout": {
+      "t": "đăng xuất",
+      "override": false
+    },
+    "selectCustomer": {
+      "t": "chọn khách hàng",
+      "override": false
+    },
+    "selectSite": {
+      "t": "chọn một trang web",
+      "override": false
+    }
   },
-  "email": {
-    "t": "e-mail",
-    "override": false
+  "settingsPage": {
+    "darkMode": {
+      "t": "chế độ tối",
+      "override": false
+    },
+    "signOut": {
+      "t": "đăng xuất",
+      "override": false
+    }
+  },
+  "tabBar": {
+    "checklists": {
+      "t": "danh sách kiểm tra",
+      "override": false
+    },
+    "Settings": {
+      "t": "cài đặt",
+      "override": false
+    }
   }
 }

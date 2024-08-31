@@ -1,16 +1,13 @@
 import useThemeContext from "@/hooks/useTendyTheme";
 import {
   type ButtonProps,
-  Pressable,
   Button as ReactNativeButton,
   Text,
   TouchableOpacity,
-  View,
 } from "react-native";
 
 export type TendyButtonProps = ButtonProps & {
   title: string;
-  color?: string;
   icon?: React.ReactNode;
   iconAfter?: React.ReactNode;
   loading?: boolean;
@@ -19,7 +16,6 @@ export type TendyButtonProps = ButtonProps & {
 
 export default function Button({
   variant = "default",
-  color,
   icon,
   iconAfter,
   title,
@@ -27,7 +23,7 @@ export default function Button({
 }: TendyButtonProps) {
   const { colors } = useThemeContext();
 
-  const buttonColor = color ? color : colors.tendrel.text1.color;
+  const buttonColor = rest.color ? rest.color : colors.tendrel.text1.color;
 
   return (
     <>

@@ -1,18 +1,88 @@
 {
-  "username": {
-    "t": "имя пользователя",
-    "override": false
+  "signIn": {
+    "username": {
+      "t": "имя пользователя",
+      "override": false
+    },
+    "password": {
+      "t": "пароль",
+      "override": false
+    },
+    "or": {
+      "t": "или же",
+      "override": false
+    },
+    "email": {
+      "t": "письмо",
+      "override": false
+    }
   },
-  "password": {
-    "t": "пароль",
-    "override": false
+  "checklist": {
+    "open": {
+      "t": "открытый",
+      "override": false
+    },
+    "completed": {
+      "t": "завершил",
+      "override": false
+    },
+    "all": {
+      "t": "все",
+      "override": false
+    },
+    "assignedToMe": {
+      "t": "возложенный на меня",
+      "override": false
+    },
+    "onDemand": {
+      "t": "по запросу",
+      "override": false
+    },
+    "dueToday": {
+      "t": "срок истекает сегодня",
+      "override": false
+    }
   },
-  "or": {
-    "t": "или же",
-    "override": false
+  "currentUser": {
+    "switchCustomer": {
+      "t": "сменить клиента",
+      "override": false
+    },
+    "switchSite": {
+      "t": "переключить сайт",
+      "override": false
+    },
+    "logout": {
+      "t": "выйти из системы",
+      "override": false
+    },
+    "selectCustomer": {
+      "t": "выберите клиента",
+      "override": false
+    },
+    "selectSite": {
+      "t": "выберите сайт",
+      "override": false
+    }
   },
-  "email": {
-    "t": "письмо",
-    "override": false
+  "settingsPage": {
+    "darkMode": {
+      "t": "темный режим",
+      "override": false
+    },
+    "signOut": {
+      "t": "выйти",
+      "override": false
+    }
+  },
+  "tabBar": {
+    "checklists": {
+      "t": "контрольные списки",
+      "override": false
+    },
+    "Settings": {
+      "t": "настройки",
+      "override": false
+    }
   }
 }

@@ -1,18 +1,88 @@
 {
-  "username": {
-    "t": "nome de usuário",
-    "override": false
+  "signIn": {
+    "username": {
+      "t": "nome de usuário",
+      "override": false
+    },
+    "password": {
+      "t": "senha",
+      "override": false
+    },
+    "or": {
+      "t": "ou",
+      "override": false
+    },
+    "email": {
+      "t": "e-mail",
+      "override": false
+    }
   },
-  "password": {
-    "t": "senha",
-    "override": false
+  "checklist": {
+    "open": {
+      "t": "abrir",
+      "override": false
+    },
+    "completed": {
+      "t": "concluído",
+      "override": false
+    },
+    "all": {
+      "t": "tudo",
+      "override": false
+    },
+    "assignedToMe": {
+      "t": "atribuído a mim",
+      "override": false
+    },
+    "onDemand": {
+      "t": "sob demanda",
+      "override": false
+    },
+    "dueToday": {
+      "t": "devido hoje",
+      "override": false
+    }
   },
-  "or": {
-    "t": "ou",
-    "override": false
+  "currentUser": {
+    "switchCustomer": {
+      "t": "mudar de cliente",
+      "override": false
+    },
+    "switchSite": {
+      "t": "mudar de site",
+      "override": false
+    },
+    "logout": {
+      "t": "sair",
+      "override": false
+    },
+    "selectCustomer": {
+      "t": "selecione um cliente",
+      "override": false
+    },
+    "selectSite": {
+      "t": "selecione um site",
+      "override": false
+    }
   },
-  "email": {
-    "t": "e-mail",
-    "override": false
+  "settingsPage": {
+    "darkMode": {
+      "t": "modo escuro",
+      "override": false
+    },
+    "signOut": {
+      "t": "sair",
+      "override": false
+    }
+  },
+  "tabBar": {
+    "checklists": {
+      "t": "listas de verificação",
+      "override": false
+    },
+    "Settings": {
+      "t": "configurações",
+      "override": false
+    }
   }
 }

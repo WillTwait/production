@@ -1,18 +1,88 @@
 {
-  "username": {
-    "t": "korisničko ime",
-    "override": false
+  "signIn": {
+    "username": {
+      "t": "korisničko ime",
+      "override": false
+    },
+    "password": {
+      "t": "lozinka",
+      "override": false
+    },
+    "or": {
+      "t": "ili",
+      "override": false
+    },
+    "email": {
+      "t": "elektronska pošta",
+      "override": false
+    }
   },
-  "password": {
-    "t": "lozinka",
-    "override": false
+  "checklist": {
+    "open": {
+      "t": "otvoriti",
+      "override": false
+    },
+    "completed": {
+      "t": "završen",
+      "override": false
+    },
+    "all": {
+      "t": "sve",
+      "override": false
+    },
+    "assignedToMe": {
+      "t": "dodeljen meni",
+      "override": false
+    },
+    "onDemand": {
+      "t": "na zahtev",
+      "override": false
+    },
+    "dueToday": {
+      "t": "dospijeva danas",
+      "override": false
+    }
   },
-  "or": {
-    "t": "ili",
-    "override": false
+  "currentUser": {
+    "switchCustomer": {
+      "t": "prebacivanje kupca",
+      "override": false
+    },
+    "switchSite": {
+      "t": "prebacivanje sajta",
+      "override": false
+    },
+    "logout": {
+      "t": "odjavite se",
+      "override": false
+    },
+    "selectCustomer": {
+      "t": "izaberite kupca",
+      "override": false
+    },
+    "selectSite": {
+      "t": "izaberite sajt",
+      "override": false
+    }
   },
-  "email": {
-    "t": "elektronska pošta",
-    "override": false
+  "settingsPage": {
+    "darkMode": {
+      "t": "tamni režim",
+      "override": false
+    },
+    "signOut": {
+      "t": "odjavite se",
+      "override": false
+    }
+  },
+  "tabBar": {
+    "checklists": {
+      "t": "kontrolne liste",
+      "override": false
+    },
+    "Settings": {
+      "t": "podešavanja",
+      "override": false
+    }
   }
 }

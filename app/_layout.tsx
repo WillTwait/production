@@ -9,7 +9,7 @@ import {
 import * as Sentry from "@sentry/react-native";
 import * as Application from "expo-application";
 import { useFonts } from "expo-font";
-import { Redirect, Stack } from "expo-router";
+import { Stack } from "expo-router";
 import * as SecureStore from "expo-secure-store";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";

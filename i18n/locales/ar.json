@@ -1,18 +1,88 @@
 {
-  "username": {
-    "t": "اسم المستخدم",
-    "override": false
+  "signIn": {
+    "username": {
+      "t": "اسم المستخدم",
+      "override": false
+    },
+    "password": {
+      "t": "كلمة المرور",
+      "override": false
+    },
+    "or": {
+      "t": "أو",
+      "override": false
+    },
+    "email": {
+      "t": "البريد الإلكتروني",
+      "override": false
+    }
   },
-  "password": {
-    "t": "كلمة المرور",
-    "override": false
+  "checklist": {
+    "open": {
+      "t": "مفتوح",
+      "override": false
+    },
+    "completed": {
+      "t": "تم إنجازه",
+      "override": false
+    },
+    "all": {
+      "t": "جميع",
+      "override": false
+    },
+    "assignedToMe": {
+      "t": "المخصصة لي",
+      "override": false
+    },
+    "onDemand": {
+      "t": "عند الطلب",
+      "override": false
+    },
+    "dueToday": {
+      "t": "مستحق اليوم",
+      "override": false
+    }
   },
-  "or": {
-    "t": "أو",
-    "override": false
+  "currentUser": {
+    "switchCustomer": {
+      "t": "عميل المحول",
+      "override": false
+    },
+    "switchSite": {
+      "t": "موقع المحول",
+      "override": false
+    },
+    "logout": {
+      "t": "تسجيل الخروج",
+      "override": false
+    },
+    "selectCustomer": {
+      "t": "حدد عميل",
+      "override": false
+    },
+    "selectSite": {
+      "t": "حدد موقعًا",
+      "override": false
+    }
   },
-  "email": {
-    "t": "البريد الإلكتروني",
-    "override": false
+  "settingsPage": {
+    "darkMode": {
+      "t": "الوضع المظلم",
+      "override": false
+    },
+    "signOut": {
+      "t": "تسجيل الخروج",
+      "override": false
+    }
+  },
+  "tabBar": {
+    "checklists": {
+      "t": "قوائم مرجعية",
+      "override": false
+    },
+    "Settings": {
+      "t": "الإعدادات",
+      "override": false
+    }
   }
 }

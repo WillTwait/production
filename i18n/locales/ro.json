@@ -1,18 +1,88 @@
 {
-  "username": {
-    "t": "nume de utilizator",
-    "override": false
+  "signIn": {
+    "username": {
+      "t": "nume de utilizator",
+      "override": false
+    },
+    "password": {
+      "t": "parolă",
+      "override": false
+    },
+    "or": {
+      "t": "sau",
+      "override": false
+    },
+    "email": {
+      "t": "emailul",
+      "override": false
+    }
   },
-  "password": {
-    "t": "parolă",
-    "override": false
+  "checklist": {
+    "open": {
+      "t": "deschisă",
+      "override": false
+    },
+    "completed": {
+      "t": "finalizată",
+      "override": false
+    },
+    "all": {
+      "t": "toate",
+      "override": false
+    },
+    "assignedToMe": {
+      "t": "atribuit mie",
+      "override": false
+    },
+    "onDemand": {
+      "t": "la cerere",
+      "override": false
+    },
+    "dueToday": {
+      "t": "scadente astăzi",
+      "override": false
+    }
   },
-  "or": {
-    "t": "sau",
-    "override": false
+  "currentUser": {
+    "switchCustomer": {
+      "t": "comutați clientul",
+      "override": false
+    },
+    "switchSite": {
+      "t": "comutați site-ul",
+      "override": false
+    },
+    "logout": {
+      "t": "deconectare",
+      "override": false
+    },
+    "selectCustomer": {
+      "t": "selectează un client",
+      "override": false
+    },
+    "selectSite": {
+      "t": "selectează un site",
+      "override": false
+    }
   },
-  "email": {
-    "t": "emailul",
-    "override": false
+  "settingsPage": {
+    "darkMode": {
+      "t": "modul întunecat",
+      "override": false
+    },
+    "signOut": {
+      "t": "deconectează-te",
+      "override": false
+    }
+  },
+  "tabBar": {
+    "checklists": {
+      "t": "liste de verificare",
+      "override": false
+    },
+    "Settings": {
+      "t": "setări",
+      "override": false
+    }
   }
 }

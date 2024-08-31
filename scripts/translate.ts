@@ -1,13 +1,10 @@
 import * as fs from "node:fs";
-
+import path from "node:path";
+import { corpus } from "@/i18n/corpus";
 import { Translate } from "@aws-sdk/client-translate";
 import { getAwsCredentials } from "@tendrel/lib";
-
-import path from "node:path";
-import { corpus } from "@/i18n/corpus.json";
 import type { SupportedLanguage } from "@tendrel/sdk";
 
-// reference list here: https://www.notion.so/tendrel/fe11a39036a347638dd99ae54d037ffa?v=5e3dc845512945ae904478a272f3219d
 const SelfServiceLanguages: SupportedLanguage[] = [
   "ar",
   "bn",
@@ -37,13 +34,91 @@ const SelfServiceLanguages: SupportedLanguage[] = [
   "vi",
 ];
 
+export type Translation = {
+  t: string;
+  override: boolean;
+};
+
 export type Translations = {
-  [key: string]: { t: string; override: boolean };
+  [key: string]: Translation | Translations;
+};
+
+export type NestedTranslation = {
+  [key: string]: string | NestedTranslation;
 };
 
 const translationClient: Translate = new Translate({
   credentials: getAwsCredentials(),
 });
+
+async function translateText(
+  text: string,
+  sourceLanguage: SupportedLanguage,
+  targetLanguage: SupportedLanguage,
+): Promise<string | undefined> {
+  const translatedText = (
+    await translationClient.translateText({
+      SourceLanguageCode: sourceLanguage,
+      TargetLanguageCode: targetLanguage,
+      Text: text,
+    })
+  ).TranslatedText;
+  return translatedText;
+}
+
+async function translateObject(
+  obj: NestedTranslation,
+  sourceLanguage: SupportedLanguage,
+  targetLanguage: SupportedLanguage,
+  existing: Translations,
+  force: boolean,
+  flatTranslations: Translations,
+): Promise<Translations> {
+  const translatedObj: Translations = {};
+
+  for (const key in obj) {
+    if (typeof obj[key] === "object" && !Array.isArray(obj[key])) {
+      // Ensure existing[key] is an object or create an empty one
+      translatedObj[key] = await translateObject(
+        obj[key] as NestedTranslation,
+        sourceLanguage,
+        targetLanguage,
+        (existing[key] as Translations) || {}, // Provide an empty object if existing[key] is undefined
+        force,
+        flatTranslations,
+      );
+    } else {
+      const existingTranslation = existing[key] as Translation | undefined;
+      const override = existingTranslation?.override ?? false;
+      let translation = existingTranslation?.t;
+
+      if (override) {
+        console.log(`Skipping ${key} -> ${translation} due to override`);
+        translatedObj[key] = { t: translation ?? "", override: true };
+        flatTranslations[key] = {
+          t: translation ?? "",
+          override: true,
+        };
+      } else {
+        if (!translation || force) {
+          translation = await translateText(
+            obj[key] as string,
+            sourceLanguage,
+            targetLanguage,
+          );
+          console.log(`Translated ${obj[key]} to ${translation}`);
+        }
+        translatedObj[key] = { t: translation ?? "", override: false };
+        flatTranslations[key] = {
+          t: translation ?? "",
+          override: false,
+        };
+      }
+    }
+  }
+
+  return translatedObj;
+}
 
 /**
  * @param sourceLanguage The language to translate from
@@ -65,52 +140,15 @@ async function generateTranslationFile(
     existing = JSON.parse(fs.readFileSync(filePath, "utf8"));
   }
 
-  const translations: Translations = {};
-  if (sourceLanguage === targetLanguage) {
-    for (const key of Object.keys(corpus)) {
-      const existingTranslation = existing[key];
-      const override = existingTranslation?.override ?? false;
-
-      translations[key] = {
-        t: override
-          ? existingTranslation?.t ?? ""
-          : corpus[key as keyof typeof corpus],
-        override: override,
-      };
-    }
-  } else {
-    for (const [key, value] of Object.entries(corpus)) {
-      const existingValue = existing[key];
-
-      let translation = existingValue?.t;
-      const override = existingValue?.override;
-
-      if (override) {
-        console.log(`Skipping ${key} -> ${translation} due to override`);
-        translations[key] = {
-          t: translation ?? "",
-          override: true,
-        };
-        continue;
-      }
-      if (!translation || force) {
-        translation =
-          (
-            await translationClient.translateText({
-              SourceLanguageCode: sourceLanguage,
-              TargetLanguageCode: targetLanguage,
-              Text: value as string,
-            })
-          ).TranslatedText ?? "undefined";
-        console.log(`Translated ${value} to ${translation}`);
-      }
-
-      translations[key] = {
-        t: translation ?? "",
-        override: false,
-      };
-    }
-  }
+  const flatTranslations: Translations = {};
+  const translations: Translations = await translateObject(
+    corpus,
+    sourceLanguage,
+    targetLanguage,
+    existing,
+    force,
+    flatTranslations,
+  );
 
   fs.writeFile(filePath, JSON.stringify(translations, null, 2), err => {
     if (err) {

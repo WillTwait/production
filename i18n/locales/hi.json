@@ -1,18 +1,88 @@
 {
-  "username": {
-    "t": "उपयोगकर्ता नाम",
-    "override": false
+  "signIn": {
+    "username": {
+      "t": "उपयोगकर्ता नाम",
+      "override": false
+    },
+    "password": {
+      "t": "पासवर्ड",
+      "override": false
+    },
+    "or": {
+      "t": "या",
+      "override": false
+    },
+    "email": {
+      "t": "ईमेल",
+      "override": false
+    }
   },
-  "password": {
-    "t": "पासवर्ड",
-    "override": false
+  "checklist": {
+    "open": {
+      "t": "खोलो",
+      "override": false
+    },
+    "completed": {
+      "t": "पूरा कर लिया है",
+      "override": false
+    },
+    "all": {
+      "t": "सभी",
+      "override": false
+    },
+    "assignedToMe": {
+      "t": "मुझे सौंपा गया",
+      "override": false
+    },
+    "onDemand": {
+      "t": "मांग पर",
+      "override": false
+    },
+    "dueToday": {
+      "t": "आज होने वाला है",
+      "override": false
+    }
   },
-  "or": {
-    "t": "या",
-    "override": false
+  "currentUser": {
+    "switchCustomer": {
+      "t": "ग्राहक को स्विच करें",
+      "override": false
+    },
+    "switchSite": {
+      "t": "साइट स्विच करें",
+      "override": false
+    },
+    "logout": {
+      "t": "लॉगआउट",
+      "override": false
+    },
+    "selectCustomer": {
+      "t": "एक ग्राहक चुनें",
+      "override": false
+    },
+    "selectSite": {
+      "t": "एक साइट का चयन करें",
+      "override": false
+    }
   },
-  "email": {
-    "t": "ईमेल",
-    "override": false
+  "settingsPage": {
+    "darkMode": {
+      "t": "डार्क मोड",
+      "override": false
+    },
+    "signOut": {
+      "t": "साइन आउट करें",
+      "override": false
+    }
+  },
+  "tabBar": {
+    "checklists": {
+      "t": "जाँच सूची",
+      "override": false
+    },
+    "Settings": {
+      "t": "सेटिंग्स",
+      "override": false
+    }
   }
 }

@@ -79,8 +79,8 @@ export default function SignIn() {
           </View>
           <TextInput
             keyboardType="email-address"
-            placeholder={`${t("username.t").capitalize()} ${t("or.t")} ${t(
-              "email.t",
+            placeholder={`${t("signIn.username.t").capitalize()} ${t("signIn.or.t")} ${t(
+              "signIn.email.t",
             )}`}
             value={identifier}
             onChangeText={setIdentifier}
@@ -92,7 +92,7 @@ export default function SignIn() {
             }
           />
           <TextInput
-            placeholder={t("password.t").capitalize()}
+            placeholder={t("signIn.password.t").capitalize()}
             value={password}
             secureTextEntry={secureEntry}
             autoCapitalize="none"

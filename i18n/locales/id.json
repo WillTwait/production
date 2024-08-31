@@ -1,18 +1,88 @@
 {
-  "username": {
-    "t": "nama pengguna",
-    "override": false
+  "signIn": {
+    "username": {
+      "t": "nama pengguna",
+      "override": false
+    },
+    "password": {
+      "t": "kata sandi",
+      "override": false
+    },
+    "or": {
+      "t": "atau",
+      "override": false
+    },
+    "email": {
+      "t": "surel",
+      "override": false
+    }
   },
-  "password": {
-    "t": "kata sandi",
-    "override": false
+  "checklist": {
+    "open": {
+      "t": "terbuka",
+      "override": false
+    },
+    "completed": {
+      "t": "selesai",
+      "override": false
+    },
+    "all": {
+      "t": "segala",
+      "override": false
+    },
+    "assignedToMe": {
+      "t": "ditugaskan untuk saya",
+      "override": false
+    },
+    "onDemand": {
+      "t": "sesuai permintaan",
+      "override": false
+    },
+    "dueToday": {
+      "t": "jatuh tempo hari ini",
+      "override": false
+    }
   },
-  "or": {
-    "t": "atau",
-    "override": false
+  "currentUser": {
+    "switchCustomer": {
+      "t": "beralih pelanggan",
+      "override": false
+    },
+    "switchSite": {
+      "t": "beralih situs",
+      "override": false
+    },
+    "logout": {
+      "t": "keluar",
+      "override": false
+    },
+    "selectCustomer": {
+      "t": "pilih pelanggan",
+      "override": false
+    },
+    "selectSite": {
+      "t": "pilih situs",
+      "override": false
+    }
   },
-  "email": {
-    "t": "surel",
-    "override": false
+  "settingsPage": {
+    "darkMode": {
+      "t": "mode gelap",
+      "override": false
+    },
+    "signOut": {
+      "t": "keluar",
+      "override": false
+    }
+  },
+  "tabBar": {
+    "checklists": {
+      "t": "daftar periksa",
+      "override": false
+    },
+    "Settings": {
+      "t": "pengaturan",
+      "override": false
+    }
   }
 }

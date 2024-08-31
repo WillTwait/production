@@ -1,18 +1,88 @@
 {
-  "username": {
-    "t": "ユーザー名",
-    "override": false
+  "signIn": {
+    "username": {
+      "t": "ユーザー名",
+      "override": false
+    },
+    "password": {
+      "t": "パスワード",
+      "override": false
+    },
+    "or": {
+      "t": "または",
+      "override": false
+    },
+    "email": {
+      "t": "Eメール",
+      "override": false
+    }
   },
-  "password": {
-    "t": "パスワード",
-    "override": false
+  "checklist": {
+    "open": {
+      "t": "開いています",
+      "override": false
+    },
+    "completed": {
+      "t": "完成した",
+      "override": false
+    },
+    "all": {
+      "t": "すべて",
+      "override": false
+    },
+    "assignedToMe": {
+      "t": "自分に割り当てられた",
+      "override": false
+    },
+    "onDemand": {
+      "t": "オンデマンド",
+      "override": false
+    },
+    "dueToday": {
+      "t": "今日が期限",
+      "override": false
+    }
   },
-  "or": {
-    "t": "または",
-    "override": false
+  "currentUser": {
+    "switchCustomer": {
+      "t": "顧客を切り替える",
+      "override": false
+    },
+    "switchSite": {
+      "t": "サイトを切り替える",
+      "override": false
+    },
+    "logout": {
+      "t": "ログアウト",
+      "override": false
+    },
+    "selectCustomer": {
+      "t": "顧客を選択する",
+      "override": false
+    },
+    "selectSite": {
+      "t": "サイトを選択する",
+      "override": false
+    }
   },
-  "email": {
-    "t": "Eメール",
-    "override": false
+  "settingsPage": {
+    "darkMode": {
+      "t": "ダークモード",
+      "override": false
+    },
+    "signOut": {
+      "t": "サインアウト",
+      "override": false
+    }
+  },
+  "tabBar": {
+    "checklists": {
+      "t": "チェックリスト",
+      "override": false
+    },
+    "Settings": {
+      "t": "設定",
+      "override": false
+    }
   }
 }

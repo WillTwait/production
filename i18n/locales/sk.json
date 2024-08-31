@@ -1,18 +1,88 @@
 {
-  "username": {
-    "t": "užívateľské meno",
-    "override": false
+  "signIn": {
+    "username": {
+      "t": "užívateľské meno",
+      "override": false
+    },
+    "password": {
+      "t": "heslo",
+      "override": false
+    },
+    "or": {
+      "t": "alebo",
+      "override": false
+    },
+    "email": {
+      "t": "e-mail",
+      "override": false
+    }
   },
-  "password": {
-    "t": "heslo",
-    "override": false
+  "checklist": {
+    "open": {
+      "t": "otvoriť",
+      "override": false
+    },
+    "completed": {
+      "t": "dokončený",
+      "override": false
+    },
+    "all": {
+      "t": "všetko",
+      "override": false
+    },
+    "assignedToMe": {
+      "t": "pridelené mi",
+      "override": false
+    },
+    "onDemand": {
+      "t": "na požiadanie",
+      "override": false
+    },
+    "dueToday": {
+      "t": "splatný dnes",
+      "override": false
+    }
   },
-  "or": {
-    "t": "alebo",
-    "override": false
+  "currentUser": {
+    "switchCustomer": {
+      "t": "prepnúť zákazníka",
+      "override": false
+    },
+    "switchSite": {
+      "t": "prepínanie stránky",
+      "override": false
+    },
+    "logout": {
+      "t": "odhlásiť sa",
+      "override": false
+    },
+    "selectCustomer": {
+      "t": "Vyberte zákazníka",
+      "override": false
+    },
+    "selectSite": {
+      "t": "vyberte lokalitu",
+      "override": false
+    }
   },
-  "email": {
-    "t": "e-mail",
-    "override": false
+  "settingsPage": {
+    "darkMode": {
+      "t": "tmavý režim",
+      "override": false
+    },
+    "signOut": {
+      "t": "odhlásiť sa",
+      "override": false
+    }
+  },
+  "tabBar": {
+    "checklists": {
+      "t": "kontrolné zoznamy",
+      "override": false
+    },
+    "Settings": {
+      "t": "nastavenia",
+      "override": false
+    }
   }
 }

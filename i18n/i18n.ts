@@ -30,7 +30,7 @@ import {
   ur,
   vi,
   zh,
-} from "@/i18n/locales";
+} from "@/i18n/locales/index";
 
 export const resources = {
   ar: { translation: ar },

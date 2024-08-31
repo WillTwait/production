@@ -1,18 +1,88 @@
 {
-  "username": {
-    "t": "ім'я користувача",
-    "override": false
+  "signIn": {
+    "username": {
+      "t": "ім'я користувача",
+      "override": false
+    },
+    "password": {
+      "t": "пароль",
+      "override": false
+    },
+    "or": {
+      "t": "або",
+      "override": false
+    },
+    "email": {
+      "t": "електронна пошта",
+      "override": false
+    }
   },
-  "password": {
-    "t": "пароль",
-    "override": false
+  "checklist": {
+    "open": {
+      "t": "відкритий",
+      "override": false
+    },
+    "completed": {
+      "t": "завершено",
+      "override": false
+    },
+    "all": {
+      "t": "усі",
+      "override": false
+    },
+    "assignedToMe": {
+      "t": "призначений мені",
+      "override": false
+    },
+    "onDemand": {
+      "t": "на вимогу",
+      "override": false
+    },
+    "dueToday": {
+      "t": "до сьогоднішнього дня",
+      "override": false
+    }
   },
-  "or": {
-    "t": "або",
-    "override": false
+  "currentUser": {
+    "switchCustomer": {
+      "t": "переключити клієнта",
+      "override": false
+    },
+    "switchSite": {
+      "t": "переключити сайт",
+      "override": false
+    },
+    "logout": {
+      "t": "вийти",
+      "override": false
+    },
+    "selectCustomer": {
+      "t": "оберіть замовника",
+      "override": false
+    },
+    "selectSite": {
+      "t": "оберіть сайт",
+      "override": false
+    }
   },
-  "email": {
-    "t": "електронна пошта",
-    "override": false
+  "settingsPage": {
+    "darkMode": {
+      "t": "темний режим",
+      "override": false
+    },
+    "signOut": {
+      "t": "вийти",
+      "override": false
+    }
+  },
+  "tabBar": {
+    "checklists": {
+      "t": "контрольні списки",
+      "override": false
+    },
+    "Settings": {
+      "t": "налаштувань",
+      "override": false
+    }
   }
 }

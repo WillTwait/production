@@ -1,18 +1,88 @@
 {
-  "username": {
-    "t": "用户名",
-    "override": false
+  "signIn": {
+    "username": {
+      "t": "用户名",
+      "override": false
+    },
+    "password": {
+      "t": "密码",
+      "override": false
+    },
+    "or": {
+      "t": "要么",
+      "override": false
+    },
+    "email": {
+      "t": "电子邮件",
+      "override": false
+    }
   },
-  "password": {
-    "t": "密码",
-    "override": false
+  "checklist": {
+    "open": {
+      "t": "打开",
+      "override": false
+    },
+    "completed": {
+      "t": "已完成",
+      "override": false
+    },
+    "all": {
+      "t": "所有",
+      "override": false
+    },
+    "assignedToMe": {
+      "t": "分配给我",
+      "override": false
+    },
+    "onDemand": {
+      "t": "按需提供",
+      "override": false
+    },
+    "dueToday": {
+      "t": "今天到期",
+      "override": false
+    }
   },
-  "or": {
-    "t": "要么",
-    "override": false
+  "currentUser": {
+    "switchCustomer": {
+      "t": "切换客户",
+      "override": false
+    },
+    "switchSite": {
+      "t": "切换站点",
+      "override": false
+    },
+    "logout": {
+      "t": "注销",
+      "override": false
+    },
+    "selectCustomer": {
+      "t": "选择客户",
+      "override": false
+    },
+    "selectSite": {
+      "t": "选择一个站点",
+      "override": false
+    }
   },
-  "email": {
-    "t": "电子邮件",
-    "override": false
+  "settingsPage": {
+    "darkMode": {
+      "t": "黑暗模式",
+      "override": false
+    },
+    "signOut": {
+      "t": "退出",
+      "override": false
+    }
+  },
+  "tabBar": {
+    "checklists": {
+      "t": "清单",
+      "override": false
+    },
+    "Settings": {
+      "t": "设置",
+      "override": false
+    }
   }
 }

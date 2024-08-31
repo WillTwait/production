@@ -1,18 +1,88 @@
 {
-  "username": {
-    "t": "ব্যবহারকারীর নাম",
-    "override": false
+  "signIn": {
+    "username": {
+      "t": "ব্যবহারকারীর নাম",
+      "override": false
+    },
+    "password": {
+      "t": "পাসওয়ার্ড",
+      "override": false
+    },
+    "or": {
+      "t": "অথবা",
+      "override": false
+    },
+    "email": {
+      "t": "ই-মেইল",
+      "override": false
+    }
   },
-  "password": {
-    "t": "পাসওয়ার্ড",
-    "override": false
+  "checklist": {
+    "open": {
+      "t": "খোলা",
+      "override": false
+    },
+    "completed": {
+      "t": "সম্পন্ন",
+      "override": false
+    },
+    "all": {
+      "t": "সব",
+      "override": false
+    },
+    "assignedToMe": {
+      "t": "আমার কাছে নির্ধারিত",
+      "override": false
+    },
+    "onDemand": {
+      "t": "চাহিদা অনুযায়ী",
+      "override": false
+    },
+    "dueToday": {
+      "t": "আজ অবশ্যই",
+      "override": false
+    }
   },
-  "or": {
-    "t": "অথবা",
-    "override": false
+  "currentUser": {
+    "switchCustomer": {
+      "t": "গ্রাহক সুইচ করুন",
+      "override": false
+    },
+    "switchSite": {
+      "t": "সাইট স্যুইচ করুন",
+      "override": false
+    },
+    "logout": {
+      "t": "লগআউট",
+      "override": false
+    },
+    "selectCustomer": {
+      "t": "একটি গ্রাহক নির্বাচন করুন",
+      "override": false
+    },
+    "selectSite": {
+      "t": "একটি সাইট নির্বাচন করুন",
+      "override": false
+    }
   },
-  "email": {
-    "t": "ই-মেইল",
-    "override": false
+  "settingsPage": {
+    "darkMode": {
+      "t": "অন্ধকার মোড",
+      "override": false
+    },
+    "signOut": {
+      "t": "সাইন আউট",
+      "override": false
+    }
+  },
+  "tabBar": {
+    "checklists": {
+      "t": "নজর তালিকা",
+      "override": false
+    },
+    "Settings": {
+      "t": "সেটিংস",
+      "override": false
+    }
   }
 }

@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { type ReactNode, useEffect, useMemo, useState } from "react";
-import type { ColorSchemeName } from "react-native";
+import { Appearance, type ColorSchemeName } from "react-native";
 
 const THEME_ASYNC_STORAGE_KEY = "TENDY_THEME_STATE";
 
@@ -39,6 +39,7 @@ export default function TendyThemeProvider({ children }: Props) {
   // update AsyncStorage when the theme preference changes
   useEffect(() => {
     if (theme) {
+      Appearance.setColorScheme(theme); //for zeego 🫡
       void AsyncStorage.setItem(THEME_ASYNC_STORAGE_KEY, theme);
     } else {
       void AsyncStorage.removeItem(THEME_ASYNC_STORAGE_KEY);
