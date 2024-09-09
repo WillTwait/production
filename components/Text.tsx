@@ -1,63 +1,59 @@
 import useThemeContext from "@/hooks/useTendyTheme";
-import {
-  Text as ReactNativeText,
-  StyleSheet,
-  type TextProps,
-} from "react-native";
+import { Text as ReactNativeText, type TextProps } from "react-native";
 
 export type ThemedTextProps = TextProps & {
-  lightColor?: string;
-  darkColor?: string;
-  type?: "default" | "title" | "defaultSemiBold" | "subtitle" | "link";
+  type?: "default" | "title" | "defaultSemiBold" | "subtitle" | "link" | "gray";
 };
 
-export function Text({
-  style,
-  lightColor,
-  darkColor,
-  type = "default",
-  ...rest
-}: ThemedTextProps) {
+export function Text({ style, type = "default", ...rest }: ThemedTextProps) {
   const { colors } = useThemeContext();
 
   return (
     <ReactNativeText
       style={[
         { color: colors.tendrel.text2.color },
-        type === "default" ? styles.default : undefined,
-        type === "title" ? styles.title : undefined,
-        type === "defaultSemiBold" ? styles.defaultSemiBold : undefined,
-        type === "subtitle" ? styles.subtitle : undefined,
-        type === "link" ? styles.link : undefined,
+        type === "default"
+          ? {
+              fontSize: 14,
+              lineHeight: 24,
+            }
+          : undefined,
+        type === "title"
+          ? {
+              fontSize: 20,
+              fontWeight: "bold",
+              lineHeight: 32,
+            }
+          : undefined,
+        type === "defaultSemiBold"
+          ? {
+              fontSize: 16,
+              lineHeight: 24,
+              fontWeight: "600",
+            }
+          : undefined,
+        type === "subtitle"
+          ? {
+              fontSize: 20,
+              fontWeight: "bold",
+            }
+          : undefined,
+        type === "link"
+          ? {
+              lineHeight: 30,
+              fontSize: 16,
+              color: "#0a7ea4",
+            }
+          : undefined,
+        type === "gray"
+          ? {
+              fontSize: 16,
+              color: colors.tendrel.button1.gray,
+            }
+          : undefined,
         style,
       ]}
       {...rest}
     />
   );
 }
-
-const styles = StyleSheet.create({
-  default: {
-    fontSize: 14,
-    lineHeight: 24,
-  },
-  defaultSemiBold: {
-    fontSize: 16,
-    lineHeight: 24,
-    fontWeight: "600",
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-    lineHeight: 32,
-  },
-  subtitle: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  link: {
-    lineHeight: 30,
-    fontSize: 16,
-    color: "#0a7ea4",
-  },
-});

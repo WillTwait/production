@@ -63,6 +63,10 @@
     "selectSite": {
       "t": "selectează un site",
       "override": false
+    },
+    "selectAnOrganization": {
+      "t": "selectați o organizație",
+      "override": false
     }
   },
   "settingsPage": {
@@ -82,6 +86,58 @@
     },
     "Settings": {
       "t": "setări",
+      "override": false
+    }
+  },
+  "screenNames": {
+    "checklists": {
+      "t": "liste de verificare",
+      "override": false
+    },
+    "work": {
+      "t": "serviciu",
+      "override": false
+    }
+  },
+  "workScreen": {
+    "start": {
+      "t": "start",
+      "override": false
+    },
+    "finish": {
+      "t": "termina",
+      "override": false
+    },
+    "description": {
+      "t": "descriere",
+      "override": false
+    },
+    "notStarted": {
+      "t": "nu a început",
+      "override": false
+    },
+    "submit": {
+      "t": "trimite",
+      "override": false
+    },
+    "cancelAndDiscard": {
+      "t": "anulați și eliminați datele",
+      "override": false
+    },
+    "saveAndFinish": {
+      "t": "salvați și terminați mai târziu",
+      "override": false
+    },
+    "numberOfCompleted": {
+      "t": "{{dividend}} din {{divizor}} completat",
+      "override": false
+    },
+    "seeMore": {
+      "t": "Vezi mai mult",
+      "override": false
+    },
+    "seeLess": {
+      "t": "Vezi mai puțin",
       "override": false
     }
   }

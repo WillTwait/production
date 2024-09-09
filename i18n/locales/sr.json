@@ -63,6 +63,10 @@
     "selectSite": {
       "t": "izaberite sajt",
       "override": false
+    },
+    "selectAnOrganization": {
+      "t": "izaberite organizaciju",
+      "override": false
     }
   },
   "settingsPage": {
@@ -82,6 +86,58 @@
     },
     "Settings": {
       "t": "podešavanja",
+      "override": false
+    }
+  },
+  "screenNames": {
+    "checklists": {
+      "t": "kontrolne liste",
+      "override": false
+    },
+    "work": {
+      "t": "posao",
+      "override": false
+    }
+  },
+  "workScreen": {
+    "start": {
+      "t": "početak",
+      "override": false
+    },
+    "finish": {
+      "t": "završiti",
+      "override": false
+    },
+    "description": {
+      "t": "opis",
+      "override": false
+    },
+    "notStarted": {
+      "t": "nije započeo",
+      "override": false
+    },
+    "submit": {
+      "t": "pošalji",
+      "override": false
+    },
+    "cancelAndDiscard": {
+      "t": "otkažite i odbacite podatke",
+      "override": false
+    },
+    "saveAndFinish": {
+      "t": "sačuvajte i završite kasnije",
+      "override": false
+    },
+    "numberOfCompleted": {
+      "t": "{{dividend}} od {{divisor}} završen",
+      "override": false
+    },
+    "seeMore": {
+      "t": "Vidi više",
+      "override": false
+    },
+    "seeLess": {
+      "t": "Vidi manje",
       "override": false
     }
   }

@@ -63,6 +63,10 @@
     "selectSite": {
       "t": "サイトを選択する",
       "override": false
+    },
+    "selectAnOrganization": {
+      "t": "組織を選択する",
+      "override": false
     }
   },
   "settingsPage": {
@@ -82,6 +86,58 @@
     },
     "Settings": {
       "t": "設定",
+      "override": false
+    }
+  },
+  "screenNames": {
+    "checklists": {
+      "t": "チェックリスト",
+      "override": false
+    },
+    "work": {
+      "t": "仕事",
+      "override": false
+    }
+  },
+  "workScreen": {
+    "start": {
+      "t": "開始",
+      "override": false
+    },
+    "finish": {
+      "t": "仕上げる",
+      "override": false
+    },
+    "description": {
+      "t": "説明",
+      "override": false
+    },
+    "notStarted": {
+      "t": "未起動",
+      "override": false
+    },
+    "submit": {
+      "t": "送信します",
+      "override": false
+    },
+    "cancelAndDiscard": {
+      "t": "データをキャンセルして破棄する",
+      "override": false
+    },
+    "saveAndFinish": {
+      "t": "保存して後で終了",
+      "override": false
+    },
+    "numberOfCompleted": {
+      "t": "{{除数}} の {{配当}} が完了しました",
+      "override": false
+    },
+    "seeMore": {
+      "t": "もっと見る",
+      "override": false
+    },
+    "seeLess": {
+      "t": "もっと見る",
       "override": false
     }
   }

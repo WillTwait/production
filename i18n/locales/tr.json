@@ -63,6 +63,10 @@
     "selectSite": {
       "t": "bir site seçin",
       "override": false
+    },
+    "selectAnOrganization": {
+      "t": "bir kuruluş seçin",
+      "override": false
     }
   },
   "settingsPage": {
@@ -82,6 +86,58 @@
     },
     "Settings": {
       "t": "ayarları",
+      "override": false
+    }
+  },
+  "screenNames": {
+    "checklists": {
+      "t": "kontrol listeleri",
+      "override": false
+    },
+    "work": {
+      "t": "çalışma",
+      "override": false
+    }
+  },
+  "workScreen": {
+    "start": {
+      "t": "başlangıç",
+      "override": false
+    },
+    "finish": {
+      "t": "bitirmek",
+      "override": false
+    },
+    "description": {
+      "t": "açıklama",
+      "override": false
+    },
+    "notStarted": {
+      "t": "Başlamadı",
+      "override": false
+    },
+    "submit": {
+      "t": "gönder",
+      "override": false
+    },
+    "cancelAndDiscard": {
+      "t": "verileri iptal et ve at",
+      "override": false
+    },
+    "saveAndFinish": {
+      "t": "kaydet ve daha sonra bitirin",
+      "override": false
+    },
+    "numberOfCompleted": {
+      "t": "{{divivisor}} 'nin {{temettü}} tamamlandı",
+      "override": false
+    },
+    "seeMore": {
+      "t": "Daha fazla gör",
+      "override": false
+    },
+    "seeLess": {
+      "t": "Daha az gör",
       "override": false
     }
   }

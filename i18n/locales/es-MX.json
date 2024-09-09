@@ -63,6 +63,10 @@
     "selectSite": {
       "t": "seleccionar un sitio",
       "override": false
+    },
+    "selectAnOrganization": {
+      "t": "seleccionar una organización",
+      "override": false
     }
   },
   "settingsPage": {
@@ -82,6 +86,58 @@
     },
     "Settings": {
       "t": "configuración",
+      "override": false
+    }
+  },
+  "screenNames": {
+    "checklists": {
+      "t": "listas de verificación",
+      "override": false
+    },
+    "work": {
+      "t": "trabajo",
+      "override": false
+    }
+  },
+  "workScreen": {
+    "start": {
+      "t": "inicio",
+      "override": false
+    },
+    "finish": {
+      "t": "terminar",
+      "override": false
+    },
+    "description": {
+      "t": "descripción",
+      "override": false
+    },
+    "notStarted": {
+      "t": "no iniciado",
+      "override": false
+    },
+    "submit": {
+      "t": "enviar",
+      "override": false
+    },
+    "cancelAndDiscard": {
+      "t": "cancelar y descartar datos",
+      "override": false
+    },
+    "saveAndFinish": {
+      "t": "guardar y finalizar más tarde",
+      "override": false
+    },
+    "numberOfCompleted": {
+      "t": "{{dividendo}} de {{divisor}} completado",
+      "override": false
+    },
+    "seeMore": {
+      "t": "Ver más",
+      "override": false
+    },
+    "seeLess": {
+      "t": "Ver menos",
       "override": false
     }
   }

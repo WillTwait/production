@@ -63,6 +63,10 @@
     "selectSite": {
       "t": "pilih situs",
       "override": false
+    },
+    "selectAnOrganization": {
+      "t": "pilih organisasi",
+      "override": false
     }
   },
   "settingsPage": {
@@ -82,6 +86,58 @@
     },
     "Settings": {
       "t": "pengaturan",
+      "override": false
+    }
+  },
+  "screenNames": {
+    "checklists": {
+      "t": "daftar periksa",
+      "override": false
+    },
+    "work": {
+      "t": "pekerjaan",
+      "override": false
+    }
+  },
+  "workScreen": {
+    "start": {
+      "t": "mulai",
+      "override": false
+    },
+    "finish": {
+      "t": "selesai",
+      "override": false
+    },
+    "description": {
+      "t": "deskripsi",
+      "override": false
+    },
+    "notStarted": {
+      "t": "tidak dimulai",
+      "override": false
+    },
+    "submit": {
+      "t": "mengajukan",
+      "override": false
+    },
+    "cancelAndDiscard": {
+      "t": "membatalkan dan membuang data",
+      "override": false
+    },
+    "saveAndFinish": {
+      "t": "simpan dan selesaikan nanti",
+      "override": false
+    },
+    "numberOfCompleted": {
+      "t": "{{dividen}} dari {{divisor}} selesai",
+      "override": false
+    },
+    "seeMore": {
+      "t": "Lihat selengkapnya",
+      "override": false
+    },
+    "seeLess": {
+      "t": "Lihat lebih sedikit",
       "override": false
     }
   }

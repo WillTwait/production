@@ -63,6 +63,10 @@
     "selectSite": {
       "t": "chọn một trang web",
       "override": false
+    },
+    "selectAnOrganization": {
+      "t": "chọn một tổ chức",
+      "override": false
     }
   },
   "settingsPage": {
@@ -82,6 +86,58 @@
     },
     "Settings": {
       "t": "cài đặt",
+      "override": false
+    }
+  },
+  "screenNames": {
+    "checklists": {
+      "t": "danh sách kiểm tra",
+      "override": false
+    },
+    "work": {
+      "t": "công việc",
+      "override": false
+    }
+  },
+  "workScreen": {
+    "start": {
+      "t": "khởi đầu",
+      "override": false
+    },
+    "finish": {
+      "t": "hoàn thành",
+      "override": false
+    },
+    "description": {
+      "t": "sự miêu tả",
+      "override": false
+    },
+    "notStarted": {
+      "t": "chưa bắt đầu",
+      "override": false
+    },
+    "submit": {
+      "t": "Gửi đi",
+      "override": false
+    },
+    "cancelAndDiscard": {
+      "t": "hủy và loại bỏ dữ liệu",
+      "override": false
+    },
+    "saveAndFinish": {
+      "t": "lưu và hoàn thành sau",
+      "override": false
+    },
+    "numberOfCompleted": {
+      "t": "{{cổ tức}} của {{divisor}} đã hoàn thành",
+      "override": false
+    },
+    "seeMore": {
+      "t": "Xem thêm",
+      "override": false
+    },
+    "seeLess": {
+      "t": "Xem ít hơn",
       "override": false
     }
   }

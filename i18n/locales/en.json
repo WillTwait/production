@@ -63,6 +63,10 @@
     "selectSite": {
       "t": "select a site",
       "override": false
+    },
+    "selectAnOrganization": {
+      "t": "select an organization",
+      "override": false
     }
   },
   "settingsPage": {
@@ -82,6 +86,58 @@
     },
     "Settings": {
       "t": "settings",
+      "override": false
+    }
+  },
+  "screenNames": {
+    "checklists": {
+      "t": "checklists",
+      "override": false
+    },
+    "work": {
+      "t": "work",
+      "override": false
+    }
+  },
+  "workScreen": {
+    "start": {
+      "t": "start",
+      "override": false
+    },
+    "finish": {
+      "t": "finish",
+      "override": false
+    },
+    "description": {
+      "t": "description",
+      "override": false
+    },
+    "notStarted": {
+      "t": "not started",
+      "override": false
+    },
+    "submit": {
+      "t": "submit",
+      "override": false
+    },
+    "cancelAndDiscard": {
+      "t": "cancel and discard data",
+      "override": false
+    },
+    "saveAndFinish": {
+      "t": "save and finish later",
+      "override": false
+    },
+    "numberOfCompleted": {
+      "t": "{{dividend}} of {{divisor}} completed",
+      "override": false
+    },
+    "seeMore": {
+      "t": "See more",
+      "override": false
+    },
+    "seeLess": {
+      "t": "See less",
       "override": false
     }
   }

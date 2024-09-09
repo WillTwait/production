@@ -21,6 +21,7 @@ export const corpus: NestedTranslation = {
     logout: "logout",
     selectCustomer: "select a customer",
     selectSite: "select a site",
+    selectAnOrganization: "select an organization",
   },
   settingsPage: {
     darkMode: "dark mode",
@@ -29,5 +30,21 @@ export const corpus: NestedTranslation = {
   tabBar: {
     checklists: "checklists",
     Settings: "settings",
+  },
+  screenNames: {
+    checklists: "checklists",
+    work: "work",
+  },
+  workScreen: {
+    start: "start",
+    finish: "finish",
+    description: "description",
+    notStarted: "not started",
+    submit: "submit",
+    cancelAndDiscard: "cancel and discard data",
+    saveAndFinish: "save and finish later",
+    numberOfCompleted: "{{dividend}} of {{divisor}} completed",
+    seeMore: "See more",
+    seeLess: "See less",
   },
 };

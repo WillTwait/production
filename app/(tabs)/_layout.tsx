@@ -4,6 +4,7 @@ import { Redirect, Tabs } from "expo-router";
 
 import useThemeContext from "@/hooks/useTendyTheme";
 
+import { View } from "@/components/View";
 import { ClipboardCheck, Cog } from "lucide-react-native";
 import { useTranslation } from "react-i18next";
 
@@ -14,19 +15,20 @@ export default function TabLayout() {
   const { t } = useTranslation();
   if (!isLoaded) return null;
 
-  // FIXME: Ideally this is handled by a layout? //murphy: maybe yes actually, since we are storing the login in async storage, when you login if it hits an index file => then redirects to another file, you get the next screen animation. But could be me being dumb and not having the redirect in the right place
+  //Gave up trying to get navigation correct, ended up using this hacky method of wrapping the redirect in the same color as the splash screen and changing the sign in page animation 🤷.
+  //Issue described here (farther down the page): https://github.com/expo/router/issues/428
   if (!isSignedIn) {
-    return <Redirect href="/sign-in" />;
+    return (
+      <View style={{ flex: 1, backgroundColor: "#2a283e" }}>
+        <Redirect href="/sign-in" />
+      </View>
+    );
   }
 
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarStyle: {
-          borderTopLeftRadius: 10,
-          borderTopRightRadius: 10,
-        },
       }}
     >
       <Tabs.Screen
@@ -44,7 +46,7 @@ export default function TabLayout() {
               color={
                 focused
                   ? colors.tendrel.text2.color
-                  : colors.tendrel.button1.gray
+                  : colors.tendrel.interactive3.gray
               }
             />
           ),
@@ -66,7 +68,7 @@ export default function TabLayout() {
               color={
                 focused
                   ? colors.tendrel.text2.color
-                  : colors.tendrel.button1.gray
+                  : colors.tendrel.interactive3.gray
               }
             />
           ),

@@ -8,7 +8,34 @@ const colors: Record<ColorThemeName, ThemeColors> = {
       purple: "#2a283e",
     },
     feedback: {
-      error: { border: "#B12645", background: "#B12645" },
+      error: {
+        background1: "#fffcfc",
+        background2: "#fff7f7",
+        interactive1: "#feebec",
+        interactive2: "#ffdbdc",
+        interactive3: "#ffcdce",
+        border1: "#fdbdbe",
+        border2: "#f4a9aa",
+        border3: "#eb8e90",
+        button1: "#e5484d",
+        button2: "#dc3e42",
+        text1: "#ce2c31",
+        text2: "#641723",
+      },
+      success: {
+        background1: "#fbfefc",
+        background2: "#f4fbf6",
+        interactive1: "#e6f6eb",
+        interactive2: "#d6f1df",
+        interactive3: "#c4e8d1",
+        border1: "#adddc0",
+        border2: "#8eceaa",
+        border3: "#5bb98b",
+        button1: "#30a46c",
+        button2: "#2b9a66",
+        text1: "#218358",
+        text2: "#193b2d",
+      },
     },
     tendrel: {
       background1: { color: "#FDFDFE", gray: "#FCFCFD" },
@@ -34,7 +61,36 @@ const colors: Record<ColorThemeName, ThemeColors> = {
       red: "#c13752",
       purple: "#2a283e",
     },
-    feedback: { error: { border: "#B12645", background: "#B12645" } },
+    feedback: {
+      error: {
+        background1: "#191111",
+        background2: "#201314",
+        interactive1: "#3b1219",
+        interactive2: "#500f1c",
+        interactive3: "#611623",
+        border1: "#72232d",
+        border2: "#8c333a",
+        border3: "#b54548",
+        button1: "#e5484d",
+        button2: "#ec5d5e",
+        text1: "#ff9592",
+        text2: "#ffd1d9",
+      },
+      success: {
+        background1: "#0e1512",
+        background2: "#121b17",
+        interactive1: "#132d21",
+        interactive2: "#113b29",
+        interactive3: "#174933",
+        border1: "#20573e",
+        border2: "#28684a",
+        border3: "#2f7c57",
+        button1: "#30a46c",
+        button2: "#33b074",
+        text1: "#3dd68c",
+        text2: "#b1f1cb",
+      },
+    },
     tendrel: {
       background1: { color: "#111016", gray: "#111113" },
       background2: { color: "#18181F", gray: "#19191B" },
@@ -126,7 +182,34 @@ export type ThemeColors = {
   };
   //For things like overdue, success, error, etc. WIP
   feedback: {
-    error: { background: string; border: string };
+    error: {
+      background1: string;
+      background2: string;
+      interactive1: string;
+      interactive2: string;
+      interactive3: string;
+      border1: string;
+      border2: string;
+      border3: string;
+      button1: string;
+      button2: string;
+      text1: string;
+      text2: string;
+    };
+    success: {
+      background1: string;
+      background2: string;
+      interactive1: string;
+      interactive2: string;
+      interactive3: string;
+      border1: string;
+      border2: string;
+      border3: string;
+      button1: string;
+      button2: string;
+      text1: string;
+      text2: string;
+    };
   };
 };
 

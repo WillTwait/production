@@ -7,12 +7,7 @@ import Head from "expo-router/head";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export default function Layout() {
-  const { isSignedIn } = useAuth();
   const { colors } = useThemeContext();
-
-  if (!isSignedIn) {
-    return <Redirect href={"/sign-in"} />;
-  }
 
   return (
     <>

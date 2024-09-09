@@ -63,6 +63,10 @@
     "selectSite": {
       "t": "사이트 선택",
       "override": false
+    },
+    "selectAnOrganization": {
+      "t": "조직 선택",
+      "override": false
     }
   },
   "settingsPage": {
@@ -82,6 +86,58 @@
     },
     "Settings": {
       "t": "설정",
+      "override": false
+    }
+  },
+  "screenNames": {
+    "checklists": {
+      "t": "체크리스트",
+      "override": false
+    },
+    "work": {
+      "t": "일",
+      "override": false
+    }
+  },
+  "workScreen": {
+    "start": {
+      "t": "를 시작합니다",
+      "override": false
+    },
+    "finish": {
+      "t": "끝",
+      "override": false
+    },
+    "description": {
+      "t": "기술",
+      "override": false
+    },
+    "notStarted": {
+      "t": "시작되지 않음",
+      "override": false
+    },
+    "submit": {
+      "t": "제출합니다",
+      "override": false
+    },
+    "cancelAndDiscard": {
+      "t": "데이터 취소 및 삭제",
+      "override": false
+    },
+    "saveAndFinish": {
+      "t": "저장하고 나중에 끝내기",
+      "override": false
+    },
+    "numberOfCompleted": {
+      "t": "{{제수}} 의 {{배당}} 완료",
+      "override": false
+    },
+    "seeMore": {
+      "t": "더 보기",
+      "override": false
+    },
+    "seeLess": {
+      "t": "적게 보기",
       "override": false
     }
   }

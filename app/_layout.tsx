@@ -9,14 +9,20 @@ import {
 import * as Sentry from "@sentry/react-native";
 import * as Application from "expo-application";
 import { useFonts } from "expo-font";
-import { Stack } from "expo-router";
+import { Slot, Stack } from "expo-router";
 import * as SecureStore from "expo-secure-store";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import "react-native-reanimated";
 
 import { TendrelProvider } from "@/tendrel/provider";
-import { ClerkLoaded, ClerkProvider, useAuth } from "@clerk/clerk-expo";
+import {
+  ClerkLoaded,
+  ClerkProvider,
+  SignedIn,
+  SignedOut,
+  useAuth,
+} from "@clerk/clerk-expo";
 import { Platform, StatusBar } from "react-native";
 
 import TendyThemeProvider from "@/components/TendyThemeProvider";
@@ -108,11 +114,9 @@ export function RootLayout() {
     >
       <ClerkLoaded>
         <DatabaseProvider>
-          <TendrelProvider>
-            <TendyThemeProvider>
-              <NavLayout />
-            </TendyThemeProvider>
-          </TendrelProvider>
+          <TendyThemeProvider>
+            <NavLayout />
+          </TendyThemeProvider>
         </DatabaseProvider>
       </ClerkLoaded>
     </ClerkProvider>
@@ -123,37 +127,48 @@ export function RootLayout() {
 function NavLayout() {
   const { colorTheme } = useThemeContext();
   const { getToken } = useAuth();
+
   return (
-    <RelayProvider
-      getToken={getToken}
-      url={
-        Platform.OS === "android"
-          ? process.env.EXPO_PUBLIC_TENDREL_GRAPHQL_URL
-          : process.env.EXPO_PUBLIC_TENDREL_GRAPHQL_URL_IOS //TODO: May need one for web?
-      }
-    >
-      <ThemeProvider value={colorTheme === "dark" ? DarkTheme : DefaultTheme}>
-        <GestureHandlerRootView>
-          <SafeAreaProvider>
-            <StatusBar
-              barStyle={
-                colorTheme === "light" ? "dark-content" : "light-content"
-              }
-            />
-            <Stack>
-              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-              <Stack.Screen name="+not-found" />
-              <Stack.Screen
-                name="sign-in"
-                options={{
-                  headerShown: false,
-                }}
-              />
-            </Stack>
-          </SafeAreaProvider>
-        </GestureHandlerRootView>
-      </ThemeProvider>
-    </RelayProvider>
+    <>
+      <SignedOut>
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen
+            name="sign-in"
+            options={{
+              headerShown: false,
+              animation: "fade_from_bottom",
+            }}
+          />
+        </Stack>
+      </SignedOut>
+      <SignedIn>
+        <RelayProvider
+          getToken={getToken}
+          url={
+            Platform.OS === "android"
+              ? process.env.EXPO_PUBLIC_TENDREL_GRAPHQL_URL //FIXME: This will not work in production
+              : process.env.EXPO_PUBLIC_TENDREL_GRAPHQL_URL_IOS //TODO: May need one for web?
+          }
+        >
+          <TendrelProvider>
+            <ThemeProvider
+              value={colorTheme === "dark" ? DarkTheme : DefaultTheme}
+            >
+              <GestureHandlerRootView>
+                <SafeAreaProvider>
+                  <StatusBar
+                    barStyle={
+                      colorTheme === "light" ? "dark-content" : "light-content"
+                    }
+                  />
+                  <Slot />
+                </SafeAreaProvider>
+              </GestureHandlerRootView>
+            </ThemeProvider>
+          </TendrelProvider>
+        </RelayProvider>
+      </SignedIn>
+    </>
   );
 }
 

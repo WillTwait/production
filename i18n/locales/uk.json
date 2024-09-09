@@ -63,6 +63,10 @@
     "selectSite": {
       "t": "оберіть сайт",
       "override": false
+    },
+    "selectAnOrganization": {
+      "t": "оберіть організацію",
+      "override": false
     }
   },
   "settingsPage": {
@@ -82,6 +86,58 @@
     },
     "Settings": {
       "t": "налаштувань",
+      "override": false
+    }
+  },
+  "screenNames": {
+    "checklists": {
+      "t": "контрольні списки",
+      "override": false
+    },
+    "work": {
+      "t": "робота",
+      "override": false
+    }
+  },
+  "workScreen": {
+    "start": {
+      "t": "старт",
+      "override": false
+    },
+    "finish": {
+      "t": "фініш",
+      "override": false
+    },
+    "description": {
+      "t": "опис",
+      "override": false
+    },
+    "notStarted": {
+      "t": "не розпочато",
+      "override": false
+    },
+    "submit": {
+      "t": "подати",
+      "override": false
+    },
+    "cancelAndDiscard": {
+      "t": "скасувати і відкинути дані",
+      "override": false
+    },
+    "saveAndFinish": {
+      "t": "зберегти і закінчити пізніше",
+      "override": false
+    },
+    "numberOfCompleted": {
+      "t": "{{дивіденд}} від {{дільника}} завершено",
+      "override": false
+    },
+    "seeMore": {
+      "t": "Дивитись більше",
+      "override": false
+    },
+    "seeLess": {
+      "t": "Побачити менше",
       "override": false
     }
   }

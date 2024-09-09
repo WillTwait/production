@@ -63,6 +63,10 @@
     "selectSite": {
       "t": "একটি সাইট নির্বাচন করুন",
       "override": false
+    },
+    "selectAnOrganization": {
+      "t": "একটি সংস্থা নির্বাচন করুন",
+      "override": false
     }
   },
   "settingsPage": {
@@ -82,6 +86,58 @@
     },
     "Settings": {
       "t": "সেটিংস",
+      "override": false
+    }
+  },
+  "screenNames": {
+    "checklists": {
+      "t": "নজর তালিকা",
+      "override": false
+    },
+    "work": {
+      "t": "কাজ",
+      "override": false
+    }
+  },
+  "workScreen": {
+    "start": {
+      "t": "শুরু করা",
+      "override": false
+    },
+    "finish": {
+      "t": "শেষ করা",
+      "override": false
+    },
+    "description": {
+      "t": "বিবরণ",
+      "override": false
+    },
+    "notStarted": {
+      "t": "শুরু হয়নি",
+      "override": false
+    },
+    "submit": {
+      "t": "জমা দিন",
+      "override": false
+    },
+    "cancelAndDiscard": {
+      "t": "ডেটা বাতিল করুন এবং বাতিল করুন",
+      "override": false
+    },
+    "saveAndFinish": {
+      "t": "সংরক্ষণ করুন এবং পরে শেষ করুন",
+      "override": false
+    },
+    "numberOfCompleted": {
+      "t": "{{বিভাজক}} এর {{ডিভিডেন্ড}} সম্পন্ন",
+      "override": false
+    },
+    "seeMore": {
+      "t": "আরো দেখুন",
+      "override": false
+    },
+    "seeLess": {
+      "t": "কম দেখুন",
       "override": false
     }
   }

@@ -9,6 +9,7 @@ import Button from "./Button";
 import Seperator from "./Separator";
 import { Text } from "./Text";
 
+import { useTendrel } from "@/tendrel/provider";
 import { useAuth } from "@clerk/clerk-expo";
 import { useTranslation } from "react-i18next";
 import * as DropdownMenu from "zeego/dropdown-menu";
@@ -18,25 +19,23 @@ interface Props {
 }
 
 //FIXME: Temp for time being
-const customers = Array.from({ length: 15 }, (_, i) => ({
-  key: `customer-${i + 1}`,
-  name: `Customer ${i + 1}`,
-}));
-
-//FIXME: Temp for time being
 const sites = Array.from({ length: 15 }, (_, i) => ({
   key: `site-${i + 1}`,
   name: `Site ${i + 1}`,
 }));
 
 export function UserProfile({ actionSheetRef }: Props) {
+  const { organizations, currentOrganization, setOrganization } = useTendrel();
   const { colors } = useThemeContext();
   const insets = useSafeAreaInsets();
   const { signOut } = useAuth();
+  const [currentSite, setCurrentSite] = useState(sites[0]);
   const { t } = useTranslation();
 
-  const [currentCustomer, setCurrentCustomer] = useState(customers[0]);
-  const [currentSite, setCurrentSite] = useState(customers[0]);
+  //Force user to select organization on initial load
+  if (!currentOrganization) {
+    actionSheetRef.current?.show();
+  }
 
   return (
     <ActionSheet
@@ -48,7 +47,7 @@ export function UserProfile({ actionSheetRef }: Props) {
         padding: 5,
       }}
       animated
-      closable
+      closable={currentOrganization !== null}
       headerAlwaysVisible
       CustomHeaderComponent={
         <View
@@ -60,7 +59,7 @@ export function UserProfile({ actionSheetRef }: Props) {
             padding: 4,
           }}
         >
-          //FIXME: Make real
+          {/* //FIXME: Make real */}
           <Avatar firstName="Fedes" lastName="Fan" size={45} />
           <Text type="title">Fedes #1 Fan</Text>
         </View>
@@ -76,7 +75,10 @@ export function UserProfile({ actionSheetRef }: Props) {
           >
             <View style={{ flexDirection: "row", flex: 1, gap: 5 }}>
               <Building2 color={colors.tendrel.text1.gray} />
-              <Text type="subtitle">{currentCustomer.name}</Text>
+              <Text type="subtitle">
+                {currentOrganization?.name ??
+                  t("currentUser.selectAnOrganization.override")}
+              </Text>
             </View>
             <DropdownMenu.Root>
               <DropdownMenu.Trigger asChild>
@@ -96,15 +98,15 @@ export function UserProfile({ actionSheetRef }: Props) {
                 <DropdownMenu.Label>
                   {t("currentUser.selectCustomer.t").capitalize()}
                 </DropdownMenu.Label>
-                {customers.map(customer => (
+                {organizations.map(customer => (
                   <DropdownMenu.Item
-                    key={customer.key}
-                    onSelect={() => setCurrentCustomer(customer)}
+                    key={customer.id}
+                    onSelect={() => setOrganization(customer)}
                   >
                     <DropdownMenu.ItemIcon
                       ios={{
                         name:
-                          customer.name === currentCustomer.name
+                          customer.name === currentOrganization?.name
                             ? "checkmark.circle.fill"
                             : undefined,
                       }}

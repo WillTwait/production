@@ -63,6 +63,10 @@
     "selectSite": {
       "t": "选择一个站点",
       "override": false
+    },
+    "selectAnOrganization": {
+      "t": "选择一个组织",
+      "override": false
     }
   },
   "settingsPage": {
@@ -82,6 +86,58 @@
     },
     "Settings": {
       "t": "设置",
+      "override": false
+    }
+  },
+  "screenNames": {
+    "checklists": {
+      "t": "清单",
+      "override": false
+    },
+    "work": {
+      "t": "工作",
+      "override": false
+    }
+  },
+  "workScreen": {
+    "start": {
+      "t": "开始",
+      "override": false
+    },
+    "finish": {
+      "t": "完成",
+      "override": false
+    },
+    "description": {
+      "t": "描述",
+      "override": false
+    },
+    "notStarted": {
+      "t": "还没开始",
+      "override": false
+    },
+    "submit": {
+      "t": "提交",
+      "override": false
+    },
+    "cancelAndDiscard": {
+      "t": "取消和丢弃数据",
+      "override": false
+    },
+    "saveAndFinish": {
+      "t": "保存并稍后完成",
+      "override": false
+    },
+    "numberOfCompleted": {
+      "t": "{{divisor}} 的 {{分红}} 已完成",
+      "override": false
+    },
+    "seeMore": {
+      "t": "查看更多",
+      "override": false
+    },
+    "seeLess": {
+      "t": "少看",
       "override": false
     }
   }

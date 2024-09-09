@@ -6,15 +6,13 @@ export type ThemedViewProps = ViewProps & {
 };
 
 export function View({ inverse, style, ...otherProps }: ThemedViewProps) {
-  const { colors } = useThemeContext();
-
   return (
     <ReactNativeView
       style={[
         {
           backgroundColor: inverse //TODO: actuall make inverse
             ? "#FFFFFF"
-            : colors.tendrel.background2.color,
+            : "inherit",
         },
         style,
       ]}

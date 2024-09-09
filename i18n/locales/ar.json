@@ -63,6 +63,10 @@
     "selectSite": {
       "t": "حدد موقعًا",
       "override": false
+    },
+    "selectAnOrganization": {
+      "t": "حدد منظمة",
+      "override": false
     }
   },
   "settingsPage": {
@@ -82,6 +86,58 @@
     },
     "Settings": {
       "t": "الإعدادات",
+      "override": false
+    }
+  },
+  "screenNames": {
+    "checklists": {
+      "t": "قوائم مرجعية",
+      "override": false
+    },
+    "work": {
+      "t": "عمل",
+      "override": false
+    }
+  },
+  "workScreen": {
+    "start": {
+      "t": "بدأ",
+      "override": false
+    },
+    "finish": {
+      "t": "ينهي",
+      "override": false
+    },
+    "description": {
+      "t": "وصف",
+      "override": false
+    },
+    "notStarted": {
+      "t": "لم تبدأ",
+      "override": false
+    },
+    "submit": {
+      "t": "خضع",
+      "override": false
+    },
+    "cancelAndDiscard": {
+      "t": "إلغاء البيانات وتجاهلها",
+      "override": false
+    },
+    "saveAndFinish": {
+      "t": "احفظ وأنهي لاحقًا",
+      "override": false
+    },
+    "numberOfCompleted": {
+      "t": "تم إكمال {{توزيعات الأرباح}} من {{المقسوم}}",
+      "override": false
+    },
+    "seeMore": {
+      "t": "شاهد المزيد",
+      "override": false
+    },
+    "seeLess": {
+      "t": "شاهد أقل",
       "override": false
     }
   }

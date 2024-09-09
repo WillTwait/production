@@ -63,6 +63,10 @@
     "selectSite": {
       "t": "wybierz witrynę",
       "override": false
+    },
+    "selectAnOrganization": {
+      "t": "wybierz organizację",
+      "override": false
     }
   },
   "settingsPage": {
@@ -82,6 +86,58 @@
     },
     "Settings": {
       "t": "ustawień",
+      "override": false
+    }
+  },
+  "screenNames": {
+    "checklists": {
+      "t": "listy kontrolne",
+      "override": false
+    },
+    "work": {
+      "t": "praca",
+      "override": false
+    }
+  },
+  "workScreen": {
+    "start": {
+      "t": "start",
+      "override": false
+    },
+    "finish": {
+      "t": "koniec",
+      "override": false
+    },
+    "description": {
+      "t": "opis",
+      "override": false
+    },
+    "notStarted": {
+      "t": "nie rozpoczęto",
+      "override": false
+    },
+    "submit": {
+      "t": "zatwierdź",
+      "override": false
+    },
+    "cancelAndDiscard": {
+      "t": "anulować i odrzucić dane",
+      "override": false
+    },
+    "saveAndFinish": {
+      "t": "zapisz i zakończ później",
+      "override": false
+    },
+    "numberOfCompleted": {
+      "t": "{{dividend}} z {{divisor}} zakończono",
+      "override": false
+    },
+    "seeMore": {
+      "t": "Zobacz więcej",
+      "override": false
+    },
+    "seeLess": {
+      "t": "Zobacz mniej",
       "override": false
     }
   }

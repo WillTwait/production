@@ -20,6 +20,7 @@ export const ChecklistInlineView$fragment = graphql`
       value { value }
     }
     status {
+     __typename
       ... on ChecklistOpen {
         openedAt {
           ... on Instant {
@@ -29,6 +30,16 @@ export const ChecklistInlineView$fragment = graphql`
             epochMilliseconds
           }
         }
+      },
+      ... on ChecklistClosed {
+      closedAt {
+        ... on Instant {
+          epochMilliseconds
+        }
+        ... on ZonedDateTime {
+          epochMilliseconds
+        }
+      }
       }
     }
   }

@@ -1,7 +1,10 @@
 import { Text } from "@/components/Text";
 import { useMigrationHelper } from "@/db/drizzle";
 
-import type { HomeIndexQuery } from "@/__generated__/HomeIndexQuery.graphql";
+import type {
+  HomeIndexQuery,
+  HomeIndexQuery$data,
+} from "@/__generated__/HomeIndexQuery.graphql";
 import SegmentedControl from "@react-native-segmented-control/segmented-control";
 import ActionSheet, { type ActionSheetRef } from "react-native-actions-sheet";
 
@@ -16,6 +19,7 @@ import { ChecklistInlineView } from "@/components/tendrel/ChecklistInlineView.na
 import useThemeContext from "@/hooks/useTendyTheme";
 import { addTestIdentifiers } from "@/util/add-test-id";
 import { useNavigation } from "@react-navigation/native";
+import { FlashList } from "@shopify/flash-list";
 import { Edit, Filter } from "lucide-react-native";
 import React from "react";
 import { useTranslation } from "react-i18next";
@@ -26,7 +30,6 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Swipeable } from "react-native-gesture-handler";
-
 export default function Home() {
   const { success, error } = useMigrationHelper();
 
@@ -60,7 +63,7 @@ function Content() {
 
   const openedRowIndex = useRef<number | null>(null);
   const swipeableRefs = useRef<(Swipeable | null)[]>([]);
-  const flatListRef = useRef<FlatList>(null);
+  const flatListRef = useRef(null);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: FIXME: need better solution
   React.useLayoutEffect(() => {
@@ -76,7 +79,7 @@ function Content() {
 
   const { isLoaded, isSignedIn } = useUser();
 
-  const data = useLazyLoadQuery<HomeIndexQuery>(
+  const openChecklists = useLazyLoadQuery<HomeIndexQuery>(
     graphql`
       query HomeIndexQuery {
         checklists {
@@ -86,6 +89,40 @@ function Content() {
               ... on Checklist {
                 id
                 ...ChecklistInlineView
+              }
+            }
+          }
+        }
+      }
+    `,
+    {},
+    {
+      fetchPolicy: "store-and-network",
+    },
+  );
+
+  const completedChecklists = useLazyLoadQuery<HomeIndexQuery>(
+    graphql`
+      query HomeIndexCompletedQuery {
+        checklists {
+          totalCount
+          edges {
+            node {
+              ... on Checklist {
+                id
+                ...ChecklistInlineView,
+                status {
+                  ... on ChecklistClosed {
+                      closedAt {
+                      ... on Instant {
+                        epochMilliseconds
+                        }
+                        ... on ZonedDateTime {
+                        epochMilliseconds
+                        }
+                    }
+                  }
+                }
               }
             }
           }
@@ -156,7 +193,7 @@ function Content() {
         <Text>Hi rugg</Text>
       </ActionSheet>
       <FlatList
-        StickyHeaderComponent={() => (
+        ListHeaderComponent={
           <>
             <SegmentedControl
               values={[
@@ -222,11 +259,15 @@ function Content() {
               />
             </View>
           </>
-        )}
+        }
         ref={flatListRef}
         stickyHeaderIndices={[0]}
         contentInsetAdjustmentBehavior="automatic"
-        data={data.checklists.edges}
+        data={
+          currentTab === 0
+            ? openChecklists.checklists.edges
+            : completedChecklists.checklists.edges
+        }
         style={{ flex: 1 }}
         contentContainerStyle={{
           flexGrow: 1,
@@ -245,7 +286,11 @@ function Content() {
               onSwipeableOpen(directions, swipeable, index)
             }
           >
-            <ChecklistInlineView key={item.node.id} queryRef={item.node} />
+            <ChecklistInlineView
+              key={item.node.id}
+              queryRef={item.node}
+              completed={currentTab === 1}
+            />
           </Swipeable>
         )}
         keyExtractor={item => item.node.id}
