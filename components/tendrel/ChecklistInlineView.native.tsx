@@ -2,6 +2,7 @@ import { Text } from "@/components/Text";
 import { View } from "@/components/View";
 import useThemeContext from "@/hooks/useTendyTheme";
 import { useRouter } from "expo-router";
+import { DateTime } from "luxon";
 import { TouchableOpacity } from "react-native";
 import { useFragment } from "react-relay";
 import Avatar from "../Avatar";
@@ -22,7 +23,7 @@ export function ChecklistInlineView({ queryRef, completed }: Props) {
 
   const router = useRouter();
 
-  if (completed && !(data.status.__typename === "ChecklistClosed")) {
+  if (completed && !(data.status?.__typename === "ChecklistClosed")) {
     return;
   }
 
@@ -31,8 +32,9 @@ export function ChecklistInlineView({ queryRef, completed }: Props) {
       style={{
         padding: 4,
         margin: 2,
-        borderLeftWidth: 5,
-        borderColor: colors.feedback.error.button1,
+        borderLeftWidth: completed ? 0 : 5,
+        borderRadius: 5,
+        borderColor: completed ? undefined : colors.feedback.error.button1,
         flex: 1,
         backgroundColor: colors.tendrel.background2.color,
       }}
@@ -51,17 +53,16 @@ export function ChecklistInlineView({ queryRef, completed }: Props) {
             <Avatar
               // TODO: move to the shared library
               firstName={
-                data.assignees.edges[0].node.assignedTo.user.firstName ??
+                data.assignees.edges[0].node.assignedTo.firstName ??
                 "Unassigned"
               }
               lastName={
-                data.assignees.edges[0].node.assignedTo.user.lastName ??
-                undefined
+                data.assignees.edges[0].node.assignedTo.lastName ?? undefined
               }
               size={25}
             />
             <Text>
-              {data.assignees.edges.at(0)?.node.assignedTo.user.displayName ??
+              {data.assignees.edges.at(0)?.node.assignedTo.displayName ??
                 "Unassigned"}
             </Text>
           </View>
@@ -70,8 +71,11 @@ export function ChecklistInlineView({ queryRef, completed }: Props) {
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <Text style={{ flex: 1 }}>Previous: 08/01/24 13:31</Text>
           <Text>
-            test
-            {/* {data.status.openedAt?.epochMilliseconds
+            {DateTime.now().toLocaleString(DateTime.DATE_SHORT)}
+            {/*
+            TODO: Make real
+
+            {data.status.openedAt?.epochMilliseconds
               ? new Date(
                   Number(data.status.openedAt.epochMilliseconds),
                 ).toLocaleString()

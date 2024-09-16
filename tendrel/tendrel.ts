@@ -7,16 +7,18 @@ const { EXPO_PUBLIC_TENDREL_STAGE } = z
   })
   .parse(process.env);
 
-// TODO: fill out with real credentials
-const tendrel = new TendrelClient({
-  credentials: {
-    type: "sessionToken",
-    udid: "tendrel-console",
-    sessionToken: "",
-  },
-  stage: EXPO_PUBLIC_TENDREL_STAGE,
-});
+const tendrel = (token: string) => {
+  return new TendrelClient({
+    credentials: {
+      type: "sessionToken",
+      udid: "tendrel-console",
+      sessionToken: token,
+    },
+    stage: EXPO_PUBLIC_TENDREL_STAGE,
+  });
+};
 
-export const initialize = () => {
-  return Promise.resolve(tendrel);
+export const initialize = async (getToken: () => Promise<string | null>) => {
+  const token = await getToken();
+  return Promise.resolve(tendrel(token ?? ""));
 };

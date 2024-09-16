@@ -1,6 +1,7 @@
 import Button from "@/components/Button";
 import Seperator from "@/components/Separator";
 import { Text } from "@/components/Text";
+import "react-native-get-random-values";
 import { View } from "@/components/View";
 import useThemeContext from "@/hooks/useTendyTheme";
 import {
@@ -14,19 +15,24 @@ import {
 import { useRef, useState } from "react";
 import { FlatList, SafeAreaView } from "react-native";
 
+import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
+
 import Timer from "@/components/Timer";
 import BooleanWidget from "@/components/tendrel/results/boolean";
 import CounterWidget from "@/components/tendrel/results/counter";
 import StringWidget from "@/components/tendrel/results/string";
+import { WorkPhotos } from "@/components/work-photos";
 import ReadMore from "@fawazahmed/react-native-read-more";
 import { ProgressView } from "@react-native-community/progress-view";
+import { BlurView } from "expo-blur";
 import { DateTime } from "luxon";
 import { useTranslation } from "react-i18next";
 import ActionSheet, { type ActionSheetRef } from "react-native-actions-sheet";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { v4 as uuid } from "uuid";
 
 type Checklist = {
-  id: number;
+  id: string;
   active: boolean;
   // attachments(
   //   first: Int
@@ -60,7 +66,7 @@ type Checklist = {
 
 const fakeChecklist: Checklist[] = [
   {
-    id: 1,
+    id: uuid(),
     active: false,
     auditable: true,
     description:
@@ -73,7 +79,7 @@ const fakeChecklist: Checklist[] = [
     metadata: '{"name": "Joseph Davis", "residency": "400 Freedom St."}',
   },
   {
-    id: 2,
+    id: uuid(),
     active: true,
     auditable: false,
     description: "Save six happy hundred administration.",
@@ -85,7 +91,7 @@ const fakeChecklist: Checklist[] = [
     metadata: '{"name": "Melissa Salazar", "residency": "702 Greenway Blvd."}',
   },
   {
-    id: 3,
+    id: uuid(),
     active: true,
     auditable: true,
     description: "Decade drop culture loss school maybe.",
@@ -97,7 +103,7 @@ const fakeChecklist: Checklist[] = [
     metadata: '{"name": "Robert Davenport", "residency": "5271 Orchard Ave."}',
   },
   {
-    id: 4,
+    id: uuid(),
     active: true,
     auditable: false,
     description: "Much agent hard growth.",
@@ -109,7 +115,7 @@ const fakeChecklist: Checklist[] = [
     metadata: '{"name": "Angelica Edwards", "residency": "0432 Rainbow Rd."}',
   },
   {
-    id: 5,
+    id: uuid(),
     active: false,
     auditable: false,
     description: "Field kid song outside involve.",
@@ -155,6 +161,13 @@ const resultsStatic: ResultType[] = [
     type: "boolean",
   },
   { id: 5, name: "Notes", value: false, required: true, type: "string input" },
+  {
+    id: 6,
+    name: "Favorite NFL team",
+    value: null,
+    required: true,
+    type: "string input",
+  },
 ];
 
 export default function Work() {
@@ -340,10 +353,12 @@ export default function Work() {
             </View>
             <Text>{checklist.sop}</Text>
           </View>
+          {started ? <WorkPhotos checklistId={checklist.id} /> : undefined}
         </View>
         <View style={{ flex: 1 }}>
           <View style={{ flex: 1 }}>
             <FlatList
+              automaticallyAdjustKeyboardInsets
               data={results}
               keyExtractor={item => item.id.toString()}
               renderItem={({ item }) => (
@@ -376,9 +391,9 @@ export default function Work() {
                 </View>
               )}
             />
-            <View style={{ flex: 0, padding: 5 }}>
+            <View style={{ flex: 0 }}>
               {started ? (
-                <View style={{ flexDirection: "row", gap: 10 }}>
+                <View style={{ flexDirection: "row", gap: 10, padding: 5 }}>
                   <View
                     style={{
                       justifyContent: "center",
@@ -407,19 +422,31 @@ export default function Work() {
                   />
                 </View>
               ) : (
-                <View style={{ alignItems: "center" }}>
-                  <Button
-                    title={t("workScreen.start.t").capitalize()}
-                    variant="filled"
-                    onPress={() => setStarted(true)}
-                    iconAfter={
-                      <Play
-                        size={16}
-                        color={colors.tendrel.background2.color}
-                      />
-                    }
-                    color={colors.tendrel.button1.color}
-                  />
+                <View style={{ flexDirection: "row" }}>
+                  <BlurView
+                    style={{
+                      position: "absolute",
+                      bottom: 0,
+                      width: "100%", // Button width, relative to screen width
+                      paddingHorizontal: 20,
+                      paddingVertical: 10,
+                    }}
+                    intensity={70}
+                    tint="prominent"
+                  >
+                    <Button
+                      title={t("workScreen.start.t").capitalize()}
+                      variant="filled"
+                      onPress={() => setStarted(true)}
+                      iconAfter={
+                        <Play
+                          size={16}
+                          color={colors.tendrel.background2.color}
+                        />
+                      }
+                      color={colors.tendrel.button1.color}
+                    />
+                  </BlurView>
                 </View>
               )}
             </View>

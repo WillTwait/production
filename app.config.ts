@@ -38,6 +38,15 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     "expo-font",
     "expo-localization",
     [
+      "expo-camera",
+      {
+        cameraPermission: "Allow Tendrel Checklist to access your camera",
+        microphonePermission:
+          "Allow Tendrel Checklist to access your microphone",
+        recordAudioAndroid: true,
+      },
+    ],
+    [
       "@sentry/react-native/expo",
       {
         organization: "tendrel",

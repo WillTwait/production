@@ -6,14 +6,23 @@
   "build": {
     "base": {
       "autoIncrement": true,
-      "channel": "base"
+      "channel": "base",
+      "env": {
+        "APP_VARIANT": "development",
+        "EXPO_PUBLIC_TENDREL_STAGE": "dev",
+        "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_YXdha2UtaG9nLTI2LmNsZXJrLmFjY291bnRzLmRldiQ",
+        "EXPO_PUBLIC_TENDREL_GRAPHQL_URL": "http://localhost:4000"
+      }
     },
     "development": {
       "extends": "base",
       "developmentClient": true,
       "distribution": "internal",
       "env": {
-        "APP_VARIANT": "development"
+        "APP_VARIANT": "development",
+        "EXPO_PUBLIC_TENDREL_STAGE": "test",
+        "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_YXdha2UtaG9nLTI2LmNsZXJrLmFjY291bnRzLmRldiQ",
+        "EXPO_PUBLIC_TENDREL_GRAPHQL_URL": "https://test.graphql.tendrel.io"
       },
       "channel": "development"
     },

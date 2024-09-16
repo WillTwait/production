@@ -2,15 +2,17 @@ import { graphql } from "react-relay";
 
 export const ChecklistInlineView$fragment = graphql`
   fragment ChecklistInlineView on Checklist {
+    id
     assignees {
       edges {
         node {
           assignedTo {
-            user {
-              displayName
-              firstName
-              lastName
-            }
+              ... on Worker {
+                  displayName
+                  firstName
+                  lastName
+          }
+
           }
         }
       }

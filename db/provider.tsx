@@ -28,7 +28,6 @@ export function DatabaseProvider({ children }: PropsWithChildren) {
   // Only used for drizzle studio
   const [expoDb, setExpoDb] = useState<SQLiteDatabase | Database | null>(null);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies:
   useEffect(() => {
     if (db) return;
     initialize().then(res => {

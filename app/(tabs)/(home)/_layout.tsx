@@ -2,17 +2,18 @@ import Avatar from "@/components/Avatar";
 import { UserProfile } from "@/components/UserProfile";
 import useThemeContext from "@/hooks/useTendyTheme";
 import { useTendrel } from "@/tendrel/provider";
+import { BlurView } from "expo-blur";
 
 import { Stack } from "expo-router";
 
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { Platform } from "react-native";
+import { Platform, PlatformColor } from "react-native";
 import type { ActionSheetRef } from "react-native-actions-sheet";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function HomeLayout() {
-  const { colorTheme, colors } = useThemeContext();
+  const { colors } = useThemeContext();
 
   const actionSheetRef = useRef<ActionSheetRef>(null);
   const { t } = useTranslation();
@@ -20,9 +21,9 @@ export default function HomeLayout() {
   return (
     <Stack
       screenOptions={{
+        headerBlurEffect: "prominent",
+        headerShown: Platform.OS !== "web", //Web doesnt support search bar,
         headerTransparent: Platform.OS === "ios",
-        headerBlurEffect: colorTheme,
-        headerShown: Platform.OS !== "web", //Web doesnt support search bar
         headerRight: () => (
           <>
             <TouchableOpacity onPress={() => actionSheetRef.current?.show()}>
@@ -39,17 +40,26 @@ export default function HomeLayout() {
       <Stack.Screen
         name="index"
         options={{
-          headerTitle: t("screenNames.checklists.t").capitalize(),
           headerSearchBarOptions: {
             hideWhenScrolling: true,
             autoCapitalize: "none",
+            textColor: colors.tendrel.text2.color,
+            headerIconColor: colors.tendrel.text2.color,
           },
+          headerTitle: t("screenNames.checklists.t").capitalize(),
         }}
       />
       <Stack.Screen
         name="work"
         options={{
           headerTitle: t("screenNames.work.t").capitalize(),
+        }}
+      />
+      <Stack.Screen
+        name="camera"
+        options={{
+          headerShown: false,
+          presentation: "formSheet",
         }}
       />
     </Stack>

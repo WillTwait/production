@@ -42,7 +42,10 @@ export const useTendrel = () => {
   return ctx;
 };
 
-export function TendrelProvider({ children }: PropsWithChildren) {
+export function TendrelProvider({
+  children,
+  getToken,
+}: { children: React.ReactNode; getToken: () => Promise<string | null> }) {
   const [tendrel, setTendrel] = useState<TendrelClient | null>(null);
   const [organization, setOrganizationState] = useState<Organization | null>(
     null,
@@ -95,10 +98,10 @@ export function TendrelProvider({ children }: PropsWithChildren) {
     void load();
   }, []);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: hmm...?
   useEffect(() => {
     if (tendrel) return;
-    initialize()
+
+    initialize(getToken)
       .then(async t => {
         try {
           const res = await t?.ping();

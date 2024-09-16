@@ -1,4 +1,5 @@
 import "@/i18n/i18n";
+import "react-native-get-random-values";
 
 import { DatabaseProvider } from "@/db/provider";
 import {
@@ -24,6 +25,7 @@ import {
   useAuth,
 } from "@clerk/clerk-expo";
 import { Platform, StatusBar } from "react-native";
+import { Toaster } from "sonner-native";
 
 import TendyThemeProvider from "@/components/TendyThemeProvider";
 import useThemeContext from "@/hooks/useTendyTheme";
@@ -144,13 +146,9 @@ function NavLayout() {
       <SignedIn>
         <RelayProvider
           getToken={getToken}
-          url={
-            Platform.OS === "android"
-              ? process.env.EXPO_PUBLIC_TENDREL_GRAPHQL_URL //FIXME: This will not work in production
-              : process.env.EXPO_PUBLIC_TENDREL_GRAPHQL_URL_IOS //TODO: May need one for web?
-          }
+          url={process.env.EXPO_PUBLIC_TENDREL_GRAPHQL_URL}
         >
-          <TendrelProvider>
+          <TendrelProvider getToken={getToken}>
             <ThemeProvider
               value={colorTheme === "dark" ? DarkTheme : DefaultTheme}
             >
@@ -163,6 +161,7 @@ function NavLayout() {
                   />
                   <Slot />
                 </SafeAreaProvider>
+                <Toaster />
               </GestureHandlerRootView>
             </ThemeProvider>
           </TendrelProvider>

@@ -65,7 +65,6 @@ function Content() {
   const swipeableRefs = useRef<(Swipeable | null)[]>([]);
   const flatListRef = useRef(null);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: FIXME: need better solution
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerSearchBarOptions: {
@@ -86,10 +85,8 @@ function Content() {
           totalCount
           edges {
             node {
-              ... on Checklist {
                 id
                 ...ChecklistInlineView
-              }
             }
           }
         }
@@ -180,18 +177,6 @@ function Content() {
 
   return (
     <View {...addTestIdentifiers("checklistsPage")} style={{ flex: 1 }}>
-      <ActionSheet
-        ref={actionSheetRef}
-        animated
-        elevation={2}
-        snapPoints={[150]}
-        containerStyle={{
-          height: "50%",
-          backgroundColor: colors.tendrel.background1.color,
-        }}
-      >
-        <Text>Hi rugg</Text>
-      </ActionSheet>
       <FlatList
         ListHeaderComponent={
           <>
@@ -294,6 +279,16 @@ function Content() {
           </Swipeable>
         )}
         keyExtractor={item => item.node.id}
+      />
+      <ActionSheet
+        ref={actionSheetRef}
+        animated
+        elevation={2}
+        snapPoints={[150]}
+        containerStyle={{
+          height: "50%",
+          backgroundColor: colors.tendrel.background1.color,
+        }}
       />
     </View>
   );

@@ -1,2 +1,3 @@
-[install]
-registry = { url = "https://registry.npmjs.org", token = "$NPM_TOKEN" }
+# May have to uncomment this to unistall the graphql package locally
+# [install.scopes]
+# "@tendrel" = { url = "https://registry.npmjs.org", token = "$NPM_TOKEN" }

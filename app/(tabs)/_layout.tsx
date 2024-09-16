@@ -35,6 +35,7 @@ export default function TabLayout() {
         name="(home)"
         options={{
           title: t("tabBar.checklists.t").capitalize(),
+          headerShown: false,
           tabBarLabelStyle: {
             color: colors.tendrel.text2.color,
             fontSize: 12,

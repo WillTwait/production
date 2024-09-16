@@ -44,6 +44,9 @@ export default function Settings() {
               flexDirection: "row",
               gap: 10,
             }}
+            onPress={() =>
+              setColorTheme(colorTheme === "dark" ? "light" : "dark")
+            }
           >
             <View style={{ padding: 5 }}>
               {colorTheme === "dark" ? (
