@@ -1,7 +1,7 @@
 import { $ } from "bun";
 
-const bunfigContent = `[install]
-registry = { token = \"${process.env.NPM_TOKEN}\", url = \"https://registry.npmjs.com/\" }`;
+const bunfigContent = `[install.scopes]
+"@tendrel" = { token = \"${process.env.NPM_TOKEN}\", url = \"https://registry.npmjs.com/\" }`;
 
 await $`echo "Creating bunfig.toml..."`;
 await $`rm -f bunfig.toml`;
