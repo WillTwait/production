@@ -37,7 +37,7 @@ export default function Layout() {
           }}
         >
           <Drawer.Screen
-            name="(home)"
+            name="index"
             options={{
               drawerLabel: "Checklists",
               title: "Checklists",

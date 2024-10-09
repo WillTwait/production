@@ -49,13 +49,6 @@ export default function Layout() {
         }}
       />
       <Stack.Screen
-        name="camera"
-        options={{
-          headerShown: false,
-          presentation: "formSheet",
-        }}
-      />
-      <Stack.Screen
         name="checklist/[checklist]"
         options={{ headerTitle: "" }}
       />

@@ -8,12 +8,7 @@ import { SquarePen, TimerIcon } from "lucide-react-native";
 import { useRef, useState } from "react";
 import { TouchableOpacity } from "react-native";
 import { Swipeable } from "react-native-gesture-handler";
-import {
-  graphql,
-  useFragment,
-  usePreloadedQuery,
-  useQueryLoader,
-} from "react-relay";
+import { useFragment, useQueryLoader } from "react-relay";
 import {
   AssignChecklistMenuQuery,
   EditChecklistModal,
@@ -107,7 +102,7 @@ export function ChecklistInlineView({ queryRef: fragRef }: Props) {
         <TouchableOpacity
           onPress={() =>
             router.navigate({
-              pathname: "/(home)/checklist/[checklist]",
+              pathname: "/checklist/[checklist]",
               params: { checklist: data.id },
             })
           }

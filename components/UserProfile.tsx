@@ -1,18 +1,17 @@
 import { useTheme } from "@/hooks/useTheme";
+import { useTendrel } from "@/tendrel/provider";
+import { useAuth } from "@clerk/clerk-expo";
 import { Building2 } from "lucide-react-native";
 import type { RefObject } from "react";
+import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 import ActionSheet, { type ActionSheetRef } from "react-native-actions-sheet";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import * as DropdownMenu from "zeego/dropdown-menu";
 import Avatar from "./Avatar";
 import Button from "./Button";
 import Seperator from "./Separator";
 import { Text } from "./Text";
-
-import { useTendrel } from "@/tendrel/provider";
-import { useAuth } from "@clerk/clerk-expo";
-import { useTranslation } from "react-i18next";
-import * as DropdownMenu from "zeego/dropdown-menu";
 
 interface Props {
   actionSheetRef: RefObject<ActionSheetRef>;

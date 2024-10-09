@@ -13,18 +13,20 @@ import ConnectionHandler from "./ConnectionHandler";
 let environment: RelayModernEnvironment;
 
 export function createClientSideEnvironment(opts: FetchFunctionOptions) {
-  console.log("create client side environment", opts.url);
-  environment ||= new Environment({
-    network: Network.create(fetchFn(opts)),
-    store: new Store(new RecordSource()),
-    // log: console.log,
-    handlerProvider(handle) {
-      if (handle === "connection") {
-        return ConnectionHandler;
-      }
-      return RelayDefaultHandlerProvider(handle);
-    },
-  });
+  if (!environment) {
+    console.log("create client side environment", opts.url);
+    environment ||= new Environment({
+      network: Network.create(fetchFn(opts)),
+      store: new Store(new RecordSource()),
+      // log: console.log,
+      handlerProvider(handle) {
+        if (handle === "connection") {
+          return ConnectionHandler;
+        }
+        return RelayDefaultHandlerProvider(handle);
+      },
+    });
+  }
 
   return environment;
 }

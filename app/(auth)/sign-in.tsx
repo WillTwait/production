@@ -1,12 +1,12 @@
+import "@/extensions/string";
+
 import TendrelIcon from "@/assets/images/Tendrel-Icon.svg";
+import Button from "@/components/Button";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { Text } from "@/components/Text";
 import { TextInput } from "@/components/TextInput";
 import { View } from "@/components/View";
-
-import Button from "@/components/Button";
 import theme from "@/constants/theme";
-import "@/extensions/string";
 import { useTheme } from "@/hooks/useTheme";
 import { addTestIdentifiers } from "@/util/add-test-id";
 import { useSignIn } from "@clerk/clerk-expo";
