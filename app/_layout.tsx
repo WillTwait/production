@@ -10,7 +10,7 @@ import {
 import * as Sentry from "@sentry/react-native";
 import * as Application from "expo-application";
 import { useFonts } from "expo-font";
-import { Slot, Stack } from "expo-router";
+import { type ErrorBoundaryProps, Slot, Stack } from "expo-router";
 import * as SecureStore from "expo-secure-store";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
@@ -26,15 +26,19 @@ import {
   SignedIn,
   SignedOut,
 } from "@clerk/clerk-expo";
-import { Platform } from "react-native";
+import { Platform, Text, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Toaster } from "sonner-native";
 
-export {
-  // Catch any errors thrown by the Layout component.
-  ErrorBoundary,
-} from "expo-router";
+export function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
+  return (
+    <View style={{ flex: 1, backgroundColor: "red" }}>
+      <Text>{error.message}</Text>
+      <Text onPress={retry}>Try Again?</Text>
+    </View>
+  );
+}
 
 const tokenCache = {
   async getToken(key: string) {
