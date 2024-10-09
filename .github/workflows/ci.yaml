@@ -36,12 +36,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
-        with:
-          registry-url: https://registry.npmjs.org
-          scope: "@tendrel"
       - name: Install Dependencies
         env:
-          BUN_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: bun install --frozen-lockfile
       - run: bun ci:compile
       - run: bun ci:test
@@ -61,12 +58,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
-        with:
-          registry-url: https://registry.npmjs.org
-          scope: "@tendrel"
       - name: Install Dependencies
         env:
-          BUN_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: bun install --frozen-lockfile
       - run: bun ci:doctor
 
@@ -76,12 +70,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
-        with:
-          registry-url: https://registry.npmjs.org
-          scope: "@tendrel"
       - name: Install Dependencies
         env:
-          BUN_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: bun install --frozen-lockfile
       - name: Compile
         run: bun ci:compile

@@ -52,6 +52,7 @@ export const ChecklistInlineView$fragment = graphql`
       }
       ...DueAt_fragment
     }
+    ...EditChecklistModal_fragment
   }
 `;
 
