@@ -2,7 +2,7 @@ import { useTheme } from "@/hooks/useTheme";
 import { useTendrel } from "@/tendrel/provider";
 import { useAuth } from "@clerk/clerk-expo";
 import { Building2 } from "lucide-react-native";
-import type { RefObject } from "react";
+import { type RefObject, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 import ActionSheet, { type ActionSheetRef } from "react-native-actions-sheet";
@@ -10,7 +10,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import * as DropdownMenu from "zeego/dropdown-menu";
 import Avatar from "./Avatar";
 import Button from "./Button";
-import Seperator from "./Separator";
+import Separator from "./Separator";
 import { Text } from "./Text";
 
 interface Props {
@@ -25,10 +25,14 @@ export function UserProfile({ actionSheetRef }: Props) {
   const { signOut } = useAuth();
   const { t } = useTranslation();
 
-  //Force user to select organization on initial load
-  if (!currentOrganization) {
-    actionSheetRef.current?.show();
-  }
+  // FIXME: This causes the actionSheet to *always* show, since presumably
+  // currentOrganization is not set on initial render?
+  // Force user to select organization on initial load
+  useEffect(() => {
+    if (!currentOrganization) {
+      actionSheetRef.current?.show();
+    }
+  }, [actionSheetRef, currentOrganization]);
 
   const { firstName, lastName, displayName } = user;
 
@@ -136,7 +140,7 @@ export function UserProfile({ actionSheetRef }: Props) {
           alignItems: "flex-end",
         }}
       >
-        <Seperator />
+        <Separator />
         <Button
           title={t("currentUser.logout.t").capitalize()}
           onPress={() => signOut()}
