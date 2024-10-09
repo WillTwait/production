@@ -1,0 +1,63 @@
+import {
+  commitLocalUpdate,
+  useFragment,
+  useRelayEnvironment,
+} from "react-relay";
+import { TextInput } from "../TextInput";
+import { View } from "../View";
+import {
+  ReaderFragment,
+  type ReaderFragmentRef,
+  WriterFragment,
+  type WriterFragmentRef,
+} from "./StringWidget";
+
+type Props =
+  | {
+      readOnly: true;
+      readerFragmentRef: ReaderFragmentRef;
+    }
+  | {
+      className?: string;
+      readOnly?: false;
+      readerFragmentRef: ReaderFragmentRef;
+      writerFragmentRef: WriterFragmentRef;
+    };
+
+export function StringWidget(props: Props) {
+  const data = useFragment(ReaderFragment, props.readerFragmentRef);
+  const environment = useRelayEnvironment();
+
+  if (props.readOnly) {
+    return (
+      <View style={{ flexDirection: "row", justifyContent: "center" }}>
+        <TextInput value={data.string ?? ""} editable={false} />
+      </View>
+    );
+  }
+
+  return (
+    <View
+      style={{
+        flexDirection: "row",
+        justifyContent: "center",
+      }}
+    >
+      <View style={{ width: "80%" }}>
+        <TextInput
+          value={data.string ?? ""}
+          onChangeText={value => {
+            commitLocalUpdate(environment, store => {
+              const { updatableData } = store.readUpdatableFragment(
+                WriterFragment,
+                props.writerFragmentRef,
+              );
+
+              updatableData.string = value.length ? value : null;
+            });
+          }}
+        />
+      </View>
+    </View>
+  );
+}

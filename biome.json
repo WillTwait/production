@@ -9,6 +9,7 @@
     "useIgnoreFile": true
   },
   "formatter": {
+    "enabled": true,
     "indentStyle": "space",
     "lineWidth": 80
   },
@@ -22,8 +23,7 @@
     "rules": {
       "recommended": true,
       "correctness": {
-        "noUnusedVariables": "warn",
-        "useExhaustiveDependencies": "off"
+        "noUnusedVariables": "warn"
       }
     }
   }

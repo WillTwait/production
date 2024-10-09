@@ -6,43 +6,51 @@ export const ChecklistInlineView$fragment = graphql`
     assignees {
       edges {
         node {
-          assignedTo {
-              ... on Worker {
-                  displayName
-                  firstName
-                  lastName
-          }
-
-          }
+          ...Assignee_fragment
         }
       }
       totalCount
     }
     name {
-      value { value }
+      ...DisplayName_fragment
+    }
+    parent {
+      status {
+        ... on ChecklistClosed {
+          closedAt {
+            ...Temporal_fragment
+          }
+        }
+      }
     }
     status {
-     __typename
+      __typename
       ... on ChecklistOpen {
+        dueAt {
+          epochMilliseconds
+        }
         openedAt {
-          ... on Instant {
-            epochMilliseconds
-          }
-          ... on ZonedDateTime {
-            epochMilliseconds
-          }
+          ...Temporal_fragment
         }
-      },
+      }
+      ... on ChecklistInProgress {
+        dueAt {
+          epochMilliseconds
+        }
+        inProgressAt {
+          ...Temporal_fragment
+        }
+        ...ChecklistTimer_fragment
+      }
       ... on ChecklistClosed {
-      closedAt {
-        ... on Instant {
-          epochMilliseconds
+        closedAt {
+          ...Temporal_fragment
         }
-        ... on ZonedDateTime {
-          epochMilliseconds
+        closedBecause {
+          code
         }
       }
-      }
+      ...DueAt_fragment
     }
   }
 `;

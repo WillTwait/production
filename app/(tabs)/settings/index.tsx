@@ -1,21 +1,14 @@
-import useThemeContext from "@/hooks/useTendyTheme";
+import { useTheme } from "@/hooks/useTheme";
 import { addTestIdentifiers } from "@/util/add-test-id";
 import { useAuth } from "@clerk/clerk-expo";
 import { ChevronRight, LogOut, Moon, Sun } from "lucide-react-native";
 import { useTranslation } from "react-i18next";
-import {
-  Button,
-  SafeAreaView,
-  ScrollView,
-  Switch,
-  Text,
-  View,
-} from "react-native";
+import { SafeAreaView, ScrollView, Switch, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function Settings() {
   const { signOut } = useAuth();
-  const { colors, setColorTheme, colorTheme } = useThemeContext();
+  const { colors, setColorTheme, colorTheme } = useTheme();
   const { t } = useTranslation();
 
   return (

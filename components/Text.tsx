@@ -1,4 +1,4 @@
-import useThemeContext from "@/hooks/useTendyTheme";
+import { useTheme } from "@/hooks/useTheme";
 import { Text as ReactNativeText, type TextProps } from "react-native";
 
 export type ThemedTextProps = TextProps & {
@@ -6,7 +6,7 @@ export type ThemedTextProps = TextProps & {
 };
 
 export function Text({ style, type = "default", ...rest }: ThemedTextProps) {
-  const { colors } = useThemeContext();
+  const { colors } = useTheme();
 
   return (
     <ReactNativeText

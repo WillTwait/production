@@ -1,35 +1,34 @@
 import Avatar from "@/components/Avatar";
 import { UserProfile } from "@/components/UserProfile";
-import useThemeContext from "@/hooks/useTendyTheme";
+import { useTheme } from "@/hooks/useTheme";
 import { useTendrel } from "@/tendrel/provider";
-import { BlurView } from "expo-blur";
-
 import { Stack } from "expo-router";
-
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { Platform, PlatformColor } from "react-native";
+import { Platform } from "react-native";
 import type { ActionSheetRef } from "react-native-actions-sheet";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-export default function HomeLayout() {
-  const { colors } = useThemeContext();
-
+export default function Layout() {
   const actionSheetRef = useRef<ActionSheetRef>(null);
+  const { colors } = useTheme();
   const { t } = useTranslation();
+  const {
+    user: { firstName, lastName },
+  } = useTendrel();
 
   return (
     <Stack
       screenOptions={{
         headerBlurEffect: "prominent",
-        headerShown: Platform.OS !== "web", //Web doesnt support search bar,
+        headerShown: Platform.OS !== "web", // Web doesnt support search bar
         headerTransparent: Platform.OS === "ios",
         headerRight: () => (
           <>
             <TouchableOpacity onPress={() => actionSheetRef.current?.show()}>
-              {/* TODO: Make real */}
-              <Avatar firstName="Jerry" lastName="Garcia" />
-              {/* TODO: Make real */}
+              <Avatar
+                fallback={`${firstName.at(0)?.toUpperCase()}${lastName.at(0)?.toUpperCase()}`}
+              />
               <UserProfile actionSheetRef={actionSheetRef} />
             </TouchableOpacity>
           </>
@@ -50,17 +49,15 @@ export default function HomeLayout() {
         }}
       />
       <Stack.Screen
-        name="work"
-        options={{
-          headerTitle: t("screenNames.work.t").capitalize(),
-        }}
-      />
-      <Stack.Screen
         name="camera"
         options={{
           headerShown: false,
           presentation: "formSheet",
         }}
+      />
+      <Stack.Screen
+        name="checklist/[checklist]"
+        options={{ headerTitle: "" }}
       />
     </Stack>
   );

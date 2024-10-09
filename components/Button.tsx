@@ -1,4 +1,4 @@
-import useThemeContext from "@/hooks/useTendyTheme";
+import { useTheme } from "@/hooks/useTheme";
 import {
   type ButtonProps,
   Button as ReactNativeButton,
@@ -16,7 +16,7 @@ export type TendyButtonProps = ButtonProps & {
   variant?: "default" | "filter" | "filled";
 };
 
-export default function Button({
+export function Button({
   variant = "default",
   children,
   textColor,
@@ -25,7 +25,7 @@ export default function Button({
   title,
   ...rest
 }: TendyButtonProps) {
-  const { colors } = useThemeContext();
+  const { colors } = useTheme();
 
   const buttonColor = rest.color ? rest.color : colors.tendrel.text1.color;
   //FIXME: This should probably be broken out into two components? Like a simple button and then a Pressable implementation. Very limited on the styling options from the parent with Button Props
@@ -93,3 +93,5 @@ export default function Button({
 
   return <ReactNativeButton title={title} color={buttonColor} {...rest} />;
 }
+
+export default Button;

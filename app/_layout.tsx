@@ -15,23 +15,21 @@ import * as SecureStore from "expo-secure-store";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import "react-native-reanimated";
-
+import { StatusBar } from "@/components/StatusBar";
+import TendyThemeProvider from "@/components/TendyThemeProvider";
+import { useTheme } from "@/hooks/useTheme";
+import { RelayProvider } from "@/relay/provider";
 import { TendrelProvider } from "@/tendrel/provider";
 import {
   ClerkLoaded,
   ClerkProvider,
   SignedIn,
   SignedOut,
-  useAuth,
 } from "@clerk/clerk-expo";
-import { Platform, StatusBar } from "react-native";
-import { Toaster } from "sonner-native";
-
-import TendyThemeProvider from "@/components/TendyThemeProvider";
-import useThemeContext from "@/hooks/useTendyTheme";
-import { RelayProvider } from "@/relay/provider";
+import { Platform } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { Toaster } from "sonner-native";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -125,13 +123,12 @@ export function RootLayout() {
   );
 }
 
-//This is kinda dumb but whatever
+// This is kinda dumb but whatever
 function NavLayout() {
-  const { colorTheme } = useThemeContext();
-  const { getToken } = useAuth();
+  const { colorTheme } = useTheme();
 
   return (
-    <>
+    <ThemeProvider value={colorTheme === "dark" ? DarkTheme : DefaultTheme}>
       <SignedOut>
         <Stack screenOptions={{ headerShown: false }}>
           <Stack.Screen
@@ -144,30 +141,19 @@ function NavLayout() {
         </Stack>
       </SignedOut>
       <SignedIn>
-        <RelayProvider
-          getToken={getToken}
-          url={process.env.EXPO_PUBLIC_TENDREL_GRAPHQL_URL}
-        >
-          <TendrelProvider getToken={getToken}>
-            <ThemeProvider
-              value={colorTheme === "dark" ? DarkTheme : DefaultTheme}
-            >
-              <GestureHandlerRootView>
-                <SafeAreaProvider>
-                  <StatusBar
-                    barStyle={
-                      colorTheme === "light" ? "dark-content" : "light-content"
-                    }
-                  />
-                  <Slot />
-                </SafeAreaProvider>
-                <Toaster />
-              </GestureHandlerRootView>
-            </ThemeProvider>
+        <RelayProvider url={process.env.EXPO_PUBLIC_TENDREL_GRAPHQL_URL}>
+          <TendrelProvider>
+            <GestureHandlerRootView>
+              <SafeAreaProvider>
+                <StatusBar />
+                <Slot />
+              </SafeAreaProvider>
+              <Toaster />
+            </GestureHandlerRootView>
           </TendrelProvider>
         </RelayProvider>
       </SignedIn>
-    </>
+    </ThemeProvider>
   );
 }
 

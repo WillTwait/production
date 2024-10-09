@@ -51,7 +51,7 @@
 
             src = pkgs.fetchurl {
               url = "https://github.com/biomejs/biome/releases/download/cli%2F${version}/biome-linux-x64";
-              hash = "sha256-VJXy9p7dlOnybtGtue2AI9fBQ8PMbydfkKvd7WEiF+Q=";
+              hash = "sha256-4Xuz0V/Bkqp2eudpEwL0/SOegM6qzkwyOIV7naD0OQI=";
             };
 
             nativeBuildInputs = [pkgs.autoPatchelfHook];
@@ -80,6 +80,7 @@
             gradle
             jdk17
             nodejs
+            vscode
           ];
           pre-commit.hooks = {
             actionlint.enable = true;

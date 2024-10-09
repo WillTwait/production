@@ -1,13 +1,11 @@
-import useThemeContext from "@/hooks/useTendyTheme";
-import { useAuth } from "@clerk/clerk-expo";
-import { Redirect } from "expo-router";
+import { useTheme } from "@/hooks/useTheme";
 import { Drawer } from "expo-router/drawer";
 import Head from "expo-router/head";
 
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export default function Layout() {
-  const { colors } = useThemeContext();
+  const { colors } = useTheme();
 
   return (
     <>

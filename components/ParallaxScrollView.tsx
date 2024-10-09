@@ -50,7 +50,11 @@ export default function ParallaxScrollView({
 
   return (
     <View style={styles.container} {...addTestIdentifiers(testId)}>
-      <Animated.ScrollView ref={scrollRef} scrollEventThrottle={16}>
+      <Animated.ScrollView
+        ref={scrollRef}
+        scrollEventThrottle={16}
+        keyboardDismissMode="interactive"
+      >
         <Animated.View
           style={[
             styles.header,

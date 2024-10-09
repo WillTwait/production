@@ -6,7 +6,9 @@ import {
   RecordSource,
   Store,
 } from "relay-runtime";
+import { RelayDefaultHandlerProvider } from "relay-runtime/lib/handlers/RelayDefaultHandlerProvider";
 import type RelayModernEnvironment from "relay-runtime/lib/store/RelayModernEnvironment";
+import ConnectionHandler from "./ConnectionHandler";
 
 let environment: RelayModernEnvironment;
 
@@ -15,7 +17,13 @@ export function createClientSideEnvironment(opts: FetchFunctionOptions) {
   environment ||= new Environment({
     network: Network.create(fetchFn(opts)),
     store: new Store(new RecordSource()),
-    log: event => console.log(event),
+    // log: console.log,
+    handlerProvider(handle) {
+      if (handle === "connection") {
+        return ConnectionHandler;
+      }
+      return RelayDefaultHandlerProvider(handle);
+    },
   });
 
   return environment;

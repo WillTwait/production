@@ -1,35 +1,31 @@
 import { Text } from "@/components/Text";
-import useThemeContext from "@/hooks/useTendyTheme";
+import { useTheme } from "@/hooks/useTheme";
 import { DateTime, Duration } from "luxon";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 interface Props {
   startTime: DateTime;
 }
 
 export default function Timer({ startTime }: Props) {
-  const { colors } = useThemeContext();
+  const { colors } = useTheme();
 
-  // Function to compute the duration and format it
-  function formatDurationFromNow() {
+  const formatDurationFromNow = useCallback(() => {
     const durationInSeconds = Math.abs(
-      startTime.diff(DateTime.now()).as("seconds"),
+      startTime.diff(DateTime.now()).toMillis(),
     );
-    const duration = Duration.fromObject({ seconds: durationInSeconds });
-    return duration.hours > 0
+    const duration = Duration.fromMillis(durationInSeconds);
+    return duration.as("hours") > 0
       ? duration.toFormat("h:mm:ss")
       : duration.toFormat("mm:ss");
-  }
+  }, [startTime]);
 
   const [displayTime, setDisplayTime] = useState(formatDurationFromNow);
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setDisplayTime(formatDurationFromNow());
-    }, 1000);
-
-    return () => clearInterval(intervalId); // Cleanup interval on component unmount
-  }, []);
+    const t = setInterval(() => setDisplayTime(formatDurationFromNow()), 1000);
+    return () => clearInterval(t); // Cleanup interval on component unmount
+  }, [formatDurationFromNow]);
 
   return (
     <Text style={{ color: colors.tendrel.text2.color }}>{displayTime}</Text>

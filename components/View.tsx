@@ -1,4 +1,3 @@
-import useThemeContext from "@/hooks/useTendyTheme";
 import { View as ReactNativeView, type ViewProps } from "react-native";
 
 export type ThemedViewProps = ViewProps & {

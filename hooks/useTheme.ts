@@ -3,7 +3,7 @@ import colors from "@/constants/tendy-colors";
 import { useCallback, useContext, useMemo } from "react";
 import { type ColorSchemeName, useColorScheme } from "react-native";
 
-export default function useThemeContext() {
+export function useTheme() {
   const context = useContext(ThemeContext);
   const systemColorScheme = useColorScheme();
 

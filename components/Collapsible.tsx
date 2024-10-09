@@ -4,14 +4,14 @@ import { StyleSheet, TouchableOpacity } from "react-native";
 
 import { Text } from "@/components/Text";
 import { View } from "@/components/View";
-import useThemeContext from "@/hooks/useTendyTheme";
+import { useTheme } from "@/hooks/useTheme";
 
 export function Collapsible({
   children,
   title,
 }: PropsWithChildren & { title: string }) {
   const [isOpen, setIsOpen] = useState(false);
-  const { colors } = useThemeContext();
+  const { colors } = useTheme();
 
   return (
     <View>

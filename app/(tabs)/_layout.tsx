@@ -2,7 +2,7 @@ import { useAuth } from "@clerk/clerk-expo";
 
 import { Redirect, Tabs } from "expo-router";
 
-import useThemeContext from "@/hooks/useTendyTheme";
+import { useTheme } from "@/hooks/useTheme";
 
 import { View } from "@/components/View";
 import { ClipboardCheck, Cog } from "lucide-react-native";
@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next";
 export default function TabLayout() {
   const { isLoaded, isSignedIn } = useAuth();
 
-  const { colors } = useThemeContext();
+  const { colors } = useTheme();
   const { t } = useTranslation();
   if (!isLoaded) return null;
 

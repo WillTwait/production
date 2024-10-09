@@ -1,6 +1,6 @@
-import useThemeContext from "@/hooks/useTendyTheme";
-import { Building2, Warehouse } from "lucide-react-native";
-import { type RefObject, useState } from "react";
+import { useTheme } from "@/hooks/useTheme";
+import { Building2 } from "lucide-react-native";
+import type { RefObject } from "react";
 import { View } from "react-native";
 import ActionSheet, { type ActionSheetRef } from "react-native-actions-sheet";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -18,24 +18,20 @@ interface Props {
   actionSheetRef: RefObject<ActionSheetRef>;
 }
 
-//FIXME: Temp for time being
-const sites = Array.from({ length: 15 }, (_, i) => ({
-  key: `site-${i + 1}`,
-  name: `Site ${i + 1}`,
-}));
-
 export function UserProfile({ actionSheetRef }: Props) {
-  const { organizations, currentOrganization, setOrganization } = useTendrel();
-  const { colors } = useThemeContext();
+  const { organizations, currentOrganization, setOrganization, user } =
+    useTendrel();
+  const { colors } = useTheme();
   const insets = useSafeAreaInsets();
   const { signOut } = useAuth();
-  const [currentSite, setCurrentSite] = useState(sites[0]);
   const { t } = useTranslation();
 
   //Force user to select organization on initial load
   if (!currentOrganization) {
     actionSheetRef.current?.show();
   }
+
+  const { firstName, lastName, displayName } = user;
 
   return (
     <ActionSheet
@@ -59,134 +55,93 @@ export function UserProfile({ actionSheetRef }: Props) {
             padding: 4,
           }}
         >
-          {/* //FIXME: Make real */}
-          <Avatar firstName="Fedes" lastName="Fan" size={45} />
-          <Text type="title">Fedes #1 Fan</Text>
+          <Avatar
+            fallback={`${firstName.at(0)?.toUpperCase()}${lastName.at(0)?.toUpperCase()}`}
+            size={45}
+          />
+          <Text type="title">{displayName}</Text>
         </View>
       }
     >
       <View style={{ height: "100%" }}>
-        <View>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
           <View
             style={{
               flexDirection: "row",
+              flex: 1,
+              justifyContent: "center",
               alignItems: "center",
             }}
           >
-            <View style={{ flexDirection: "row", flex: 1, gap: 5 }}>
-              <Building2 color={colors.tendrel.text1.gray} />
-              <Text type="subtitle">
+            <View>
+              <Building2
+                color={colors.tendrel.text1.gray}
+                style={{ marginRight: 10 }}
+              />
+            </View>
+            <View style={{ flex: 1 }}>
+              <Text type="subtitle" numberOfLines={3} ellipsizeMode="tail">
                 {currentOrganization?.name ??
                   t("currentUser.selectAnOrganization.override")}
               </Text>
             </View>
-            <DropdownMenu.Root>
-              <DropdownMenu.Trigger asChild>
-                <Button
-                  title={t("currentUser.switchCustomer.t").capitalize()}
-                />
-              </DropdownMenu.Trigger>
-              <DropdownMenu.Content
-                loop
-                side="bottom"
-                align="start"
-                sideOffset={5}
-                alignOffset={0}
-                avoidCollisions
-                collisionPadding={8}
-              >
-                <DropdownMenu.Label>
-                  {t("currentUser.selectCustomer.t").capitalize()}
-                </DropdownMenu.Label>
-                {organizations.map(customer => (
-                  <DropdownMenu.Item
-                    key={customer.id}
-                    onSelect={() => setOrganization(customer)}
-                  >
-                    <DropdownMenu.ItemIcon
-                      ios={{
-                        name:
-                          customer.name === currentOrganization?.name
-                            ? "checkmark.circle.fill"
-                            : undefined,
-                      }}
-                    />
-                    <DropdownMenu.ItemTitle>
-                      {customer.name}
-                    </DropdownMenu.ItemTitle>
-                  </DropdownMenu.Item>
-                ))}
-                <DropdownMenu.Separator />
-                <DropdownMenu.Arrow />
-              </DropdownMenu.Content>
-            </DropdownMenu.Root>
           </View>
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-            }}
-          >
-            <View
-              style={{
-                flex: 1,
-                flexDirection: "row",
-                gap: 5,
-              }}
+          <DropdownMenu.Root>
+            <DropdownMenu.Trigger asChild>
+              <Button title={t("currentUser.switchCustomer.t").capitalize()} />
+            </DropdownMenu.Trigger>
+            <DropdownMenu.Content
+              loop
+              side="bottom"
+              align="start"
+              sideOffset={5}
+              alignOffset={0}
+              avoidCollisions
+              collisionPadding={8}
             >
-              <Warehouse color={colors.tendrel.text1.gray} />
-              <Text type="subtitle">{currentSite.name}</Text>
-            </View>
-            <DropdownMenu.Root>
-              <DropdownMenu.Trigger asChild>
-                <Button title={t("currentUser.switchSite.t").capitalize()} />
-              </DropdownMenu.Trigger>
-              <DropdownMenu.Content
-                loop
-                side="bottom"
-                align="start"
-                sideOffset={5}
-                alignOffset={0}
-                avoidCollisions
-                collisionPadding={8}
-              >
-                <DropdownMenu.Label>
-                  {t("currentUser.selectSite.t").capitalize()}
-                </DropdownMenu.Label>
-                {sites.map(site => (
-                  <DropdownMenu.Item
-                    key={site.key}
-                    onSelect={() => setCurrentSite(site)}
-                  >
-                    <DropdownMenu.ItemIcon
-                      ios={{
-                        name:
-                          site.name === currentSite.name
-                            ? "checkmark.circle.fill"
-                            : undefined,
-                      }}
-                    />
-                    <DropdownMenu.ItemTitle>{site.name}</DropdownMenu.ItemTitle>
-                  </DropdownMenu.Item>
-                ))}
-                <DropdownMenu.Separator />
-                <DropdownMenu.Arrow />
-              </DropdownMenu.Content>
-            </DropdownMenu.Root>
-          </View>
+              <DropdownMenu.Label>
+                {t("currentUser.selectCustomer.t").capitalize()}
+              </DropdownMenu.Label>
+              {organizations.map(customer => (
+                <DropdownMenu.Item
+                  key={customer.id}
+                  onSelect={() => setOrganization(customer)}
+                >
+                  <DropdownMenu.ItemIcon
+                    ios={{
+                      name:
+                        customer.name === currentOrganization?.name
+                          ? "checkmark.circle.fill"
+                          : undefined,
+                    }}
+                  />
+                  <DropdownMenu.ItemTitle>
+                    {customer.name}
+                  </DropdownMenu.ItemTitle>
+                </DropdownMenu.Item>
+              ))}
+              <DropdownMenu.Separator />
+              <DropdownMenu.Arrow />
+            </DropdownMenu.Content>
+          </DropdownMenu.Root>
         </View>
-        <View
-          style={{
-            marginTop: "auto",
-            alignItems: "flex-end",
-          }}
-        >
-          <Seperator />
-          <Button
-            title={t("currentUser.logout.t").capitalize()}
-            onPress={() => signOut()}
-          />
-        </View>
+      </View>
+      <View
+        style={{
+          marginTop: "auto",
+          alignItems: "flex-end",
+        }}
+      >
+        <Seperator />
+        <Button
+          title={t("currentUser.logout.t").capitalize()}
+          onPress={() => signOut()}
+        />
       </View>
     </ActionSheet>
   );

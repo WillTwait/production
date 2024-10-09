@@ -1,4 +1,4 @@
-import useThemeContext from "@/hooks/useTendyTheme";
+import { useTheme } from "@/hooks/useTheme";
 
 import {
   TextInput as ReactNativeTextInput,
@@ -20,7 +20,7 @@ export function TextInput({
   style,
   ...rest
 }: TendyTextInputProps) {
-  const { colors } = useThemeContext();
+  const { colors } = useTheme();
 
   return (
     <View
@@ -29,7 +29,7 @@ export function TextInput({
         alignItems: "center",
         borderWidth: 1,
         padding: 10,
-        margin: 10,
+        // margin: 10,
         borderRadius: 10,
         borderColor: colors.tendrel.border2.gray,
       }}

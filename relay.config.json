@@ -1,0 +1,6 @@
+{
+  "artifactDirectory": "./__generated__",
+  "src": ".",
+  "schema": "./node_modules/@tendrelhq/graphql/schema.graphql",
+  "language": "typescript"
+}

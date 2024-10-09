@@ -1,22 +1,19 @@
+import { useTheme } from "@/hooks/useTheme";
+import * as FileSystem from "expo-file-system";
+import { Image } from "expo-image";
+import { useFocusEffect, useNavigation, useRouter } from "expo-router";
+import { Plus, PlusIcon } from "lucide-react-native";
+import { useCallback, useRef, useState } from "react";
 import { FlatList, Modal, StyleSheet, TouchableOpacity } from "react-native";
 import AwesomeGallery, {
   type GalleryRef,
   type RenderItemInfo,
 } from "react-native-awesome-gallery";
-import { View } from "./View";
-
-import useThemeContext from "@/hooks/useTendyTheme";
-import { Image } from "expo-image";
-import { useFocusEffect, useNavigation, useRouter } from "expo-router";
-import { Plus, PlusIcon } from "lucide-react-native";
-import { useCallback, useRef, useState } from "react";
-import type { ActionSheetRef } from "react-native-actions-sheet";
-import Button from "./Button";
-import { Text } from "./Text";
-
-import * as FileSystem from "expo-file-system";
 import Animated, { FadeInDown, FadeOutDown } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import Button from "./Button";
+import { Text } from "./Text";
+import { View } from "./View";
 
 interface Props {
   checklistId: string;
@@ -45,7 +42,7 @@ export function WorkPhotos({ checklistId }: Props) {
   const { bottom } = useSafeAreaInsets();
 
   const [photos, setPhotos] = useState<string[]>();
-  const { colors } = useThemeContext();
+  const { colors } = useTheme();
   // const modalRef = useRef<ActionSheetRef>(null);
   const gallery = useRef<GalleryRef>(null);
 

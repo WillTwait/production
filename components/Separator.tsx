@@ -1,4 +1,4 @@
-import useThemeContext from "@/hooks/useTendyTheme";
+import { useTheme } from "@/hooks/useTheme";
 import type { ViewProps } from "react-native";
 import { View } from "./View";
 
@@ -11,7 +11,7 @@ export default function Seperator({
   orientation = "horizontal",
   width = 1,
 }: Props) {
-  const { colors } = useThemeContext();
+  const { colors } = useTheme();
   return (
     <View
       style={{

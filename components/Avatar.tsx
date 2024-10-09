@@ -1,22 +1,15 @@
 import { Text } from "@/components/Text";
 import { View } from "@/components/View";
-import useThemeContext from "@/hooks/useTendyTheme";
+import { useTheme } from "@/hooks/useTheme";
 
 interface Props {
-  firstName: string;
-  lastName?: string;
+  fallback: string;
   size?: number;
 }
 
-export default function Avatar({ firstName, lastName, size = 30 }: Props) {
-  const { colors, inverseColors } = useThemeContext();
-  const firstInitial =
-    firstName.length >= 1 ? firstName.charAt(0).toUpperCase() : "";
+export default function Avatar({ fallback, size = 30 }: Props) {
+  const { colors } = useTheme();
 
-  const lastInitial =
-    lastName && lastName.length >= 1 ? lastName.charAt(0).toUpperCase() : "";
-
-  const initials = `${firstInitial}${lastInitial}`;
   return (
     <View
       style={{
@@ -25,18 +18,18 @@ export default function Avatar({ firstName, lastName, size = 30 }: Props) {
         borderRadius: size / 2,
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: colors.tendrel.button1.color,
+        backgroundColor: colors.tendrel.interactive2.color,
       }}
     >
       <Text
         style={{
-          color: inverseColors.tendrel.text2.color,
+          color: colors.tendrel.text2.color,
           justifyContent: "center",
           alignItems: "center",
-          fontSize: size / 2, //FIXME: make this less brittle
+          fontSize: size / 2.5, // FIXME: make this less brittle
         }}
       >
-        {initials}
+        {fallback}
       </Text>
     </View>
   );

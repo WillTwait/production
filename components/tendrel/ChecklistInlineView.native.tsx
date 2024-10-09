@@ -1,86 +1,214 @@
 import { Text } from "@/components/Text";
 import { View } from "@/components/View";
-import useThemeContext from "@/hooks/useTendyTheme";
+import { useTheme } from "@/hooks/useTheme";
+import { nullish } from "@/util/nullish";
 import { useRouter } from "expo-router";
-import { DateTime } from "luxon";
+import { TimerIcon } from "lucide-react-native";
 import { TouchableOpacity } from "react-native";
 import { useFragment } from "react-relay";
-import Avatar from "../Avatar";
 import Seperator from "../Separator";
+import { Assignee } from "./Assignee.native";
 import {
   ChecklistInlineView$fragment,
   type ChecklistInlineView$key,
 } from "./ChecklistInlineView";
+import { ChecklistTimer } from "./ChecklistTimer.native";
+import { DisplayName } from "./DisplayName.native";
+import { DueAt } from "./DueAt.native";
+import { Temporal } from "./Temporal.native";
 
 interface Props {
   queryRef: ChecklistInlineView$key;
-  completed: boolean;
 }
 
-export function ChecklistInlineView({ queryRef, completed }: Props) {
+export function ChecklistInlineView({ queryRef }: Props) {
   const data = useFragment(ChecklistInlineView$fragment, queryRef);
-  const { colors } = useThemeContext();
 
+  const { colors } = useTheme();
   const router = useRouter();
-
-  if (completed && !(data.status?.__typename === "ChecklistClosed")) {
-    return;
-  }
 
   return (
     <View
       style={{
         padding: 4,
         margin: 2,
-        borderLeftWidth: completed ? 0 : 5,
-        borderRadius: 5,
-        borderColor: completed ? undefined : colors.feedback.error.button1,
         flex: 1,
         backgroundColor: colors.tendrel.background2.color,
+        borderLeftWidth: 5,
+        borderRadius: 5,
+        borderColor: (() => {
+          switch (data.status?.__typename) {
+            case "ChecklistOpen": {
+              if (data.status.dueAt?.epochMilliseconds) {
+                const dueAt = Number(data.status.dueAt.epochMilliseconds);
+                const now = Date.now();
+                if (dueAt < now) return colors.feedback.error.button1;
+              }
+              return "gray";
+            }
+            case "ChecklistInProgress": {
+              if (data.status.dueAt?.epochMilliseconds) {
+                const dueAt = Number(data.status.dueAt.epochMilliseconds);
+                const now = Date.now();
+                if (dueAt < now) return colors.feedback.error.button1;
+              }
+              return "yellow";
+            }
+            case "ChecklistClosed": {
+              if (data.status.closedBecause?.code === "error") {
+                return "red";
+              }
+              return "green";
+            }
+            default:
+              return undefined;
+          }
+        })(),
       }}
     >
-      <TouchableOpacity onPress={() => router.navigate("/(home)/work")}>
+      <TouchableOpacity
+        onPress={() =>
+          router.navigate({
+            pathname: "/(home)/checklist/[checklist]",
+            params: { checklist: data.id },
+          })
+        }
+      >
         <View
           style={{
             flexDirection: "row",
             alignItems: "center",
           }}
         >
-          <Text type="title" style={{ flex: 1 }}>
-            {data.name.value.value}
-          </Text>
+          <DisplayName queryRef={data.name} type="title" style={{ flex: 1 }} />
           <View style={{ flexDirection: "row", alignItems: "center", gap: 5 }}>
-            <Avatar
-              // TODO: move to the shared library
-              firstName={
-                data.assignees.edges[0].node.assignedTo.firstName ??
-                "Unassigned"
-              }
-              lastName={
-                data.assignees.edges[0].node.assignedTo.lastName ?? undefined
-              }
-              size={25}
-            />
-            <Text>
-              {data.assignees.edges.at(0)?.node.assignedTo.displayName ??
-                "Unassigned"}
-            </Text>
+            {data.assignees.edges.length ? (
+              <Assignee queryRef={data.assignees.edges[0].node} />
+            ) : null}
           </View>
         </View>
         <Seperator orientation="horizontal" width={0.5} />
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <Text style={{ flex: 1 }}>Previous: 08/01/24 13:31</Text>
-          <Text>
-            {DateTime.now().toLocaleString(DateTime.DATE_SHORT)}
-            {/*
-            TODO: Make real
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          {(() => {
+            if (!data.status) {
+              return null;
+            }
 
-            {data.status.openedAt?.epochMilliseconds
-              ? new Date(
-                  Number(data.status.openedAt.epochMilliseconds),
-                ).toLocaleString()
-              : null} */}
-          </Text>
+            switch (true) {
+              case nullish(data.status.closedAt) === false:
+                return (
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      alignItems: "center",
+                      gap: 4,
+                    }}
+                  >
+                    <Text style={{ fontSize: 12, color: "gray" }}>
+                      Completed on:
+                    </Text>
+                    <Temporal
+                      queryRef={data.status.closedAt}
+                      options={{ dateStyle: "short", timeStyle: "short" }}
+                      style={{ fontSize: 12, color: "gray" }}
+                    />
+                  </View>
+                );
+              case nullish(data.status.inProgressAt) === false:
+                return (
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      alignItems: "center",
+                      gap: 4,
+                    }}
+                  >
+                    <Text style={{ fontSize: 12, color: "gray" }}>
+                      Started:
+                    </Text>
+                    <Temporal
+                      queryRef={data.status.inProgressAt}
+                      options={{ dateStyle: "short", timeStyle: "short" }}
+                      style={{ fontSize: 12, color: "gray" }}
+                    />
+                  </View>
+                );
+              case nullish(data.parent?.status?.closedAt) === false:
+                return (
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      alignItems: "center",
+                      gap: 4,
+                    }}
+                  >
+                    <Text style={{ fontSize: 12, color: "gray" }}>
+                      Previous:
+                    </Text>
+                    <Temporal
+                      queryRef={data.parent.status.closedAt}
+                      options={{ dateStyle: "short", timeStyle: "short" }}
+                      style={{ fontSize: 12, color: "gray" }}
+                    />
+                  </View>
+                );
+              case nullish(data.status.openedAt) === false:
+                return (
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      alignItems: "center",
+                      gap: 4,
+                    }}
+                  >
+                    <Text style={{ fontSize: 12, color: "gray" }}>
+                      Open since:
+                    </Text>
+                    <Temporal
+                      queryRef={data.status.openedAt}
+                      options={{ dateStyle: "short", timeStyle: "short" }}
+                      style={{ fontSize: 12, color: "gray" }}
+                    />
+                  </View>
+                );
+            }
+          })()}
+          {(() => {
+            if (!data.status) return null;
+
+            // If it's open with a due date, show the due date.
+            if (data.status.openedAt && data.status.dueAt) {
+              return (
+                <DueAt
+                  iconSize={12}
+                  queryRef={data.status}
+                  style={{ fontSize: 12, color: "black" }}
+                />
+              );
+            }
+
+            // If it's in progress, show the timer.
+            if (data.status.inProgressAt) {
+              return (
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    gap: 4,
+                  }}
+                >
+                  <TimerIcon size={12} color="black" />
+                  <ChecklistTimer queryRef={data.status} />
+                </View>
+              );
+            }
+          })()}
         </View>
       </TouchableOpacity>
     </View>

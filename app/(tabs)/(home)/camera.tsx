@@ -1,6 +1,6 @@
 import Button from "@/components/Button";
 import { Text } from "@/components/Text";
-import useThemeContext from "@/hooks/useTendyTheme";
+import { useTheme } from "@/hooks/useTheme";
 import { type CameraType, CameraView, useCameraPermissions } from "expo-camera";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { Circle, SwitchCamera, X } from "lucide-react-native";
@@ -23,7 +23,7 @@ export default function TendyCamera() {
   const { checklistId } = useLocalSearchParams<{ checklistId: string }>();
   const [permission, requestPermission] = useCameraPermissions();
   const [facing, setFacing] = useState<CameraType>("back");
-  const { colors } = useThemeContext();
+  const { colors } = useTheme();
   const isFocused = useIsFocused();
   const insets = useSafeAreaInsets();
 
@@ -101,9 +101,22 @@ export default function TendyCamera() {
       style={{ marginTop: Platform.OS === "android" ? insets.top : undefined }}
     >
       {!permission.granted ? (
-        <View style={{ paddingTop: 200 }}>
-          <Text>We need your permission to show the camera</Text>
-          <Button onPress={requestPermission} title="grant permission" />
+        <View
+          style={{
+            justifyContent: "center",
+            height: "100%",
+            alignItems: "center",
+            gap: 10,
+          }}
+        >
+          <Text style={{ fontSize: 16, fontWeight: "500" }}>
+            We need your permission to show the camera
+          </Text>
+          <Button
+            onPress={requestPermission}
+            variant="filled"
+            title="Grant Permission"
+          />
         </View>
       ) : (
         <PinchGestureHandler onGestureEvent={event => changeZoom(event)}>
