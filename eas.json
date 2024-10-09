@@ -48,6 +48,7 @@
     "production": {
       "extends": "base",
       "channel": "production",
+      "autoIncrement": true,
       "env": {
         "EXPO_PUBLIC_TENDREL_STAGE": "beta",
         "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_live_Y2xlcmsudGVuZHJlbC5pbyQ"

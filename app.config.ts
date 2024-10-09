@@ -6,7 +6,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   slug: "checklist",
   scheme: "checklist",
   name: getAppName(),
-  version: "1.0.0",
+  version: "0.0.1",
   orientation: "portrait",
   icon: "./assets/images/icon.png",
   userInterfaceStyle: "automatic",
