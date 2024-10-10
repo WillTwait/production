@@ -63,7 +63,7 @@ export function ChecklistInlineView({ queryRef: fragRef }: Props) {
     <Swipeable ref={swipableRef} renderRightActions={renderRightActions}>
       <View
         style={{
-          padding: 4,
+          padding: 8,
           margin: 2,
           flex: 1,
           backgroundColor: colors.tendrel.background2.color,
@@ -119,7 +119,11 @@ export function ChecklistInlineView({ queryRef: fragRef }: Props) {
               style={{ flex: 1 }}
             />
             <View
-              style={{ flexDirection: "row", alignItems: "center", gap: 5 }}
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                padding: 5,
+              }}
             >
               {data.assignees.edges.length ? (
                 <Assignee queryRef={data.assignees.edges[0].node} />
