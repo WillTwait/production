@@ -7,12 +7,13 @@ import { View } from "@/components/View";
 import theme from "@/constants/theme";
 import { useTheme } from "@/hooks/useTheme";
 import { addTestIdentifiers } from "@/util/add-test-id";
-import { useSignIn } from "@clerk/clerk-expo";
+import { isClerkAPIResponseError, useSignIn } from "@clerk/clerk-expo";
 import * as Sentry from "@sentry/react";
 import Head from "expo-router/head";
 import { Eye, EyeOff, Lock, User } from "lucide-react-native";
 import React, { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { toast } from "sonner-native";
 
 export default function SignIn() {
   const { signIn, setActive, isLoaded } = useSignIn();
@@ -37,16 +38,19 @@ export default function SignIn() {
 
         if (signInAttempt.status === "complete") {
           await setActive({ session: signInAttempt.createdSessionId });
-        } else {
-          // See https://clerk.com/docs/custom-flows/error-handling
-          // for more info on error handling
-          console.error(JSON.stringify(signInAttempt, null, 2));
         }
       } catch (err) {
-        console.error(JSON.stringify(err, null, 2));
+        toast.error(parseErrorMessage(err));
       }
     });
   }, [isLoaded, identifier, password, signIn, setActive]);
+
+  function parseErrorMessage(error: unknown) {
+    if (isClerkAPIResponseError(error)) {
+      return error.errors.map(e => e.message).join(", ");
+    }
+    return JSON.stringify(error, null, 2);
+  }
 
   return (
     <>
