@@ -1,4 +1,9 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import {
+  DarkTheme,
+  DefaultTheme,
+  ThemeProvider,
+} from "@react-navigation/native";
 import React, { type ReactNode, useEffect, useMemo, useState } from "react";
 import { Appearance, type ColorSchemeName, Platform } from "react-native";
 
@@ -60,7 +65,9 @@ export default function TendyThemeProvider({ children }: Props) {
 
   return (
     <ThemeContext.Provider value={contextState}>
-      {children}
+      <ThemeProvider value={theme === "dark" ? DarkTheme : DefaultTheme}>
+        {children}
+      </ThemeProvider>
     </ThemeContext.Provider>
   );
 }
