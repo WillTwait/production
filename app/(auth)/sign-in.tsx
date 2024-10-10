@@ -1,5 +1,3 @@
-import "@/extensions/string";
-
 import TendrelIcon from "@/assets/images/Tendrel-Icon.svg";
 import Button from "@/components/Button";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
@@ -77,7 +75,7 @@ export default function SignIn() {
           </View>
           <TextInput
             keyboardType="email-address"
-            placeholder={`${t("signIn.username.t").capitalize()} ${t("signIn.or.t")} ${t(
+            placeholder={`${t("signIn.username.t")} ${t("signIn.or.t")} ${t(
               "signIn.email.t",
             )}`}
             value={identifier}
@@ -90,7 +88,7 @@ export default function SignIn() {
             }
           />
           <TextInput
-            placeholder={t("signIn.password.t").capitalize()}
+            placeholder={t("signIn.password.t")}
             value={password}
             secureTextEntry={secureEntry}
             autoCapitalize="none"

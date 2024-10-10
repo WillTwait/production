@@ -15,7 +15,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="(checklists)"
         options={{
-          title: t("tabBar.checklists.t").capitalize(),
+          title: t("tabBar.checklists.t"),
           headerShown: false,
           tabBarLabelStyle: {
             color: colors.tendrel.text2.color,
@@ -37,7 +37,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="settings"
         options={{
-          title: t("tabBar.Settings.t").capitalize(),
+          title: t("tabBar.Settings.t"),
           tabBarLabelStyle: {
             color: colors.tendrel.text2.color,
             fontSize: 12,

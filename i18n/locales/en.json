@@ -1,11 +1,11 @@
 {
   "signIn": {
     "username": {
-      "t": "username",
+      "t": "Username",
       "override": false
     },
     "password": {
-      "t": "password",
+      "t": "Password",
       "override": false
     },
     "or": {
@@ -13,103 +13,103 @@
       "override": false
     },
     "email": {
-      "t": "email",
+      "t": "Email",
       "override": false
     }
   },
   "checklist": {
     "open": {
-      "t": "open",
+      "t": "Open",
       "override": false
     },
     "completed": {
-      "t": "completed",
+      "t": "Completed",
       "override": false
     },
     "all": {
-      "t": "all",
+      "t": "All",
       "override": false
     },
     "assignedToMe": {
-      "t": "assigned to me",
+      "t": "Assigned to me",
       "override": false
     },
     "onDemand": {
-      "t": "on demand",
+      "t": "On Demand",
       "override": false
     },
     "dueToday": {
-      "t": "due today",
+      "t": "Due Today",
       "override": false
     }
   },
   "currentUser": {
     "switchCustomer": {
-      "t": "switch customer",
+      "t": "Switch Customer",
       "override": false
     },
     "switchSite": {
-      "t": "switch site",
+      "t": "Switch Site",
       "override": false
     },
     "logout": {
-      "t": "logout",
+      "t": "Logout",
       "override": false
     },
     "selectCustomer": {
-      "t": "select a customer",
+      "t": "Select a Customer",
       "override": false
     },
     "selectSite": {
-      "t": "select a site",
+      "t": "Select a Site",
       "override": false
     },
     "selectAnOrganization": {
-      "t": "select an organization",
+      "t": "Select an Organization",
       "override": false
     }
   },
   "settingsPage": {
     "darkMode": {
-      "t": "dark mode",
+      "t": "Dark mode",
       "override": false
     },
     "signOut": {
-      "t": "sign out",
+      "t": "Sign out",
       "override": false
     }
   },
   "tabBar": {
     "checklists": {
-      "t": "checklists",
+      "t": "Checklists",
       "override": false
     },
     "Settings": {
-      "t": "settings",
+      "t": "Settings",
       "override": false
     }
   },
   "screenNames": {
     "checklists": {
-      "t": "checklists",
+      "t": "Checklists",
       "override": false
     },
     "work": {
-      "t": "work",
+      "t": "Work",
       "override": false
     }
   },
   "workScreen": {
     "start": {
-      "t": "start",
+      "t": "Start",
       "override": false
     },
     "finish": {
-      "t": "finish",
+      "t": "Finish",
       "override": false
     },
     "description": {
-      "t": "description",
+      "t": "Description",
       "override": false
     },
     "notStarted": {
@@ -117,15 +117,15 @@
       "override": false
     },
     "submit": {
-      "t": "submit",
+      "t": "Submit",
       "override": false
     },
     "cancelAndDiscard": {
-      "t": "cancel and discard data",
+      "t": "Cancel and Discard Data",
       "override": false
     },
     "saveAndFinish": {
-      "t": "save and finish later",
+      "t": "Save and Finish Later",
       "override": false
     },
     "numberOfCompleted": {

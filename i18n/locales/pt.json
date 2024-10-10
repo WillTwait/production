@@ -1,11 +1,11 @@
 {
   "signIn": {
     "username": {
-      "t": "nome de usuário",
+      "t": "Nome de usuário",
       "override": false
     },
     "password": {
-      "t": "senha",
+      "t": "Senha",
       "override": false
     },
     "or": {
@@ -13,103 +13,103 @@
       "override": false
     },
     "email": {
-      "t": "e-mail",
+      "t": "E-mail",
       "override": false
     }
   },
   "checklist": {
     "open": {
-      "t": "abrir",
+      "t": "Aberto",
       "override": false
     },
     "completed": {
-      "t": "concluído",
+      "t": "Concluído",
       "override": false
     },
     "all": {
-      "t": "tudo",
+      "t": "Todos",
       "override": false
     },
     "assignedToMe": {
-      "t": "atribuído a mim",
+      "t": "Atribuído a mim",
       "override": false
     },
     "onDemand": {
-      "t": "sob demanda",
+      "t": "Sob demanda",
       "override": false
     },
     "dueToday": {
-      "t": "devido hoje",
+      "t": "Vencimento hoje",
       "override": false
     }
   },
   "currentUser": {
     "switchCustomer": {
-      "t": "mudar de cliente",
+      "t": "Cliente do Switch",
       "override": false
     },
     "switchSite": {
-      "t": "mudar de site",
+      "t": "Mudar de site",
       "override": false
     },
     "logout": {
-      "t": "sair",
+      "t": "Sair",
       "override": false
     },
     "selectCustomer": {
-      "t": "selecione um cliente",
+      "t": "Selecione um cliente",
       "override": false
     },
     "selectSite": {
-      "t": "selecione um site",
+      "t": "Selecione um site",
       "override": false
     },
     "selectAnOrganization": {
-      "t": "selecione uma organização",
+      "t": "Selecione uma organização",
       "override": false
     }
   },
   "settingsPage": {
     "darkMode": {
-      "t": "modo escuro",
+      "t": "Modo escuro",
       "override": false
     },
     "signOut": {
-      "t": "sair",
+      "t": "Sair",
       "override": false
     }
   },
   "tabBar": {
     "checklists": {
-      "t": "listas de verificação",
+      "t": "Listas de verificação",
       "override": false
     },
     "Settings": {
-      "t": "configurações",
+      "t": "Configurações",
       "override": false
     }
   },
   "screenNames": {
     "checklists": {
-      "t": "listas de verificação",
+      "t": "Listas de verificação",
       "override": false
     },
     "work": {
-      "t": "trabalhos",
+      "t": "Trabalho",
       "override": false
     }
   },
   "workScreen": {
     "start": {
-      "t": "iniciar",
+      "t": "Iniciar",
       "override": false
     },
     "finish": {
-      "t": "completar",
+      "t": "Concluir",
       "override": false
     },
     "description": {
-      "t": "descrição",
+      "t": "Descrição",
       "override": false
     },
     "notStarted": {
@@ -117,15 +117,15 @@
       "override": false
     },
     "submit": {
-      "t": "submeter",
+      "t": "Enviar",
       "override": false
     },
     "cancelAndDiscard": {
-      "t": "cancelar e descartar dados",
+      "t": "Cancelar e descartar dados",
       "override": false
     },
     "saveAndFinish": {
-      "t": "salve e termine mais tarde",
+      "t": "Salvar e finalizar mais tarde",
       "override": false
     },
     "numberOfCompleted": {

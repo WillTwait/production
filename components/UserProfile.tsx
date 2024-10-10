@@ -96,7 +96,7 @@ export function UserProfile({ actionSheetRef }: Props) {
           </View>
           <DropdownMenu.Root>
             <DropdownMenu.Trigger asChild>
-              <Button title={t("currentUser.switchCustomer.t").capitalize()} />
+              <Button title={t("currentUser.switchCustomer.t")} />
             </DropdownMenu.Trigger>
             <DropdownMenu.Content
               loop
@@ -108,7 +108,7 @@ export function UserProfile({ actionSheetRef }: Props) {
               collisionPadding={8}
             >
               <DropdownMenu.Label>
-                {t("currentUser.selectCustomer.t").capitalize()}
+                {t("currentUser.selectCustomer.t")}
               </DropdownMenu.Label>
               {organizations.map(customer => (
                 <DropdownMenu.Item
@@ -141,10 +141,7 @@ export function UserProfile({ actionSheetRef }: Props) {
         }}
       >
         <Separator />
-        <Button
-          title={t("currentUser.logout.t").capitalize()}
-          onPress={() => signOut()}
-        />
+        <Button title={t("currentUser.logout.t")} onPress={() => signOut()} />
       </View>
     </ActionSheet>
   );

@@ -13,7 +13,7 @@
       "override": false
     },
     "email": {
-      "t": "ই-মেইল",
+      "t": "ইমেইল",
       "override": false
     }
   },
@@ -39,7 +39,7 @@
       "override": false
     },
     "dueToday": {
-      "t": "আজ অবশ্যই",
+      "t": "আজ নির্ধারিত",
       "override": false
     }
   },
@@ -71,7 +71,7 @@
   },
   "settingsPage": {
     "darkMode": {
-      "t": "অন্ধকার মোড",
+      "t": "ডার্ক মোড",
       "override": false
     },
     "signOut": {
@@ -81,7 +81,7 @@
   },
   "tabBar": {
     "checklists": {
-      "t": "নজর তালিকা",
+      "t": "চেকলিস্ট",
       "override": false
     },
     "Settings": {
@@ -91,7 +91,7 @@
   },
   "screenNames": {
     "checklists": {
-      "t": "নজর তালিকা",
+      "t": "চেকলিস্ট",
       "override": false
     },
     "work": {
@@ -101,15 +101,15 @@
   },
   "workScreen": {
     "start": {
-      "t": "শুরু করা",
+      "t": "শুরু করুন",
       "override": false
     },
     "finish": {
-      "t": "শেষ করা",
+      "t": "সমাপ্তি",
       "override": false
     },
     "description": {
-      "t": "বিবরণ",
+      "t": "বর্ণনা",
       "override": false
     },
     "notStarted": {

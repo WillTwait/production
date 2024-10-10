@@ -1,11 +1,11 @@
 {
   "signIn": {
     "username": {
-      "t": "nama pengguna",
+      "t": "Nama pengguna",
       "override": false
     },
     "password": {
-      "t": "kata sandi",
+      "t": "Kata Sandi",
       "override": false
     },
     "or": {
@@ -13,103 +13,103 @@
       "override": false
     },
     "email": {
-      "t": "surel",
+      "t": "E-Mail",
       "override": false
     }
   },
   "checklist": {
     "open": {
-      "t": "terbuka",
+      "t": "Buka",
       "override": false
     },
     "completed": {
-      "t": "selesai",
+      "t": "Selesai",
       "override": false
     },
     "all": {
-      "t": "segala",
+      "t": "Semua",
       "override": false
     },
     "assignedToMe": {
-      "t": "ditugaskan untuk saya",
+      "t": "Ditugaskan untuk saya",
       "override": false
     },
     "onDemand": {
-      "t": "sesuai permintaan",
+      "t": "Sesuai Permintaan",
       "override": false
     },
     "dueToday": {
-      "t": "jatuh tempo hari ini",
+      "t": "Jangka Waktu Hari Ini",
       "override": false
     }
   },
   "currentUser": {
     "switchCustomer": {
-      "t": "beralih pelanggan",
+      "t": "Beralih Pelanggan",
       "override": false
     },
     "switchSite": {
-      "t": "beralih situs",
+      "t": "Beralih Situs",
       "override": false
     },
     "logout": {
-      "t": "keluar",
+      "t": "Logout",
       "override": false
     },
     "selectCustomer": {
-      "t": "pilih pelanggan",
+      "t": "Pilih Pelanggan",
       "override": false
     },
     "selectSite": {
-      "t": "pilih situs",
+      "t": "Pilih Situs",
       "override": false
     },
     "selectAnOrganization": {
-      "t": "pilih organisasi",
+      "t": "Pilih Organisasi",
       "override": false
     }
   },
   "settingsPage": {
     "darkMode": {
-      "t": "mode gelap",
+      "t": "Mode gelap",
       "override": false
     },
     "signOut": {
-      "t": "keluar",
+      "t": "Keluar",
       "override": false
     }
   },
   "tabBar": {
     "checklists": {
-      "t": "daftar periksa",
+      "t": "Daftar periksa",
       "override": false
     },
     "Settings": {
-      "t": "pengaturan",
+      "t": "Pengaturan",
       "override": false
     }
   },
   "screenNames": {
     "checklists": {
-      "t": "daftar periksa",
+      "t": "Daftar periksa",
       "override": false
     },
     "work": {
-      "t": "pekerjaan",
+      "t": "Bekerja",
       "override": false
     }
   },
   "workScreen": {
     "start": {
-      "t": "mulai",
+      "t": "Mulai",
       "override": false
     },
     "finish": {
-      "t": "selesai",
+      "t": "Selesai",
       "override": false
     },
     "description": {
-      "t": "deskripsi",
+      "t": "Deskripsi",
       "override": false
     },
     "notStarted": {
@@ -117,15 +117,15 @@
       "override": false
     },
     "submit": {
-      "t": "mengajukan",
+      "t": "Kirimkan",
       "override": false
     },
     "cancelAndDiscard": {
-      "t": "membatalkan dan membuang data",
+      "t": "Batalkan dan Buang Data",
       "override": false
     },
     "saveAndFinish": {
-      "t": "simpan dan selesaikan nanti",
+      "t": "Simpan dan Selesaikan Nanti",
       "override": false
     },
     "numberOfCompleted": {

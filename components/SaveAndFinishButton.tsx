@@ -7,7 +7,7 @@ export function SaveAndFinishButton() {
   const { t } = useTranslation();
   return (
     <Button
-      title={t("workScreen.saveAndFinish.t").capitalize()}
+      title={t("workScreen.saveAndFinish.t")}
       variant="filled"
       color={colors.tendrel.button1.gray}
       textColor={colorTheme === "dark" ? colors.tendrel.text2.color : undefined}

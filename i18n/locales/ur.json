@@ -13,7 +13,7 @@
       "override": false
     },
     "email": {
-      "t": "ای میل کریں",
+      "t": "ای میل",
       "override": false
     }
   },
@@ -23,11 +23,11 @@
       "override": false
     },
     "completed": {
-      "t": "مکمل کردہ",
+      "t": "مکمل",
       "override": false
     },
     "all": {
-      "t": "سبھی",
+      "t": "سب",
       "override": false
     },
     "assignedToMe": {
@@ -35,7 +35,7 @@
       "override": false
     },
     "onDemand": {
-      "t": "مانگ پر",
+      "t": "طلب پر",
       "override": false
     },
     "dueToday": {
@@ -81,17 +81,17 @@
   },
   "tabBar": {
     "checklists": {
-      "t": "چیک لسٹ",
+      "t": "چیک لسٹس",
       "override": false
     },
     "Settings": {
-      "t": "سیٹنگز",
+      "t": "ترتیبات",
       "override": false
     }
   },
   "screenNames": {
     "checklists": {
-      "t": "چیک لسٹ",
+      "t": "چیک لسٹس",
       "override": false
     },
     "work": {
@@ -101,15 +101,15 @@
   },
   "workScreen": {
     "start": {
-      "t": "شروعات",
+      "t": "شروع کریں",
       "override": false
     },
     "finish": {
-      "t": "اختتام",
+      "t": "ختم",
       "override": false
     },
     "description": {
-      "t": "وضاحت",
+      "t": "تفصیل",
       "override": false
     },
     "notStarted": {
@@ -117,7 +117,7 @@
       "override": false
     },
     "submit": {
-      "t": "جمع کرائیں",
+      "t": "جمع کروائیں",
       "override": false
     },
     "cancelAndDiscard": {
@@ -125,7 +125,7 @@
       "override": false
     },
     "saveAndFinish": {
-      "t": "محفوظ کریں اور بعد میں ختم کریں",
+      "t": "بعد میں محفوظ کریں اور ختم کریں",
       "override": false
     },
     "numberOfCompleted": {

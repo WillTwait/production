@@ -7,7 +7,7 @@ export function CancelAndDiscardButton() {
   const { t } = useTranslation();
   return (
     <Button
-      title={t("workScreen.cancelAndDiscard.t").capitalize()}
+      title={t("workScreen.cancelAndDiscard.t")}
       variant="filled"
       color={colors.tendrel.button1.gray}
       textColor={colorTheme === "dark" ? colors.tendrel.text2.color : undefined}

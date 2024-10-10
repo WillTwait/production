@@ -1,11 +1,11 @@
 {
   "signIn": {
     "username": {
-      "t": "Kullanıcı adı",
+      "t": "Kullanıcı Adı",
       "override": false
     },
     "password": {
-      "t": "şifre",
+      "t": "Şifre",
       "override": false
     },
     "or": {
@@ -19,59 +19,59 @@
   },
   "checklist": {
     "open": {
-      "t": "açık",
+      "t": "Açık",
       "override": false
     },
     "completed": {
-      "t": "tamamlandı",
+      "t": "Tamamlandı",
       "override": false
     },
     "all": {
-      "t": "bütün",
+      "t": "Hepsi",
       "override": false
     },
     "assignedToMe": {
-      "t": "bana atandı",
+      "t": "Bana atandı",
       "override": false
     },
     "onDemand": {
-      "t": "talep üzerine",
+      "t": "Talep Üzerine",
       "override": false
     },
     "dueToday": {
-      "t": "bugün vadesi",
+      "t": "Bugün Ödenmesi Gerekiyor",
       "override": false
     }
   },
   "currentUser": {
     "switchCustomer": {
-      "t": "müşteri değiştir",
+      "t": "Müşteri Değiştir",
       "override": false
     },
     "switchSite": {
-      "t": "site değiştir",
+      "t": "Siteyi Değiştir",
       "override": false
     },
     "logout": {
-      "t": "oturumu kapat",
+      "t": "Oturumu Kapat",
       "override": false
     },
     "selectCustomer": {
-      "t": "bir müşteri seçin",
+      "t": "Bir Müşteri Seçin",
       "override": false
     },
     "selectSite": {
-      "t": "bir site seçin",
+      "t": "Bir Site Seçin",
       "override": false
     },
     "selectAnOrganization": {
-      "t": "bir kuruluş seçin",
+      "t": "Bir Kuruluş Seçin",
       "override": false
     }
   },
   "settingsPage": {
     "darkMode": {
-      "t": "karanlık mod",
+      "t": "Karanlık mod",
       "override": false
     },
     "signOut": {
@@ -81,35 +81,35 @@
   },
   "tabBar": {
     "checklists": {
-      "t": "kontrol listeleri",
+      "t": "Kontrol listeleri",
       "override": false
     },
     "Settings": {
-      "t": "ayarları",
+      "t": "Ayarlar",
       "override": false
     }
   },
   "screenNames": {
     "checklists": {
-      "t": "kontrol listeleri",
+      "t": "Kontrol listeleri",
       "override": false
     },
     "work": {
-      "t": "çalışma",
+      "t": "Çalışmak",
       "override": false
     }
   },
   "workScreen": {
     "start": {
-      "t": "başlangıç",
+      "t": "Başlat",
       "override": false
     },
     "finish": {
-      "t": "bitirmek",
+      "t": "Bitirmek",
       "override": false
     },
     "description": {
-      "t": "açıklama",
+      "t": "Açıklama",
       "override": false
     },
     "notStarted": {
@@ -117,15 +117,15 @@
       "override": false
     },
     "submit": {
-      "t": "gönder",
+      "t": "Gönder",
       "override": false
     },
     "cancelAndDiscard": {
-      "t": "verileri iptal et ve at",
+      "t": "Verileri İptal Et ve Atma",
       "override": false
     },
     "saveAndFinish": {
-      "t": "kaydet ve daha sonra bitirin",
+      "t": "Kaydet ve Daha Sonra Bitir",
       "override": false
     },
     "numberOfCompleted": {

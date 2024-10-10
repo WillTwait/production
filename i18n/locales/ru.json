@@ -1,11 +1,11 @@
 {
   "signIn": {
     "username": {
-      "t": "имя пользователя",
+      "t": "Имя пользователя",
       "override": false
     },
     "password": {
-      "t": "пароль",
+      "t": "Пароль",
       "override": false
     },
     "or": {
@@ -13,103 +13,103 @@
       "override": false
     },
     "email": {
-      "t": "письмо",
+      "t": "Электронная почта",
       "override": false
     }
   },
   "checklist": {
     "open": {
-      "t": "открытый",
+      "t": "Открыть",
       "override": false
     },
     "completed": {
-      "t": "завершил",
+      "t": "Завершено",
       "override": false
     },
     "all": {
-      "t": "все",
+      "t": "Все",
       "override": false
     },
     "assignedToMe": {
-      "t": "возложенный на меня",
+      "t": "Назначено мне",
       "override": false
     },
     "onDemand": {
-      "t": "по запросу",
+      "t": "По запросу",
       "override": false
     },
     "dueToday": {
-      "t": "срок истекает сегодня",
+      "t": "Срок истекает сегодня",
       "override": false
     }
   },
   "currentUser": {
     "switchCustomer": {
-      "t": "сменить клиента",
+      "t": "Клиент Switch",
       "override": false
     },
     "switchSite": {
-      "t": "переключить сайт",
+      "t": "Переключить сайт",
       "override": false
     },
     "logout": {
-      "t": "выйти из системы",
+      "t": "Выйти из системы",
       "override": false
     },
     "selectCustomer": {
-      "t": "выберите клиента",
+      "t": "Выберите клиента",
       "override": false
     },
     "selectSite": {
-      "t": "выберите сайт",
+      "t": "Выберите сайт",
       "override": false
     },
     "selectAnOrganization": {
-      "t": "выберите организацию",
+      "t": "Выберите организацию",
       "override": false
     }
   },
   "settingsPage": {
     "darkMode": {
-      "t": "темный режим",
+      "t": "Темный режим",
       "override": false
     },
     "signOut": {
-      "t": "выйти",
+      "t": "Выйти",
       "override": false
     }
   },
   "tabBar": {
     "checklists": {
-      "t": "контрольные списки",
+      "t": "Контрольные списки",
       "override": false
     },
     "Settings": {
-      "t": "настройки",
+      "t": "Настройки",
       "override": false
     }
   },
   "screenNames": {
     "checklists": {
-      "t": "контрольные списки",
+      "t": "Контрольные списки",
       "override": false
     },
     "work": {
-      "t": "работы",
+      "t": "Работа",
       "override": false
     }
   },
   "workScreen": {
     "start": {
-      "t": "начните",
+      "t": "Начните",
       "override": false
     },
     "finish": {
-      "t": "закончить",
+      "t": "Закончить",
       "override": false
     },
     "description": {
-      "t": "описание",
+      "t": "Описание",
       "override": false
     },
     "notStarted": {
@@ -117,15 +117,15 @@
       "override": false
     },
     "submit": {
-      "t": "отправить",
+      "t": "Отправить",
       "override": false
     },
     "cancelAndDiscard": {
-      "t": "отменить и удалить данные",
+      "t": "Отмена и удаление данных",
       "override": false
     },
     "saveAndFinish": {
-      "t": "сохранить и закончить позже",
+      "t": "Сохранить и закончить позже",
       "override": false
     },
     "numberOfCompleted": {

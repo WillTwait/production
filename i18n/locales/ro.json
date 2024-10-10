@@ -1,11 +1,11 @@
 {
   "signIn": {
     "username": {
-      "t": "nume de utilizator",
+      "t": "Nume utilizator",
       "override": false
     },
     "password": {
-      "t": "parolă",
+      "t": "Parola",
       "override": false
     },
     "or": {
@@ -13,103 +13,103 @@
       "override": false
     },
     "email": {
-      "t": "emailul",
+      "t": "E-mailul",
       "override": false
     }
   },
   "checklist": {
     "open": {
-      "t": "deschisă",
+      "t": "Deschis",
       "override": false
     },
     "completed": {
-      "t": "finalizată",
+      "t": "Finalizat",
       "override": false
     },
     "all": {
-      "t": "toate",
+      "t": "Toate",
       "override": false
     },
     "assignedToMe": {
-      "t": "atribuit mie",
+      "t": "Atribuit mie",
       "override": false
     },
     "onDemand": {
-      "t": "la cerere",
+      "t": "La cerere",
       "override": false
     },
     "dueToday": {
-      "t": "scadente astăzi",
+      "t": "Sarcina astazi",
       "override": false
     }
   },
   "currentUser": {
     "switchCustomer": {
-      "t": "comutați clientul",
+      "t": "Schimbați clientul",
       "override": false
     },
     "switchSite": {
-      "t": "comutați site-ul",
+      "t": "Schimbați site-ul",
       "override": false
     },
     "logout": {
-      "t": "deconectare",
+      "t": "Deconectare",
       "override": false
     },
     "selectCustomer": {
-      "t": "selectează un client",
+      "t": "Selectați un client",
       "override": false
     },
     "selectSite": {
-      "t": "selectează un site",
+      "t": "Selectați un site",
       "override": false
     },
     "selectAnOrganization": {
-      "t": "selectați o organizație",
+      "t": "Selectați o organizație",
       "override": false
     }
   },
   "settingsPage": {
     "darkMode": {
-      "t": "modul întunecat",
+      "t": "Mod întunecat",
       "override": false
     },
     "signOut": {
-      "t": "deconectează-te",
+      "t": "Deconectați-vă",
       "override": false
     }
   },
   "tabBar": {
     "checklists": {
-      "t": "liste de verificare",
+      "t": "Listele de verificare",
       "override": false
     },
     "Settings": {
-      "t": "setări",
+      "t": "Setări",
       "override": false
     }
   },
   "screenNames": {
     "checklists": {
-      "t": "liste de verificare",
+      "t": "Listele de verificare",
       "override": false
     },
     "work": {
-      "t": "serviciu",
+      "t": "Munca",
       "override": false
     }
   },
   "workScreen": {
     "start": {
-      "t": "start",
+      "t": "Începe",
       "override": false
     },
     "finish": {
-      "t": "termina",
+      "t": "Finisează",
       "override": false
     },
     "description": {
-      "t": "descriere",
+      "t": "Descriere",
       "override": false
     },
     "notStarted": {
@@ -117,15 +117,15 @@
       "override": false
     },
     "submit": {
-      "t": "trimite",
+      "t": "Trimiteți",
       "override": false
     },
     "cancelAndDiscard": {
-      "t": "anulați și eliminați datele",
+      "t": "Anularea și eliminarea datelor",
       "override": false
     },
     "saveAndFinish": {
-      "t": "salvați și terminați mai târziu",
+      "t": "Salvați și terminați mai târziu",
       "override": false
     },
     "numberOfCompleted": {

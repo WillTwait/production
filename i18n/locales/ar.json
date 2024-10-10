@@ -19,11 +19,11 @@
   },
   "checklist": {
     "open": {
-      "t": "مفتوح",
+      "t": "افتح",
       "override": false
     },
     "completed": {
-      "t": "تم إنجازه",
+      "t": "أُنجزت",
       "override": false
     },
     "all": {
@@ -31,11 +31,11 @@
       "override": false
     },
     "assignedToMe": {
-      "t": "المخصصة لي",
+      "t": "تم تعيينه لي",
       "override": false
     },
     "onDemand": {
-      "t": "عند الطلب",
+      "t": "حسب الطلب",
       "override": false
     },
     "dueToday": {
@@ -45,7 +45,7 @@
   },
   "currentUser": {
     "switchCustomer": {
-      "t": "عميل المحول",
+      "t": "تحويل العميل",
       "override": false
     },
     "switchSite": {
@@ -57,7 +57,7 @@
       "override": false
     },
     "selectCustomer": {
-      "t": "حدد عميل",
+      "t": "حدد العميل",
       "override": false
     },
     "selectSite": {
@@ -71,7 +71,7 @@
   },
   "settingsPage": {
     "darkMode": {
-      "t": "الوضع المظلم",
+      "t": "وضع الظلام",
       "override": false
     },
     "signOut": {
@@ -81,31 +81,31 @@
   },
   "tabBar": {
     "checklists": {
-      "t": "قوائم مرجعية",
+      "t": "قوائم المراجعة",
       "override": false
     },
     "Settings": {
-      "t": "الإعدادات",
+      "t": "إعدادات",
       "override": false
     }
   },
   "screenNames": {
     "checklists": {
-      "t": "قوائم مرجعية",
+      "t": "قوائم المراجعة",
       "override": false
     },
     "work": {
-      "t": "عمل",
+      "t": "العمل",
       "override": false
     }
   },
   "workScreen": {
     "start": {
-      "t": "بدأ",
+      "t": "ابدأ",
       "override": false
     },
     "finish": {
-      "t": "ينهي",
+      "t": "إنهاء",
       "override": false
     },
     "description": {
@@ -117,7 +117,7 @@
       "override": false
     },
     "submit": {
-      "t": "خضع",
+      "t": "أرسل",
       "override": false
     },
     "cancelAndDiscard": {

@@ -38,7 +38,7 @@ export function StartButton(props: Props) {
 
   return (
     <Button
-      title={t("workScreen.start.t").capitalize()}
+      title={t("workScreen.start.t")}
       variant="filled"
       onPress={() =>
         commit({

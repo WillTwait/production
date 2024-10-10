@@ -145,10 +145,10 @@ export function ActiveConnectionView({ parent, queryRef, ...props }: Props) {
   }));
 
   const filters = [
-    t("checklist.all.t").capitalize(),
-    t("checklist.assignedToMe.t").capitalize(),
-    t("checklist.dueToday.t").capitalize(),
-    t("checklist.onDemand.t").capitalize(),
+    t("checklist.all.t"),
+    t("checklist.assignedToMe.t"),
+    t("checklist.dueToday.t"),
+    t("checklist.onDemand.t"),
   ];
 
   useEffect(() => {
@@ -172,10 +172,7 @@ export function ActiveConnectionView({ parent, queryRef, ...props }: Props) {
           ListHeaderComponent={
             <>
               <SegmentedControl
-                values={[
-                  t("checklist.open.t").capitalize(),
-                  t("checklist.completed.t").capitalize(),
-                ]}
+                values={[t("checklist.open.t"), t("checklist.completed.t")]}
                 selectedIndex={currentTab}
                 onChange={event => {
                   const tab = event.nativeEvent.selectedSegmentIndex;

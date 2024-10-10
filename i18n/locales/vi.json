@@ -1,11 +1,11 @@
 {
   "signIn": {
     "username": {
-      "t": "tên người dùng",
+      "t": "Tên người dùng",
       "override": false
     },
     "password": {
-      "t": "mật khẩu",
+      "t": "Mật khẩu",
       "override": false
     },
     "or": {
@@ -13,103 +13,103 @@
       "override": false
     },
     "email": {
-      "t": "e-mail",
+      "t": "Thư điện tử",
       "override": false
     }
   },
   "checklist": {
     "open": {
-      "t": "mở",
+      "t": "Mở",
       "override": false
     },
     "completed": {
-      "t": "hoàn thành",
+      "t": "Đã hoàn thành",
       "override": false
     },
     "all": {
-      "t": "tất cả",
+      "t": "Tất cả",
       "override": false
     },
     "assignedToMe": {
-      "t": "được giao cho tôi",
+      "t": "Được giao cho tôi",
       "override": false
     },
     "onDemand": {
-      "t": "theo yêu cầu",
+      "t": "Theo yêu cầu",
       "override": false
     },
     "dueToday": {
-      "t": "đến hạn hôm nay",
+      "t": "Đến hạn hôm nay",
       "override": false
     }
   },
   "currentUser": {
     "switchCustomer": {
-      "t": "chuyển đổi khách hàng",
+      "t": "Chuyển đổi khách hàng",
       "override": false
     },
     "switchSite": {
-      "t": "chuyển đổi trang web",
+      "t": "Chuyển đổi trang web",
       "override": false
     },
     "logout": {
-      "t": "đăng xuất",
+      "t": "Đăng xuất",
       "override": false
     },
     "selectCustomer": {
-      "t": "chọn khách hàng",
+      "t": "Chọn một khách hàng",
       "override": false
     },
     "selectSite": {
-      "t": "chọn một trang web",
+      "t": "Chọn một trang web",
       "override": false
     },
     "selectAnOrganization": {
-      "t": "chọn một tổ chức",
+      "t": "Chọn một tổ chức",
       "override": false
     }
   },
   "settingsPage": {
     "darkMode": {
-      "t": "chế độ tối",
+      "t": "Chế độ tối",
       "override": false
     },
     "signOut": {
-      "t": "đăng xuất",
+      "t": "Đăng xuất",
       "override": false
     }
   },
   "tabBar": {
     "checklists": {
-      "t": "danh sách kiểm tra",
+      "t": "Danh sách kiểm tra",
       "override": false
     },
     "Settings": {
-      "t": "cài đặt",
+      "t": "Cài đặt",
       "override": false
     }
   },
   "screenNames": {
     "checklists": {
-      "t": "danh sách kiểm tra",
+      "t": "Danh sách kiểm tra",
       "override": false
     },
     "work": {
-      "t": "công việc",
+      "t": "Công việc",
       "override": false
     }
   },
   "workScreen": {
     "start": {
-      "t": "khởi đầu",
+      "t": "Bắt đầu",
       "override": false
     },
     "finish": {
-      "t": "hoàn thành",
+      "t": "Kết thúc",
       "override": false
     },
     "description": {
-      "t": "sự miêu tả",
+      "t": "Mô tả",
       "override": false
     },
     "notStarted": {
@@ -117,15 +117,15 @@
       "override": false
     },
     "submit": {
-      "t": "Gửi đi",
+      "t": "Nộp",
       "override": false
     },
     "cancelAndDiscard": {
-      "t": "hủy và loại bỏ dữ liệu",
+      "t": "Hủy và loại bỏ dữ liệu",
       "override": false
     },
     "saveAndFinish": {
-      "t": "lưu và hoàn thành sau",
+      "t": "Lưu và hoàn thành sau",
       "override": false
     },
     "numberOfCompleted": {

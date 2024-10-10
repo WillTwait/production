@@ -1,11 +1,11 @@
 {
   "signIn": {
     "username": {
-      "t": "nombre de usuario",
+      "t": "Nombre de usuario",
       "override": false
     },
     "password": {
-      "t": "contraseña",
+      "t": "Contraseña",
       "override": false
     },
     "or": {
@@ -13,103 +13,103 @@
       "override": false
     },
     "email": {
-      "t": "correo electrónico",
+      "t": "Correo electrónico",
       "override": false
     }
   },
   "checklist": {
     "open": {
-      "t": "abierto",
+      "t": "Abrir",
       "override": false
     },
     "completed": {
-      "t": "completado",
+      "t": "Completado",
       "override": false
     },
     "all": {
-      "t": "todo",
+      "t": "Todas",
       "override": false
     },
     "assignedToMe": {
-      "t": "asignado a mí",
+      "t": "Asignado a mí",
       "override": false
     },
     "onDemand": {
-      "t": "bajo demanda",
+      "t": "Bajo demanda",
       "override": false
     },
     "dueToday": {
-      "t": "vence hoy",
+      "t": "Vence hoy",
       "override": false
     }
   },
   "currentUser": {
     "switchCustomer": {
-      "t": "cambiar de cliente",
+      "t": "Cambiar cliente",
       "override": false
     },
     "switchSite": {
-      "t": "cambiar de sitio",
+      "t": "Cambiar sitio",
       "override": false
     },
     "logout": {
-      "t": "cerrar sesión",
+      "t": "Cerrar sesión",
       "override": false
     },
     "selectCustomer": {
-      "t": "seleccionar un cliente",
+      "t": "Seleccione un cliente",
       "override": false
     },
     "selectSite": {
-      "t": "seleccionar un sitio",
+      "t": "Seleccione un sitio",
       "override": false
     },
     "selectAnOrganization": {
-      "t": "selecciona una organización",
+      "t": "Seleccione una organización",
       "override": false
     }
   },
   "settingsPage": {
     "darkMode": {
-      "t": "modo oscuro",
+      "t": "Modo oscuro",
       "override": false
     },
     "signOut": {
-      "t": "cerrar sesión",
+      "t": "Cerrar sesión",
       "override": false
     }
   },
   "tabBar": {
     "checklists": {
-      "t": "listas de verificación",
+      "t": "Listas de verificación",
       "override": false
     },
     "Settings": {
-      "t": "ajustes",
+      "t": "Ajustes",
       "override": false
     }
   },
   "screenNames": {
     "checklists": {
-      "t": "listas de verificación",
+      "t": "Listas de verificación",
       "override": false
     },
     "work": {
-      "t": "trabajo",
+      "t": "Trabajo",
       "override": false
     }
   },
   "workScreen": {
     "start": {
-      "t": "comienzo",
+      "t": "Comenzar",
       "override": false
     },
     "finish": {
-      "t": "terminar",
+      "t": "Finalizar",
       "override": false
     },
     "description": {
-      "t": "descripción",
+      "t": "Descripción",
       "override": false
     },
     "notStarted": {
@@ -117,15 +117,15 @@
       "override": false
     },
     "submit": {
-      "t": "enviar",
+      "t": "Enviar",
       "override": false
     },
     "cancelAndDiscard": {
-      "t": "cancelar y descartar datos",
+      "t": "Cancelar y descartar datos",
       "override": false
     },
     "saveAndFinish": {
-      "t": "guardar y terminar más tarde",
+      "t": "Guardar y terminar más tarde",
       "override": false
     },
     "numberOfCompleted": {

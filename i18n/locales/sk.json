@@ -1,11 +1,11 @@
 {
   "signIn": {
     "username": {
-      "t": "užívateľské meno",
+      "t": "Užívateľské meno",
       "override": false
     },
     "password": {
-      "t": "heslo",
+      "t": "Heslo",
       "override": false
     },
     "or": {
@@ -13,47 +13,47 @@
       "override": false
     },
     "email": {
-      "t": "e-mail",
+      "t": "E-mailom",
       "override": false
     }
   },
   "checklist": {
     "open": {
-      "t": "otvoriť",
+      "t": "Otvorené",
       "override": false
     },
     "completed": {
-      "t": "dokončený",
+      "t": "Dokončené",
       "override": false
     },
     "all": {
-      "t": "všetko",
+      "t": "Všetko",
       "override": false
     },
     "assignedToMe": {
-      "t": "pridelené mi",
+      "t": "Priradené mi",
       "override": false
     },
     "onDemand": {
-      "t": "na požiadanie",
+      "t": "Na požiadanie",
       "override": false
     },
     "dueToday": {
-      "t": "splatný dnes",
+      "t": "Splatné dnes",
       "override": false
     }
   },
   "currentUser": {
     "switchCustomer": {
-      "t": "prepnúť zákazníka",
+      "t": "Prepnúť zákazníka",
       "override": false
     },
     "switchSite": {
-      "t": "prepínanie stránky",
+      "t": "Prepnúť stránku",
       "override": false
     },
     "logout": {
-      "t": "odhlásiť sa",
+      "t": "Odhlásiť",
       "override": false
     },
     "selectCustomer": {
@@ -61,7 +61,7 @@
       "override": false
     },
     "selectSite": {
-      "t": "vyberte lokalitu",
+      "t": "Vyberte lokalitu",
       "override": false
     },
     "selectAnOrganization": {
@@ -71,45 +71,45 @@
   },
   "settingsPage": {
     "darkMode": {
-      "t": "tmavý režim",
+      "t": "Tmavý režim",
       "override": false
     },
     "signOut": {
-      "t": "odhlásiť sa",
+      "t": "Odhlásiť sa",
       "override": false
     }
   },
   "tabBar": {
     "checklists": {
-      "t": "kontrolné zoznamy",
+      "t": "Kontrolné zoznamy",
       "override": false
     },
     "Settings": {
-      "t": "nastavenia",
+      "t": "Nastavenia",
       "override": false
     }
   },
   "screenNames": {
     "checklists": {
-      "t": "kontrolné zoznamy",
+      "t": "Kontrolné zoznamy",
       "override": false
     },
     "work": {
-      "t": "pracovať",
+      "t": "Práca",
       "override": false
     }
   },
   "workScreen": {
     "start": {
-      "t": "začiatok",
+      "t": "Štart",
       "override": false
     },
     "finish": {
-      "t": "skončiť",
+      "t": "Dokončiť",
       "override": false
     },
     "description": {
-      "t": "popis",
+      "t": "Popis",
       "override": false
     },
     "notStarted": {
@@ -117,15 +117,15 @@
       "override": false
     },
     "submit": {
-      "t": "predložiť",
+      "t": "Predložiť",
       "override": false
     },
     "cancelAndDiscard": {
-      "t": "zrušiť a vyhodiť údaje",
+      "t": "Zrušiť a zrušiť údaje",
       "override": false
     },
     "saveAndFinish": {
-      "t": "uložte a dokončite neskôr",
+      "t": "Uložiť a dokončiť neskôr",
       "override": false
     },
     "numberOfCompleted": {

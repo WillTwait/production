@@ -45,7 +45,7 @@ export default function Layout() {
             textColor: colors.tendrel.text2.color,
             headerIconColor: colors.tendrel.text2.color,
           },
-          headerTitle: t("screenNames.checklists.t").capitalize(),
+          headerTitle: t("screenNames.checklists.t"),
         }}
       />
       <Stack.Screen

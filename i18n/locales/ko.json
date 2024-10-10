@@ -1,11 +1,11 @@
 {
   "signIn": {
     "username": {
-      "t": "사용자 이름",
+      "t": "아이디",
       "override": false
     },
     "password": {
-      "t": "암호",
+      "t": "패스워드",
       "override": false
     },
     "or": {
@@ -19,15 +19,15 @@
   },
   "checklist": {
     "open": {
-      "t": "열다",
+      "t": "열기",
       "override": false
     },
     "completed": {
-      "t": "완료",
+      "t": "완료됨",
       "override": false
     },
     "all": {
-      "t": "모든",
+      "t": "모두",
       "override": false
     },
     "assignedToMe": {
@@ -101,15 +101,15 @@
   },
   "workScreen": {
     "start": {
-      "t": "를 시작합니다",
+      "t": "스타트",
       "override": false
     },
     "finish": {
-      "t": "끝",
+      "t": "마감",
       "override": false
     },
     "description": {
-      "t": "기술",
+      "t": "설명",
       "override": false
     },
     "notStarted": {
@@ -117,7 +117,7 @@
       "override": false
     },
     "submit": {
-      "t": "제출합니다",
+      "t": "제출",
       "override": false
     },
     "cancelAndDiscard": {
@@ -125,7 +125,7 @@
       "override": false
     },
     "saveAndFinish": {
-      "t": "저장하고 나중에 끝내기",
+      "t": "저장 후 나중에 완료",
       "override": false
     },
     "numberOfCompleted": {

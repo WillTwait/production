@@ -1,11 +1,11 @@
 {
   "signIn": {
     "username": {
-      "t": "uporabniško ime",
+      "t": "Uporabniško ime",
       "override": false
     },
     "password": {
-      "t": "geslo",
+      "t": "Geslo",
       "override": false
     },
     "or": {
@@ -13,103 +13,103 @@
       "override": false
     },
     "email": {
-      "t": "E-naslov",
+      "t": "E-pošta",
       "override": false
     }
   },
   "checklist": {
     "open": {
-      "t": "odprto",
+      "t": "Odpri",
       "override": false
     },
     "completed": {
-      "t": "dokončana",
+      "t": "Dokončano",
       "override": false
     },
     "all": {
-      "t": "vsi",
+      "t": "Vse",
       "override": false
     },
     "assignedToMe": {
-      "t": "dodeljeno meni",
+      "t": "Dodeljeno mi",
       "override": false
     },
     "onDemand": {
-      "t": "na zahtevo",
+      "t": "Na zahtevo",
       "override": false
     },
     "dueToday": {
-      "t": "rokoč danes",
+      "t": "Prispevek danes",
       "override": false
     }
   },
   "currentUser": {
     "switchCustomer": {
-      "t": "zamenjajte stranko",
+      "t": "Preklopi stranko",
       "override": false
     },
     "switchSite": {
-      "t": "spletno mesto preklopa",
+      "t": "Preklopite spletno mesto",
       "override": false
     },
     "logout": {
-      "t": "odjava",
+      "t": "Odjava",
       "override": false
     },
     "selectCustomer": {
-      "t": "izberite stranko",
+      "t": "Izberite stranko",
       "override": false
     },
     "selectSite": {
-      "t": "izberite spletno mesto",
+      "t": "Izberite spletno mesto",
       "override": false
     },
     "selectAnOrganization": {
-      "t": "izberite organizacijo",
+      "t": "Izberite organizacijo",
       "override": false
     }
   },
   "settingsPage": {
     "darkMode": {
-      "t": "temni način",
+      "t": "Temni način",
       "override": false
     },
     "signOut": {
-      "t": "odjavite se",
+      "t": "Odjava",
       "override": false
     }
   },
   "tabBar": {
     "checklists": {
-      "t": "kontrolni seznami",
+      "t": "Kontrolni seznami",
       "override": false
     },
     "Settings": {
-      "t": "nastavitve",
+      "t": "Nastavitve",
       "override": false
     }
   },
   "screenNames": {
     "checklists": {
-      "t": "kontrolni seznami",
+      "t": "Kontrolni seznami",
       "override": false
     },
     "work": {
-      "t": "delo",
+      "t": "Delo",
       "override": false
     }
   },
   "workScreen": {
     "start": {
-      "t": "start",
+      "t": "Začni",
       "override": false
     },
     "finish": {
-      "t": "konča",
+      "t": "Dokončaj",
       "override": false
     },
     "description": {
-      "t": "opis",
+      "t": "Opis",
       "override": false
     },
     "notStarted": {
@@ -117,15 +117,15 @@
       "override": false
     },
     "submit": {
-      "t": "oddati",
+      "t": "Pošlji",
       "override": false
     },
     "cancelAndDiscard": {
-      "t": "preklicati in zavreči podatke",
+      "t": "Prekliči in zavrzi podatke",
       "override": false
     },
     "saveAndFinish": {
-      "t": "shranite in zaključite pozneje",
+      "t": "Shrani in zaključi pozneje",
       "override": false
     },
     "numberOfCompleted": {

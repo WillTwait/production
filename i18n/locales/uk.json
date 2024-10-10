@@ -1,11 +1,11 @@
 {
   "signIn": {
     "username": {
-      "t": "ім'я користувача",
+      "t": "Ім'я користувача",
       "override": false
     },
     "password": {
-      "t": "пароль",
+      "t": "Пароль",
       "override": false
     },
     "or": {
@@ -13,95 +13,95 @@
       "override": false
     },
     "email": {
-      "t": "електронна пошта",
+      "t": "Електронна пошта",
       "override": false
     }
   },
   "checklist": {
     "open": {
-      "t": "відкритий",
+      "t": "Відкрити",
       "override": false
     },
     "completed": {
-      "t": "завершено",
+      "t": "Завершено",
       "override": false
     },
     "all": {
-      "t": "усі",
+      "t": "Усе",
       "override": false
     },
     "assignedToMe": {
-      "t": "призначений мені",
+      "t": "Призначений мені",
       "override": false
     },
     "onDemand": {
-      "t": "на вимогу",
+      "t": "На вимогу",
       "override": false
     },
     "dueToday": {
-      "t": "до сьогоднішнього дня",
+      "t": "Очікується сьогодні",
       "override": false
     }
   },
   "currentUser": {
     "switchCustomer": {
-      "t": "переключити клієнта",
+      "t": "Переключити клієнта",
       "override": false
     },
     "switchSite": {
-      "t": "переключити сайт",
+      "t": "Переключити сайт",
       "override": false
     },
     "logout": {
-      "t": "вийти",
+      "t": "Вийти з системи",
       "override": false
     },
     "selectCustomer": {
-      "t": "оберіть замовника",
+      "t": "Виберіть Клієнта",
       "override": false
     },
     "selectSite": {
-      "t": "оберіть сайт",
+      "t": "Виберіть сайт",
       "override": false
     },
     "selectAnOrganization": {
-      "t": "оберіть організацію",
+      "t": "Виберіть організацію",
       "override": false
     }
   },
   "settingsPage": {
     "darkMode": {
-      "t": "темний режим",
+      "t": "Темний режим",
       "override": false
     },
     "signOut": {
-      "t": "вийти",
+      "t": "Вийти",
       "override": false
     }
   },
   "tabBar": {
     "checklists": {
-      "t": "контрольні списки",
+      "t": "Контрольні списки",
       "override": false
     },
     "Settings": {
-      "t": "налаштувань",
+      "t": "Налаштування",
       "override": false
     }
   },
   "screenNames": {
     "checklists": {
-      "t": "контрольні списки",
+      "t": "Контрольні списки",
       "override": false
     },
     "work": {
-      "t": "робота",
+      "t": "Робота",
       "override": false
     }
   },
   "workScreen": {
     "start": {
-      "t": "старт",
+      "t": "Початок",
       "override": false
     },
     "finish": {
@@ -109,7 +109,7 @@
       "override": false
     },
     "description": {
-      "t": "опис",
+      "t": "Опис",
       "override": false
     },
     "notStarted": {
@@ -117,15 +117,15 @@
       "override": false
     },
     "submit": {
-      "t": "подати",
+      "t": "Надіслати",
       "override": false
     },
     "cancelAndDiscard": {
-      "t": "скасувати і відкинути дані",
+      "t": "Скасування та відхилення даних",
       "override": false
     },
     "saveAndFinish": {
-      "t": "зберегти і закінчити пізніше",
+      "t": "Зберегти та завершити пізніше",
       "override": false
     },
     "numberOfCompleted": {

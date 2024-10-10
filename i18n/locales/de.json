@@ -13,33 +13,33 @@
       "override": false
     },
     "email": {
-      "t": "E-Mail senden",
+      "t": "E-Mail",
       "override": false
     }
   },
   "checklist": {
     "open": {
-      "t": "offen",
+      "t": "Offen",
       "override": false
     },
     "completed": {
-      "t": "abgeschlossen",
+      "t": "Abgeschlossen",
       "override": false
     },
     "all": {
-      "t": "alles",
+      "t": "Alle",
       "override": false
     },
     "assignedToMe": {
-      "t": "mir zugewiesen",
+      "t": "Mir zugewiesen",
       "override": false
     },
     "onDemand": {
-      "t": "auf Anfrage",
+      "t": "Auf Abruf",
       "override": false
     },
     "dueToday": {
-      "t": "heute fällig",
+      "t": "Heute fällig",
       "override": false
     }
   },
@@ -53,29 +53,29 @@
       "override": false
     },
     "logout": {
-      "t": "abmelden",
+      "t": "Abmelden",
       "override": false
     },
     "selectCustomer": {
-      "t": "wählen Sie einen Kunden",
+      "t": "Wählen Sie einen Kunden",
       "override": false
     },
     "selectSite": {
-      "t": "wählen Sie eine Seite",
+      "t": "Wählen Sie eine Site",
       "override": false
     },
     "selectAnOrganization": {
-      "t": "wählen Sie eine Organisation",
+      "t": "Wählen Sie eine Organisation",
       "override": false
     }
   },
   "settingsPage": {
     "darkMode": {
-      "t": "dunkler Modus",
+      "t": "Dunkler Modus",
       "override": false
     },
     "signOut": {
-      "t": "abmelden",
+      "t": "Abmelden",
       "override": false
     }
   },
@@ -101,11 +101,11 @@
   },
   "workScreen": {
     "start": {
-      "t": "Start",
+      "t": "Starten",
       "override": false
     },
     "finish": {
-      "t": "Ende",
+      "t": "Fertig",
       "override": false
     },
     "description": {
@@ -117,7 +117,7 @@
       "override": false
     },
     "submit": {
-      "t": "einreichen",
+      "t": "Einreichen",
       "override": false
     },
     "cancelAndDiscard": {
@@ -125,7 +125,7 @@
       "override": false
     },
     "saveAndFinish": {
-      "t": "speichern und später beenden",
+      "t": "Speichern und später fertig stellen",
       "override": false
     },
     "numberOfCompleted": {

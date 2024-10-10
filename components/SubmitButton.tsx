@@ -35,7 +35,7 @@ export function SubmitButton(props: Props) {
 
   return (
     <Button
-      title={t("workScreen.submit.t").capitalize()}
+      title={t("workScreen.submit.t")}
       variant="filled"
       color={colors.tendrel.button1.color}
       textColor={colorTheme === "dark" ? colors.tendrel.text2.color : undefined}

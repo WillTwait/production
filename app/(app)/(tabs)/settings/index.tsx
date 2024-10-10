@@ -64,7 +64,7 @@ export default function Settings() {
                   flex: 1,
                 }}
               >
-                {t("settingsPage.darkMode.t").capitalize()}
+                {t("settingsPage.darkMode.t")}
               </Text>
               <Switch
                 value={colorTheme === "dark"}
@@ -99,7 +99,7 @@ export default function Settings() {
                   flex: 1,
                 }}
               >
-                {t("settingsPage.signOut.t").capitalize()}
+                {t("settingsPage.signOut.t")}
               </Text>
               <ChevronRight color={colors.tendrel.text1.color} />
             </View>

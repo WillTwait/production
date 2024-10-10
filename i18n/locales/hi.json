@@ -1,7 +1,7 @@
 {
   "signIn": {
     "username": {
-      "t": "उपयोगकर्ता नाम",
+      "t": "उपयोगकर्ता का नाम",
       "override": false
     },
     "password": {
@@ -19,11 +19,11 @@
   },
   "checklist": {
     "open": {
-      "t": "खोलो",
+      "t": "खोलें",
       "override": false
     },
     "completed": {
-      "t": "पूरा कर लिया है",
+      "t": "पूरा हुआ",
       "override": false
     },
     "all": {
@@ -35,11 +35,11 @@
       "override": false
     },
     "onDemand": {
-      "t": "मांग पर",
+      "t": "ऑन डिमांड",
       "override": false
     },
     "dueToday": {
-      "t": "आज होने वाला है",
+      "t": "ड्यू टुडे",
       "override": false
     }
   },
@@ -61,11 +61,11 @@
       "override": false
     },
     "selectSite": {
-      "t": "एक साइट का चयन करें",
+      "t": "एक साइट चुनें",
       "override": false
     },
     "selectAnOrganization": {
-      "t": "संगठन का चयन करें",
+      "t": "संगठन चुनें",
       "override": false
     }
   },
@@ -81,7 +81,7 @@
   },
   "tabBar": {
     "checklists": {
-      "t": "जाँच सूची",
+      "t": "जांच सूचियां",
       "override": false
     },
     "Settings": {
@@ -91,7 +91,7 @@
   },
   "screenNames": {
     "checklists": {
-      "t": "जाँच सूची",
+      "t": "जांच सूचियां",
       "override": false
     },
     "work": {
@@ -101,11 +101,11 @@
   },
   "workScreen": {
     "start": {
-      "t": "शुरू",
+      "t": "शुरू करें",
       "override": false
     },
     "finish": {
-      "t": "समाप्त",
+      "t": "फ़िनिश",
       "override": false
     },
     "description": {

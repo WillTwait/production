@@ -1,11 +1,11 @@
 {
   "signIn": {
     "username": {
-      "t": "gebruikersnaam",
+      "t": "Gebruikersnaam",
       "override": false
     },
     "password": {
-      "t": "wachtwoord",
+      "t": "Wachtwoord",
       "override": false
     },
     "or": {
@@ -13,103 +13,103 @@
       "override": false
     },
     "email": {
-      "t": "e-mail",
+      "t": "Email",
       "override": false
     }
   },
   "checklist": {
     "open": {
-      "t": "open",
+      "t": "Open",
       "override": false
     },
     "completed": {
-      "t": "voltooid",
+      "t": "Voltooid",
       "override": false
     },
     "all": {
-      "t": "allemaal",
+      "t": "Alles",
       "override": false
     },
     "assignedToMe": {
-      "t": "aan mij toegewezen",
+      "t": "Aan mij toegewezen",
       "override": false
     },
     "onDemand": {
-      "t": "op aanvraag",
+      "t": "Op aanvraag",
       "override": false
     },
     "dueToday": {
-      "t": "vandaag verwacht",
+      "t": "Vandaag verwacht",
       "override": false
     }
   },
   "currentUser": {
     "switchCustomer": {
-      "t": "van klant wisselen",
+      "t": "Van klant wisselen",
       "override": false
     },
     "switchSite": {
-      "t": "van site wisselen",
+      "t": "Van site wisselen",
       "override": false
     },
     "logout": {
-      "t": "uitloggen",
+      "t": "Uitloggen",
       "override": false
     },
     "selectCustomer": {
-      "t": "selecteer een klant",
+      "t": "Selecteer een klant",
       "override": false
     },
     "selectSite": {
-      "t": "selecteer een site",
+      "t": "Selecteer een site",
       "override": false
     },
     "selectAnOrganization": {
-      "t": "selecteer een organisatie",
+      "t": "Selecteer een organisatie",
       "override": false
     }
   },
   "settingsPage": {
     "darkMode": {
-      "t": "donkere modus",
+      "t": "Donkere modus",
       "override": false
     },
     "signOut": {
-      "t": "uitloggen",
+      "t": "Uitloggen",
       "override": false
     }
   },
   "tabBar": {
     "checklists": {
-      "t": "controlelijsten",
+      "t": "Checklists",
       "override": false
     },
     "Settings": {
-      "t": "instellingen",
+      "t": "Instellingen",
       "override": false
     }
   },
   "screenNames": {
     "checklists": {
-      "t": "controlelijsten",
+      "t": "Checklists",
       "override": false
     },
     "work": {
-      "t": "werken",
+      "t": "Werk",
       "override": false
     }
   },
   "workScreen": {
     "start": {
-      "t": "begin",
+      "t": "Begin",
       "override": false
     },
     "finish": {
-      "t": "afmaken",
+      "t": "Afmaken",
       "override": false
     },
     "description": {
-      "t": "omschrijving",
+      "t": "Omschrijving",
       "override": false
     },
     "notStarted": {
@@ -117,15 +117,15 @@
       "override": false
     },
     "submit": {
-      "t": "indienen",
+      "t": "Verzenden",
       "override": false
     },
     "cancelAndDiscard": {
-      "t": "gegevens annuleren en verwijderen",
+      "t": "Gegevens annuleren en verwijderen",
       "override": false
     },
     "saveAndFinish": {
-      "t": "opslaan en later voltooien",
+      "t": "Opslaan en later voltooien",
       "override": false
     },
     "numberOfCompleted": {

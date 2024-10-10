@@ -176,7 +176,7 @@ export default function Page() {
                   <View style={{ flexDirection: "row", gap: 10, padding: 5 }}>
                     <ChecklistProgressBar queryRef={node} />
                     <Button
-                      title={t("workScreen.finish.t").capitalize()}
+                      title={t("workScreen.finish.t")}
                       onPress={() => actionSheetRef.current?.show()}
                       variant="filled"
                       color={colors.tendrel.button1.color}

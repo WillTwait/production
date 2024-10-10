@@ -5,7 +5,7 @@
       "override": false
     },
     "password": {
-      "t": "パスワード",
+      "t": "[パスワード]",
       "override": false
     },
     "or": {
@@ -13,21 +13,21 @@
       "override": false
     },
     "email": {
-      "t": "Eメール",
+      "t": "電子メール",
       "override": false
     }
   },
   "checklist": {
     "open": {
-      "t": "開いています",
+      "t": "[開く]",
       "override": false
     },
     "completed": {
-      "t": "完成した",
+      "t": "完了しました",
       "override": false
     },
     "all": {
-      "t": "すべて",
+      "t": "[すべて]",
       "override": false
     },
     "assignedToMe": {
@@ -45,7 +45,7 @@
   },
   "currentUser": {
     "switchCustomer": {
-      "t": "顧客を切り替える",
+      "t": "お客様を切り替える",
       "override": false
     },
     "switchSite": {
@@ -65,7 +65,7 @@
       "override": false
     },
     "selectAnOrganization": {
-      "t": "組織を選択する",
+      "t": "組織を選択してください",
       "override": false
     }
   },
@@ -75,7 +75,7 @@
       "override": false
     },
     "signOut": {
-      "t": "サインアウト",
+      "t": "[サインアウト]",
       "override": false
     }
   },
@@ -85,7 +85,7 @@
       "override": false
     },
     "Settings": {
-      "t": "設定",
+      "t": "[設定]",
       "override": false
     }
   },
@@ -101,15 +101,15 @@
   },
   "workScreen": {
     "start": {
-      "t": "開始",
+      "t": "[開始]",
       "override": false
     },
     "finish": {
-      "t": "仕上げる",
+      "t": "フィニッシュ",
       "override": false
     },
     "description": {
-      "t": "説明",
+      "t": "[説明]",
       "override": false
     },
     "notStarted": {
@@ -117,11 +117,11 @@
       "override": false
     },
     "submit": {
-      "t": "送信します",
+      "t": "送信",
       "override": false
     },
     "cancelAndDiscard": {
-      "t": "データをキャンセルして破棄する",
+      "t": "データをキャンセルして破棄",
       "override": false
     },
     "saveAndFinish": {

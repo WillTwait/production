@@ -1,11 +1,11 @@
 {
   "signIn": {
     "username": {
-      "t": "όνομα χρήστη",
+      "t": "Όνομα χρήστη",
       "override": false
     },
     "password": {
-      "t": "κωδικός πρόσβασης",
+      "t": "Κωδικό",
       "override": false
     },
     "or": {
@@ -13,103 +13,103 @@
       "override": false
     },
     "email": {
-      "t": "Ηλεκτρονικό ταχυδρομείο",
+      "t": "ΗΛΕΚΤΡΟΝΙΚΗ ΔΙΕΥΘΥΝΣΗ",
       "override": false
     }
   },
   "checklist": {
     "open": {
-      "t": "ανοιχτός",
+      "t": "Ανοιχτό",
       "override": false
     },
     "completed": {
-      "t": "ολοκληρώθηκε",
+      "t": "Ολοκληρώθηκε",
       "override": false
     },
     "all": {
-      "t": "όλα",
+      "t": "Ολα",
       "override": false
     },
     "assignedToMe": {
-      "t": "ανατέθηκε σε μένα",
+      "t": "Ανατέθηκε σε μένα",
       "override": false
     },
     "onDemand": {
-      "t": "κατόπιν ζήτησης",
+      "t": "Κατόπιν Απαίτησης",
       "override": false
     },
     "dueToday": {
-      "t": "οφειλόμενο σήμερα",
+      "t": "Ολοκληρώνεται σήμερα",
       "override": false
     }
   },
   "currentUser": {
     "switchCustomer": {
-      "t": "αλλαγή πελάτη",
+      "t": "Αλλαγή πελάτη",
       "override": false
     },
     "switchSite": {
-      "t": "αλλαγή τοποθεσίας",
+      "t": "Αλλαγή τοποθεσίας",
       "override": false
     },
     "logout": {
-      "t": "αποσύνδεση",
+      "t": "Αποσύνδεση",
       "override": false
     },
     "selectCustomer": {
-      "t": "επιλέξτε έναν πελάτη",
+      "t": "Επιλογή Πελάτη",
       "override": false
     },
     "selectSite": {
-      "t": "επιλέξτε έναν ιστότοπο",
+      "t": "Επιλέξτε έναν Ιστότοπο",
       "override": false
     },
     "selectAnOrganization": {
-      "t": "επιλέξτε έναν οργανισμό",
+      "t": "Επιλέξτε έναν Οργανισμό",
       "override": false
     }
   },
   "settingsPage": {
     "darkMode": {
-      "t": "σκοτεινή λειτουργία",
+      "t": "Σκοτεινή λειτουργία",
       "override": false
     },
     "signOut": {
-      "t": "αποσυνδεθείτε",
+      "t": "Αποσύνδεση",
       "override": false
     }
   },
   "tabBar": {
     "checklists": {
-      "t": "λίστες ελέγχου",
+      "t": "Λίστες ελέγχου",
       "override": false
     },
     "Settings": {
-      "t": "ρυθμίσεων",
+      "t": "Ρυθμίσεις",
       "override": false
     }
   },
   "screenNames": {
     "checklists": {
-      "t": "λίστες ελέγχου",
+      "t": "Λίστες ελέγχου",
       "override": false
     },
     "work": {
-      "t": "εργασία",
+      "t": "Εργασία",
       "override": false
     }
   },
   "workScreen": {
     "start": {
-      "t": "έναρξη",
+      "t": "Έναρξη",
       "override": false
     },
     "finish": {
-      "t": "φινίρισμα",
+      "t": "Τελειώστε",
       "override": false
     },
     "description": {
-      "t": "περιγραφή",
+      "t": "ΠΕΡΙΓΡΑΦΗ",
       "override": false
     },
     "notStarted": {
@@ -117,15 +117,15 @@
       "override": false
     },
     "submit": {
-      "t": "υποβάλλω",
+      "t": "Υποβολή",
       "override": false
     },
     "cancelAndDiscard": {
-      "t": "ακύρωση και απόρριψη δεδομένων",
+      "t": "Ακύρωση και απόρριψη δεδομένων",
       "override": false
     },
     "saveAndFinish": {
-      "t": "αποθηκεύστε και ολοκληρώστε αργότερα",
+      "t": "Αποθήκευση και ολοκλήρωση αργότερα",
       "override": false
     },
     "numberOfCompleted": {
