@@ -3,15 +3,11 @@ import "react-native-reanimated";
 
 import MainRoutes from "@/components/MainRoutes";
 import TendyThemeProvider from "@/components/TendyThemeProvider";
-import { Text } from "@/components/Text";
-import { View } from "@/components/View";
 import { DatabaseProvider } from "@/db/provider";
-import { RelayProvider } from "@/relay/provider";
-import { TendrelProvider } from "@/tendrel/provider";
 import { ClerkLoaded, ClerkProvider } from "@clerk/clerk-expo";
 import * as Sentry from "@sentry/react-native";
 import { useFonts } from "expo-font";
-import { Slot, useNavigationContainerRef } from "expo-router";
+import { useNavigationContainerRef } from "expo-router";
 import * as SecureStore from "expo-secure-store";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
@@ -30,7 +26,7 @@ Sentry.init({
   tracePropagationTargets: ["localhost", "*.tendrel.io"],
   enableCaptureFailedRequests: true,
   debug: false,
-  tracesSampleRate: 1.0,
+  tracesSampleRate: 0.2,
   integrations: [
     Sentry.reactNativeTracingIntegration({ routingInstrumentation }),
   ],

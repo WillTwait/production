@@ -130,6 +130,11 @@
   "peerDependencies": {
     "typescript": "^5"
   },
+  "expo": {
+    "install": {
+      "exclude": ["@sentry/react-native", "typescript"]
+    }
+  },
   "trustedDependencies": [
     "@biomejs/biome",
     "@clerk/shared",
