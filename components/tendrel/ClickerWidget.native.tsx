@@ -73,12 +73,16 @@ export function ClickerWidget(props: Props) {
     <View
       style={{
         flexDirection: "row",
+        alignItems: "center",
         justifyContent: "center",
       }}
     >
       <TouchableOpacity
-        disabled={props.readOnly}
-        style={{ justifyContent: "center" }}
+        disabled={props.readOnly || (data.number ?? 0) <= 0}
+        style={{
+          justifyContent: "center",
+          padding: 15,
+        }}
         onPress={() => {
           setValue(value ?? 0 - 1);
         }}
@@ -104,7 +108,7 @@ export function ClickerWidget(props: Props) {
         />
       </View>
       <TouchableOpacity
-        style={{ justifyContent: "center" }}
+        style={{ justifyContent: "center", padding: 15 }}
         disabled={props.readOnly}
         onPress={() => {
           setValue(value ?? 0 + 1);
