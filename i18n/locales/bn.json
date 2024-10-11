@@ -116,6 +116,10 @@
       "t": "শুরু হয়নি",
       "override": false
     },
+    "preview": {
+      "t": "পূর্বরূপ",
+      "override": false
+    },
     "submit": {
       "t": "জমা দিন",
       "override": false

@@ -40,6 +40,7 @@ export const corpus: NestedTranslation = {
     finish: "Finish",
     description: "Description",
     notStarted: "not started",
+    preview: "Preview",
     submit: "Submit",
     cancelAndDiscard: "Cancel and Discard Data",
     saveAndFinish: "Save and Finish Later",

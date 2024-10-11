@@ -187,7 +187,6 @@ export default function Page() {
                   <View style={{ flexDirection: "row" }}>
                     <BlurView
                       style={{
-                        position: "absolute",
                         bottom: 0,
                         width: "100%", // Button width, relative to screen width
                         paddingHorizontal: 20,

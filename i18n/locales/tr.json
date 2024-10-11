@@ -116,6 +116,10 @@
       "t": "Başlamadı",
       "override": false
     },
+    "preview": {
+      "t": "Önizleme",
+      "override": false
+    },
     "submit": {
       "t": "Gönder",
       "override": false

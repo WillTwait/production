@@ -116,6 +116,10 @@
       "t": "chưa bắt đầu",
       "override": false
     },
+    "preview": {
+      "t": "Xem trước",
+      "override": false
+    },
     "submit": {
       "t": "Nộp",
       "override": false

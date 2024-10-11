@@ -1,6 +1,7 @@
 import { useTheme } from "@/hooks/useTheme";
 import {
   type ButtonProps,
+  type DimensionValue,
   Button as ReactNativeButton,
   Text,
   TouchableOpacity,
@@ -8,6 +9,8 @@ import {
 
 export type TendyButtonProps = ButtonProps & {
   title?: string;
+  height?: DimensionValue;
+  width?: DimensionValue;
   children?: React.ReactNode;
   textColor?: string;
   icon?: React.ReactNode;
@@ -18,6 +21,8 @@ export type TendyButtonProps = ButtonProps & {
 
 export function Button({
   variant = "default",
+  height,
+  width,
   children,
   textColor,
   icon,
@@ -33,6 +38,8 @@ export function Button({
     return (
       <TouchableOpacity
         style={{
+          height,
+          width,
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "center",

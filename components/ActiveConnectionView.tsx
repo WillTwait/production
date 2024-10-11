@@ -110,7 +110,7 @@ export function ActiveConnectionView({ parent, queryRef, ...props }: Props) {
   const progress = useSharedValue(0);
   const [currentTab, setCurrentTab] = useState(0);
   const [isPending, startTransition] = useTransition();
-  const { colors, inverseColors, colorTheme } = useTheme();
+  const { colors, colorTheme } = useTheme();
   const { t } = useTranslation();
 
   const { setValue } = useDebounce<string | null>(
@@ -152,7 +152,7 @@ export function ActiveConnectionView({ parent, queryRef, ...props }: Props) {
     ],
   }));
 
-  const filters = [
+  const _filters = [
     t("checklist.all.t"),
     t("checklist.assignedToMe.t"),
     t("checklist.dueToday.t"),
@@ -181,6 +181,7 @@ export function ActiveConnectionView({ parent, queryRef, ...props }: Props) {
             <>
               <SegmentedControl
                 values={[t("checklist.open.t"), t("checklist.completed.t")]}
+                style={{ marginHorizontal: 10, marginBottom: 5 }}
                 selectedIndex={currentTab}
                 onChange={event => {
                   const tab = event.nativeEvent.selectedSegmentIndex;
@@ -188,7 +189,7 @@ export function ActiveConnectionView({ parent, queryRef, ...props }: Props) {
                   setWithStatus([tab === 0 ? "open" : "closed"]);
                 }}
               />
-              <View
+              {/* <View
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
@@ -240,7 +241,7 @@ export function ActiveConnectionView({ parent, queryRef, ...props }: Props) {
                   )}
                   keyExtractor={item => item}
                 />
-              </View>
+              </View> */}
             </>
           }
           ref={flatListRef}

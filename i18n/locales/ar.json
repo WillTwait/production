@@ -116,6 +116,10 @@
       "t": "لم تبدأ",
       "override": false
     },
+    "preview": {
+      "t": "استطلاع",
+      "override": false
+    },
     "submit": {
       "t": "أرسل",
       "override": false

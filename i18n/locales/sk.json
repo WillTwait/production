@@ -116,6 +116,10 @@
       "t": "nezačal",
       "override": false
     },
+    "preview": {
+      "t": "Náhľad",
+      "override": false
+    },
     "submit": {
       "t": "Predložiť",
       "override": false

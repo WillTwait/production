@@ -116,6 +116,10 @@
       "t": "शुरू नहीं हुआ",
       "override": false
     },
+    "preview": {
+      "t": "पूर्वावलोकन",
+      "override": false
+    },
     "submit": {
       "t": "सबमिट करें",
       "override": false

@@ -116,6 +116,10 @@
       "t": "δεν ξεκίνησε",
       "override": false
     },
+    "preview": {
+      "t": "Προεπισκόπηση",
+      "override": false
+    },
     "submit": {
       "t": "Υποβολή",
       "override": false

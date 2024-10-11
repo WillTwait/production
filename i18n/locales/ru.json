@@ -116,6 +116,10 @@
       "t": "не запущен",
       "override": false
     },
+    "preview": {
+      "t": "Предварительный просмотр",
+      "override": false
+    },
     "submit": {
       "t": "Отправить",
       "override": false

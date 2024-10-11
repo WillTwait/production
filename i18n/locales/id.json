@@ -116,6 +116,10 @@
       "t": "tidak dimulai",
       "override": false
     },
+    "preview": {
+      "t": "Pratinjau",
+      "override": false
+    },
     "submit": {
       "t": "Kirimkan",
       "override": false

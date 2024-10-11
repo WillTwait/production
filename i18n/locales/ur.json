@@ -116,6 +116,10 @@
       "t": "شروع نہیں ہوا",
       "override": false
     },
+    "preview": {
+      "t": "پیش نظارہ",
+      "override": false
+    },
     "submit": {
       "t": "جمع کروائیں",
       "override": false

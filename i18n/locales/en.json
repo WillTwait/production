@@ -116,6 +116,10 @@
       "t": "not started",
       "override": false
     },
+    "preview": {
+      "t": "Preview",
+      "override": false
+    },
     "submit": {
       "t": "Submit",
       "override": false

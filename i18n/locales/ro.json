@@ -116,6 +116,10 @@
       "t": "nu a început",
       "override": false
     },
+    "preview": {
+      "t": "previzualizare",
+      "override": false
+    },
     "submit": {
       "t": "Trimiteți",
       "override": false

@@ -116,6 +116,10 @@
       "t": "未起動",
       "override": false
     },
+    "preview": {
+      "t": "プレビュー",
+      "override": false
+    },
     "submit": {
       "t": "送信",
       "override": false

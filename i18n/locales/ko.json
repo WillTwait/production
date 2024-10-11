@@ -116,6 +116,10 @@
       "t": "시작되지 않음",
       "override": false
     },
+    "preview": {
+      "t": "시사",
+      "override": false
+    },
     "submit": {
       "t": "제출",
       "override": false

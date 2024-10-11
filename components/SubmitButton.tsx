@@ -1,6 +1,7 @@
 import type { SubmitButtonMutation } from "@/__generated__/SubmitButtonMutation.graphql";
 import { useTheme } from "@/hooks/useTheme";
 import ConnectionHandler from "@/relay/ConnectionHandler";
+import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { graphql, useMutation } from "react-relay";
 import Button from "./Button";
@@ -10,6 +11,7 @@ interface Props {
 }
 
 export function SubmitButton(props: Props) {
+  const router = useRouter();
   const { colors, colorTheme } = useTheme();
   const { t } = useTranslation();
 
@@ -84,6 +86,12 @@ export function SubmitButton(props: Props) {
             ConnectionHandler.deleteNode(cxFrom, props.node);
             const totalCount = cxFrom.getValue("totalCount") as number;
             cxFrom.setValue(totalCount - 1, "totalCount");
+          },
+          onCompleted: () => {
+            router.navigate("/");
+          },
+          onError: () => {
+            // TODO: pop up toast?
           },
         });
       }}

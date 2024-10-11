@@ -116,6 +116,10 @@
       "t": "还没开始",
       "override": false
     },
+    "preview": {
+      "t": "预览",
+      "override": false
+    },
     "submit": {
       "t": "提交",
       "override": false

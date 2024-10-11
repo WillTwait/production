@@ -116,6 +116,10 @@
       "t": "niet gestart",
       "override": false
     },
+    "preview": {
+      "t": "voorsmaak",
+      "override": false
+    },
     "submit": {
       "t": "Verzenden",
       "override": false

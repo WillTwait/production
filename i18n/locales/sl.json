@@ -116,6 +116,10 @@
       "t": "ni začelo",
       "override": false
     },
+    "preview": {
+      "t": "Predogled",
+      "override": false
+    },
     "submit": {
       "t": "Pošlji",
       "override": false

@@ -116,6 +116,10 @@
       "t": "не розпочато",
       "override": false
     },
+    "preview": {
+      "t": "Попередній перегляд",
+      "override": false
+    },
     "submit": {
       "t": "Надіслати",
       "override": false

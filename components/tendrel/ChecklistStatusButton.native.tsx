@@ -40,7 +40,7 @@ export function ChecklistStatusButton({ queryRef }: Props) {
         <Button
           disabled
           variant="filled"
-          title={t("workScreen.notStarted.t")}
+          title={t("workScreen.preview.t")}
           textColor={colors.tendrel.text2.color}
           color={colors.tendrel.interactive3.color}
         />

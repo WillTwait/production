@@ -39,6 +39,7 @@ export function StartButton(props: Props) {
   return (
     <Button
       title={t("workScreen.start.t")}
+      height={45}
       variant="filled"
       onPress={() =>
         commit({
