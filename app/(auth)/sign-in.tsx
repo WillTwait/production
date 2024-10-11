@@ -9,6 +9,7 @@ import { useTheme } from "@/hooks/useTheme";
 import { addTestIdentifiers } from "@/util/add-test-id";
 import { isClerkAPIResponseError, useSignIn } from "@clerk/clerk-expo";
 import * as Sentry from "@sentry/react";
+import { router } from "expo-router";
 import Head from "expo-router/head";
 import { Eye, EyeOff, Lock, User } from "lucide-react-native";
 import React, { useCallback, useState } from "react";
@@ -38,6 +39,7 @@ export default function SignIn() {
 
         if (signInAttempt.status === "complete") {
           await setActive({ session: signInAttempt.createdSessionId });
+          router.replace("/");
         }
       } catch (err) {
         toast.error(parseErrorMessage(err));

@@ -5,6 +5,7 @@ import type {
 import type { ActiveConnectionView_fragment$key } from "@/__generated__/ActiveConnectionView_fragment.graphql";
 import { Text } from "@/components/Text";
 import { View } from "@/components/View";
+import { useDebounce } from "@/hooks/useDebounce";
 import { useTheme } from "@/hooks/useTheme";
 import { addTestIdentifiers } from "@/util/add-test-id";
 import SegmentedControl from "@react-native-segmented-control/segmented-control";
@@ -112,6 +113,13 @@ export function ActiveConnectionView({ parent, queryRef, ...props }: Props) {
   const { colors, inverseColors, colorTheme } = useTheme();
   const { t } = useTranslation();
 
+  const { setValue } = useDebounce<string | null>(
+    value => {
+      setWithName(value);
+    },
+    { debounceMs: 300, initialValue: null },
+  );
+
   // biome-ignore lint/correctness/useExhaustiveDependencies:
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -119,10 +127,10 @@ export function ActiveConnectionView({ parent, queryRef, ...props }: Props) {
         onChangeText: (
           event: NativeSyntheticEvent<TextInputChangeEventData>,
         ) => {
-          const value = event.nativeEvent.text.length
+          const text = event.nativeEvent.text.length
             ? event.nativeEvent.text
             : null;
-          setWithName(value);
+          setValue(text);
         },
         textColor: colors.tendrel.text2.color,
         tintColor: colors.tendrel.text1.color, // I have no idea why these styles wont apply when done from the parent -murphy

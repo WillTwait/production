@@ -48,6 +48,8 @@ export const ChecklistResultInlineView$fragment = graphql`
       }
       ... on SentimentWidget {
         __typename
+        ...SentimentWidget_reader_fragment
+        ...SentimentWidget_writer_fragment
       }
       ... on StringWidget {
         __typename

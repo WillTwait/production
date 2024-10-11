@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useDebounce } from "@/hooks/useDebounce";
+import { useCallback, useState } from "react";
 import {
   commitLocalUpdate,
   useFragment,
@@ -30,7 +31,6 @@ type Props =
 export function NumberWidget(props: Props) {
   const data = useFragment(ReaderFragment, props.readerFragmentRef);
   const environment = useRelayEnvironment();
-  const [value, setValue] = useState(data.number?.toString() ?? "");
 
   if (props.readOnly) {
     return (
@@ -47,6 +47,47 @@ export function NumberWidget(props: Props) {
     );
   }
 
+  const { onCommit, writerFragmentRef } = props;
+  const onChange = useCallback(
+    (text: string) => {
+      let commit = null;
+      if (text.length === 0) {
+        // n/v
+        setValue("");
+        commit = NV;
+      } else if (text.length === 1) {
+        // we allow anything as the first character, which allows for
+        // negation and decimals, but we don't commit it just yet
+        setValue(text);
+      } else if (!Number.isNaN(Number(text))) {
+        // retain whatever the user has typed so far, which allows for
+        // extending decimals.
+        setValue(text);
+        // we commit the numeric part
+        commit = Number(text);
+      }
+
+      if (commit) {
+        commitLocalUpdate(environment, store => {
+          const { updatableData } = store.readUpdatableFragment(
+            WriterFragment,
+            writerFragmentRef,
+          );
+          if (updatableData.number !== commit) {
+            updatableData.number = commit === NV ? null : commit;
+          }
+        });
+        onCommit(commit === NV ? null : commit);
+      }
+    },
+    [writerFragmentRef, onCommit, environment],
+  );
+
+  const { value, setValue } = useDebounce(onChange, {
+    debounceMs: 200,
+    initialValue: data.number?.toString() ?? "",
+  });
+
   return (
     <View
       style={{
@@ -59,38 +100,7 @@ export function NumberWidget(props: Props) {
           keyboardType="number-pad"
           textAlign="center"
           value={value}
-          onChangeText={text => {
-            // FIXME: when switch to micro mutations, we should debounce this callback.
-            let commit = null;
-            if (text.length === 0) {
-              // n/v
-              setValue("");
-              commit = NV;
-            } else if (text.length === 1) {
-              // we allow anything as the first character, which allows for
-              // negation and decimals, but we don't commit it just yet
-              setValue(text);
-            } else if (!Number.isNaN(Number(text))) {
-              // retain whatever the user has typed so far, which allows for
-              // extending decimals.
-              setValue(text);
-              // we commit the numeric part
-              commit = Number(text);
-            }
-
-            if (commit) {
-              commitLocalUpdate(environment, store => {
-                const { updatableData } = store.readUpdatableFragment(
-                  WriterFragment,
-                  props.writerFragmentRef,
-                );
-                if (updatableData.number !== commit) {
-                  updatableData.number = commit === NV ? null : commit;
-                }
-              });
-              props.onCommit(commit === NV ? null : commit);
-            }
-          }}
+          onChangeText={onChange}
         />
       </View>
     </View>

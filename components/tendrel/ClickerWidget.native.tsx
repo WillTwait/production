@@ -1,5 +1,7 @@
+import { useDebounce } from "@/hooks/useDebounce";
 import { useTheme } from "@/hooks/useTheme";
 import { MinusIcon, PlusIcon } from "lucide-react-native";
+import { useCallback } from "react";
 import { TouchableOpacity } from "react-native";
 import {
   commitLocalUpdate,
@@ -47,6 +49,26 @@ export function ClickerWidget(props: Props) {
     );
   }
 
+  const onChange = useCallback(
+    (value: number | null) => {
+      commitLocalUpdate(environment, store => {
+        const { updatableData } = store.readUpdatableFragment(
+          WriterFragment,
+          props.writerFragmentRef,
+        );
+
+        updatableData.number = value;
+      });
+      props.onCommit(Number.isNaN(value) ? null : value);
+    },
+    [props.writerFragmentRef, props.onCommit, environment],
+  );
+
+  const { value, setValue } = useDebounce(onChange, {
+    debounceMs: 200,
+    initialValue: data.number ?? null,
+  });
+
   return (
     <View
       style={{
@@ -58,13 +80,7 @@ export function ClickerWidget(props: Props) {
         disabled={props.readOnly}
         style={{ justifyContent: "center" }}
         onPress={() => {
-          commitLocalUpdate(environment, store => {
-            const { updatableData } = store.readUpdatableFragment(
-              WriterFragment,
-              props.writerFragmentRef,
-            );
-            updatableData.number = (updatableData.number ?? 0) - 1;
-          });
+          setValue(value ?? 0 - 1);
         }}
       >
         <MinusIcon color={colors.tendrel.text1.color} />
@@ -73,19 +89,17 @@ export function ClickerWidget(props: Props) {
         <TextInput
           keyboardType="numeric"
           textAlign="center"
-          value={data.number?.toString() ?? ""}
+          value={value?.toString() ?? ""}
           onChangeText={text => {
-            const value = Number(text);
-            commitLocalUpdate(environment, store => {
-              const { updatableData } = store.readUpdatableFragment(
-                WriterFragment,
-                props.writerFragmentRef,
-              );
+            if (text.length === 0) {
+              setValue(null);
+              return;
+            }
 
-              updatableData.number =
-                text.length && Number.isNaN(value) ? null : value;
-            });
-            props.onCommit(Number.isNaN(value) ? null : value);
+            const value = Number(text);
+            if (text.length && Number.isNaN(value) ? null : value) {
+              setValue(value);
+            }
           }}
         />
       </View>
@@ -93,13 +107,7 @@ export function ClickerWidget(props: Props) {
         style={{ justifyContent: "center" }}
         disabled={props.readOnly}
         onPress={() => {
-          commitLocalUpdate(environment, store => {
-            const { updatableData } = store.readUpdatableFragment(
-              WriterFragment,
-              props.writerFragmentRef,
-            );
-            updatableData.number = (updatableData.number ?? 0) + 1;
-          });
+          setValue(value ?? 0 + 1);
         }}
       >
         <PlusIcon color={colors.tendrel.text1.color} />

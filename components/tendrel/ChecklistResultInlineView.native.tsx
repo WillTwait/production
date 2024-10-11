@@ -13,6 +13,7 @@ import { ClickerWidget } from "./ClickerWidget.native";
 import { DisplayName } from "./DisplayName.native";
 import { MultilineStringWidget } from "./MultilineStringWidget.native";
 import { NumberWidget } from "./NumberWidget.native";
+import { SentimentWidget } from "./SentimentWidget.native";
 import { StringWidget } from "./StringWidget.native";
 
 interface Props {
@@ -193,7 +194,31 @@ export function ChecklistResultInlineView({ queryRef, ...props }: Props) {
             }}
           />
         ))
-        .with({ __typename: "SentimentWidget" }, _node => null)
+        .with({ __typename: "SentimentWidget" }, node => (
+          <SentimentWidget
+            readOnly={props.readOnly}
+            readerFragmentRef={node}
+            writerFragmentRef={node}
+            onCommit={value => {
+              commit({
+                variables: {
+                  entity: data.id,
+                  parent: props.parent,
+                  statusInput: {
+                    closed: {
+                      at: {
+                        instant: Date.now().toString(),
+                      },
+                    },
+                  },
+                  valueInput: {
+                    number: { value },
+                  },
+                },
+              });
+            }}
+          />
+        ))
         .with({ __typename: "StringWidget" }, node => (
           <StringWidget
             readOnly={props.readOnly}

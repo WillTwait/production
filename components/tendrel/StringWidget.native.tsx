@@ -1,3 +1,5 @@
+import { useDebounce } from "@/hooks/useDebounce";
+import { useCallback } from "react";
 import {
   commitLocalUpdate,
   useFragment,
@@ -18,7 +20,6 @@ type Props =
       readerFragmentRef: ReaderFragmentRef;
     }
   | {
-      className?: string;
       readOnly?: false;
       readerFragmentRef: ReaderFragmentRef;
       writerFragmentRef: WriterFragmentRef;
@@ -36,6 +37,26 @@ export function StringWidget(props: Props) {
     );
   }
 
+  const { writerFragmentRef } = props;
+  const onChange = useCallback(
+    (value: string | null) => {
+      commitLocalUpdate(environment, store => {
+        const { updatableData } = store.readUpdatableFragment(
+          WriterFragment,
+          writerFragmentRef,
+        );
+
+        updatableData.string = value?.length ? value : null;
+      });
+    },
+    [environment, writerFragmentRef],
+  );
+
+  const { value, setValue } = useDebounce(onChange, {
+    debounceMs: 200,
+    initialValue: data.string ?? null,
+  });
+
   return (
     <View
       style={{
@@ -44,19 +65,7 @@ export function StringWidget(props: Props) {
       }}
     >
       <View style={{ width: "80%" }}>
-        <TextInput
-          value={data.string ?? ""}
-          onChangeText={value => {
-            commitLocalUpdate(environment, store => {
-              const { updatableData } = store.readUpdatableFragment(
-                WriterFragment,
-                props.writerFragmentRef,
-              );
-
-              updatableData.string = value.length ? value : null;
-            });
-          }}
-        />
+        <TextInput value={value ?? ""} onChangeText={text => setValue(text)} />
       </View>
     </View>
   );

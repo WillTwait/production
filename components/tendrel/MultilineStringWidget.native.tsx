@@ -1,3 +1,5 @@
+import { useDebounce } from "@/hooks/useDebounce";
+import { useCallback } from "react";
 import {
   commitLocalUpdate,
   useFragment,
@@ -36,6 +38,25 @@ export function MultilineStringWidget(props: Props) {
     );
   }
 
+  const onChange = useCallback(
+    (value: string | null) => {
+      commitLocalUpdate(environment, store => {
+        const { updatableData } = store.readUpdatableFragment(
+          WriterFragment,
+          props.writerFragmentRef,
+        );
+
+        updatableData.string = value?.length ? value : null;
+      });
+    },
+    [environment, props.writerFragmentRef],
+  );
+
+  const { value, setValue } = useDebounce(onChange, {
+    debounceMs: 200,
+    initialValue: data.string ?? null,
+  });
+
   return (
     <View
       style={{
@@ -45,17 +66,8 @@ export function MultilineStringWidget(props: Props) {
     >
       <View style={{ width: "80%" }}>
         <TextInput
-          value={data.string ?? ""}
-          onChangeText={value => {
-            commitLocalUpdate(environment, store => {
-              const { updatableData } = store.readUpdatableFragment(
-                WriterFragment,
-                props.writerFragmentRef,
-              );
-
-              updatableData.string = value.length ? value : null;
-            });
-          }}
+          value={value ?? ""}
+          onChangeText={value => setValue(value.length ? value : null)}
         />
       </View>
     </View>
