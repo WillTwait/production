@@ -8,6 +8,7 @@ import { useState, useTransition } from "react";
 import {
   Dimensions,
   FlatList,
+  Platform,
   RefreshControl,
   TouchableOpacity,
 } from "react-native";
@@ -54,10 +55,8 @@ export function AlternateConnectionView({ parent, ...props }: Props) {
           props.progress.value,
           [0, 1],
           [
-            height,
-            // FIXME: @murphy I added the `+ 25` to hackishly fix the
-            // "In progress animation underlaps header" bug.
-            headerHeight + insets.bottom + insets.top + bottomTabHeight + 25,
+            height - (headerHeight + bottomTabHeight),
+            headerHeight + (Platform.OS === "ios" ? 52 : 0) - insets.top,
           ],
           Extrapolation.CLAMP,
         ),
@@ -73,7 +72,7 @@ export function AlternateConnectionView({ parent, ...props }: Props) {
           bottom: bottomTabHeight - insets.bottom,
           left: 0,
           right: 0,
-          height: height,
+          height: height - (headerHeight + bottomTabHeight),
           overflow: "hidden",
         },
         collapsibleStyle,
