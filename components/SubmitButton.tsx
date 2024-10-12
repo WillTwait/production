@@ -12,7 +12,7 @@ interface Props {
 
 export function SubmitButton(props: Props) {
   const router = useRouter();
-  const { colors, colorTheme } = useTheme();
+  const { colors } = useTheme();
   const { t } = useTranslation();
 
   const [commit, isInFlight] = useMutation<SubmitButtonMutation>(
@@ -39,8 +39,8 @@ export function SubmitButton(props: Props) {
     <Button
       title={t("workScreen.submit.t")}
       variant="filled"
-      color={colors.tendrel.button1.color}
-      textColor={colorTheme === "dark" ? colors.tendrel.text2.color : undefined}
+      color={colors.tendrel.interactive3.color}
+      textColor={colors.tendrel.text1.color}
       onPress={() => {
         commit({
           variables: {

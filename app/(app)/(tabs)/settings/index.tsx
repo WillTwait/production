@@ -3,8 +3,14 @@ import { addTestIdentifiers } from "@/util/add-test-id";
 import { useAuth } from "@clerk/clerk-expo";
 import { ChevronRight, LogOut, Moon, Sun } from "lucide-react-native";
 import { useTranslation } from "react-i18next";
-import { SafeAreaView, ScrollView, Switch, Text, View } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import {
+  SafeAreaView,
+  ScrollView,
+  Switch,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 export default function Settings() {
   const { signOut } = useAuth();

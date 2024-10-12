@@ -66,6 +66,7 @@ export function ChecklistResultInlineView({ queryRef, ...props }: Props) {
         marginVertical: 4,
         marginHorizontal: 6,
         padding: 10,
+        borderRadius: 5,
         backgroundColor: colors.tendrel.background1.color,
         borderLeftColor: (() => {
           // FIXME: We can probably do better than this. But this is good enough
@@ -77,7 +78,7 @@ export function ChecklistResultInlineView({ queryRef, ...props }: Props) {
                 const now = Date.now();
                 if (due < now) return colors.feedback.error.button2;
               }
-              return "gray";
+              return colors.tendrel.button2.gray;
             }
             case "ChecklistInProgress": {
               if (data.status.dueAt) {
@@ -85,16 +86,18 @@ export function ChecklistResultInlineView({ queryRef, ...props }: Props) {
                 const now = Date.now();
                 if (due < now) return colors.feedback.error.button2;
               }
-              return "gray";
+              return colors.tendrel.button2.gray;
             }
             case "ChecklistClosed": {
               if (data.status.closedBecause?.code === "error") {
                 return colors.feedback.error.button2;
               }
-              return "green";
+              return colors.feedback.success.button2;
             }
             default:
-              return data.required ? colors.feedback.error.button2 : "gray";
+              return data.required
+                ? colors.feedback.error.button2
+                : colors.tendrel.button2.gray;
           }
         })(),
         borderLeftWidth: 5,

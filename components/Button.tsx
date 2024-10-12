@@ -57,7 +57,7 @@ export function Button({
         <Text
           style={{
             fontSize: 16,
-            color: textColor ? textColor : colors.tendrel.background2.color,
+            color: textColor ? textColor : colors.tendrel.text2.color,
           }}
         >
           {title}

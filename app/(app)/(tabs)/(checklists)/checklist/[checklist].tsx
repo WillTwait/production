@@ -185,7 +185,8 @@ export default function Page() {
                       title={t("workScreen.finish.t")}
                       onPress={() => actionSheetRef.current?.show()}
                       variant="filled"
-                      color={colors.tendrel.button1.color}
+                      textColor={colors.tendrel.text2.color}
+                      color={colors.tendrel.interactive3.color}
                     />
                   </View>
                 ))

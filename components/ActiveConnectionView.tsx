@@ -29,6 +29,7 @@ import {
 } from "react-native";
 import type { ActionSheetRef } from "react-native-actions-sheet";
 import ActionSheet from "react-native-actions-sheet";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import Animated, {
   Extrapolation,
   interpolate,
@@ -133,7 +134,7 @@ export function ActiveConnectionView({ parent, queryRef, ...props }: Props) {
           setValue(text);
         },
         textColor: colors.tendrel.text2.color,
-        tintColor: colors.tendrel.text1.color, // I have no idea why these styles wont apply when done from the parent -murphy
+        tintColor: colors.tendrel.button1.color, // I have no idea why these styles wont apply when done from the parent -murphy
       },
     });
   }, [colorTheme]); // Text color wont change when dark mode is toggled unless this is set
@@ -175,21 +176,22 @@ export function ActiveConnectionView({ parent, queryRef, ...props }: Props) {
 
   return (
     <View {...addTestIdentifiers("checklistsPage")} style={{ flex: 1 }}>
-      <Animated.View style={[{ flex: 1 }, flatListStyle]}>
-        <FlatList
-          ListHeaderComponent={
-            <>
-              <SegmentedControl
-                values={[t("checklist.open.t"), t("checklist.completed.t")]}
-                style={{ marginHorizontal: 10, marginBottom: 5 }}
-                selectedIndex={currentTab}
-                onChange={event => {
-                  const tab = event.nativeEvent.selectedSegmentIndex;
-                  setCurrentTab(tab);
-                  setWithStatus([tab === 0 ? "open" : "closed"]);
-                }}
-              />
-              {/* <View
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <Animated.View style={[{ flex: 1 }, flatListStyle]}>
+          <FlatList
+            ListHeaderComponent={
+              <>
+                <SegmentedControl
+                  values={[t("checklist.open.t"), t("checklist.completed.t")]}
+                  style={{ marginHorizontal: 10, marginBottom: 5 }}
+                  selectedIndex={currentTab}
+                  onChange={event => {
+                    const tab = event.nativeEvent.selectedSegmentIndex;
+                    setCurrentTab(tab);
+                    setWithStatus([tab === 0 ? "open" : "closed"]);
+                  }}
+                />
+                {/* <View
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
@@ -242,42 +244,43 @@ export function ActiveConnectionView({ parent, queryRef, ...props }: Props) {
                   keyExtractor={item => item}
                 />
               </View> */}
-            </>
-          }
-          ref={flatListRef}
-          stickyHeaderIndices={[0]}
-          contentInsetAdjustmentBehavior="automatic"
-          data={data.checklists.edges}
-          contentContainerStyle={{
-            flexGrow: 1,
-            gap: 5,
-          }}
-          renderItem={({ item }) => (
-            <ChecklistInlineView key={item.node.id} queryRef={item.node} />
-          )}
-          keyExtractor={item => item.node.id}
-          refreshControl={
-            <RefreshControl
-              refreshing={isPending}
-              onRefresh={() =>
-                startTransition(() => {
-                  refetch(
-                    {
-                      sortBy,
-                      withActive,
-                      withName,
-                      withStatus,
-                    },
-                    { fetchPolicy: "network-only" },
-                  );
-                })
-              }
-            />
-          }
-          onEndReachedThreshold={0.2}
-          onEndReached={() => hasNext && loadNext(10)}
-        />
-      </Animated.View>
+              </>
+            }
+            ref={flatListRef}
+            stickyHeaderIndices={[0]}
+            contentInsetAdjustmentBehavior="automatic"
+            data={data.checklists.edges}
+            contentContainerStyle={{
+              flexGrow: 1,
+              gap: 5,
+            }}
+            renderItem={({ item }) => (
+              <ChecklistInlineView key={item.node.id} queryRef={item.node} />
+            )}
+            keyExtractor={item => item.node.id}
+            refreshControl={
+              <RefreshControl
+                refreshing={isPending}
+                onRefresh={() =>
+                  startTransition(() => {
+                    refetch(
+                      {
+                        sortBy,
+                        withActive,
+                        withName,
+                        withStatus,
+                      },
+                      { fetchPolicy: "network-only" },
+                    );
+                  })
+                }
+              />
+            }
+            onEndReachedThreshold={0.2}
+            onEndReached={() => hasNext && loadNext(10)}
+          />
+        </Animated.View>
+      </GestureHandlerRootView>
       <AlternateConnectionView parent={parent} progress={progress} />
       <ActionSheet
         ref={actionSheetRef}

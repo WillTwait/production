@@ -86,8 +86,9 @@ export function StartButton(props: Props) {
           },
         })
       }
-      iconAfter={<Play size={16} color={colors.tendrel.background2.color} />}
-      color={colors.tendrel.button1.color}
+      textColor={colors.tendrel.text2.color}
+      iconAfter={<Play size={16} color={colors.tendrel.text2.color} />}
+      color={colors.tendrel.interactive3.color}
       disabled={isInFlight}
     />
   );

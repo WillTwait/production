@@ -4,9 +4,9 @@ import { View } from "@/components/View";
 import { useTheme } from "@/hooks/useTheme";
 import { nullish } from "@/util/nullish";
 import { useRouter } from "expo-router";
-import { SquarePen, TimerIcon } from "lucide-react-native";
-import { useRef, useState } from "react";
-import { TouchableOpacity } from "react-native";
+import { TimerIcon } from "lucide-react-native";
+import { useRef } from "react";
+import { ActivityIndicator, TouchableOpacity } from "react-native";
 import { Swipeable } from "react-native-gesture-handler";
 import { useFragment, useQueryLoader } from "react-relay";
 import {
@@ -30,7 +30,7 @@ interface Props {
 
 export function ChecklistInlineView({ queryRef: fragRef }: Props) {
   const data = useFragment(ChecklistInlineView$fragment, fragRef);
-  const [editing, setEditing] = useState(false);
+
   const swipableRef = useRef<Swipeable>(null);
 
   const { colors } = useTheme();
@@ -39,28 +39,40 @@ export function ChecklistInlineView({ queryRef: fragRef }: Props) {
   const [queryRef, loadQuery, disposeQuery] =
     useQueryLoader<EditChecklistModalQuery>(AssignChecklistMenuQuery);
 
-  // Define the swipeable action
+  // FIXME: this and the the swipeable should maybe be moved up to the flatlist if possible? or maybe pass a flatlist ref down so that we can close other items when a new swipe is made
   const renderRightActions = () => (
-    <TouchableOpacity
-      onPress={() => {
-        loadQuery({ entity: data.id });
-        setEditing(true);
-      }}
+    <View
       style={{
-        justifyContent: "center",
+        width: 75,
         alignItems: "center",
-        // backgroundColor: "blue",
-        padding: 20,
-        margin: 2,
-        //borderRadius: 5,
+        justifyContent: "center",
+        backgroundColor: colors.tendrel.interactive2.color,
+        borderRadius: 5,
       }}
     >
-      <SquarePen />
-    </TouchableOpacity>
+      {queryRef ? (
+        <EditChecklistModal
+          checklistId={data.id}
+          onClose={() => {
+            disposeQuery();
+            swipableRef.current?.close();
+          }}
+          queryRef={queryRef}
+          fragRef={data}
+        />
+      ) : (
+        <ActivityIndicator />
+      )}
+    </View>
   );
 
   return (
-    <Swipeable ref={swipableRef} renderRightActions={renderRightActions}>
+    <Swipeable
+      ref={swipableRef}
+      onBegan={() => loadQuery({ entity: data.id })}
+      renderRightActions={renderRightActions}
+      useNativeAnimations
+    >
       <View
         style={{
           padding: 8,
@@ -255,20 +267,6 @@ export function ChecklistInlineView({ queryRef: fragRef }: Props) {
           </View>
         </TouchableOpacity>
       </View>
-      {queryRef && (
-        <EditChecklistModal
-          checklistId={data.id}
-          visible={!!queryRef && editing}
-          onClose={() => {
-            disposeQuery();
-            swipableRef.current?.close();
-            setEditing(false);
-          }}
-          queryRef={queryRef}
-          fragRef={data}
-          onSave={() => {}}
-        />
-      )}
     </Swipeable>
   );
 }

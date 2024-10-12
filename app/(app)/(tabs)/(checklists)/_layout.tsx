@@ -5,9 +5,8 @@ import { useTendrel } from "@/tendrel/provider";
 import { Stack } from "expo-router";
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { Platform } from "react-native";
+import { Platform, TouchableOpacity } from "react-native";
 import type { ActionSheetRef } from "react-native-actions-sheet";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function Layout() {
   const actionSheetRef = useRef<ActionSheetRef>(null);
@@ -23,14 +22,12 @@ export default function Layout() {
         headerBlurEffect: "prominent",
         headerShown: Platform.OS !== "web", // Web doesnt support search bar
         headerRight: () => (
-          <>
-            <TouchableOpacity onPress={() => actionSheetRef.current?.show()}>
-              <Avatar
-                fallback={`${firstName.at(0)?.toUpperCase()}${lastName.at(0)?.toUpperCase()}`}
-              />
-              <UserProfile actionSheetRef={actionSheetRef} />
-            </TouchableOpacity>
-          </>
+          <TouchableOpacity onPress={() => actionSheetRef.current?.show()}>
+            <Avatar
+              fallback={`${firstName.at(0)?.toUpperCase()}${lastName.at(0)?.toUpperCase()}`}
+            />
+            <UserProfile actionSheetRef={actionSheetRef} />
+          </TouchableOpacity>
         ),
         headerTintColor: colors.tendrel.text2.color,
       }}
@@ -42,8 +39,6 @@ export default function Layout() {
           headerSearchBarOptions: {
             hideWhenScrolling: true,
             autoCapitalize: "none",
-            textColor: colors.tendrel.text2.color,
-            headerIconColor: colors.tendrel.text2.color,
           },
           headerTitle: t("screenNames.checklists.t"),
         }}

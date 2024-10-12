@@ -1,7 +1,7 @@
 import { useTheme } from "@/hooks/useTheme";
 import * as FileSystem from "expo-file-system";
 import { Image } from "expo-image";
-import { useFocusEffect, useNavigation, useRouter } from "expo-router";
+import { useFocusEffect } from "expo-router";
 import { Plus, PlusIcon } from "lucide-react-native";
 import { useCallback, useRef, useState } from "react";
 import { FlatList, Modal, StyleSheet, TouchableOpacity } from "react-native";
@@ -47,7 +47,7 @@ export function WorkPhotos({ checklistId }: Props) {
   const gallery = useRef<GalleryRef>(null);
 
   const [toolbarVisible, setToolbarVisible] = useState(true);
-  const { push } = useRouter();
+  // const { push } = useRouter();
   const workingDirectory = `${FileSystem.documentDirectory}checklist/${process.env.EXPO_PUBLIC_TENDREL_STAGE ?? "dev"}/`;
 
   const checklistDir: string = `${workingDirectory}checklistDir/${checklistId}`;
@@ -112,11 +112,12 @@ export function WorkPhotos({ checklistId }: Props) {
             renderItem={renderThumbnail}
             ListHeaderComponent={
               <TouchableOpacity
-                onPress={() =>
-                  push({
-                    pathname: "/(home)/camera",
-                    params: { checklistId: checklistId.toString() },
-                  })
+                onPress={
+                  () => {}
+                  // push({
+                  //   pathname: "/(home)/camera",
+                  //   params: { checklistId: checklistId.toString() },
+                  // })
                 }
                 style={{
                   width: 50,
@@ -226,10 +227,11 @@ export function WorkPhotos({ checklistId }: Props) {
             onPress={() => {
               // modalRef.current?.show();
               // setModalOpen(true);
-              push({
-                pathname: "/(home)/camera",
-                params: { checklistId: checklistId.toString() },
-              });
+              // {}
+              // push({
+              //   pathname: "/(home)/camera",
+              //   params: { checklistId: checklistId.toString() },
+              // });
             }}
             variant="filled"
             icon={<Plus color={colors.tendrel.background2.color} />}
