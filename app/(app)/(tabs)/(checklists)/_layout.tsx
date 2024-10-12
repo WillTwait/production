@@ -22,7 +22,6 @@ export default function Layout() {
       screenOptions={{
         headerBlurEffect: "prominent",
         headerShown: Platform.OS !== "web", // Web doesnt support search bar
-        headerTransparent: Platform.OS === "ios",
         headerRight: () => (
           <>
             <TouchableOpacity onPress={() => actionSheetRef.current?.show()}>
@@ -39,6 +38,7 @@ export default function Layout() {
       <Stack.Screen
         name="index"
         options={{
+          headerTransparent: Platform.OS === "ios",
           headerSearchBarOptions: {
             hideWhenScrolling: true,
             autoCapitalize: "none",
@@ -50,7 +50,7 @@ export default function Layout() {
       />
       <Stack.Screen
         name="checklist/[checklist]"
-        options={{ headerTitle: "" }}
+        options={{ headerTitle: "", headerTransparent: Platform.OS === "ios" }}
       />
     </Stack>
   );

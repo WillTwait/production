@@ -36,6 +36,20 @@ const colors: Record<ColorThemeName, ThemeColors> = {
         text1: "#218358",
         text2: "#193b2d",
       },
+      caution: {
+        background1: "#FEFCFB",
+        background2: "#FFF7E9",
+        interactive1: "#FFEDC8",
+        interactive2: "#FFE0AC",
+        interactive3: "#FFD490",
+        border1: "#FFC469",
+        border2: "#FBB253",
+        border3: "#E90",
+        button1: "#FD9B00",
+        button2: "#EF9200",
+        text1: "#AF6800",
+        text2: "#523307",
+      },
     },
     tendrel: {
       background1: { color: "#FDFDFE", gray: "#FCFCFD" },
@@ -89,6 +103,20 @@ const colors: Record<ColorThemeName, ThemeColors> = {
         button2: "#33b074",
         text1: "#3dd68c",
         text2: "#b1f1cb",
+      },
+      caution: {
+        background1: "#14100C",
+        background2: "#1D1710",
+        interactive1: "#2F200E",
+        interactive2: "#402600",
+        interactive3: "#4D2F02",
+        border1: "#5B3D15",
+        border2: "#704F24",
+        border3: "#8E652F",
+        button1: "#FDB455",
+        button2: "#F2AA4A",
+        text1: "#FFB95A",
+        text2: "#FFE3C2",
       },
     },
     tendrel: {
@@ -197,6 +225,20 @@ export type ThemeColors = {
       text2: string;
     };
     success: {
+      background1: string;
+      background2: string;
+      interactive1: string;
+      interactive2: string;
+      interactive3: string;
+      border1: string;
+      border2: string;
+      border3: string;
+      button1: string;
+      button2: string;
+      text1: string;
+      text2: string;
+    };
+    caution: {
       background1: string;
       background2: string;
       interactive1: string;

@@ -84,7 +84,7 @@ export function ClickerWidget(props: Props) {
           padding: 15,
         }}
         onPress={() => {
-          setValue(value ?? 0 - 1);
+          setValue((value ?? 0) - 1);
         }}
       >
         <MinusIcon color={colors.tendrel.text1.color} />
@@ -111,7 +111,7 @@ export function ClickerWidget(props: Props) {
         style={{ justifyContent: "center", padding: 15 }}
         disabled={props.readOnly}
         onPress={() => {
-          setValue(value ?? 0 + 1);
+          setValue((value ?? 0) + 1);
         }}
       >
         <PlusIcon color={colors.tendrel.text1.color} />

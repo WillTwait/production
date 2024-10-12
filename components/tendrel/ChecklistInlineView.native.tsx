@@ -77,7 +77,7 @@ export function ChecklistInlineView({ queryRef: fragRef }: Props) {
                   const now = Date.now();
                   if (dueAt < now) return colors.feedback.error.button1;
                 }
-                return "gray";
+                return colors.tendrel.button2.gray;
               }
               case "ChecklistInProgress": {
                 if (data.status.dueAt?.epochMilliseconds) {
@@ -85,13 +85,13 @@ export function ChecklistInlineView({ queryRef: fragRef }: Props) {
                   const now = Date.now();
                   if (dueAt < now) return colors.feedback.error.button1;
                 }
-                return "yellow";
+                return colors.feedback.caution.button2;
               }
               case "ChecklistClosed": {
                 if (data.status.closedBecause?.code === "error") {
-                  return "red";
+                  return colors.feedback.error.button2;
                 }
-                return "green";
+                return colors.feedback.success.button2;
               }
               default:
                 return undefined;

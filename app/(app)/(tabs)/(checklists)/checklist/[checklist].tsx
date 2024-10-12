@@ -113,30 +113,6 @@ export default function Page() {
             <SubmitButton node={node.id} />
           </View>
         </ActionSheet>
-        <View style={{ backgroundColor: colors.tendrel.background2.gray }}>
-          <View style={{ flexDirection: "row", padding: 10 }}>
-            <DisplayName
-              queryRef={node.name}
-              type="title"
-              style={{ flex: 1 }}
-            />
-            {node.status && <ChecklistStatusButton queryRef={node.status} />}
-          </View>
-          <Separator />
-          {node.description && (
-            <>
-              <Description queryRef={node.description} />
-              <Separator />
-            </>
-          )}
-          {node.sop && (
-            <>
-              <Sop queryRef={node.sop} />
-              <Separator />
-            </>
-          )}
-          {/* {started ? <WorkPhotos checklistId={checklist.id} /> : undefined} */}
-        </View>
         <View style={{ flex: 1 }}>
           <View style={{ flex: 1 }}>
             <FlatList
@@ -144,6 +120,36 @@ export default function Page() {
               data={node.items.edges.flatMap(({ node }) =>
                 node.__typename === "ChecklistResult" ? node : [],
               )}
+              ListHeaderComponent={
+                <View
+                  style={{ backgroundColor: colors.tendrel.background2.gray }}
+                >
+                  <View style={{ flexDirection: "row", padding: 10 }}>
+                    <DisplayName
+                      queryRef={node.name}
+                      type="title"
+                      style={{ flex: 1 }}
+                    />
+                    {node.status && (
+                      <ChecklistStatusButton queryRef={node.status} />
+                    )}
+                  </View>
+                  <Separator />
+                  {node.description && (
+                    <>
+                      <Description queryRef={node.description} />
+                      <Separator />
+                    </>
+                  )}
+                  {node.sop && (
+                    <>
+                      <Sop queryRef={node.sop} />
+                      <Separator />
+                    </>
+                  )}
+                  {/* {started ? <WorkPhotos checklistId={checklist.id} /> : undefined} */}
+                </View>
+              }
               keyExtractor={node => node.id}
               renderItem={({ item }) => (
                 <ChecklistResultInlineView

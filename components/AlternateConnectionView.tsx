@@ -43,44 +43,7 @@ export function AlternateConnectionView({ parent, ...props }: Props) {
     { fetchPolicy: "store-and-network" },
   );
 
-  const bottomTabHeight = useBottomTabBarHeight();
-  const headerHeight = useHeaderHeight();
-  const insets = useSafeAreaInsets();
-  const { height } = Dimensions.get("window");
-
-  const collapsibleStyle = useAnimatedStyle(() => ({
-    transform: [
-      {
-        translateY: interpolate(
-          props.progress.value,
-          [0, 1],
-          [
-            height - (headerHeight + bottomTabHeight),
-            headerHeight + (Platform.OS === "ios" ? 52 : 0) - insets.top,
-          ],
-          Extrapolation.CLAMP,
-        ),
-      },
-    ],
-  }));
-
-  return (
-    <Animated.View
-      style={[
-        {
-          position: "absolute",
-          bottom: bottomTabHeight - insets.bottom,
-          left: 0,
-          right: 0,
-          height: height - (headerHeight + bottomTabHeight),
-          overflow: "hidden",
-        },
-        collapsibleStyle,
-      ]}
-    >
-      <Content queryRef={data} {...props} />
-    </Animated.View>
-  );
+  return <Content queryRef={data} {...props} />;
 }
 
 interface PaginationProps {
@@ -118,6 +81,27 @@ function Content({ progress, queryRef }: PaginationProps) {
     queryRef,
   );
 
+  const bottomTabHeight = useBottomTabBarHeight();
+  const headerHeight = useHeaderHeight();
+  const insets = useSafeAreaInsets();
+  const { height } = Dimensions.get("window");
+
+  const collapsibleStyle = useAnimatedStyle(() => ({
+    transform: [
+      {
+        translateY: interpolate(
+          progress.value,
+          [0, 1],
+          [
+            height - (headerHeight + bottomTabHeight),
+            headerHeight + (Platform.OS === "ios" ? 52 : 0) - insets.top,
+          ],
+          Extrapolation.CLAMP,
+        ),
+      },
+    ],
+  }));
+
   const [collapsibleOpen, setCollapsibleOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
   const toggleCollapsible = () => {
@@ -130,8 +114,24 @@ function Content({ progress, queryRef }: PaginationProps) {
 
   const { colors } = useTheme();
 
+  if (data.checklists.totalCount === 0) {
+    return undefined;
+  }
+
   return (
-    <>
+    <Animated.View
+      style={[
+        {
+          position: "absolute",
+          bottom: bottomTabHeight - insets.bottom,
+          left: 0,
+          right: 0,
+          height: height - (headerHeight + bottomTabHeight),
+          overflow: "hidden",
+        },
+        collapsibleStyle,
+      ]}
+    >
       <TouchableOpacity onPress={toggleCollapsible}>
         <View
           style={{
@@ -158,7 +158,7 @@ function Content({ progress, queryRef }: PaginationProps) {
                 height: 20,
                 width: 20,
                 borderRadius: 10,
-                backgroundColor: colors.feedback.error.interactive2,
+                backgroundColor: colors.feedback.caution.interactive2,
                 alignItems: "center",
 
                 justifyContent: "center",
@@ -168,7 +168,7 @@ function Content({ progress, queryRef }: PaginationProps) {
                 style={{
                   fontSize: 12,
                   textAlign: "center",
-                  color: colors.feedback.error.text1,
+                  color: colors.feedback.caution.text1,
                   lineHeight: 14,
                 }}
               >
@@ -216,6 +216,6 @@ function Content({ progress, queryRef }: PaginationProps) {
           />
         )}
       </View>
-    </>
+    </Animated.View>
   );
 }
