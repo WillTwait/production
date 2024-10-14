@@ -144,5 +144,15 @@
       "t": "Δείτε λιγότερα",
       "override": false
     }
+  },
+  "editChecklist": {
+    "selectWorker": {
+      "t": "Επιλέξτε έναν εργαζόμενο",
+      "override": false
+    },
+    "unassign": {
+      "t": "Κατάργηση εκχώρησης",
+      "override": false
+    }
   }
 }

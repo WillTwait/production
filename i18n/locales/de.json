@@ -144,5 +144,15 @@
       "t": "Weniger sehen",
       "override": false
     }
+  },
+  "editChecklist": {
+    "selectWorker": {
+      "t": "Wählen Sie einen Arbeiter aus",
+      "override": false
+    },
+    "unassign": {
+      "t": "Zuweisung aufheben",
+      "override": false
+    }
   }
 }

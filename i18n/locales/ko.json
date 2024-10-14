@@ -144,5 +144,15 @@
       "t": "적게 보기",
       "override": false
     }
+  },
+  "editChecklist": {
+    "selectWorker": {
+      "t": "작업자 선택",
+      "override": false
+    },
+    "unassign": {
+      "t": "할당 취소",
+      "override": false
+    }
   }
 }

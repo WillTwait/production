@@ -144,5 +144,15 @@
       "t": "কম দেখুন",
       "override": false
     }
+  },
+  "editChecklist": {
+    "selectWorker": {
+      "t": "একজন কর্মী নির্বাচন করুন",
+      "override": false
+    },
+    "unassign": {
+      "t": "নির্ধারণ করা",
+      "override": false
+    }
   }
 }

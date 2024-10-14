@@ -144,5 +144,15 @@
       "t": "Minder bekijken",
       "override": false
     }
+  },
+  "editChecklist": {
+    "selectWorker": {
+      "t": "Selecteer een werknemer",
+      "override": false
+    },
+    "unassign": {
+      "t": "Toewijzen ongedaan maken",
+      "override": false
+    }
   }
 }

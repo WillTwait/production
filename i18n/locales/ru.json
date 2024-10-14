@@ -144,5 +144,15 @@
       "t": "См. меньше",
       "override": false
     }
+  },
+  "editChecklist": {
+    "selectWorker": {
+      "t": "Выберите работника",
+      "override": false
+    },
+    "unassign": {
+      "t": "Отменить назначение",
+      "override": false
+    }
   }
 }

@@ -144,5 +144,15 @@
       "t": "もっと見る",
       "override": false
     }
+  },
+  "editChecklist": {
+    "selectWorker": {
+      "t": "作業者の選択",
+      "override": false
+    },
+    "unassign": {
+      "t": "[割り当て解除]",
+      "override": false
+    }
   }
 }

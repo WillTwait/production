@@ -144,5 +144,15 @@
       "t": "Poglej manj",
       "override": false
     }
+  },
+  "editChecklist": {
+    "selectWorker": {
+      "t": "Izberite delavca",
+      "override": false
+    },
+    "unassign": {
+      "t": "Prekliči dodelitev",
+      "override": false
+    }
   }
 }

@@ -13,6 +13,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import { Platform } from "react-native";
 
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Toaster } from "sonner-native";
 
 const routingInstrumentation = Sentry.reactNavigationIntegration();
@@ -94,10 +95,12 @@ function RootLayout() {
     >
       <ClerkLoaded>
         <DatabaseProvider>
-          <TendyThemeProvider>
-            <MainRoutes />
-            <Toaster />
-          </TendyThemeProvider>
+          <GestureHandlerRootView style={{ flex: 1 }}>
+            <TendyThemeProvider>
+              <MainRoutes />
+              <Toaster />
+            </TendyThemeProvider>
+          </GestureHandlerRootView>
         </DatabaseProvider>
       </ClerkLoaded>
     </ClerkProvider>

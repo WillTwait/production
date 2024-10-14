@@ -144,5 +144,15 @@
       "t": "少看",
       "override": false
     }
+  },
+  "editChecklist": {
+    "selectWorker": {
+      "t": "选择工作人员",
+      "override": false
+    },
+    "unassign": {
+      "t": "取消分配",
+      "override": false
+    }
   }
 }

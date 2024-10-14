@@ -144,5 +144,15 @@
       "t": "Pozrieť menej",
       "override": false
     }
+  },
+  "editChecklist": {
+    "selectWorker": {
+      "t": "Vyberte pracovníka",
+      "override": false
+    },
+    "unassign": {
+      "t": "Zrušiť priradenie",
+      "override": false
+    }
   }
 }

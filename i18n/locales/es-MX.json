@@ -144,5 +144,15 @@
       "t": "Ver menos",
       "override": false
     }
+  },
+  "editChecklist": {
+    "selectWorker": {
+      "t": "Seleccione un trabajador",
+      "override": false
+    },
+    "unassign": {
+      "t": "Desasignar",
+      "override": false
+    }
   }
 }

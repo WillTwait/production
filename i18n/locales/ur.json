@@ -144,5 +144,15 @@
       "t": "کم دیکھیں",
       "override": false
     }
+  },
+  "editChecklist": {
+    "selectWorker": {
+      "t": "ایک کارکن منتخب کریں",
+      "override": false
+    },
+    "unassign": {
+      "t": "غیر تفویض کریں",
+      "override": false
+    }
   }
 }

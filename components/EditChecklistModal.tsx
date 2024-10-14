@@ -1,8 +1,10 @@
 import type { EditChecklistModalMutation } from "@/__generated__/EditChecklistModalMutation.graphql";
 import type { EditChecklistModalQuery } from "@/__generated__/EditChecklistModalQuery.graphql";
+import type { EditChecklistModalUnassignMutation } from "@/__generated__/EditChecklistModalUnassignMutation.graphql";
 import type { EditChecklistModal_fragment$key } from "@/__generated__/EditChecklistModal_fragment.graphql";
 import { useTheme } from "@/hooks/useTheme";
 import { SquarePen } from "lucide-react-native";
+import { useTranslation } from "react-i18next";
 import { TouchableOpacity } from "react-native";
 import {
   type PreloadedQuery,
@@ -46,6 +48,7 @@ export function EditChecklistModal({
   fragRef,
 }: EditChecklistModalProps) {
   const { colors } = useTheme();
+  const { t } = useTranslation();
 
   const data = useFragment(
     graphql`
@@ -89,6 +92,26 @@ export function EditChecklistModal({
     }
     `,
   );
+  const [commitUnassign, _isInFlight2] =
+    useMutation<EditChecklistModalUnassignMutation>(
+      graphql`
+    mutation EditChecklistModalUnassignMutation($entity: ID!, $from: ID!) {
+      unassign(entity: $entity, from: $from) {
+        entity {
+          ... on Checklist {
+            assignees {
+              edges {
+                node {
+                  ...Assignee_fragment
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    `,
+    );
 
   return (
     <View>
@@ -107,7 +130,32 @@ export function EditChecklistModal({
           avoidCollisions
           collisionPadding={8}
         >
-          <DropdownMenu.Label>{"Select a worker"}</DropdownMenu.Label>
+          <DropdownMenu.Label>
+            {t("editChecklist.selectWorker.t")}
+          </DropdownMenu.Label>
+          {currentAssignee ? (
+            <DropdownMenu.Item
+              key="unassignId"
+              onSelect={() => {
+                commitUnassign({
+                  variables: { entity: checklistId, from: currentAssignee },
+                  onCompleted: () => {
+                    onClose();
+                  },
+                  onError: () => {},
+                });
+              }}
+            >
+              <DropdownMenu.ItemIcon
+                ios={{ name: "person.crop.circle.badge.minus" }}
+                androidIconName="ic_delete"
+              />
+              <DropdownMenu.ItemTitle>
+                {t("editChecklist.unassign.t")}
+              </DropdownMenu.ItemTitle>
+            </DropdownMenu.Item>
+          ) : undefined}
+
           {assigneeData.assignable.edges.map(edge => {
             const assignee = edge.node;
             if (assignee.__typename !== "Worker") return null;

@@ -144,5 +144,15 @@
       "t": "Побачити менше",
       "override": false
     }
+  },
+  "editChecklist": {
+    "selectWorker": {
+      "t": "Виберіть працівника",
+      "override": false
+    },
+    "unassign": {
+      "t": "Скасувати призначення",
+      "override": false
+    }
   }
 }

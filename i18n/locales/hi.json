@@ -144,5 +144,15 @@
       "t": "कम देखें",
       "override": false
     }
+  },
+  "editChecklist": {
+    "selectWorker": {
+      "t": "एक कार्यकर्ता चुनें",
+      "override": false
+    },
+    "unassign": {
+      "t": "अनअसाइन करें",
+      "override": false
+    }
   }
 }

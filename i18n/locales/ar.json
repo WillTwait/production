@@ -144,5 +144,15 @@
       "t": "شاهد أقل",
       "override": false
     }
+  },
+  "editChecklist": {
+    "selectWorker": {
+      "t": "حدد العامل",
+      "override": false
+    },
+    "unassign": {
+      "t": "إلغاء التعيين",
+      "override": false
+    }
   }
 }

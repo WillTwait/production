@@ -48,4 +48,8 @@ export const corpus: NestedTranslation = {
     seeMore: "See more",
     seeLess: "See less",
   },
+  editChecklist: {
+    selectWorker: "Select a Worker",
+    unassign: "Unassign",
+  },
 };

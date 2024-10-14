@@ -144,5 +144,15 @@
       "t": "Lihat lebih sedikit",
       "override": false
     }
+  },
+  "editChecklist": {
+    "selectWorker": {
+      "t": "Pilih Pekerja",
+      "override": false
+    },
+    "unassign": {
+      "t": "Batalkan penetapan",
+      "override": false
+    }
   }
 }
