@@ -1,4 +1,4 @@
-import { useDebounce } from "@/hooks/useDebounce";
+import type { SentimentWidgetInput } from "@/__generated__/ChecklistResultInlineViewSetValueMutation.graphql";
 import { useTheme } from "@/hooks/useTheme";
 import { Star } from "lucide-react-native";
 import { useCallback } from "react";
@@ -24,21 +24,22 @@ type Props =
       readOnly?: false;
       readerFragmentRef: ReaderFragmentRef;
       writerFragmentRef: WriterFragmentRef;
-      onCommit: (value: number | null) => void;
+      onCommit: (input: { sentiment: SentimentWidgetInput }) => void;
     };
 
 export function SentimentWidget(props: Props) {
   const data = useFragment(ReaderFragment, props.readerFragmentRef);
   const environment = useRelayEnvironment();
-
   const { colors } = useTheme();
 
-  const getStarColor = (star: number, rating: number) => {
-    if (rating >= star) {
-      return colors.tendrel.text2.color;
-    }
-    return colors.tendrel.interactive3.gray;
-  };
+  const getStarColor = useCallback(
+    (star: number) => {
+      return (data.number ?? 0) >= star
+        ? colors.tendrel.text2.color
+        : colors.tendrel.interactive3.gray;
+    },
+    [colors, data.number],
+  );
 
   if (props.readOnly) {
     return (
@@ -52,36 +53,14 @@ export function SentimentWidget(props: Props) {
       >
         {[1, 2, 3].map(star => (
           <Star
-            fill={getStarColor(star, data.number ?? 0)}
-            color={getStarColor(star, data.number ?? 0)}
+            fill={getStarColor(star)}
+            color={getStarColor(star)}
             key={star}
           />
         ))}
       </View>
     );
   }
-
-  const { writerFragmentRef, onCommit } = props;
-  const onChange = useCallback(
-    (star: number) => {
-      commitLocalUpdate(environment, store => {
-        const { updatableData } = store.readUpdatableFragment(
-          WriterFragment,
-          writerFragmentRef,
-        );
-
-        updatableData.number = star;
-      });
-
-      onCommit(star);
-    },
-    [environment, onCommit, writerFragmentRef],
-  );
-
-  const { value, setValue } = useDebounce(onChange, {
-    debounceMs: 200,
-    initialValue: data.number ?? 0,
-  });
 
   return (
     <View
@@ -94,10 +73,20 @@ export function SentimentWidget(props: Props) {
     >
       {[1, 2, 3].map(star => (
         <Star
-          onPress={() => setValue(star)}
+          onPress={() => {
+            commitLocalUpdate(environment, store => {
+              const { updatableData } = store.readUpdatableFragment(
+                WriterFragment,
+                props.writerFragmentRef,
+              );
+
+              updatableData.number = star;
+            });
+            props.onCommit({ sentiment: { value: star } });
+          }}
           size={50}
-          color={getStarColor(star, value)}
-          fill={getStarColor(star, value)}
+          color={getStarColor(star)}
+          fill={getStarColor(star)}
           key={star}
         />
       ))}

@@ -1,3 +1,4 @@
+import type { CheckboxWidgetInput } from "@/__generated__/ChecklistResultInlineViewSetValueMutation.graphql";
 import { Switch } from "react-native";
 import { useFragment, useRelayEnvironment } from "react-relay";
 import { commitLocalUpdate } from "relay-runtime";
@@ -18,7 +19,7 @@ type Props =
       readOnly?: false;
       readerFragmentRef: ReaderFragmentRef;
       writerFragmentRef: WriterFragmentRef;
-      onCommit: (value: boolean) => void;
+      onCommit: (input: { checkbox: CheckboxWidgetInput }) => void;
     };
 
 export function CheckboxWidget(props: Props) {
@@ -43,10 +44,9 @@ export function CheckboxWidget(props: Props) {
               WriterFragment,
               props.writerFragmentRef,
             );
-
             updatableData.checked = value;
           });
-          props.onCommit(value);
+          props.onCommit({ checkbox: { value } });
         }}
       />
     </View>

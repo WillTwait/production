@@ -1,6 +1,11 @@
-import type { ChecklistResultInlineViewSetValueMutation } from "@/__generated__/ChecklistResultInlineViewSetValueMutation.graphql";
+import type {
+  ChecklistResultInlineViewSetValueMutation,
+  WidgetInput,
+} from "@/__generated__/ChecklistResultInlineViewSetValueMutation.graphql";
 import { useTheme } from "@/hooks/useTheme";
+import { debounce } from "@/util/debounce";
 import { CheckCircleIcon, CircleIcon } from "lucide-react-native";
+import { useCallback } from "react";
 import { graphql, useFragment, useMutation } from "react-relay";
 import { match } from "ts-pattern";
 import { View } from "../View";
@@ -46,7 +51,9 @@ export function ChecklistResultInlineView({ queryRef, ...props }: Props) {
               edge {
                 cursor
                 node {
-                  ...ChecklistResultInlineView_fragment
+                  ... on ChecklistResult {
+                    ...ChecklistResultInlineView_fragment
+                  }
                 }
               }
               parent {
@@ -59,6 +66,28 @@ export function ChecklistResultInlineView({ queryRef, ...props }: Props) {
     );
 
   const { colors } = useTheme();
+
+  const onCommit_ = useCallback(
+    (input: WidgetInput) => {
+      commit({
+        variables: {
+          entity: data.id,
+          parent: props.parent,
+          statusInput: {
+            closed: {
+              at: {
+                instant: Date.now().toString(),
+              },
+            },
+          },
+          valueInput: input,
+        },
+      });
+    },
+    [commit, data.id, props.parent],
+  );
+
+  const onCommit = useCallback(debounce(onCommit_, 250), []);
 
   return (
     <View
@@ -120,24 +149,7 @@ export function ChecklistResultInlineView({ queryRef, ...props }: Props) {
             readOnly={props.readOnly}
             readerFragmentRef={node}
             writerFragmentRef={node}
-            onCommit={value => {
-              commit({
-                variables: {
-                  entity: data.id,
-                  parent: props.parent,
-                  statusInput: {
-                    closed: {
-                      at: {
-                        instant: Date.now().toString(),
-                      },
-                    },
-                  },
-                  valueInput: {
-                    checkbox: { value },
-                  },
-                },
-              });
-            }}
+            onCommit={onCommit}
           />
         ))
         .with({ __typename: "ClickerWidget" }, node => (
@@ -145,24 +157,7 @@ export function ChecklistResultInlineView({ queryRef, ...props }: Props) {
             readOnly={props.readOnly}
             readerFragmentRef={node}
             writerFragmentRef={node}
-            onCommit={value => {
-              commit({
-                variables: {
-                  entity: data.id,
-                  parent: props.parent,
-                  statusInput: {
-                    closed: {
-                      at: {
-                        instant: Date.now().toString(),
-                      },
-                    },
-                  },
-                  valueInput: {
-                    clicker: { value },
-                  },
-                },
-              });
-            }}
+            onCommit={onCommit}
           />
         ))
         .with({ __typename: "MultilineStringWidget" }, node => (
@@ -170,6 +165,7 @@ export function ChecklistResultInlineView({ queryRef, ...props }: Props) {
             readOnly={props.readOnly}
             readerFragmentRef={node}
             writerFragmentRef={node}
+            onCommit={onCommit}
           />
         ))
         .with({ __typename: "NumberWidget" }, node => (
@@ -177,24 +173,7 @@ export function ChecklistResultInlineView({ queryRef, ...props }: Props) {
             readOnly={props.readOnly}
             readerFragmentRef={node}
             writerFragmentRef={node}
-            onCommit={value => {
-              commit({
-                variables: {
-                  entity: data.id,
-                  parent: props.parent,
-                  statusInput: {
-                    closed: {
-                      at: {
-                        instant: Date.now().toString(),
-                      },
-                    },
-                  },
-                  valueInput: {
-                    number: { value },
-                  },
-                },
-              });
-            }}
+            onCommit={onCommit}
           />
         ))
         .with({ __typename: "SentimentWidget" }, node => (
@@ -202,24 +181,7 @@ export function ChecklistResultInlineView({ queryRef, ...props }: Props) {
             readOnly={props.readOnly}
             readerFragmentRef={node}
             writerFragmentRef={node}
-            onCommit={value => {
-              commit({
-                variables: {
-                  entity: data.id,
-                  parent: props.parent,
-                  statusInput: {
-                    closed: {
-                      at: {
-                        instant: Date.now().toString(),
-                      },
-                    },
-                  },
-                  valueInput: {
-                    number: { value },
-                  },
-                },
-              });
-            }}
+            onCommit={onCommit}
           />
         ))
         .with({ __typename: "StringWidget" }, node => (
@@ -227,6 +189,7 @@ export function ChecklistResultInlineView({ queryRef, ...props }: Props) {
             readOnly={props.readOnly}
             readerFragmentRef={node}
             writerFragmentRef={node}
+            onCommit={onCommit}
           />
         ))
         .with({ __typename: "TemporalWidget" }, _node => null)

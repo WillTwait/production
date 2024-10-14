@@ -29,6 +29,7 @@ function Content({ customerId }: { customerId: string }) {
     <ActiveConnectionView
       parent={customerId}
       queryRef={data}
+      initialSortBy={[{ status: "desc" }]}
       initialWithActive={true}
       initialWithStatus={["open"]}
     />

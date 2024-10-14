@@ -1,13 +1,13 @@
-import { useDebounce } from "@/hooks/useDebounce";
+import type { ClickerWidgetInput } from "@/__generated__/ChecklistResultInlineViewSetValueMutation.graphql";
 import { useTheme } from "@/hooks/useTheme";
 import { MinusIcon, PlusIcon } from "lucide-react-native";
-import { useCallback } from "react";
 import { TouchableOpacity } from "react-native";
 import {
   commitLocalUpdate,
   useFragment,
   useRelayEnvironment,
 } from "react-relay";
+import { Text } from "../Text";
 import { TextInput } from "../TextInput";
 import { View } from "../View";
 import {
@@ -26,7 +26,7 @@ type Props =
       readOnly?: false;
       readerFragmentRef: ReaderFragmentRef;
       writerFragmentRef: WriterFragmentRef;
-      onCommit: (count: number | null) => void;
+      onCommit: (input: { clicker: ClickerWidgetInput }) => void;
     };
 
 export function ClickerWidget(props: Props) {
@@ -37,37 +37,25 @@ export function ClickerWidget(props: Props) {
   if (props.readOnly) {
     return (
       <View style={{ flexDirection: "row", justifyContent: "center" }}>
-        <View style={{ width: "20%" }}>
-          <TextInput
-            value={data.number?.toString() ?? ""}
-            keyboardType="numeric"
-            textAlign="center"
-            editable={false}
-          />
-        </View>
+        <Text>{data.number?.toString() ?? "(no value)"}</Text>
       </View>
     );
   }
 
-  const onChange = useCallback(
-    (value: number | null) => {
-      commitLocalUpdate(environment, store => {
-        const { updatableData } = store.readUpdatableFragment(
-          WriterFragment,
-          props.writerFragmentRef,
-        );
+  const { onCommit, writerFragmentRef } = props;
 
-        updatableData.number = value;
-      });
-      props.onCommit(Number.isNaN(value) ? null : value);
-    },
-    [props.writerFragmentRef, props.onCommit, environment],
-  );
-
-  const { value, setValue } = useDebounce(onChange, {
-    debounceMs: 200,
-    initialValue: data.number ?? null,
-  });
+  function onChange(input: number) {
+    // Clickers can't go negative.
+    const value = Number.isNaN(input) ? null : Math.max(0, input);
+    commitLocalUpdate(environment, store => {
+      const { updatableData } = store.readUpdatableFragment(
+        WriterFragment,
+        writerFragmentRef,
+      );
+      updatableData.number = value;
+    });
+    onCommit({ clicker: { value } });
+  }
 
   return (
     <View
@@ -84,7 +72,7 @@ export function ClickerWidget(props: Props) {
           padding: 15,
         }}
         onPress={() => {
-          setValue((value ?? 0) - 1);
+          onChange((data.number ?? 0) - 1);
         }}
       >
         <MinusIcon color={colors.tendrel.text1.color} />
@@ -93,25 +81,15 @@ export function ClickerWidget(props: Props) {
         <TextInput
           keyboardType="numeric"
           textAlign="center"
-          value={value?.toString() ?? ""}
-          onChangeText={text => {
-            if (text.length === 0) {
-              setValue(null);
-              return;
-            }
-
-            const value = Number(text);
-            if (text.length && Number.isNaN(value) ? null : value) {
-              setValue(value);
-            }
-          }}
+          value={data.number?.toString() ?? ""}
+          onChangeText={text => onChange(Number.parseInt(text))}
         />
       </View>
       <TouchableOpacity
         style={{ justifyContent: "center", padding: 15 }}
         disabled={props.readOnly}
         onPress={() => {
-          setValue((value ?? 0) + 1);
+          onChange((data.number ?? 0) + 1);
         }}
       >
         <PlusIcon color={colors.tendrel.text1.color} />

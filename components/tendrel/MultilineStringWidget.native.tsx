@@ -1,10 +1,10 @@
-import { useDebounce } from "@/hooks/useDebounce";
-import { useCallback } from "react";
+import type { MultilineStringWidgetInput } from "@/__generated__/ChecklistResultInlineViewSetValueMutation.graphql";
 import {
   commitLocalUpdate,
   useFragment,
   useRelayEnvironment,
 } from "react-relay";
+import { Text } from "../Text";
 import { TextInput } from "../TextInput";
 import { View } from "../View";
 import {
@@ -24,6 +24,7 @@ type Props =
       readOnly?: false;
       readerFragmentRef: ReaderFragmentRef;
       writerFragmentRef: WriterFragmentRef;
+      onCommit: (input: { string: MultilineStringWidgetInput }) => void;
     };
 
 export function MultilineStringWidget(props: Props) {
@@ -33,29 +34,10 @@ export function MultilineStringWidget(props: Props) {
   if (props.readOnly) {
     return (
       <View style={{ flexDirection: "row", justifyContent: "center" }}>
-        <TextInput value={data.string ?? ""} editable={false} />
+        <Text>{data.string ?? "(no value)"}</Text>
       </View>
     );
   }
-
-  const onChange = useCallback(
-    (value: string | null) => {
-      commitLocalUpdate(environment, store => {
-        const { updatableData } = store.readUpdatableFragment(
-          WriterFragment,
-          props.writerFragmentRef,
-        );
-
-        updatableData.string = value?.length ? value : null;
-      });
-    },
-    [environment, props.writerFragmentRef],
-  );
-
-  const { value, setValue } = useDebounce(onChange, {
-    debounceMs: 200,
-    initialValue: data.string ?? null,
-  });
 
   return (
     <View
@@ -66,8 +48,18 @@ export function MultilineStringWidget(props: Props) {
     >
       <View style={{ width: "80%" }}>
         <TextInput
-          value={value ?? ""}
-          onChangeText={value => setValue(value.length ? value : null)}
+          value={data.string ?? ""}
+          onChangeText={text => {
+            const value = text.length ? text : null;
+            commitLocalUpdate(environment, store => {
+              const { updatableData } = store.readUpdatableFragment(
+                WriterFragment,
+                props.writerFragmentRef,
+              );
+              updatableData.string = value;
+            });
+            props.onCommit({ string: { value } });
+          }}
         />
       </View>
     </View>
