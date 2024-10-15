@@ -19,6 +19,10 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     supportsTablet: true,
     bundleIdentifier: getUniqueIdentifier(),
     backgroundColor: "#87a19a",
+    infoPlist: {
+      // Clears the warning we get from the app store about macOS compatibility
+      LSMinimumSystemVersion: "12.0",
+    },
   },
   android: {
     adaptiveIcon: {
