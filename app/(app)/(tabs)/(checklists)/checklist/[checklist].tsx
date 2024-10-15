@@ -109,7 +109,7 @@ export default function Page() {
           <View style={{ gap: 20 }}>
             <ChecklistProgressBar queryRef={node} />
             <SaveAndFinishButton />
-            <CancelAndDiscardButton />
+            <CancelAndDiscardButton node={node.id} />
             <SubmitButton node={node.id} />
           </View>
         </ActionSheet>
