@@ -4,7 +4,7 @@ import { View } from "@/components/View";
 import { useTheme } from "@/hooks/useTheme";
 import { nullish } from "@/util/nullish";
 import { useRouter } from "expo-router";
-import { TimerIcon } from "lucide-react-native";
+import { PencilOff, TimerIcon } from "lucide-react-native";
 import { useRef } from "react";
 import { ActivityIndicator, TouchableOpacity } from "react-native";
 import { Swipeable } from "react-native-gesture-handler";
@@ -48,9 +48,13 @@ export function ChecklistInlineView({ queryRef: fragRef }: Props) {
         justifyContent: "center",
         backgroundColor: colors.tendrel.interactive2.color,
         borderRadius: 5,
+        margin: 2,
       }}
     >
-      {queryRef ? (
+      {data.status?.__typename !== "ChecklistOpen" ? (
+        // only allow assigning for "open" checklists
+        <PencilOff color={colors.tendrel.text1.color} />
+      ) : queryRef ? (
         <EditChecklistModal
           checklistId={data.id}
           onClose={() => {

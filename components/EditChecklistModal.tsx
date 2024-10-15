@@ -114,31 +114,64 @@ export function EditChecklistModal({
     );
 
   return (
-    <View>
-      <DropdownMenu.Root style={{ padding: 4 }}>
-        <DropdownMenu.Trigger asChild>
-          <TouchableOpacity>
-            <SquarePen color={colors.tendrel.text1.color} />
-          </TouchableOpacity>
-        </DropdownMenu.Trigger>
-        <DropdownMenu.Content
-          loop
-          side="bottom"
-          align="start"
-          sideOffset={5}
-          alignOffset={0}
-          avoidCollisions
-          collisionPadding={8}
-        >
-          <DropdownMenu.Label>
-            {t("editChecklist.selectWorker.t")}
-          </DropdownMenu.Label>
-          {currentAssignee ? (
-            <DropdownMenu.Item
-              key="unassignId"
-              onSelect={() => {
-                commitUnassign({
-                  variables: { entity: checklistId, from: currentAssignee },
+    <DropdownMenu.Root
+      style={{
+        width: "100%",
+        height: "100%",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <DropdownMenu.Trigger asChild>
+        <TouchableOpacity>
+          <SquarePen color={colors.tendrel.text1.color} />
+        </TouchableOpacity>
+      </DropdownMenu.Trigger>
+      <DropdownMenu.Content
+        loop
+        side="bottom"
+        align="start"
+        sideOffset={5}
+        alignOffset={0}
+        avoidCollisions
+        collisionPadding={8}
+      >
+        <DropdownMenu.Label>
+          {t("editChecklist.selectWorker.t")}
+        </DropdownMenu.Label>
+        {currentAssignee ? (
+          <DropdownMenu.Item
+            key="unassignId"
+            onSelect={() => {
+              commitUnassign({
+                variables: { entity: checklistId, from: currentAssignee },
+                onCompleted: () => {
+                  onClose();
+                },
+                onError: () => {},
+              });
+            }}
+          >
+            <DropdownMenu.ItemIcon
+              ios={{ name: "person.crop.circle.badge.minus" }}
+              androidIconName="ic_delete"
+            />
+            <DropdownMenu.ItemTitle>
+              {t("editChecklist.unassign.t")}
+            </DropdownMenu.ItemTitle>
+          </DropdownMenu.Item>
+        ) : undefined}
+
+        {assigneeData.assignable.edges.map(edge => {
+          const assignee = edge.node;
+          if (assignee.__typename !== "Worker") return null;
+          return (
+            <DropdownMenu.CheckboxItem
+              key={assignee.id}
+              value={currentAssignee === assignee.id}
+              onValueChange={() => {
+                commit({
+                  variables: { entity: checklistId, to: assignee.id },
                   onCompleted: () => {
                     onClose();
                   },
@@ -146,41 +179,13 @@ export function EditChecklistModal({
                 });
               }}
             >
-              <DropdownMenu.ItemIcon
-                ios={{ name: "person.crop.circle.badge.minus" }}
-                androidIconName="ic_delete"
-              />
               <DropdownMenu.ItemTitle>
-                {t("editChecklist.unassign.t")}
+                {assignee.displayName}
               </DropdownMenu.ItemTitle>
-            </DropdownMenu.Item>
-          ) : undefined}
-
-          {assigneeData.assignable.edges.map(edge => {
-            const assignee = edge.node;
-            if (assignee.__typename !== "Worker") return null;
-            return (
-              <DropdownMenu.CheckboxItem
-                key={assignee.id}
-                value={currentAssignee === assignee.id}
-                onValueChange={() => {
-                  commit({
-                    variables: { entity: checklistId, to: assignee.id },
-                    onCompleted: () => {
-                      onClose();
-                    },
-                    onError: () => {},
-                  });
-                }}
-              >
-                <DropdownMenu.ItemTitle>
-                  {assignee.displayName}
-                </DropdownMenu.ItemTitle>
-              </DropdownMenu.CheckboxItem>
-            );
-          })}
-        </DropdownMenu.Content>
-      </DropdownMenu.Root>
-    </View>
+            </DropdownMenu.CheckboxItem>
+          );
+        })}
+      </DropdownMenu.Content>
+    </DropdownMenu.Root>
   );
 }
