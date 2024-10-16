@@ -76,6 +76,7 @@ export function ChecklistInlineView({ queryRef: fragRef }: Props) {
       onBegan={() => loadQuery({ entity: data.id })}
       renderRightActions={renderRightActions}
       useNativeAnimations
+      enabled={data.status?.__typename === "ChecklistOpen"}
     >
       <View
         style={{

@@ -1,5 +1,7 @@
 import { useTheme } from "@/hooks/useTheme";
+import * as WebBrowser from "expo-web-browser";
 import { ListOrdered } from "lucide-react-native";
+import { PlatformColor, TouchableOpacity } from "react-native";
 import { useFragment } from "react-relay";
 import { Text } from "../Text";
 import { View } from "../View";
@@ -17,6 +19,10 @@ export function Sop({ queryRef, ...props }: Props) {
 
   const { colors } = useTheme();
   const { label = "SOP" } = props.i18n ?? {};
+
+  const _handlePressButtonAsync = async () => {
+    await WebBrowser.openBrowserAsync(data.sop);
+  };
 
   return (
     <View
@@ -36,7 +42,16 @@ export function Sop({ queryRef, ...props }: Props) {
           {label}
         </Text>
       </View>
-      <Text>{data.sop}</Text>
+      <TouchableOpacity onPress={_handlePressButtonAsync}>
+        <Text
+          style={{
+            textDecorationLine: "underline",
+            color: PlatformColor("linkColor"),
+          }}
+        >
+          {data.sop}
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 }
