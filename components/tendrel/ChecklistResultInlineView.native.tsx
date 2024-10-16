@@ -1,3 +1,4 @@
+import type { ChecklistResultInlineViewSetStatusMutation } from "@/__generated__/ChecklistResultInlineViewSetStatusMutation.graphql";
 import type {
   ChecklistResultInlineViewSetValueMutation,
   WidgetInput,
@@ -6,6 +7,7 @@ import { useTheme } from "@/hooks/useTheme";
 import { debounce } from "@/util/debounce";
 import { CheckCircleIcon, CircleIcon } from "lucide-react-native";
 import { useCallback } from "react";
+import { TouchableOpacity } from "react-native";
 import { graphql, useFragment, useMutation } from "react-relay";
 import { match } from "ts-pattern";
 import { View } from "../View";
@@ -65,6 +67,33 @@ export function ChecklistResultInlineView({ queryRef, ...props }: Props) {
       `,
     );
 
+  const [commitStatusChange, isStatusChangeInflight] =
+    useMutation<ChecklistResultInlineViewSetStatusMutation>(
+      graphql`
+        mutation ChecklistResultInlineViewSetStatusMutation(
+          $entity: ID!
+          $parent: ID!
+          $statusInput: ChecklistStatusInput!
+        ) {
+          setStatus(entity: $entity, parent: $parent, input: $statusInput) {
+            ... on SetChecklistItemStatusPayload {
+              edge {
+                cursor
+                node {
+                  ... on ChecklistResult {
+                    ...ChecklistResultInlineView_fragment
+                  }
+                }
+              }
+              parent {
+                ...ChecklistProgressBar_fragment
+              }
+            }
+          }
+        }
+      `,
+    );
+
   const { colors } = useTheme();
 
   const onCommit_ = useCallback(
@@ -74,7 +103,7 @@ export function ChecklistResultInlineView({ queryRef, ...props }: Props) {
           entity: data.id,
           parent: props.parent,
           statusInput: {
-            closed: {
+            inProgress: {
               at: {
                 instant: Date.now().toString(),
               },
@@ -88,6 +117,38 @@ export function ChecklistResultInlineView({ queryRef, ...props }: Props) {
   );
 
   const onCommit = useCallback(debounce(onCommit_, 250), []);
+
+  function toggleResultComplete() {
+    if (data.status?.__typename === "ChecklistOpen") {
+      commitStatusChange({
+        variables: {
+          entity: data.id,
+          parent: props.parent,
+          statusInput: {
+            closed: {
+              at: {
+                instant: Date.now().toString(),
+              },
+            },
+          },
+        },
+      });
+    } else {
+      commitStatusChange({
+        variables: {
+          entity: data.id,
+          parent: props.parent,
+          statusInput: {
+            open: {
+              at: {
+                instant: Date.now().toString(),
+              },
+            },
+          },
+        },
+      });
+    }
+  }
 
   return (
     <View
@@ -132,68 +193,103 @@ export function ChecklistResultInlineView({ queryRef, ...props }: Props) {
         borderLeftWidth: 5,
       }}
     >
-      <View style={{ flexDirection: "row" }}>
-        <DisplayName queryRef={data.name} style={{ flex: 1 }} />
-        {match(data.status?.__typename)
-          .with("ChecklistOpen", () => (
-            <CircleIcon color={colors.tendrel.border2.gray} />
-          ))
-          .with("ChecklistClosed", () => (
-            <CheckCircleIcon color={colors.feedback.success.button2} />
-          ))
-          .otherwise(() => null)}
+      <View
+        style={{
+          flexDirection: "row",
+        }}
+      >
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "flex-start",
+            alignItems: "flex-start",
+          }}
+        >
+          <TouchableOpacity
+            disabled={props.readOnly || isStatusChangeInflight}
+            hitSlop={15}
+            onPress={() => {
+              toggleResultComplete();
+            }}
+          >
+            {match(data.status?.__typename)
+              .with("ChecklistOpen", () => (
+                <CircleIcon size={28} color={colors.tendrel.border2.color} />
+              ))
+              .with("ChecklistClosed", () => (
+                <CheckCircleIcon
+                  size={28}
+                  color={colors.feedback.success.button2}
+                />
+              ))
+              .otherwise(() => null)}
+          </TouchableOpacity>
+        </View>
+        <View
+          style={{
+            flexDirection: "column",
+            flex: 8,
+            gap: 10,
+          }}
+        >
+          <DisplayName
+            style={{ fontWeight: "500", fontSize: 16 }}
+            queryRef={data.name}
+          />
+
+          {match(data.widget)
+            .with({ __typename: "CheckboxWidget" }, node => (
+              <CheckboxWidget
+                readOnly={props.readOnly}
+                readerFragmentRef={node}
+                writerFragmentRef={node}
+                onCommit={onCommit}
+              />
+            ))
+            .with({ __typename: "ClickerWidget" }, node => (
+              <ClickerWidget
+                readOnly={props.readOnly}
+                readerFragmentRef={node}
+                writerFragmentRef={node}
+                onCommit={onCommit}
+              />
+            ))
+            .with({ __typename: "MultilineStringWidget" }, node => (
+              <MultilineStringWidget
+                readOnly={props.readOnly}
+                readerFragmentRef={node}
+                writerFragmentRef={node}
+                onCommit={onCommit}
+              />
+            ))
+            .with({ __typename: "NumberWidget" }, node => (
+              <NumberWidget
+                readOnly={props.readOnly}
+                readerFragmentRef={node}
+                writerFragmentRef={node}
+                onCommit={onCommit}
+              />
+            ))
+            .with({ __typename: "SentimentWidget" }, node => (
+              <SentimentWidget
+                readOnly={props.readOnly}
+                readerFragmentRef={node}
+                writerFragmentRef={node}
+                onCommit={onCommit}
+              />
+            ))
+            .with({ __typename: "StringWidget" }, node => (
+              <StringWidget
+                readOnly={props.readOnly}
+                readerFragmentRef={node}
+                writerFragmentRef={node}
+                onCommit={onCommit}
+              />
+            ))
+            .with({ __typename: "TemporalWidget" }, _node => null)
+            .otherwise(() => null)}
+        </View>
       </View>
-      {match(data.widget)
-        .with({ __typename: "CheckboxWidget" }, node => (
-          <CheckboxWidget
-            readOnly={props.readOnly}
-            readerFragmentRef={node}
-            writerFragmentRef={node}
-            onCommit={onCommit}
-          />
-        ))
-        .with({ __typename: "ClickerWidget" }, node => (
-          <ClickerWidget
-            readOnly={props.readOnly}
-            readerFragmentRef={node}
-            writerFragmentRef={node}
-            onCommit={onCommit}
-          />
-        ))
-        .with({ __typename: "MultilineStringWidget" }, node => (
-          <MultilineStringWidget
-            readOnly={props.readOnly}
-            readerFragmentRef={node}
-            writerFragmentRef={node}
-            onCommit={onCommit}
-          />
-        ))
-        .with({ __typename: "NumberWidget" }, node => (
-          <NumberWidget
-            readOnly={props.readOnly}
-            readerFragmentRef={node}
-            writerFragmentRef={node}
-            onCommit={onCommit}
-          />
-        ))
-        .with({ __typename: "SentimentWidget" }, node => (
-          <SentimentWidget
-            readOnly={props.readOnly}
-            readerFragmentRef={node}
-            writerFragmentRef={node}
-            onCommit={onCommit}
-          />
-        ))
-        .with({ __typename: "StringWidget" }, node => (
-          <StringWidget
-            readOnly={props.readOnly}
-            readerFragmentRef={node}
-            writerFragmentRef={node}
-            onCommit={onCommit}
-          />
-        ))
-        .with({ __typename: "TemporalWidget" }, _node => null)
-        .otherwise(() => null)}
     </View>
   );
 }
