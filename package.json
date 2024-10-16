@@ -53,7 +53,7 @@
     "babel-plugin-inline-import": "^3.0.0",
     "date-fns": "^4.1.0",
     "drizzle-orm": "^0.32.2",
-    "expo": "^51.0.37",
+    "expo": "~51.0.38",
     "expo-application": "~5.9.1",
     "expo-blur": "~13.0.2",
     "expo-camera": "~15.0.15",
