@@ -1,4 +1,10 @@
 {
+  "pagination": {
+    "showing-n-of": {
+      "t": "Отображение {{n}} из {{totalCount}}",
+      "override": false
+    }
+  },
   "signIn": {
     "username": {
       "t": "Имя пользователя",

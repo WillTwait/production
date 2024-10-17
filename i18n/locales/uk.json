@@ -1,4 +1,10 @@
 {
+  "pagination": {
+    "showing-n-of": {
+      "t": "Показано {{n}} з {{totalCount}}",
+      "override": false
+    }
+  },
   "signIn": {
     "username": {
       "t": "Ім'я користувача",

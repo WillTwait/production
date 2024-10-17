@@ -1,4 +1,10 @@
 {
+  "pagination": {
+    "showing-n-of": {
+      "t": "Εμφάνιση {{n}} από {{totalCount}}",
+      "override": false
+    }
+  },
   "signIn": {
     "username": {
       "t": "Όνομα χρήστη",

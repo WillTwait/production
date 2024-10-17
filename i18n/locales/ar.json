@@ -1,4 +1,10 @@
 {
+  "pagination": {
+    "showing-n-of": {
+      "t": "عرض {{n}} من {{TotalCount}}",
+      "override": false
+    }
+  },
   "signIn": {
     "username": {
       "t": "اسم المستخدم",

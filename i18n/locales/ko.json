@@ -1,4 +1,10 @@
 {
+  "pagination": {
+    "showing-n-of": {
+      "t": "{{TotalCount}} 의 {{n}} 보기",
+      "override": false
+    }
+  },
   "signIn": {
     "username": {
       "t": "아이디",

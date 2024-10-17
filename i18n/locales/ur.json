@@ -1,4 +1,10 @@
 {
+  "pagination": {
+    "showing-n-of": {
+      "t": "{{totalCount}} کا {{n}} دکھا رہا ہے",
+      "override": false
+    }
+  },
   "signIn": {
     "username": {
       "t": "صارف نام",

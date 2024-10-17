@@ -73,6 +73,7 @@
             GRADLE_OPTS = "-Dorg.gradle.project.android.aapt2FromMavenOverride=${config.packages.android-sdk}/share/android-sdk/build-tools/34.0.0/aapt2";
           };
           packages = with pkgs; [
+            awscli2
             config.packages.android-emulator
             config.packages.android-sdk
             biome

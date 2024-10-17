@@ -5,7 +5,7 @@ import type { EditChecklistModal_fragment$key } from "@/__generated__/EditCheckl
 import { useTheme } from "@/hooks/useTheme";
 import { SquarePen } from "lucide-react-native";
 import { useTranslation } from "react-i18next";
-import { TouchableOpacity } from "react-native";
+import { ActivityIndicator, TouchableOpacity } from "react-native";
 import {
   type PreloadedQuery,
   graphql,
@@ -14,103 +14,96 @@ import {
   usePreloadedQuery,
 } from "react-relay";
 import * as DropdownMenu from "zeego/dropdown-menu";
-import { View } from "./View";
 
 export const AssignChecklistMenuQuery = graphql`
-query EditChecklistModalQuery($entity: ID!) {
-  assignable(entity: $entity) {
-    edges {
-      node {
-        __typename
-        ... on Worker {
-          id
-          displayName
-          scanCode
+  query EditChecklistModalQuery($entity: ID!) {
+    assignable(entity: $entity) {
+      edges {
+        node {
+          __typename
+          ... on Worker {
+            id
+            displayName
+            scanCode
+          }
         }
       }
+      totalCount
     }
-    totalCount
   }
-}
 `;
 
 interface EditChecklistModalProps {
+  assignable: PreloadedQuery<EditChecklistModalQuery>;
   checklistId: string;
+  cx: EditChecklistModal_fragment$key;
   onClose: () => void;
-  queryRef: PreloadedQuery<EditChecklistModalQuery>;
-  fragRef: EditChecklistModal_fragment$key;
 }
 
 export function EditChecklistModal({
   checklistId,
+  cx,
   onClose,
-  queryRef,
-  fragRef,
+  ...props
 }: EditChecklistModalProps) {
   const { colors } = useTheme();
   const { t } = useTranslation();
 
   const data = useFragment(
     graphql`
-      fragment EditChecklistModal_fragment on Checklist {
-        id
-        assignees {
-          edges {
-            node {
-              assignedTo {
-                id
-              }
+      fragment EditChecklistModal_fragment on AssigneeConnection {
+        __id
+        edges {
+          node {
+            assignedTo {
+              id
             }
           }
         }
       }
     `,
-    fragRef,
+    cx,
   );
 
-  const currentAssignee = data.assignees.edges.at(0)?.node.assignedTo.id;
+  const currentAssignee = data.edges.at(0)?.node.assignedTo.id;
 
-  const assigneeData = usePreloadedQuery(AssignChecklistMenuQuery, queryRef);
+  const { assignable } = usePreloadedQuery(
+    AssignChecklistMenuQuery,
+    props.assignable,
+  );
 
-  const [commit, _isInFlight] = useMutation<EditChecklistModalMutation>(
+  const [assign, isAssignInFlight] = useMutation<EditChecklistModalMutation>(
     graphql`
-    mutation EditChecklistModalMutation($entity: ID!, $to: ID!) {
-      assign(entity: $entity, to: $to) {
-        entity {
-          ... on Checklist {
-            assignees {
-              edges {
-                node {
-                  ...Assignee_fragment
-                }
-              }
-              totalCount
+      mutation EditChecklistModalMutation(
+        $entity: ID!
+        $to: ID!
+        $connections: [ID!]!
+      ) {
+        assign(entity: $entity, to: $to) {
+          assignee @appendEdge(connections: $connections) {
+            cursor
+            node {
+              id
+              ...Assignee_fragment
             }
           }
         }
       }
-    }
     `,
   );
-  const [commitUnassign, _isInFlight2] =
+  const [unassign, isUnassignInFlight] =
     useMutation<EditChecklistModalUnassignMutation>(
       graphql`
-    mutation EditChecklistModalUnassignMutation($entity: ID!, $from: ID!) {
-      unassign(entity: $entity, from: $from) {
-        entity {
-          ... on Checklist {
-            assignees {
-              edges {
-                node {
-                  ...Assignee_fragment
-                }
-              }
-            }
+        mutation EditChecklistModalUnassignMutation(
+          $entity: ID!
+          $from: ID!
+          $connections: [ID!]!
+        ) {
+          unassign(entity: $entity, from: $from) {
+            unassignedAssignees @deleteEdge(connections: $connections)
           }
         }
-      }
-    }
-    `,
+      `,
     );
 
   return (
@@ -123,8 +116,12 @@ export function EditChecklistModal({
       }}
     >
       <DropdownMenu.Trigger asChild>
-        <TouchableOpacity>
-          <SquarePen color={colors.tendrel.text1.color} />
+        <TouchableOpacity disabled={isAssignInFlight || isUnassignInFlight}>
+          {isAssignInFlight || isUnassignInFlight ? (
+            <ActivityIndicator />
+          ) : (
+            <SquarePen color={colors.tendrel.text1.color} />
+          )}
         </TouchableOpacity>
       </DropdownMenu.Trigger>
       <DropdownMenu.Content
@@ -143,12 +140,28 @@ export function EditChecklistModal({
           <DropdownMenu.Item
             key="unassignId"
             onSelect={() => {
-              commitUnassign({
-                variables: { entity: checklistId, from: currentAssignee },
-                onCompleted: () => {
-                  onClose();
+              unassign({
+                variables: {
+                  connections: [data.__id],
+                  entity: checklistId,
+                  from: currentAssignee,
                 },
-                onError: () => {},
+                // updater(store, data) {
+                //   // FIXME: I'm not sure why @deleteEdge isn't working.
+                //   // As a workaround, we do it manually:
+                //   const cx = store.get(connectionId);
+                //   const from = data?.unassign.unassignedAssignees ?? [];
+                //   if (cx) {
+                //     for (const id of from) {
+                //       ConnectionHandler.deleteNode(cx, id);
+                //     }
+                //     cx.setValue(0, "totalCount");
+                //   }
+                // },
+                onCompleted: onClose,
+                onError(e) {
+                  console.debug("ERROR", e);
+                },
               });
             }}
           >
@@ -162,7 +175,7 @@ export function EditChecklistModal({
           </DropdownMenu.Item>
         ) : undefined}
 
-        {assigneeData.assignable.edges.map(edge => {
+        {assignable.edges.map(edge => {
           const assignee = edge.node;
           if (assignee.__typename !== "Worker") return null;
           return (
@@ -170,12 +183,16 @@ export function EditChecklistModal({
               key={assignee.id}
               value={currentAssignee === assignee.id}
               onValueChange={() => {
-                commit({
-                  variables: { entity: checklistId, to: assignee.id },
-                  onCompleted: () => {
-                    onClose();
+                assign({
+                  variables: {
+                    connections: [data.__id],
+                    entity: checklistId,
+                    to: assignee.id,
                   },
-                  onError: () => {},
+                  onCompleted: onClose,
+                  onError(e) {
+                    console.debug("ERROR", e);
+                  },
                 });
               }}
             >

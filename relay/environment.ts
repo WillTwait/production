@@ -6,7 +6,7 @@ import {
   RecordSource,
   Store,
 } from "relay-runtime";
-import { RelayDefaultHandlerProvider } from "relay-runtime/lib/handlers/RelayDefaultHandlerProvider";
+import RelayDefaultHandlerProvider from "relay-runtime/lib/handlers/RelayDefaultHandlerProvider";
 import type RelayModernEnvironment from "relay-runtime/lib/store/RelayModernEnvironment";
 import ConnectionHandler from "./ConnectionHandler";
 
@@ -23,6 +23,8 @@ export function createClientSideEnvironment(opts: FetchFunctionOptions) {
         if (handle === "connection") {
           return ConnectionHandler;
         }
+        // @ts-expect-error : DefinitelyTyped is wrong.
+        // @see https://github.com/DefinitelyTyped/DefinitelyTyped/pull/70935
         return RelayDefaultHandlerProvider(handle);
       },
     });

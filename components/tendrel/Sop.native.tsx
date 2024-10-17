@@ -1,7 +1,12 @@
 import { useTheme } from "@/hooks/useTheme";
 import * as WebBrowser from "expo-web-browser";
 import { ListOrdered } from "lucide-react-native";
-import { PlatformColor, TouchableOpacity } from "react-native";
+import {
+  Platform,
+  PlatformColor,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 import { useFragment } from "react-relay";
 import { Text } from "../Text";
 import { View } from "../View";
@@ -43,15 +48,23 @@ export function Sop({ queryRef, ...props }: Props) {
         </Text>
       </View>
       <TouchableOpacity onPress={_handlePressButtonAsync}>
-        <Text
-          style={{
-            textDecorationLine: "underline",
-            color: PlatformColor("linkColor"),
-          }}
-        >
-          {data.sop}
-        </Text>
+        <Text style={styles.link}>{data.sop}</Text>
       </TouchableOpacity>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  link: {
+    textDecorationLine: "underline",
+    ...Platform.select({
+      android: {
+        color: PlatformColor("?android:attr/textColorLink"),
+      },
+      ios: {
+        color: PlatformColor("linkColor"),
+      },
+      default: { color: "black" },
+    }),
+  },
+});

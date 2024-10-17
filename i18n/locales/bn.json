@@ -1,4 +1,10 @@
 {
+  "pagination": {
+    "showing-n-of": {
+      "t": "{{totalCount}} এর {{n}} দেখানো হচ্ছে",
+      "override": false
+    }
+  },
   "signIn": {
     "username": {
       "t": "ব্যবহারকারীর নাম",

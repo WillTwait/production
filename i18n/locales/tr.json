@@ -1,4 +1,10 @@
 {
+  "pagination": {
+    "showing-n-of": {
+      "t": "{{totalCount}} 'den {{n}} gösteriliyor",
+      "override": false
+    }
+  },
   "signIn": {
     "username": {
       "t": "Kullanıcı Adı",

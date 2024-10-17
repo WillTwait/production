@@ -1,4 +1,10 @@
 {
+  "pagination": {
+    "showing-n-of": {
+      "t": "显示 {{totalCount}} 中的 {{n}}",
+      "override": false
+    }
+  },
   "signIn": {
     "username": {
       "t": "用户名",

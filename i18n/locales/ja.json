@@ -1,4 +1,10 @@
 {
+  "pagination": {
+    "showing-n-of": {
+      "t": "{{totalCount}} の {{n}} を表示中",
+      "override": false
+    }
+  },
   "signIn": {
     "username": {
       "t": "ユーザー名",

@@ -3,13 +3,15 @@ import { graphql } from "react-relay";
 export const ChecklistInlineView$fragment = graphql`
   fragment ChecklistInlineView on Checklist {
     id
-    assignees {
+    assignees(first: null, after: null) @connection(key: "Checklist__assignees") {
       edges {
+        cursor
         node {
+          id
           ...Assignee_fragment
         }
       }
-      totalCount
+      ...EditChecklistModal_fragment
     }
     name {
       ...DisplayName_fragment
@@ -52,7 +54,6 @@ export const ChecklistInlineView$fragment = graphql`
       }
       ...DueAt_fragment
     }
-    ...EditChecklistModal_fragment
   }
 `;
 

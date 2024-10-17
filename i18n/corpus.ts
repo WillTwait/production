@@ -1,6 +1,9 @@
 import type { NestedTranslation } from "../scripts/translate";
 
 export const corpus: NestedTranslation = {
+  pagination: {
+    "showing-n-of": "Showing {{n}} of {{totalCount}}",
+  },
   signIn: {
     username: "Username",
     password: "Password",

@@ -5,7 +5,7 @@ import { useTheme } from "@/hooks/useTheme";
 import { nullish } from "@/util/nullish";
 import { useRouter } from "expo-router";
 import { PencilOff, TimerIcon } from "lucide-react-native";
-import { useRef } from "react";
+import { Suspense, useCallback, useRef } from "react";
 import { ActivityIndicator, TouchableOpacity } from "react-native";
 import { Swipeable } from "react-native-gesture-handler";
 import { useFragment, useQueryLoader } from "react-relay";
@@ -30,50 +30,50 @@ interface Props {
 
 export function ChecklistInlineView({ queryRef: fragRef }: Props) {
   const data = useFragment(ChecklistInlineView$fragment, fragRef);
+  const [queryRef, loadQuery] = useQueryLoader<EditChecklistModalQuery>(
+    AssignChecklistMenuQuery,
+  );
 
   const swipableRef = useRef<Swipeable>(null);
-
   const { colors } = useTheme();
   const router = useRouter();
 
-  const [queryRef, loadQuery, disposeQuery] =
-    useQueryLoader<EditChecklistModalQuery>(AssignChecklistMenuQuery);
-
   // FIXME: this and the the swipeable should maybe be moved up to the flatlist if possible? or maybe pass a flatlist ref down so that we can close other items when a new swipe is made
-  const renderRightActions = () => (
-    <View
-      style={{
-        width: 75,
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: colors.tendrel.interactive2.color,
-        borderRadius: 5,
-        margin: 2,
-      }}
-    >
-      {data.status?.__typename !== "ChecklistOpen" ? (
-        // only allow assigning for "open" checklists
-        <PencilOff color={colors.tendrel.text1.color} />
-      ) : queryRef ? (
-        <EditChecklistModal
-          checklistId={data.id}
-          onClose={() => {
-            disposeQuery();
-            swipableRef.current?.close();
-          }}
-          queryRef={queryRef}
-          fragRef={data}
-        />
-      ) : (
-        <ActivityIndicator />
-      )}
-    </View>
+  const renderRightActions = useCallback(
+    () => (
+      <View
+        style={{
+          width: 75,
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: colors.tendrel.interactive2.color,
+          borderRadius: 5,
+        }}
+      >
+        {data.status?.__typename !== "ChecklistOpen" ? (
+          // only allow assigning for "open" checklists
+          <PencilOff color={colors.tendrel.text1.color} />
+        ) : queryRef ? (
+          <Suspense fallback={<ActivityIndicator />}>
+            <EditChecklistModal
+              assignable={queryRef}
+              checklistId={data.id}
+              cx={data.assignees}
+              onClose={() => swipableRef.current?.close()}
+            />
+          </Suspense>
+        ) : (
+          <ActivityIndicator />
+        )}
+      </View>
+    ),
+    [colors, data, queryRef],
   );
 
   return (
     <Swipeable
       ref={swipableRef}
-      onBegan={() => loadQuery({ entity: data.id })}
+      onSwipeableWillOpen={() => loadQuery({ entity: data.id })}
       renderRightActions={renderRightActions}
       useNativeAnimations
       enabled={data.status?.__typename === "ChecklistOpen"}
@@ -142,9 +142,9 @@ export function ChecklistInlineView({ queryRef: fragRef }: Props) {
                 padding: 5,
               }}
             >
-              {data.assignees.edges.length ? (
-                <Assignee queryRef={data.assignees.edges[0].node} />
-              ) : null}
+              {data.assignees.edges.map(e => (
+                <Assignee key={e.node.id} queryRef={e.node} />
+              ))}
             </View>
           </View>
           <Seperator orientation="horizontal" width={0.5} />
