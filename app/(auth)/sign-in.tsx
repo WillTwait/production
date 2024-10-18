@@ -14,6 +14,7 @@ import Head from "expo-router/head";
 import { Eye, EyeOff, Lock, User } from "lucide-react-native";
 import React, { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { TouchableOpacity } from "react-native";
 import { toast } from "sonner-native";
 
 export default function SignIn() {
@@ -105,19 +106,19 @@ export default function SignIn() {
               <Lock size={theme.icon.size} color={colors.tendrel.text1.color} />
             }
             iconAfter={
-              secureEntry ? (
-                <Eye
-                  size={theme.icon.size}
-                  onPress={() => setSecureEntry(false)}
-                  color={colors.tendrel.text1.color}
-                />
-              ) : (
-                <EyeOff
-                  size={theme.icon.size}
-                  onPress={() => setSecureEntry(true)}
-                  color={colors.tendrel.text1.color}
-                />
-              )
+              <TouchableOpacity onPress={() => setSecureEntry(!secureEntry)}>
+                {secureEntry ? (
+                  <Eye
+                    size={theme.icon.size}
+                    color={colors.tendrel.text1.color}
+                  />
+                ) : (
+                  <EyeOff
+                    size={theme.icon.size}
+                    color={colors.tendrel.text1.color}
+                  />
+                )}
+              </TouchableOpacity>
             }
           />
           <Button

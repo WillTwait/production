@@ -137,20 +137,6 @@ export function ActiveConnectionView({ parent, queryRef, ...props }: Props) {
     });
   }, [colorTheme]); // Text color wont change when dark mode is toggled unless this is set
 
-  const flatListStyle = useAnimatedStyle(() => ({
-    opacity: interpolate(progress.value, [0, 1], [1, 0], Extrapolation.CLAMP),
-    transform: [
-      {
-        translateY: interpolate(
-          progress.value,
-          [0, 1],
-          [0, -50],
-          Extrapolation.CLAMP,
-        ),
-      },
-    ],
-  }));
-
   const renderItem: ListRenderItem<(typeof data.checklists.edges)[number]> =
     useCallback(
       ({ item }) => (
@@ -184,6 +170,20 @@ export function ActiveConnectionView({ parent, queryRef, ...props }: Props) {
       );
     });
   }, [refetch, sortBy, withActive, withName, withStatus]);
+
+  const flatListStyle = useAnimatedStyle(() => ({
+    opacity: interpolate(progress.value, [0, 1], [1, 0], Extrapolation.CLAMP),
+    transform: [
+      {
+        translateY: interpolate(
+          progress.value,
+          [0, 1],
+          [0, -50],
+          Extrapolation.CLAMP,
+        ),
+      },
+    ],
+  }));
 
   return (
     <View {...addTestIdentifiers("checklistsPage")} style={{ flex: 1 }}>

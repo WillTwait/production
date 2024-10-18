@@ -108,7 +108,7 @@ export function ChecklistInlineView({ queryRef: fragRef }: Props) {
                 if (data.status.closedBecause?.code === "error") {
                   return colors.feedback.error.button2;
                 }
-                return colors.feedback.success.button2;
+                return colors.tendrel.background2.color;
               }
               default:
                 return undefined;
@@ -170,13 +170,21 @@ export function ChecklistInlineView({ queryRef: fragRef }: Props) {
                         gap: 4,
                       }}
                     >
-                      <Text style={{ fontSize: 12, color: "gray" }}>
+                      <Text
+                        style={{
+                          fontSize: 12,
+                          color: colors.tendrel.text1.gray,
+                        }}
+                      >
                         Completed on:
                       </Text>
                       <Temporal
                         queryRef={data.status.closedAt}
                         options={{ dateStyle: "short", timeStyle: "short" }}
-                        style={{ fontSize: 12, color: "gray" }}
+                        style={{
+                          fontSize: 12,
+                          color: colors.tendrel.text1.gray,
+                        }}
                       />
                     </View>
                   );
@@ -189,13 +197,21 @@ export function ChecklistInlineView({ queryRef: fragRef }: Props) {
                         gap: 4,
                       }}
                     >
-                      <Text style={{ fontSize: 12, color: "gray" }}>
+                      <Text
+                        style={{
+                          fontSize: 12,
+                          color: colors.tendrel.text1.gray,
+                        }}
+                      >
                         Started:
                       </Text>
                       <Temporal
                         queryRef={data.status.inProgressAt}
                         options={{ dateStyle: "short", timeStyle: "short" }}
-                        style={{ fontSize: 12, color: "gray" }}
+                        style={{
+                          fontSize: 12,
+                          color: colors.tendrel.text1.gray,
+                        }}
                       />
                     </View>
                   );
@@ -208,13 +224,21 @@ export function ChecklistInlineView({ queryRef: fragRef }: Props) {
                         gap: 4,
                       }}
                     >
-                      <Text style={{ fontSize: 12, color: "gray" }}>
+                      <Text
+                        style={{
+                          fontSize: 12,
+                          color: colors.tendrel.text1.gray,
+                        }}
+                      >
                         Previous:
                       </Text>
                       <Temporal
                         queryRef={data.parent.status.closedAt}
                         options={{ dateStyle: "short", timeStyle: "short" }}
-                        style={{ fontSize: 12, color: "gray" }}
+                        style={{
+                          fontSize: 12,
+                          color: colors.tendrel.text1.gray,
+                        }}
                       />
                     </View>
                   );
@@ -227,13 +251,21 @@ export function ChecklistInlineView({ queryRef: fragRef }: Props) {
                         gap: 4,
                       }}
                     >
-                      <Text style={{ fontSize: 12, color: "gray" }}>
+                      <Text
+                        style={{
+                          fontSize: 12,
+                          color: colors.tendrel.text1.gray,
+                        }}
+                      >
                         Open since:
                       </Text>
                       <Temporal
                         queryRef={data.status.openedAt}
                         options={{ dateStyle: "short", timeStyle: "short" }}
-                        style={{ fontSize: 12, color: "gray" }}
+                        style={{
+                          fontSize: 12,
+                          color: colors.tendrel.text1.gray,
+                        }}
                       />
                     </View>
                   );
@@ -248,7 +280,7 @@ export function ChecklistInlineView({ queryRef: fragRef }: Props) {
                   <DueAt
                     iconSize={12}
                     queryRef={data.status}
-                    style={{ fontSize: 12, color: "black" }}
+                    style={{ fontSize: 12, color: colors.tendrel.text1.color }}
                   />
                 );
               }
@@ -263,7 +295,7 @@ export function ChecklistInlineView({ queryRef: fragRef }: Props) {
                       gap: 4,
                     }}
                   >
-                    <TimerIcon size={12} color="black" />
+                    <TimerIcon size={12} color={colors.tendrel.text1.color} />
                     <ChecklistTimer queryRef={data.status} />
                   </View>
                 );

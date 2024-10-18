@@ -115,6 +115,7 @@ function Content({ progress, queryRef }: PaginationProps) {
   const { colors } = useTheme();
 
   if (data.checklists.totalCount === 0) {
+    progress.value = 0;
     return undefined;
   }
 

@@ -97,22 +97,6 @@ export default function Page() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flex: 1, height: "100%" }}>
-        <ActionSheet
-          containerStyle={{
-            height: "50%",
-            padding: 20,
-            backgroundColor: colors.tendrel.background1.color,
-          }}
-          ref={actionSheetRef}
-          safeAreaInsets={insets}
-        >
-          <View style={{ gap: 20 }}>
-            <ChecklistProgressBar queryRef={node} />
-            <SaveAndFinishButton />
-            <CancelAndDiscardButton node={node.id} />
-            <SubmitButton node={node.id} />
-          </View>
-        </ActionSheet>
         <View style={{ flex: 1 }}>
           <View style={{ flex: 1 }}>
             <FlatList
@@ -209,6 +193,22 @@ export default function Page() {
             </View>
           </View>
         </View>
+        <ActionSheet
+          containerStyle={{
+            height: "50%",
+            padding: 20,
+            backgroundColor: colors.tendrel.background1.color,
+          }}
+          ref={actionSheetRef}
+          safeAreaInsets={insets}
+        >
+          <View style={{ gap: 20 }}>
+            <ChecklistProgressBar queryRef={node} />
+            <SaveAndFinishButton />
+            <CancelAndDiscardButton node={node.id} />
+            <SubmitButton node={node.id} />
+          </View>
+        </ActionSheet>
       </View>
     </SafeAreaView>
   );
