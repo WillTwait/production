@@ -195,14 +195,15 @@ export function ChecklistResultInlineView({ queryRef, ...props }: Props) {
     >
       <View
         style={{
-          flexDirection: "row",
+          flexDirection: "column",
+          gap: 4,
         }}
       >
         <View
           style={{
-            flex: 1,
-            justifyContent: "flex-start",
-            alignItems: "flex-start",
+            flexDirection: "row",
+            alignItems: "center",
+            gap: 10,
           }}
         >
           <TouchableOpacity
@@ -224,19 +225,16 @@ export function ChecklistResultInlineView({ queryRef, ...props }: Props) {
               ))
               .otherwise(() => null)}
           </TouchableOpacity>
-        </View>
-        <View
-          style={{
-            flexDirection: "column",
-            flex: 8,
-            gap: 10,
-          }}
-        >
           <DisplayName
             style={{ fontWeight: "500", fontSize: 16 }}
             queryRef={data.name}
           />
-
+        </View>
+        <View
+          style={{
+            flex: 8,
+          }}
+        >
           {match(data.widget)
             .with({ __typename: "CheckboxWidget" }, node => (
               <CheckboxWidget
