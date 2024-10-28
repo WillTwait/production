@@ -14,7 +14,7 @@ import Head from "expo-router/head";
 import { Eye, EyeOff, Lock, User } from "lucide-react-native";
 import React, { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { TouchableOpacity } from "react-native";
+import { ActivityIndicator, TouchableOpacity } from "react-native";
 import { toast } from "sonner-native";
 
 export default function SignIn() {
@@ -25,6 +25,7 @@ export default function SignIn() {
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const [secureEntry, setSecureEntry] = useState(true);
+  const [isSigningIn, setIsLoading] = useState(false);
 
   const onSignInPress = useCallback(async () => {
     if (!isLoaded) {
@@ -32,6 +33,7 @@ export default function SignIn() {
     }
 
     await Sentry.startSpan({ name: "clerk/sign-in" }, async () => {
+      setIsLoading(true);
       try {
         const signInAttempt = await signIn.create({
           identifier,
@@ -44,6 +46,8 @@ export default function SignIn() {
         }
       } catch (err) {
         toast.error(parseErrorMessage(err));
+      } finally {
+        setIsLoading(false);
       }
     });
   }, [isLoaded, identifier, password, signIn, setActive]);
@@ -121,11 +125,23 @@ export default function SignIn() {
               </TouchableOpacity>
             }
           />
-          <Button
-            title="Sign in"
-            onPress={onSignInPress}
-            {...addTestIdentifiers("signInButton")}
-          />
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Button
+              disabled={isSigningIn}
+              title="Sign in"
+              onPress={onSignInPress}
+              {...addTestIdentifiers("signInButton")}
+            />
+            {isSigningIn ? (
+              <ActivityIndicator style={{ marginLeft: 10 }} />
+            ) : null}
+          </View>
           {process.env.EXPO_PUBLIC_TENDREL_STAGE !== "beta" ? (
             <Text type="subtitle" style={{ alignSelf: "center" }}>
               Stage: {process.env.EXPO_PUBLIC_TENDREL_STAGE}
