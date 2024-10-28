@@ -3,7 +3,9 @@ import ReadMore, {
   type ReadMoreProps,
 } from "@fawazahmed/react-native-read-more";
 
-interface Props extends ReadMoreProps {}
+interface Props extends ReadMoreProps {
+  value: string;
+}
 
 export function Truncate(props: Props) {
   const { colors } = useTheme();
@@ -17,6 +19,8 @@ export function Truncate(props: Props) {
       animate={false}
       style={{ color: colors.tendrel.text2.color }}
       {...props}
-    />
+    >
+      {props.value}
+    </ReadMore>
   );
 }

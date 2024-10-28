@@ -104,7 +104,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
-    "@biomejs/biome": "^1.9.2",
+    "@biomejs/biome": "^1.9.4",
     "@tendrel/ui": "^1.0.7",
     "@tendrelhq/graphql": "github:tendrelhq/graphql#v0.6.2",
     "@testing-library/react-native": "^12.6.0",

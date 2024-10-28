@@ -5,7 +5,6 @@ import { Info } from "lucide-react-native";
 import { useFragment } from "react-relay";
 import { Truncate } from "../TruncatedText";
 import { Description$fragment, type Description$key } from "./Description";
-import { DynamicString } from "./DynamicString.native";
 
 interface Props {
   queryRef: Description$key;
@@ -41,9 +40,11 @@ export function Description({ queryRef, ...props }: Props) {
           {label}
         </Text>
       </View>
-      <Truncate seeMoreText={i18n.seeMore} seeLessText={i18n.seeLess}>
-        <DynamicString queryRef={data.description} />
-      </Truncate>
+      <Truncate
+        seeMoreText={i18n.seeMore}
+        seeLessText={i18n.seeLess}
+        value={data.description.value}
+      />
     </View>
   );
 }

@@ -1,11 +1,13 @@
 import { graphql } from "relay-runtime";
 
 export const Description$fragment = graphql`
-  fragment Description_fragment on Description {
-    description {
-      ...DynamicString_fragment
-    }
+fragment Description_fragment on Description {
+  description {
+    __id
+    locale
+    value
   }
+}
 `;
 
 export type {
