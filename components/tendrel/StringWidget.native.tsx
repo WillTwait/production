@@ -4,7 +4,6 @@ import {
   useFragment,
   useRelayEnvironment,
 } from "react-relay";
-import { Text } from "../Text";
 import { TextInput } from "../TextInput";
 import { View } from "../View";
 import {
@@ -30,12 +29,17 @@ export function StringWidget(props: Props) {
   const data = useFragment(ReaderFragment, props.readerFragmentRef);
   const environment = useRelayEnvironment();
 
-  if (props.readOnly) {
-    return (
-      <View style={{ flexDirection: "row", justifyContent: "center" }}>
-        <Text>{data.string ?? "(no value)"}</Text>
-      </View>
-    );
+  function handleTextChange(text: string) {
+    if (props.readOnly) return;
+    const value = text.length ? text : null;
+    commitLocalUpdate(environment, store => {
+      const { updatableData } = store.readUpdatableFragment(
+        WriterFragment,
+        props.writerFragmentRef,
+      );
+      updatableData.string = value;
+    });
+    props.onCommit({ string: { value } });
   }
 
   return (
@@ -47,18 +51,9 @@ export function StringWidget(props: Props) {
     >
       <View style={{ width: "80%" }}>
         <TextInput
+          editable={!props.readOnly}
           value={data.string ?? ""}
-          onChangeText={text => {
-            const value = text.length ? text : null;
-            commitLocalUpdate(environment, store => {
-              const { updatableData } = store.readUpdatableFragment(
-                WriterFragment,
-                props.writerFragmentRef,
-              );
-              updatableData.string = value;
-            });
-            props.onCommit({ string: { value } });
-          }}
+          onChangeText={handleTextChange}
         />
       </View>
     </View>
