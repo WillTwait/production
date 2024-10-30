@@ -119,7 +119,10 @@ export function ChecklistResultInlineView({ queryRef, ...props }: Props) {
   const onCommit = useCallback(debounce(onCommit_, 250), []);
 
   function toggleResultComplete() {
-    if (data.status?.__typename === "ChecklistOpen") {
+    if (
+      data.status?.__typename === "ChecklistOpen" ||
+      !data.status?.__typename
+    ) {
       commitStatusChange({
         variables: {
           entity: data.id,
@@ -214,16 +217,15 @@ export function ChecklistResultInlineView({ queryRef, ...props }: Props) {
             }}
           >
             {match(data.status?.__typename)
-              .with("ChecklistOpen", () => (
-                <CircleIcon size={28} color={colors.tendrel.border2.color} />
-              ))
               .with("ChecklistClosed", () => (
                 <CheckCircleIcon
                   size={28}
                   color={colors.feedback.success.button2}
                 />
               ))
-              .otherwise(() => null)}
+              .otherwise(() => (
+                <CircleIcon size={28} color={colors.tendrel.border2.color} />
+              ))}
           </TouchableOpacity>
           <DisplayName
             style={{ fontWeight: "500", fontSize: 16 }}

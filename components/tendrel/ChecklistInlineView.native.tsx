@@ -48,6 +48,7 @@ export function ChecklistInlineView({ queryRef: fragRef }: Props) {
           justifyContent: "center",
           backgroundColor: colors.tendrel.interactive2.color,
           borderRadius: 5,
+          margin: 2,
         }}
       >
         {data.status?.__typename !== "ChecklistOpen" ? (
