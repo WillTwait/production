@@ -51,7 +51,7 @@
 
             src = pkgs.fetchurl {
               url = "https://github.com/biomejs/biome/releases/download/cli%2F${version}/biome-linux-x64";
-              hash = "sha256-4Xuz0V/Bkqp2eudpEwL0/SOegM6qzkwyOIV7naD0OQI=";
+              hash = "sha256-ziR/tkSZnvUuURHdb9bkcQGWafycSkS1aZch45twMsM=";
             };
 
             nativeBuildInputs = [pkgs.autoPatchelfHook];
