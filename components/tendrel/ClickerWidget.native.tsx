@@ -34,27 +34,18 @@ export function ClickerWidget(props: Props) {
   const environment = useRelayEnvironment();
   const { colors } = useTheme();
 
-  if (props.readOnly) {
-    return (
-      <View style={{ flexDirection: "row", justifyContent: "center" }}>
-        <Text>{data.number?.toString() ?? "(no value)"}</Text>
-      </View>
-    );
-  }
-
-  const { onCommit, writerFragmentRef } = props;
-
   function onChange(input: number) {
+    if (props.readOnly) return;
     // Clickers can't go negative.
     const value = Number.isNaN(input) ? null : Math.max(0, input);
     commitLocalUpdate(environment, store => {
       const { updatableData } = store.readUpdatableFragment(
         WriterFragment,
-        writerFragmentRef,
+        props.writerFragmentRef,
       );
       updatableData.number = value;
     });
-    onCommit({ clicker: { value } });
+    props.onCommit({ clicker: { value } });
   }
 
   return (
@@ -79,6 +70,7 @@ export function ClickerWidget(props: Props) {
       </TouchableOpacity>
       <View style={{ width: "20%" }}>
         <TextInput
+          editable={!props.readOnly}
           keyboardType="numeric"
           textAlign="center"
           value={data.number?.toString() ?? ""}
