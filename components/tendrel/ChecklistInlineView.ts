@@ -22,6 +22,9 @@ export const ChecklistInlineView$fragment = graphql`
           closedAt {
             ...Temporal_fragment
           }
+          closedBecause {
+            code
+          }
         }
       }
     }

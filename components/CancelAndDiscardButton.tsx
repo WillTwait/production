@@ -17,16 +17,20 @@ export function CancelAndDiscardButton({ node }: Props) {
 
   const [commit, isInFlight] = useMutation<CancelAndDiscardButtonMutation>(
     graphql`
-      mutation CancelAndDiscardButtonMutation($id: ID!) {
-        discardChecklist(entity: $id) {
+      mutation CancelAndDiscardButtonMutation(
+        $entity: ID!
+        $input: ChecklistStatusInput!
+      ) {
+        setStatus(entity: $entity, input: $input) {
+          ... on SetChecklistStatusPayload {
             edge {
-              cursor
               node {
-                ...ChecklistInlineView
+                id
               }
             }
           }
         }
+      }
     `,
   );
 
@@ -39,25 +43,21 @@ export function CancelAndDiscardButton({ node }: Props) {
       textColor={colorTheme === "dark" ? colors.tendrel.text2.color : undefined}
       onPress={() => {
         commit({
-          variables: { id: node },
+          variables: {
+            entity: node,
+            input: {
+              closed: {
+                at: {
+                  instant: Date.now().toString(),
+                },
+                because: {
+                  code: "cancel",
+                },
+              },
+            },
+          },
           updater(store) {
             const root = store.getRoot();
-            const payload = store.getRootField("discardChecklist");
-            const edge = payload.getLinkedRecord("edge");
-
-            const cxInto = ConnectionHandler.getConnections(
-              root,
-              // @see ActiveConnectionView.tsx
-              "ActiveConnectionView__checklists",
-              // Only update the active view when the active view is rendering
-              // open checklists.
-              variables => variables.withStatus?.includes("open"),
-            );
-
-            for (const cx of cxInto) {
-              ConnectionHandler.insertEdgeBefore(cx, edge);
-            }
-
             const cxFrom = ConnectionHandler.getConnection(
               root,
               // @see AlternateConnectionView.tsx

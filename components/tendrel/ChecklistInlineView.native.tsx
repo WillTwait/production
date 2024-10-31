@@ -93,7 +93,7 @@ export function ChecklistInlineView({ queryRef: fragRef }: Props) {
                 if (data.status.dueAt?.epochMilliseconds) {
                   const dueAt = Number(data.status.dueAt.epochMilliseconds);
                   const now = Date.now();
-                  if (dueAt < now) return colors.feedback.error.button1;
+                  if (dueAt < now) return colors.feedback.error.button2;
                 }
                 return colors.tendrel.button2.gray;
               }
@@ -106,10 +106,14 @@ export function ChecklistInlineView({ queryRef: fragRef }: Props) {
                 return colors.feedback.caution.button2;
               }
               case "ChecklistClosed": {
-                if (data.status.closedBecause?.code === "error") {
-                  return colors.feedback.error.button2;
+                switch (data.status.closedBecause?.code) {
+                  case "cancel":
+                    return colors.tendrel.button2.gray;
+                  case "error":
+                    return colors.feedback.error.button2;
+                  default:
+                    return colors.tendrel.background2.color;
                 }
-                return colors.tendrel.background2.color;
               }
               default:
                 return undefined;
@@ -177,7 +181,10 @@ export function ChecklistInlineView({ queryRef: fragRef }: Props) {
                           color: colors.tendrel.text1.gray,
                         }}
                       >
-                        Completed on:
+                        {data.status.closedBecause?.code === "cancel"
+                          ? "Cancelled"
+                          : "Completed"}{" "}
+                        on:
                       </Text>
                       <Temporal
                         queryRef={data.status.closedAt}
