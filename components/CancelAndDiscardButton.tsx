@@ -12,7 +12,7 @@ interface Props {
 
 export function CancelAndDiscardButton({ node }: Props) {
   const router = useRouter();
-  const { colors, colorTheme } = useTheme();
+  const { colors } = useTheme();
   const { t } = useTranslation();
 
   const [commit, isInFlight] = useMutation<CancelAndDiscardButtonMutation>(
@@ -39,8 +39,8 @@ export function CancelAndDiscardButton({ node }: Props) {
       disabled={isInFlight}
       title={t("workScreen.cancelAndDiscard.t")}
       variant="filled"
-      color={colors.tendrel.button1.gray}
-      textColor={colorTheme === "dark" ? colors.tendrel.text2.color : undefined}
+      color={colors.tendrel.interactive3.color}
+      textColor={colors.tendrel.text2.color}
       onPress={() => {
         commit({
           variables: {

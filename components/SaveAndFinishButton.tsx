@@ -5,14 +5,14 @@ import Button from "./Button";
 
 export function SaveAndFinishButton() {
   const router = useRouter();
-  const { colors, colorTheme } = useTheme();
+  const { colors } = useTheme();
   const { t } = useTranslation();
   return (
     <Button
       title={t("workScreen.saveAndFinish.t")}
       variant="filled"
-      color={colors.tendrel.button1.gray}
-      textColor={colorTheme === "dark" ? colors.tendrel.text2.color : undefined}
+      color={colors.tendrel.interactive3.color}
+      textColor={colors.tendrel.text2.color}
       onPress={() => {
         router.navigate("/");
       }}
