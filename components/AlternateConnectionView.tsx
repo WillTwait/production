@@ -9,8 +9,8 @@ import {
   Dimensions,
   FlatList,
   Platform,
+  Pressable,
   RefreshControl,
-  TouchableOpacity,
 } from "react-native";
 import Animated, {
   Extrapolation,
@@ -133,7 +133,7 @@ function Content({ progress, queryRef }: PaginationProps) {
         collapsibleStyle,
       ]}
     >
-      <TouchableOpacity onPress={toggleCollapsible}>
+      <Pressable onPress={toggleCollapsible}>
         <View
           style={{
             padding: 10,
@@ -183,7 +183,7 @@ function Content({ progress, queryRef }: PaginationProps) {
             <ChevronUp color={colors.tendrel.text1.color} />
           )}
         </View>
-      </TouchableOpacity>
+      </Pressable>
       <View
         style={{ flex: 1, backgroundColor: colors.tendrel.background1.color }}
       >

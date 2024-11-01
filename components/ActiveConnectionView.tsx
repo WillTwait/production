@@ -26,6 +26,7 @@ import {
   type ListRenderItem,
   type NativeSyntheticEvent,
   RefreshControl,
+  SafeAreaView,
   type TextInputChangeEventData,
   TouchableOpacity,
 } from "react-native";
@@ -185,78 +186,124 @@ export function ActiveConnectionView({ parent, queryRef, ...props }: Props) {
     ],
   }));
 
+  interface SegmentedControlHeaderProps {
+    currentHeaderTab: number;
+    setCurrentHeaderTab: (tab: number) => void;
+    setHeaderWithStatus: (status: ChecklistStatusStates[]) => void;
+  }
+  function SegmentedControlHeader({
+    currentHeaderTab,
+    setCurrentHeaderTab,
+    setHeaderWithStatus,
+  }: SegmentedControlHeaderProps) {
+    const { t } = useTranslation();
+
+    return (
+      <SegmentedControl
+        values={[t("checklist.open.t"), t("checklist.completed.t")]}
+        style={{
+          height: 35,
+          marginHorizontal: 10,
+          marginBottom: 10,
+        }}
+        selectedIndex={currentHeaderTab}
+        onChange={event => {
+          const tab = event.nativeEvent.selectedSegmentIndex;
+          setCurrentHeaderTab(tab);
+          setHeaderWithStatus([tab === 0 ? "open" : "closed"]);
+        }}
+      />
+    );
+  }
+
+  const setCurrentHeaderTab = useCallback((tab: number) => {
+    setCurrentTab(tab);
+  }, []);
+
+  const setHeaderWithStatus = useCallback((status: ChecklistStatusStates[]) => {
+    setWithStatus(status);
+  }, []);
+
+  const MemoizedSegmentedControlHeader = React.memo(SegmentedControlHeader);
+
   return (
-    <View {...addTestIdentifiers("checklistsPage")} style={{ flex: 1 }}>
+    <SafeAreaView {...addTestIdentifiers("checklistsPage")} style={{ flex: 1 }}>
+      <MemoizedSegmentedControlHeader
+        currentHeaderTab={currentTab}
+        setCurrentHeaderTab={setCurrentHeaderTab}
+        setHeaderWithStatus={setHeaderWithStatus}
+      />
+
       <GestureHandlerRootView style={{ flex: 1 }}>
         <Animated.View style={[{ flex: 1 }, flatListStyle]}>
           <FlatList
-            ListHeaderComponent={
-              <>
-                <SegmentedControl
-                  values={[t("checklist.open.t"), t("checklist.completed.t")]}
-                  style={{ marginHorizontal: 10, marginBottom: 5 }}
-                  selectedIndex={currentTab}
-                  onChange={event => {
-                    const tab = event.nativeEvent.selectedSegmentIndex;
-                    setCurrentTab(tab);
-                    setWithStatus([tab === 0 ? "open" : "closed"]);
-                  }}
-                />
-                {/* <View
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  gap: 3,
-                  padding: 3,
-                }}
-              >
-                <TouchableOpacity
-                  style={{
-                    padding: 4,
-                    backgroundColor:
-                      colorTheme === "light"
-                        ? inverseColors.tendrel.interactive2.color
-                        : colors.tendrel.interactive3.color,
-                    borderRadius: 10,
-                  }}
-                  onPress={() => actionSheetRef.current?.show()}
-                >
-                  <Filter
-                    color={
-                      colorTheme === "light"
-                        ? inverseColors.tendrel.text2.gray
-                        : colors.tendrel.text2.color
-                    }
-                  />
-                </TouchableOpacity>
-                <Separator orientation="vertical" />
-                <FlatList
-                  data={filters}
-                  horizontal
-                  contentContainerStyle={{ gap: 5 }}
-                  renderItem={item => (
-                    <TouchableOpacity
-                      style={{
-                        borderColor: colors.tendrel.border2.gray,
-                        backgroundColor:
-                          item.item === "All"
-                            ? colors.tendrel.interactive3.color
-                            : undefined,
-                        borderWidth: 0.5,
-                        padding: 5,
-                        borderRadius: 10,
-                      }}
-                    >
-                      <Text style={{ color: colors.tendrel.text2.color }}>
-                        {item.item}
-                      </Text>
-                    </TouchableOpacity>
-                  )}
-                  keyExtractor={item => item}
-                />
-              </View> */}
-              </>
-            }
+            // ListHeaderComponent={
+            //   <>
+            //     <SegmentedControl
+            //       values={[t("checklist.open.t"), t("checklist.completed.t")]}
+            //       style={{ marginHorizontal: 10, marginBottom: 5 }}
+            //       selectedIndex={currentTab}
+            //       onChange={event => {
+            //         const tab = event.nativeEvent.selectedSegmentIndex;
+            //         setCurrentTab(tab);
+            //         setWithStatus([tab === 0 ? "open" : "closed"]);
+            //       }}
+            //     />
+            //     {/* <View
+            //     style={{
+            //       flexDirection: "row",
+            //       alignItems: "center",
+            //       gap: 3,
+            //       padding: 3,
+            //     }}
+            //   >
+            //     <TouchableOpacity
+            //       style={{
+            //         padding: 4,
+            //         backgroundColor:
+            //           colorTheme === "light"
+            //             ? inverseColors.tendrel.interactive2.color
+            //             : colors.tendrel.interactive3.color,
+            //         borderRadius: 10,
+            //       }}
+            //       onPress={() => actionSheetRef.current?.show()}
+            //     >
+            //       <Filter
+            //         color={
+            //           colorTheme === "light"
+            //             ? inverseColors.tendrel.text2.gray
+            //             : colors.tendrel.text2.color
+            //         }
+            //       />
+            //     </TouchableOpacity>
+            //     <Separator orientation="vertical" />
+            //     <FlatList
+            //       data={filters}
+            //       horizontal
+            //       contentContainerStyle={{ gap: 5 }}
+            //       renderItem={item => (
+            //         <TouchableOpacity
+            //           style={{
+            //             borderColor: colors.tendrel.border2.gray,
+            //             backgroundColor:
+            //               item.item === "All"
+            //                 ? colors.tendrel.interactive3.color
+            //                 : undefined,
+            //             borderWidth: 0.5,
+            //             padding: 5,
+            //             borderRadius: 10,
+            //           }}
+            //         >
+            //           <Text style={{ color: colors.tendrel.text2.color }}>
+            //             {item.item}
+            //           </Text>
+            //         </TouchableOpacity>
+            //       )}
+            //       keyExtractor={item => item}
+            //     />
+            //   </View> */}
+            //   </>
+            // }
             ListFooterComponent={
               <Text
                 style={{
@@ -271,7 +318,6 @@ export function ActiveConnectionView({ parent, queryRef, ...props }: Props) {
               </Text>
             }
             ref={flatListRef}
-            stickyHeaderIndices={[0]}
             contentInsetAdjustmentBehavior="automatic"
             data={data.checklists.edges}
             contentContainerStyle={{
@@ -314,6 +360,6 @@ export function ActiveConnectionView({ parent, queryRef, ...props }: Props) {
           backgroundColor: colors.tendrel.background1.color,
         }}
       />
-    </View>
+    </SafeAreaView>
   );
 }
