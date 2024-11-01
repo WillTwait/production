@@ -1,4 +1,5 @@
 import { useAuth } from "@clerk/clerk-expo";
+import { useMemo } from "react";
 import { RelayEnvironmentProvider } from "react-relay";
 import { createClientSideEnvironment } from "./environment";
 
@@ -7,16 +8,18 @@ interface RelayProviderProps extends React.PropsWithChildren {
 }
 
 export function RelayProvider({ children, url }: RelayProviderProps) {
-  const auth = useAuth();
+  const { isLoaded, isSignedIn, getToken } = useAuth();
 
-  if (!auth.isLoaded || !auth.isSignedIn) {
+  if (!isLoaded || !isSignedIn) {
     return null;
   }
 
-  const environment = createClientSideEnvironment({
-    getToken: auth.getToken,
-    url: url ?? (process.env.EXPO_PUBLIC_TENDREL_GRAPHQL_URL as string),
-  });
+  const environment = useMemo(() => {
+    return createClientSideEnvironment({
+      getToken: getToken,
+      url: url ?? (process.env.EXPO_PUBLIC_TENDREL_GRAPHQL_URL as string),
+    });
+  }, [getToken, url]);
 
   return (
     <RelayEnvironmentProvider environment={environment}>

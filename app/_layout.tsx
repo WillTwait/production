@@ -1,13 +1,12 @@
 import "@/i18n/i18n";
 import "react-native-reanimated";
 
-import MainRoutes from "@/components/MainRoutes";
 import TendyThemeProvider from "@/components/TendyThemeProvider";
 import { DatabaseProvider } from "@/db/provider";
 import { ClerkLoaded, ClerkProvider } from "@clerk/clerk-expo";
 import * as Sentry from "@sentry/react-native";
 import { useFonts } from "expo-font";
-import { useNavigationContainerRef } from "expo-router";
+import { Slot, useNavigationContainerRef } from "expo-router";
 import * as SecureStore from "expo-secure-store";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
@@ -97,7 +96,7 @@ function RootLayout() {
         <DatabaseProvider>
           <GestureHandlerRootView style={{ flex: 1 }}>
             <TendyThemeProvider>
-              <MainRoutes />
+              <Slot />
               <Toaster />
             </TendyThemeProvider>
           </GestureHandlerRootView>

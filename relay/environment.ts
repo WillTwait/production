@@ -10,25 +10,20 @@ import RelayDefaultHandlerProvider from "relay-runtime/lib/handlers/RelayDefault
 import type RelayModernEnvironment from "relay-runtime/lib/store/RelayModernEnvironment";
 import ConnectionHandler from "./ConnectionHandler";
 
-let environment: RelayModernEnvironment;
-
 export function createClientSideEnvironment(opts: FetchFunctionOptions) {
-  if (!environment) {
-    console.log("create client side environment", opts.url);
-    environment ||= new Environment({
-      network: Network.create(fetchFn(opts)),
-      store: new Store(new RecordSource()),
-      // log: console.log,
-      handlerProvider(handle) {
-        if (handle === "connection") {
-          return ConnectionHandler;
-        }
-        // @ts-expect-error : DefinitelyTyped is wrong.
-        // @see https://github.com/DefinitelyTyped/DefinitelyTyped/pull/70935
-        return RelayDefaultHandlerProvider(handle);
-      },
-    });
-  }
+  const environment: RelayModernEnvironment = new Environment({
+    network: Network.create(fetchFn(opts)),
+    store: new Store(new RecordSource()),
+    // log: console.log,
+    handlerProvider(handle) {
+      if (handle === "connection") {
+        return ConnectionHandler;
+      }
+      // @ts-expect-error : DefinitelyTyped is wrong.
+      // @see https://github.com/DefinitelyTyped/DefinitelyTyped/pull/70935
+      return RelayDefaultHandlerProvider(handle);
+    },
+  });
 
   return environment;
 }

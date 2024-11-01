@@ -6,6 +6,7 @@ import { graphql, useLazyLoadQuery } from "react-relay";
 
 export default function Page() {
   const { currentOrganization } = useTendrel();
+
   if (!currentOrganization) {
     return null;
   }
