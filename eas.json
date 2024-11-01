@@ -52,7 +52,7 @@
       "env": {
         "EXPO_PUBLIC_TENDREL_STAGE": "beta",
         "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_live_Y2xlcmsudGVuZHJlbC5pbyQ",
-        "EXPO_PUBLIC_TENDREL_GRAPHQL_URL": "https://test.graphql.tendrel.io",
+        "EXPO_PUBLIC_TENDREL_GRAPHQL_URL": "https://beta.graphql.tendrel.io",
         "APP_VARIANT": "prod"
       }
     }
