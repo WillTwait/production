@@ -1,5 +1,10 @@
-import type { providerQuery } from "@/__generated__/providerQuery.graphql";
+import type {
+  providerQuery,
+  providerQuery$data,
+} from "@/__generated__/providerQuery.graphql";
+import { useAuth } from "@clerk/clerk-expo";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Redirect } from "expo-router";
 import React, { useContext, useEffect, useState } from "react";
 import { graphql, useLazyLoadQuery } from "react-relay";
 import { z } from "zod";
@@ -43,9 +48,13 @@ export function TendrelProvider({ children }: { children: React.ReactNode }) {
     null,
   );
   const [_loading, setLoading] = useState(false);
+  const { signOut } = useAuth();
 
-  const data = useLazyLoadQuery<providerQuery>(
-    graphql`
+  let data: providerQuery$data | undefined;
+
+  try {
+    data = useLazyLoadQuery<providerQuery>(
+      graphql`
       query providerQuery {
         user {
           firstName
@@ -64,8 +73,14 @@ export function TendrelProvider({ children }: { children: React.ReactNode }) {
         }
       }
     `,
-    {},
-  );
+      {},
+    );
+  } catch {
+    //FIXME: this is so stupid
+    AsyncStorage.removeItem(ORG_ASYNC_STORAGE_KEY);
+    signOut();
+    return <Redirect href="/sign-in" />;
+  }
 
   // load the preference from AsyncStorage on app launch
   //FIXME: check if existing org is one of the ones for the user signing in, if not clear it
@@ -88,6 +103,10 @@ export function TendrelProvider({ children }: { children: React.ReactNode }) {
   function setOrganization(newOrg: Organization) {
     void AsyncStorage.setItem(ORG_ASYNC_STORAGE_KEY, JSON.stringify(newOrg));
     setOrganizationState(newOrg);
+  }
+
+  if (!data) {
+    return undefined;
   }
 
   if (data.user.organizations.edges.length === 1 && organization === null) {
