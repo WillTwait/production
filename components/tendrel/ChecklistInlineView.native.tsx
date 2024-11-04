@@ -90,11 +90,14 @@ export function ChecklistInlineView({ queryRef: fragRef }: Props) {
           borderColor: (() => {
             switch (data.status?.__typename) {
               case "ChecklistOpen": {
-                if (data.status.dueAt?.epochMilliseconds) {
-                  const dueAt = Number(data.status.dueAt.epochMilliseconds);
-                  const now = Date.now();
-                  if (dueAt < now) return colors.feedback.error.button2;
-                }
+                // FIXME: temporary hack until we figure out how to deal with On - Demand (should not be overdue)
+                // i think this means we need to send data.type === "OnDemand" or something
+
+                // if (data.status.dueAt?.epochMilliseconds) {
+                //   const dueAt = Number(data.status.dueAt.epochMilliseconds);
+                //   const now = Date.now();
+                //   if (dueAt < now) return colors.feedback.error.button2;
+                // }
                 return colors.tendrel.button2.gray;
               }
               case "ChecklistInProgress": {
@@ -283,15 +286,17 @@ export function ChecklistInlineView({ queryRef: fragRef }: Props) {
               if (!data.status) return null;
 
               // If it's open with a due date, show the due date.
-              if (data.status.openedAt && data.status.dueAt) {
-                return (
-                  <DueAt
-                    iconSize={12}
-                    queryRef={data.status}
-                    style={{ fontSize: 12, color: colors.tendrel.text1.color }}
-                  />
-                );
-              }
+
+              // FIXME: similar to fixme above, but removing this for now until we get frequency working / deal with on demands
+              // if (data.status.openedAt && data.status.dueAt) {
+              //   return (
+              //     <DueAt
+              //       iconSize={12}
+              //       queryRef={data.status}
+              //       style={{ fontSize: 12, color: colors.tendrel.text1.color }}
+              //     />
+              //   );
+              // }
 
               // If it's in progress, show the timer.
               if (data.status.inProgressAt) {
