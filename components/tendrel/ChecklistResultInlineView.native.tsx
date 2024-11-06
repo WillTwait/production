@@ -11,6 +11,7 @@ import { TouchableOpacity } from "react-native";
 import { graphql, useFragment, useMutation } from "react-relay";
 import { match } from "ts-pattern";
 import { View } from "../View";
+import { BooleanWidget } from "./BooleanWidget.native";
 import { CheckboxWidget } from "./CheckboxWidget.native";
 import {
   ChecklistResultInlineView$fragment,
@@ -238,14 +239,15 @@ export function ChecklistResultInlineView({ queryRef, ...props }: Props) {
           }}
         >
           {match(data.widget)
-            .with({ __typename: "CheckboxWidget" }, node => (
-              <CheckboxWidget
+            .with({ __typename: "BooleanWidget" }, node => (
+              <BooleanWidget
                 readOnly={props.readOnly}
                 readerFragmentRef={node}
                 writerFragmentRef={node}
                 onCommit={onCommit}
               />
             ))
+            .with({ __typename: "CheckboxWidget" }, _node => <CheckboxWidget />)
             .with({ __typename: "ClickerWidget" }, node => (
               <ClickerWidget
                 readOnly={props.readOnly}

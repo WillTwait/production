@@ -26,10 +26,13 @@ export const ChecklistResultInlineView$fragment = graphql`
       }
     }
     widget {
+      ... on BooleanWidget {
+        __typename
+        ...BooleanWidget_reader_fragment
+        ...BooleanWidget_writer_fragment
+      }
       ... on CheckboxWidget {
         __typename
-        ...CheckboxWidget_reader_fragment
-        ...CheckboxWidget_writer_fragment
       }
       ... on ClickerWidget {
         __typename
