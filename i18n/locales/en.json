@@ -159,6 +159,22 @@
     "unassign": {
       "t": "Unassign",
       "override": false
+    },
+    "assignee": {
+      "t": "Assignee",
+      "override": false
+    },
+    "editChecklist": {
+      "t": "Edit Checklist",
+      "override": false
+    },
+    "searchForWorker": {
+      "t": "Search for a Worker",
+      "override": false
+    },
+    "noWorkers": {
+      "t": "No workers",
+      "override": false
     }
   }
 }

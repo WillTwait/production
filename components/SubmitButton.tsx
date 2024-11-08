@@ -41,6 +41,7 @@ export function SubmitButton(props: Props) {
       variant="filled"
       color={colors.tendrel.button1.color}
       textColor={inverseColors.tendrel.text2.color}
+      height={50}
       onPress={() => {
         commit({
           variables: {

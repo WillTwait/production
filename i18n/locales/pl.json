@@ -159,6 +159,22 @@
     "unassign": {
       "t": "Anuluj przypisanie",
       "override": false
+    },
+    "assignee": {
+      "t": "Cesjonariusz",
+      "override": false
+    },
+    "editChecklist": {
+      "t": "Edytuj listę kontrolną",
+      "override": false
+    },
+    "searchForWorker": {
+      "t": "Szukaj pracownika",
+      "override": false
+    },
+    "noWorkers": {
+      "t": "Brak pracowników",
+      "override": false
     }
   }
 }

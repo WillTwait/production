@@ -28,7 +28,6 @@ export function ChecklistProgressBar({ queryRef }: Props) {
       style={{
         justifyContent: "center",
         alignItems: "center",
-        flex: 1,
       }}
     >
       <ProgressView

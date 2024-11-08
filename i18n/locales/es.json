@@ -159,6 +159,22 @@
     "unassign": {
       "t": "Anular asignación",
       "override": false
+    },
+    "assignee": {
+      "t": "Cesionario",
+      "override": false
+    },
+    "editChecklist": {
+      "t": "Editar lista de verificación",
+      "override": false
+    },
+    "searchForWorker": {
+      "t": "Búsqueda de un trabajador",
+      "override": false
+    },
+    "noWorkers": {
+      "t": "Sin trabajadores",
+      "override": false
     }
   }
 }

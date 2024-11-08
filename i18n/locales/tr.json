@@ -159,6 +159,22 @@
     "unassign": {
       "t": "Atamayı Kaldır",
       "override": false
+    },
+    "assignee": {
+      "t": "Atanan",
+      "override": false
+    },
+    "editChecklist": {
+      "t": "Kontrol Listesini Düzenle",
+      "override": false
+    },
+    "searchForWorker": {
+      "t": "Bir İşçi Ara",
+      "override": false
+    },
+    "noWorkers": {
+      "t": "İşçi yok",
+      "override": false
     }
   }
 }

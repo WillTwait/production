@@ -159,6 +159,22 @@
     "unassign": {
       "t": "إلغاء التعيين",
       "override": false
+    },
+    "assignee": {
+      "t": "المحال إليه",
+      "override": false
+    },
+    "editChecklist": {
+      "t": "تحرير قائمة التحقق",
+      "override": false
+    },
+    "searchForWorker": {
+      "t": "ابحث عن عامل",
+      "override": false
+    },
+    "noWorkers": {
+      "t": "لا يوجد عمال",
+      "override": false
     }
   }
 }

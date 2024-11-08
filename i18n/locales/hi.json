@@ -159,6 +159,22 @@
     "unassign": {
       "t": "अनअसाइन करें",
       "override": false
+    },
+    "assignee": {
+      "t": "असाइनी",
+      "override": false
+    },
+    "editChecklist": {
+      "t": "चेकलिस्ट संपादित करें",
+      "override": false
+    },
+    "searchForWorker": {
+      "t": "एक कार्यकर्ता के लिए खोजें",
+      "override": false
+    },
+    "noWorkers": {
+      "t": "कोई मज़दूर नहीं",
+      "override": false
     }
   }
 }

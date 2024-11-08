@@ -159,6 +159,22 @@
     "unassign": {
       "t": "Poništite dodeljivanje",
       "override": false
+    },
+    "assignee": {
+      "t": "Primatelj",
+      "override": false
+    },
+    "editChecklist": {
+      "t": "Izmeni kontrolnu listu",
+      "override": false
+    },
+    "searchForWorker": {
+      "t": "Potražite radnika",
+      "override": false
+    },
+    "noWorkers": {
+      "t": "Nema radnika",
+      "override": false
     }
   }
 }

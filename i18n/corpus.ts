@@ -54,5 +54,9 @@ export const corpus: NestedTranslation = {
   editChecklist: {
     selectWorker: "Select a Worker",
     unassign: "Unassign",
+    assignee: "Assignee",
+    editChecklist: "Edit Checklist",
+    searchForWorker: "Search for a Worker",
+    noWorkers: "No workers",
   },
 };

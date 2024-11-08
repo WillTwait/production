@@ -16,7 +16,7 @@ export type TendyButtonProps = ButtonProps & {
   icon?: React.ReactNode;
   iconAfter?: React.ReactNode;
   loading?: boolean;
-  variant?: "default" | "filter" | "filled";
+  variant?: "default" | "filter" | "filled" | "outline";
 };
 
 export function Button({
@@ -93,6 +93,30 @@ export function Button({
         >
           {title}
         </Text>
+        {iconAfter}
+      </TouchableOpacity>
+    );
+  }
+
+  if (variant === "outline") {
+    return (
+      <TouchableOpacity
+        disabled={rest.disabled}
+        style={{
+          borderRadius: 5,
+          borderWidth: 0.25,
+          justifyContent: "center",
+          alignItems: "center",
+          borderColor: colors.tendrel.border3.color,
+          flexDirection: "row",
+          paddingVertical: 7,
+          paddingHorizontal: 12,
+          gap: 2,
+        }}
+      >
+        {icon}
+        <Text style={{ color: colors.tendrel.text1.color }}>{title}</Text>
+        {children}
         {iconAfter}
       </TouchableOpacity>
     );

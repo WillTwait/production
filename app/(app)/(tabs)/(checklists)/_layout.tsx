@@ -11,9 +11,9 @@ import type { ActionSheetRef } from "react-native-actions-sheet";
 export default function Layout() {
   const actionSheetRef = useRef<ActionSheetRef>(null);
   const { colors } = useTheme();
-  const { t } = useTranslation();
   const {
     user: { firstName, lastName },
+    currentOrganization,
   } = useTendrel();
 
   return (
@@ -35,12 +35,13 @@ export default function Layout() {
       <Stack.Screen
         name="index"
         options={{
+          header: undefined,
           headerTransparent: Platform.OS === "ios",
           headerSearchBarOptions: {
-            hideWhenScrolling: true,
+            hideWhenScrolling: false,
             autoCapitalize: "none",
           },
-          headerTitle: t("screenNames.checklists.t"),
+          headerTitle: currentOrganization?.name,
         }}
       />
       <Stack.Screen

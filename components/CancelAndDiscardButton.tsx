@@ -39,6 +39,7 @@ export function CancelAndDiscardButton({ node }: Props) {
       disabled={isInFlight}
       title={t("workScreen.cancelAndDiscard.t")}
       variant="filled"
+      height={50}
       color={colors.tendrel.interactive3.color}
       textColor={colors.tendrel.text2.color}
       onPress={() => {

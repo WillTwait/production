@@ -159,6 +159,22 @@
     "unassign": {
       "t": "Toewijzen ongedaan maken",
       "override": false
+    },
+    "assignee": {
+      "t": "Geadresseerde",
+      "override": false
+    },
+    "editChecklist": {
+      "t": "Checklist bewerken",
+      "override": false
+    },
+    "searchForWorker": {
+      "t": "Zoek een werknemer",
+      "override": false
+    },
+    "noWorkers": {
+      "t": "Geen werknemers",
+      "override": false
     }
   }
 }

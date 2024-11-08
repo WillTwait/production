@@ -1,8 +1,7 @@
-import { View } from "@/components/View";
 import { RelayProvider } from "@/relay/provider";
 import { TendrelProvider } from "@/tendrel/provider";
-import { SignedIn, SignedOut, useAuth } from "@clerk/clerk-expo";
-import { Redirect, Stack, useRouter } from "expo-router";
+import { SignedIn, SignedOut } from "@clerk/clerk-expo";
+import { Redirect, Stack } from "expo-router";
 
 const AppEntryLayout = () => {
   return (

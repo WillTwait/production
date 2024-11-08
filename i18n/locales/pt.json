@@ -159,6 +159,22 @@
     "unassign": {
       "t": "Cancelar atribuição",
       "override": false
+    },
+    "assignee": {
+      "t": "Destinatário",
+      "override": false
+    },
+    "editChecklist": {
+      "t": "Editar lista de verificação",
+      "override": false
+    },
+    "searchForWorker": {
+      "t": "Procure um trabalhador",
+      "override": false
+    },
+    "noWorkers": {
+      "t": "Sem trabalhadores",
+      "override": false
     }
   }
 }

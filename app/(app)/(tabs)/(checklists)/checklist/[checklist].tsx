@@ -37,7 +37,7 @@ export type ResultType = {
 export default function Page() {
   const actionSheetRef = useRef<ActionSheetRef>(null);
   const insets = useSafeAreaInsets();
-  const { colors } = useTheme();
+  const { colors, colorTheme, inverseColors } = useTheme();
   const { t } = useTranslation();
 
   const { currentOrganization } = useTendrel();
@@ -104,9 +104,13 @@ export default function Page() {
               data={node.items.edges.flatMap(({ node }) =>
                 node.__typename === "ChecklistResult" ? node : [],
               )}
+              ListHeaderComponentStyle={{ paddingRight: 3 }}
               ListHeaderComponent={
                 <View
-                  style={{ backgroundColor: colors.tendrel.background2.gray }}
+                  style={{
+                    backgroundColor: colors.tendrel.background2.gray,
+                    paddingRight: 5,
+                  }}
                 >
                   <View style={{ flexDirection: "row", padding: 10 }}>
                     <DisplayName
@@ -134,6 +138,7 @@ export default function Page() {
                   {/* {started ? <WorkPhotos checklistId={checklist.id} /> : undefined} */}
                 </View>
               }
+              contentContainerStyle={{ paddingRight: 3 }}
               keyExtractor={node => node.id}
               renderItem={({ item }) => (
                 <ChecklistResultInlineView
@@ -163,15 +168,40 @@ export default function Page() {
                   </View>
                 ))
                 .with("ChecklistInProgress", () => (
-                  <View style={{ flexDirection: "row", gap: 10, padding: 5 }}>
-                    <ChecklistProgressBar queryRef={node} />
-                    <Button
-                      title={t("workScreen.finish.t")}
-                      onPress={() => actionSheetRef.current?.show()}
-                      variant="filled"
-                      textColor={colors.tendrel.text2.color}
-                      color={colors.tendrel.interactive3.color}
-                    />
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      gap: 10,
+                      paddingHorizontal: 10,
+                      paddingTop: 15,
+                      paddingBottom: 5,
+                      backgroundColor: colors.tendrel.interactive1.gray,
+                      alignItems: "center",
+                      borderTopWidth: 0.5,
+                      borderTopColor: colors.tendrel.border2.color,
+                    }}
+                  >
+                    <View style={{ flex: 1 }}>
+                      <ChecklistProgressBar queryRef={node} />
+                    </View>
+
+                    <View
+                      style={{
+                        flex: 0.5,
+                      }}
+                    >
+                      <Button
+                        title={t("workScreen.finish.t")}
+                        onPress={() => actionSheetRef.current?.show()}
+                        variant="filled"
+                        textColor={
+                          colorTheme === "light"
+                            ? inverseColors.tendrel.text2.color
+                            : colors.tendrel.text2.color
+                        }
+                        color={colors.tendrel.button1.color}
+                      />
+                    </View>
                   </View>
                 ))
                 .otherwise(() => (

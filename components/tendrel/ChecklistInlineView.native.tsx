@@ -4,9 +4,10 @@ import { View } from "@/components/View";
 import { useTheme } from "@/hooks/useTheme";
 import { nullish } from "@/util/nullish";
 import { useRouter } from "expo-router";
-import { PencilOff, TimerIcon } from "lucide-react-native";
+import { PencilOff, SquarePen, TimerIcon } from "lucide-react-native";
 import { Suspense, useCallback, useRef } from "react";
 import { ActivityIndicator, TouchableOpacity } from "react-native";
+import { SheetManager } from "react-native-actions-sheet";
 import { Swipeable } from "react-native-gesture-handler";
 import { useFragment, useQueryLoader } from "react-relay";
 import {
@@ -51,21 +52,28 @@ export function ChecklistInlineView({ queryRef: fragRef }: Props) {
           margin: 2,
         }}
       >
-        {data.status?.__typename !== "ChecklistOpen" ? (
-          // only allow assigning for "open" checklists
-          <PencilOff color={colors.tendrel.text1.color} />
-        ) : queryRef ? (
-          <Suspense fallback={<ActivityIndicator />}>
-            <EditChecklistModal
-              assignable={queryRef}
-              checklistId={data.id}
-              cx={data.assignees}
-              onClose={() => swipableRef.current?.close()}
-            />
-          </Suspense>
-        ) : (
-          <ActivityIndicator />
-        )}
+        {data.status?.__typename === "ChecklistOpen" ? (
+          queryRef ? (
+            <Suspense fallback={<ActivityIndicator />}>
+              <TouchableOpacity
+                onPress={() =>
+                  SheetManager.show("edit-checklist-sheet", {
+                    payload: {
+                      onClose: () => swipableRef.current?.close(),
+                      checklistId: data.id,
+                      cx: data.assignees,
+                      assignable: queryRef,
+                    },
+                  })
+                }
+              >
+                <SquarePen color={colors.tendrel.text1.color} />
+              </TouchableOpacity>
+            </Suspense>
+          ) : (
+            <ActivityIndicator />
+          )
+        ) : undefined}
       </View>
     ),
     [colors, data, queryRef],

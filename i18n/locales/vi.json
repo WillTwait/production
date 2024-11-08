@@ -159,6 +159,22 @@
     "unassign": {
       "t": "Bỏ gán",
       "override": false
+    },
+    "assignee": {
+      "t": "Người được chuyển nhượng",
+      "override": false
+    },
+    "editChecklist": {
+      "t": "Chỉnh sửa danh sách kiểm tra",
+      "override": false
+    },
+    "searchForWorker": {
+      "t": "Tìm kiếm một công nhân",
+      "override": false
+    },
+    "noWorkers": {
+      "t": "Không có công nhân",
+      "override": false
     }
   }
 }

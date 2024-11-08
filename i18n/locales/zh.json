@@ -159,6 +159,22 @@
     "unassign": {
       "t": "取消分配",
       "override": false
+    },
+    "assignee": {
+      "t": "受让人",
+      "override": false
+    },
+    "editChecklist": {
+      "t": "编辑清单",
+      "override": false
+    },
+    "searchForWorker": {
+      "t": "搜索员工",
+      "override": false
+    },
+    "noWorkers": {
+      "t": "没有员工",
+      "override": false
     }
   }
 }

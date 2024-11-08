@@ -159,6 +159,22 @@
     "unassign": {
       "t": "Annuler l'attribution",
       "override": false
+    },
+    "assignee": {
+      "t": "Cessionnaire",
+      "override": false
+    },
+    "editChecklist": {
+      "t": "Modifier la liste de contrôle",
+      "override": false
+    },
+    "searchForWorker": {
+      "t": "Rechercher un travailleur",
+      "override": false
+    },
+    "noWorkers": {
+      "t": "Pas de travailleurs",
+      "override": false
     }
   }
 }

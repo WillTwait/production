@@ -159,6 +159,22 @@
     "unassign": {
       "t": "Zrušiť priradenie",
       "override": false
+    },
+    "assignee": {
+      "t": "Nadobúdateľ",
+      "override": false
+    },
+    "editChecklist": {
+      "t": "Upraviť kontrolný zoznam",
+      "override": false
+    },
+    "searchForWorker": {
+      "t": "Vyhľadajte pracovníka",
+      "override": false
+    },
+    "noWorkers": {
+      "t": "Žiadni pracovníci",
+      "override": false
     }
   }
 }

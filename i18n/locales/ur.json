@@ -159,6 +159,22 @@
     "unassign": {
       "t": "غیر تفویض کریں",
       "override": false
+    },
+    "assignee": {
+      "t": "تفویض کرنے والا",
+      "override": false
+    },
+    "editChecklist": {
+      "t": "چیک لسٹ میں ترمیم کریں",
+      "override": false
+    },
+    "searchForWorker": {
+      "t": "ایک کارکن کی تلاش",
+      "override": false
+    },
+    "noWorkers": {
+      "t": "کوئی کارکن نہیں",
+      "override": false
     }
   }
 }

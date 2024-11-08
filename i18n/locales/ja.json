@@ -159,6 +159,22 @@
     "unassign": {
       "t": "[割り当て解除]",
       "override": false
+    },
+    "assignee": {
+      "t": "譲受人",
+      "override": false
+    },
+    "editChecklist": {
+      "t": "チェックリストを編集",
+      "override": false
+    },
+    "searchForWorker": {
+      "t": "作業者を検索",
+      "override": false
+    },
+    "noWorkers": {
+      "t": "作業員なし",
+      "override": false
     }
   }
 }

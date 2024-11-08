@@ -159,6 +159,22 @@
     "unassign": {
       "t": "Batalkan penetapan",
       "override": false
+    },
+    "assignee": {
+      "t": "Penerima",
+      "override": false
+    },
+    "editChecklist": {
+      "t": "Edit Daftar Periksa",
+      "override": false
+    },
+    "searchForWorker": {
+      "t": "Cari Pekerja",
+      "override": false
+    },
+    "noWorkers": {
+      "t": "Tidak ada pekerja",
+      "override": false
     }
   }
 }

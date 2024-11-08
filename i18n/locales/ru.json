@@ -159,6 +159,22 @@
     "unassign": {
       "t": "Отменить назначение",
       "override": false
+    },
+    "assignee": {
+      "t": "Правопреемник",
+      "override": false
+    },
+    "editChecklist": {
+      "t": "Изменить контрольный список",
+      "override": false
+    },
+    "searchForWorker": {
+      "t": "Поиск работника",
+      "override": false
+    },
+    "noWorkers": {
+      "t": "Работников нет",
+      "override": false
     }
   }
 }

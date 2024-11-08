@@ -159,6 +159,22 @@
     "unassign": {
       "t": "Скасувати призначення",
       "override": false
+    },
+    "assignee": {
+      "t": "Працезахисник",
+      "override": false
+    },
+    "editChecklist": {
+      "t": "Редагувати контрольний список",
+      "override": false
+    },
+    "searchForWorker": {
+      "t": "Пошук працівника",
+      "override": false
+    },
+    "noWorkers": {
+      "t": "Немає працівників",
+      "override": false
     }
   }
 }

@@ -159,6 +159,22 @@
     "unassign": {
       "t": "Zuweisung aufheben",
       "override": false
+    },
+    "assignee": {
+      "t": "Abtretungsempfänger",
+      "override": false
+    },
+    "editChecklist": {
+      "t": "Checkliste bearbeiten",
+      "override": false
+    },
+    "searchForWorker": {
+      "t": "Suche nach einem Arbeiter",
+      "override": false
+    },
+    "noWorkers": {
+      "t": "Keine Arbeiter",
+      "override": false
     }
   }
 }

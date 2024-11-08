@@ -159,6 +159,22 @@
     "unassign": {
       "t": "Annulla assegnazione",
       "override": false
+    },
+    "assignee": {
+      "t": "Assegnatario",
+      "override": false
+    },
+    "editChecklist": {
+      "t": "Modifica lista di controllo",
+      "override": false
+    },
+    "searchForWorker": {
+      "t": "Cerca un lavoratore",
+      "override": false
+    },
+    "noWorkers": {
+      "t": "Nessun lavoratore",
+      "override": false
     }
   }
 }

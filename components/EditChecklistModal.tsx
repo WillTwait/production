@@ -3,9 +3,21 @@ import type { EditChecklistModalQuery } from "@/__generated__/EditChecklistModal
 import type { EditChecklistModalUnassignMutation } from "@/__generated__/EditChecklistModalUnassignMutation.graphql";
 import type { EditChecklistModal_fragment$key } from "@/__generated__/EditChecklistModal_fragment.graphql";
 import { useTheme } from "@/hooks/useTheme";
-import { SquarePen } from "lucide-react-native";
+import {
+  Check,
+  ChevronDown,
+  ChevronUp,
+  SquarePen,
+  X,
+} from "lucide-react-native";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ActivityIndicator, TouchableOpacity } from "react-native";
+import ActionSheet, {
+  SheetManager,
+  type SheetProps,
+} from "react-native-actions-sheet";
+import DropDownPicker from "react-native-dropdown-picker";
 import {
   type PreloadedQuery,
   graphql,
@@ -14,6 +26,8 @@ import {
   usePreloadedQuery,
 } from "react-relay";
 import * as DropdownMenu from "zeego/dropdown-menu";
+import { Text } from "./Text";
+import { View } from "./View";
 
 export const AssignChecklistMenuQuery = graphql`
   query EditChecklistModalQuery($entity: ID!) {
@@ -33,21 +47,16 @@ export const AssignChecklistMenuQuery = graphql`
   }
 `;
 
-interface EditChecklistModalProps {
-  assignable: PreloadedQuery<EditChecklistModalQuery>;
-  checklistId: string;
-  cx: EditChecklistModal_fragment$key;
-  onClose: () => void;
-}
-
 export function EditChecklistModal({
-  checklistId,
-  cx,
-  onClose,
-  ...props
-}: EditChecklistModalProps) {
-  const { colors } = useTheme();
+  payload,
+}: SheetProps<"edit-checklist-sheet">) {
+  const { colors, colorTheme } = useTheme();
   const { t } = useTranslation();
+  const [assignSelectOpen, setAssignSelectOpen] = useState(false);
+
+  if (!payload) {
+    return null;
+  }
 
   const data = useFragment(
     graphql`
@@ -62,14 +71,14 @@ export function EditChecklistModal({
         }
       }
     `,
-    cx,
+    payload.cx,
   );
 
-  const currentAssignee = data.edges.at(0)?.node.assignedTo.id;
+  const currentAssignee = data?.edges.at(0)?.node.assignedTo.id;
 
   const { assignable } = usePreloadedQuery(
     AssignChecklistMenuQuery,
-    props.assignable,
+    payload.assignable,
   );
 
   const [assign, isAssignInFlight] = useMutation<EditChecklistModalMutation>(
@@ -107,102 +116,109 @@ export function EditChecklistModal({
     );
 
   return (
-    <DropdownMenu.Root
-      style={{
-        width: "100%",
-        height: "100%",
-        alignItems: "center",
-        justifyContent: "center",
+    <ActionSheet
+      containerStyle={{
+        height: "60%",
+        backgroundColor: colors.tendrel.background1.color,
       }}
+      onClose={payload.onClose}
+      headerAlwaysVisible
+      CustomHeaderComponent={
+        <View
+          style={{
+            alignItems: "flex-start",
+            padding: 10,
+            flexDirection: "row",
+            borderBottomWidth: 0.5,
+            borderBottomColor: colors.tendrel.border2.gray,
+          }}
+        >
+          <Text style={{ fontWeight: "bold", fontSize: 18, flex: 1 }}>
+            {t("editChecklist.editChecklist.t")}
+          </Text>
+          <TouchableOpacity
+            onPress={() => SheetManager.hide("edit-checklist-sheet")}
+          >
+            <X color={colors.tendrel.button1.gray} size={18} />
+          </TouchableOpacity>
+        </View>
+      }
     >
-      <DropdownMenu.Trigger asChild>
-        <TouchableOpacity disabled={isAssignInFlight || isUnassignInFlight}>
-          {isAssignInFlight || isUnassignInFlight ? (
-            <ActivityIndicator />
-          ) : (
-            <SquarePen color={colors.tendrel.text1.color} />
-          )}
-        </TouchableOpacity>
-      </DropdownMenu.Trigger>
-      <DropdownMenu.Content
-        loop
-        side="bottom"
-        align="start"
-        sideOffset={5}
-        alignOffset={0}
-        avoidCollisions
-        collisionPadding={8}
+      <View
+        style={{
+          padding: 10,
+        }}
       >
-        <DropdownMenu.Label>
-          {t("editChecklist.selectWorker.t")}
-        </DropdownMenu.Label>
-        {currentAssignee ? (
-          <DropdownMenu.Item
-            key="unassignId"
-            onSelect={() => {
+        <Text style={{ fontSize: 16, fontWeight: "bold", padding: 5 }}>
+          {t("editChecklist.assignee.t")}
+        </Text>
+        <DropDownPicker
+          open={assignSelectOpen}
+          value={currentAssignee ?? null}
+          disabled={isAssignInFlight || isUnassignInFlight}
+          items={assignable.edges.flatMap(({ node }) =>
+            node.__typename !== "Worker"
+              ? []
+              : { label: node.displayName, value: node.id },
+          )}
+          style={{ borderColor: colors.tendrel.border1.color }}
+          dropDownContainerStyle={{ borderColor: colors.tendrel.border1.color }}
+          searchTextInputStyle={{ borderColor: colors.tendrel.border1.color }}
+          labelProps={{ style: { color: colors.tendrel.text2.color } }}
+          searchContainerStyle={{
+            borderBottomColor: colors.tendrel.border1.color,
+          }}
+          TickIconComponent={() => (
+            <Check color={colors.tendrel.button2.color} />
+          )}
+          ArrowUpIconComponent={() => (
+            <ChevronUp color={colors.tendrel.button1.color} />
+          )}
+          ArrowDownIconComponent={() => (
+            <ChevronDown color={colors.tendrel.button1.color} />
+          )}
+          setOpen={setAssignSelectOpen}
+          searchable
+          searchPlaceholder={t("editChecklist.searchForWorker.t")}
+          placeholder={t("editChecklist.selectWorker.t")}
+          addCustomItem={false}
+          ListEmptyComponent={() => (
+            <View style={{ padding: 5 }}>
+              <Text>{t("editChecklist.noWorkers.t")}</Text>
+            </View>
+          )}
+          theme={colorTheme === "dark" ? "DARK" : "LIGHT"}
+          setValue={() => {}}
+          onSelectItem={val => {
+            if (val.value === currentAssignee) {
               unassign({
                 variables: {
                   connections: [data.__id],
-                  entity: checklistId,
-                  from: currentAssignee,
+                  entity: payload.checklistId,
+                  from: currentAssignee ?? "1",
                 },
-                // updater(store, data) {
-                //   // FIXME: I'm not sure why @deleteEdge isn't working.
-                //   // As a workaround, we do it manually:
-                //   const cx = store.get(connectionId);
-                //   const from = data?.unassign.unassignedAssignees ?? [];
-                //   if (cx) {
-                //     for (const id of from) {
-                //       ConnectionHandler.deleteNode(cx, id);
-                //     }
-                //     cx.setValue(0, "totalCount");
-                //   }
-                // },
-                onCompleted: onClose,
                 onError(e) {
                   console.debug("ERROR", e);
                 },
               });
-            }}
-          >
-            <DropdownMenu.ItemIcon
-              ios={{ name: "person.crop.circle.badge.minus" }}
-              androidIconName="ic_delete"
-            />
-            <DropdownMenu.ItemTitle>
-              {t("editChecklist.unassign.t")}
-            </DropdownMenu.ItemTitle>
-          </DropdownMenu.Item>
-        ) : undefined}
+              return;
+            }
 
-        {assignable.edges.map(edge => {
-          const assignee = edge.node;
-          if (assignee.__typename !== "Worker") return null;
-          return (
-            <DropdownMenu.CheckboxItem
-              key={assignee.id}
-              value={currentAssignee === assignee.id}
-              onValueChange={() => {
-                assign({
-                  variables: {
-                    connections: [data.__id],
-                    entity: checklistId,
-                    to: assignee.id,
-                  },
-                  onCompleted: onClose,
-                  onError(e) {
-                    console.debug("ERROR", e);
-                  },
-                });
-              }}
-            >
-              <DropdownMenu.ItemTitle>
-                {assignee.displayName}
-              </DropdownMenu.ItemTitle>
-            </DropdownMenu.CheckboxItem>
-          );
-        })}
-      </DropdownMenu.Content>
-    </DropdownMenu.Root>
+            assign({
+              variables: {
+                connections: [data.__id],
+                entity: payload.checklistId,
+                to: val.value ?? "",
+              },
+
+              onError(e) {
+                console.debug("ERROR", e);
+              },
+            });
+          }}
+          multiple={false}
+        />
+      </View>
+    </ActionSheet>
   );
 }

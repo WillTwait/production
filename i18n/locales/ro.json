@@ -159,6 +159,22 @@
     "unassign": {
       "t": "Anulați atribuirea",
       "override": false
+    },
+    "assignee": {
+      "t": "Cesionar",
+      "override": false
+    },
+    "editChecklist": {
+      "t": "Editați lista de verificare",
+      "override": false
+    },
+    "searchForWorker": {
+      "t": "Caută un lucrător",
+      "override": false
+    },
+    "noWorkers": {
+      "t": "Fără muncitori",
+      "override": false
     }
   }
 }

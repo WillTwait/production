@@ -39,21 +39,21 @@ export function ChecklistStatusButton({ queryRef }: Props) {
       return (
         <Button
           disabled
-          variant="filled"
+          variant="outline"
           title={t("workScreen.preview.t")}
-          textColor={colors.tendrel.text2.color}
-          color={colors.tendrel.interactive3.color}
+          textColor={colors.tendrel.button1.color}
+          color={colors.tendrel.interactive1.color}
         />
       );
     case "ChecklistInProgress":
       return (
         <Button
           disabled
-          variant="filled"
+          variant="outline"
           icon={<TimerIcon size={16} color={colors.tendrel.text1.color} />}
           title=""
-          textColor={colors.tendrel.text2.color}
-          color={colors.tendrel.interactive3.color}
+          textColor={colors.tendrel.button1.color}
+          color={colors.tendrel.interactive1.color}
         >
           <Timer
             startTime={DateTime.fromMillis(

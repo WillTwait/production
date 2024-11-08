@@ -159,6 +159,22 @@
     "unassign": {
       "t": "할당 취소",
       "override": false
+    },
+    "assignee": {
+      "t": "양수인",
+      "override": false
+    },
+    "editChecklist": {
+      "t": "체크리스트 편집",
+      "override": false
+    },
+    "searchForWorker": {
+      "t": "작업자 검색",
+      "override": false
+    },
+    "noWorkers": {
+      "t": "근로자 없음",
+      "override": false
     }
   }
 }

@@ -159,6 +159,22 @@
     "unassign": {
       "t": "নির্ধারণ করা",
       "override": false
+    },
+    "assignee": {
+      "t": "দায়িত্বপ্রাপ্ত",
+      "override": false
+    },
+    "editChecklist": {
+      "t": "চেকলিস্ট সম্পাদনা করুন",
+      "override": false
+    },
+    "searchForWorker": {
+      "t": "একজন শ্রমিকের জন্য অনুসন্ধান করুন",
+      "override": false
+    },
+    "noWorkers": {
+      "t": "কোন শ্রমিক নেই",
+      "override": false
     }
   }
 }

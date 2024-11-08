@@ -11,6 +11,7 @@ export function SaveAndFinishButton() {
     <Button
       title={t("workScreen.saveAndFinish.t")}
       variant="filled"
+      height={50}
       color={colors.tendrel.interactive3.color}
       textColor={colors.tendrel.text2.color}
       onPress={() => {

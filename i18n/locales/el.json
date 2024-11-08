@@ -159,6 +159,22 @@
     "unassign": {
       "t": "Κατάργηση εκχώρησης",
       "override": false
+    },
+    "assignee": {
+      "t": "Εκδοχέας",
+      "override": false
+    },
+    "editChecklist": {
+      "t": "Επεξεργασία λίστας ελέγχου",
+      "override": false
+    },
+    "searchForWorker": {
+      "t": "Αναζητήστε έναν εργαζόμενο",
+      "override": false
+    },
+    "noWorkers": {
+      "t": "Κανένας εργαζόμενος",
+      "override": false
     }
   }
 }
