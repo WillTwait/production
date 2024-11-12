@@ -4,16 +4,13 @@ import { View } from "@/components/View";
 import { useTheme } from "@/hooks/useTheme";
 import { nullish } from "@/util/nullish";
 import { useRouter } from "expo-router";
-import { PencilOff, SquarePen, TimerIcon } from "lucide-react-native";
+import { SquarePen, TimerIcon } from "lucide-react-native";
 import { Suspense, useCallback, useRef } from "react";
 import { ActivityIndicator, TouchableOpacity } from "react-native";
 import { SheetManager } from "react-native-actions-sheet";
 import { Swipeable } from "react-native-gesture-handler";
 import { useFragment, useQueryLoader } from "react-relay";
-import {
-  AssignChecklistMenuQuery,
-  EditChecklistModal,
-} from "../EditChecklistModal";
+import { AssignChecklistMenuQuery } from "../EditChecklistModal";
 import Seperator from "../Separator";
 import { Assignee } from "./Assignee.native";
 import {
@@ -22,7 +19,6 @@ import {
 } from "./ChecklistInlineView";
 import { ChecklistTimer } from "./ChecklistTimer.native";
 import { DisplayName } from "./DisplayName.native";
-import { DueAt } from "./DueAt.native";
 import { Temporal } from "./Temporal.native";
 
 interface Props {

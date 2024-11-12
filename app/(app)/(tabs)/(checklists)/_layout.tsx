@@ -4,7 +4,6 @@ import { useTheme } from "@/hooks/useTheme";
 import { useTendrel } from "@/tendrel/provider";
 import { Stack } from "expo-router";
 import { useRef } from "react";
-import { useTranslation } from "react-i18next";
 import { Platform, TouchableOpacity } from "react-native";
 import type { ActionSheetRef } from "react-native-actions-sheet";
 

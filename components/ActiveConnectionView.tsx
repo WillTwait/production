@@ -4,13 +4,11 @@ import type {
 } from "@/__generated__/ActiveConnectionViewRefetchQuery.graphql";
 import type { ActiveConnectionView_fragment$key } from "@/__generated__/ActiveConnectionView_fragment.graphql";
 import { Text } from "@/components/Text";
-import { View } from "@/components/View";
 import { useTheme } from "@/hooks/useTheme";
 import { addTestIdentifiers } from "@/util/add-test-id";
 import { debounce } from "@/util/debounce";
 import SegmentedControl from "@react-native-segmented-control/segmented-control";
 import { useNavigation } from "expo-router";
-import { Filter } from "lucide-react-native";
 import {
   useCallback,
   useEffect,
@@ -28,7 +26,6 @@ import {
   RefreshControl,
   SafeAreaView,
   type TextInputChangeEventData,
-  TouchableOpacity,
 } from "react-native";
 import type { ActionSheetRef } from "react-native-actions-sheet";
 import ActionSheet from "react-native-actions-sheet";
@@ -41,7 +38,6 @@ import Animated, {
 } from "react-native-reanimated";
 import { graphql, usePaginationFragment } from "react-relay";
 import { AlternateConnectionView } from "./AlternateConnectionView";
-import Separator from "./Separator";
 import { ChecklistInlineView } from "./tendrel/ChecklistInlineView.native";
 
 interface Props {

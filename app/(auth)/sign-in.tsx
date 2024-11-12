@@ -12,7 +12,7 @@ import * as Sentry from "@sentry/react";
 import { router } from "expo-router";
 import Head from "expo-router/head";
 import { Eye, EyeOff, Lock, User } from "lucide-react-native";
-import React, { useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ActivityIndicator, TouchableOpacity } from "react-native";
 import { toast } from "sonner-native";

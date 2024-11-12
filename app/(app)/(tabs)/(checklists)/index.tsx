@@ -1,7 +1,6 @@
 import type { ChecklistsQuery } from "@/__generated__/ChecklistsQuery.graphql";
 import { ActiveConnectionView } from "@/components/ActiveConnectionView";
 import { useTendrel } from "@/tendrel/provider";
-import React from "react";
 import { graphql, useLazyLoadQuery } from "react-relay";
 
 export default function Page() {

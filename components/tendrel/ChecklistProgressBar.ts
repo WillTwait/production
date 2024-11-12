@@ -14,6 +14,9 @@ export const ChecklistProgressBar$fragment = graphql`
             }
           }
           ... on ChecklistResult {
+            widget {
+              __typename
+            }
             status {
               ... on ChecklistClosed {
                 __typename

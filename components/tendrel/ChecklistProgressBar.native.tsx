@@ -18,10 +18,14 @@ export function ChecklistProgressBar({ queryRef }: Props) {
   const { colors } = useTheme();
   const { t } = useTranslation();
 
-  const dividend = data.items.edges.filter(
+  const trackedResults = data.items.edges.filter(
+    e => e.node.widget?.__typename !== "SectionWidget",
+  );
+
+  const dividend = trackedResults.filter(
     e => e.node.status?.__typename === "ChecklistClosed",
   ).length;
-  const divisor = data.items.totalCount;
+  const divisor = trackedResults.length;
 
   return (
     <View

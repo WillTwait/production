@@ -1,31 +1,21 @@
 import type { EditChecklistModalMutation } from "@/__generated__/EditChecklistModalMutation.graphql";
-import type { EditChecklistModalQuery } from "@/__generated__/EditChecklistModalQuery.graphql";
 import type { EditChecklistModalUnassignMutation } from "@/__generated__/EditChecklistModalUnassignMutation.graphql";
-import type { EditChecklistModal_fragment$key } from "@/__generated__/EditChecklistModal_fragment.graphql";
 import { useTheme } from "@/hooks/useTheme";
-import {
-  Check,
-  ChevronDown,
-  ChevronUp,
-  SquarePen,
-  X,
-} from "lucide-react-native";
+import { Check, ChevronDown, ChevronUp, X } from "lucide-react-native";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ActivityIndicator, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 import ActionSheet, {
   SheetManager,
   type SheetProps,
 } from "react-native-actions-sheet";
 import DropDownPicker from "react-native-dropdown-picker";
 import {
-  type PreloadedQuery,
   graphql,
   useFragment,
   useMutation,
   usePreloadedQuery,
 } from "react-relay";
-import * as DropdownMenu from "zeego/dropdown-menu";
 import { Text } from "./Text";
 import { View } from "./View";
 

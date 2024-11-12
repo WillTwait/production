@@ -10,6 +10,7 @@ type Props = ViewProps & {
 export default function Seperator({
   orientation = "horizontal",
   width = 1,
+  ...props
 }: Props) {
   const { colors } = useTheme();
   return (
@@ -20,6 +21,7 @@ export default function Seperator({
         width: orientation === "horizontal" ? "95%" : width,
         height: orientation === "vertical" ? "95%" : width,
       }}
+      {...props}
     />
   );
 }

@@ -1,6 +1,5 @@
 import { intlFormatDistance } from "@/util/intlFormatDistancePolyfill";
 import { toInstant, toZonedDateTime } from "@/util/temporal";
-import { Temporal as JsTemporal } from "@js-temporal/polyfill";
 import type { IntlFormatDistanceOptions } from "date-fns";
 import type { TextProps } from "react-native";
 import { useFragment } from "react-relay";

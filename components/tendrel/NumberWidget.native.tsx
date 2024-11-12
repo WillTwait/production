@@ -5,7 +5,6 @@ import {
   useFragment,
   useRelayEnvironment,
 } from "react-relay";
-import { Text } from "../Text";
 import { TextInput } from "../TextInput";
 import { View } from "../View";
 import {

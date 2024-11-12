@@ -10,6 +10,7 @@ import { SubmitButton } from "@/components/SubmitButton";
 import { View } from "@/components/View";
 import { ChecklistProgressBar } from "@/components/tendrel/ChecklistProgressBar.native";
 import { ChecklistResultInlineView } from "@/components/tendrel/ChecklistResultInlineView.native";
+import { ChecklistSection } from "@/components/tendrel/ChecklistSection.native";
 import { ChecklistStatusButton } from "@/components/tendrel/ChecklistStatusButton.native";
 import { Description } from "@/components/tendrel/Description.native";
 import { DisplayName } from "@/components/tendrel/DisplayName.native";
@@ -25,7 +26,6 @@ import ActionSheet, { type ActionSheetRef } from "react-native-actions-sheet";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { graphql, useLazyLoadQuery } from "react-relay";
 import { match } from "ts-pattern";
-
 export type ResultType = {
   id: number;
   name: string;
@@ -64,6 +64,9 @@ export default function Page() {
                   __typename
                   ... on ChecklistResult {
                     id
+                    widget {
+                      __typename
+                    }
                     ...ChecklistResultInlineView_fragment
                   }
                 }
@@ -140,13 +143,18 @@ export default function Page() {
               }
               contentContainerStyle={{ paddingRight: 3 }}
               keyExtractor={node => node.id}
-              renderItem={({ item }) => (
-                <ChecklistResultInlineView
-                  parent={node.id}
-                  queryRef={item}
-                  readOnly={node.status?.__typename !== "ChecklistInProgress"}
-                />
-              )}
+              renderItem={({ item }) => {
+                if (item.widget.__typename === "SectionWidget") {
+                  return <ChecklistSection parent={node.id} queryRef={item} />;
+                }
+                return (
+                  <ChecklistResultInlineView
+                    parent={node.id}
+                    queryRef={item}
+                    readOnly={node.status?.__typename !== "ChecklistInProgress"}
+                  />
+                );
+              }}
             />
             <View style={{ flex: 0 }}>
               {match(node.status?.__typename)
